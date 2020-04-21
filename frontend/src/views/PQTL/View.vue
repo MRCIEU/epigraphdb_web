@@ -1,0 +1,237 @@
+<template>
+  <div>
+    <h3>Proteome PheWAS browser</h3>
+    <h4>
+      Click to view the list of <a href="/pqtl/list/exposures">proteins</a> or
+      <a href="/pqtl/list/outcomes">traits.</a>
+    </h4>
+    <Alert :alert.sync="alert" :msg="alertMsg" />
+
+    <b-row>
+      <b-col cols="8">
+        <vue-bootstrap-typeahead
+          v-model="query"
+          :data="queryOptions"
+          placeholder="eg ADAM19"
+        >
+          <template slot="append">
+            <router-link
+              :to="{ name: 'pqtl-view', params: { id: this.query } }"
+            >
+              <b-button
+                variant="outline-primary"
+                :disabled="invalidateSearchable()"
+                @click="getData"
+              >
+                <b-spinner
+                  small
+                  v-if="resLoading"
+                  variant="outline-primary"
+                ></b-spinner>
+                Search
+              </b-button>
+            </router-link>
+          </template>
+        </vue-bootstrap-typeahead>
+      </b-col>
+    </b-row>
+
+    <div class="py-2"></div>
+
+    <p>
+      Results presented here can also be downloaded programmatically using the
+      <a href="http://api.epigraphdb.org" target="_blank">EpiGraphDB API</a>.
+    </p>
+    <p v-if="searchFlag == 'traits'">
+      This browser shows only those results with the p-value less than
+      <strong>0.05</strong>, if searching for a trait. The full set of MR
+      results could be downloaded using the 'ALL RESULTS' buttons.
+    </p>
+
+    <div class="py-3" />
+
+    <b-tabs>
+      <b-tab lazy title="Basic Summary">
+        <div v-if="dataSimple">
+          <TableSimple :table-data-input="dataSimple.table_output" />
+          <b-row>
+            <b-col cols="8">
+              <NetworkPlot :graph-data-input="dataSimple" />
+            </b-col>
+            <b-col>
+              <BasicSummaryDoc :search-flag="dataSimple.search_flag" />
+            </b-col>
+          </b-row>
+        </div>
+      </b-tab>
+      <b-tab lazy title="MR results">
+        <div v-if="dataMrres">
+          <Table :table-data-input="dataMrres.table_output" />
+          <b-row>
+            <b-col cols="8">
+              <Highcharts :graph-data-input="dataMrres" :query="query" />
+            </b-col>
+            <b-col>
+              <MRResultsDoc :search-flag="dataSimple.search_flag" />
+            </b-col>
+          </b-row>
+        </div>
+      </b-tab>
+      <b-tab lazy title="Single SNP MR results">
+        <div v-if="dataSglmr">
+          <Table :table-data-input="dataSglmr.table_output" />
+          <b-row>
+            <b-col cols="8">
+              <Highcharts :graph-data-input="dataSglmr" :query="query" />
+            </b-col>
+            <b-col>
+              <SingleSNPMRDoc :search-flag="dataSimple.search_flag" />
+            </b-col>
+          </b-row>
+        </div>
+      </b-tab>
+      <b-tab lazy title="SNP information">
+        <div v-if="dataInst">
+          <Table :table-data-input="dataInst.table_output" />
+          <b-row>
+            <b-col cols="8">
+              <NetworkPlot :graph-data-input="dataInst" />
+            </b-col>
+            <b-col>
+              <SNPInfoDoc :search-flag="dataSimple.search_flag" />
+            </b-col>
+          </b-row>
+        </div>
+      </b-tab>
+      <b-tab lazy title="Sensitivity analysis">
+        <div v-if="dataSense">
+          <Table :table-data-input="dataSense.table_output" />
+          <b-row>
+            <b-col cols="8">
+              <NetworkPlot :graph-data-input="dataSense" />
+            </b-col>
+            <b-col>
+              <SensitivityAnalysisDoc :search-flag="dataSimple.search_flag" />
+            </b-col>
+          </b-row>
+        </div>
+      </b-tab>
+    </b-tabs>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import { axiosErrorMessage } from "@/funcs/axios-error-message.js";
+
+import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+
+import Alert from "@/components/Utils/Alert.vue";
+import Table from "@/components/PQTL/Table.vue";
+import TableSimple from "@/components/PQTL/TableSimple.vue";
+import NetworkPlot from "@/components/PQTL/NetworkPlot.vue";
+import Highcharts from "@/components/PQTL/Highcharts.vue";
+
+import BasicSummaryDoc from "@/components/PQTL/BasicSummaryDoc.vue";
+import MRResultsDoc from "@/components/PQTL/MRResultsDoc.vue";
+import SingleSNPMRDoc from "@/components/PQTL/SingleSNPMRDoc.vue";
+import SNPInfoDoc from "@/components/PQTL/SNPInfoDoc.vue";
+import SensitivityAnalysisDoc from "@/components/PQTL/SensitivityAnalysisDoc.vue";
+
+const config = require("@/config");
+
+export default {
+  name: "PQTLView",
+  components: {
+    VueBootstrapTypeahead,
+    Alert,
+    Table,
+    TableSimple,
+    NetworkPlot,
+    Highcharts,
+    BasicSummaryDoc,
+    MRResultsDoc,
+    SingleSNPMRDoc,
+    SNPInfoDoc,
+    SensitivityAnalysisDoc
+  },
+  data: function() {
+    return {
+      alert: false,
+      alertMsg: "",
+      query: null,
+      queryOptions: [],
+      resLoading: false,
+      dataSimple: null,
+      dataMrres: null,
+      dataSglmr: null,
+      dataInst: null,
+      dataSense: null,
+      urlMaster: `${config.web_backend_url}/pqtl`
+    };
+  },
+  mounted: function() {
+    this.getQueryOptions();
+    this.processParams();
+    if (this.query) {
+      this.getData();
+    }
+  },
+  computed: {
+    searchFlag: function() {
+      if (this.dataSimple) {
+        return this.dataSimple.search_flag;
+      } else {
+        return null;
+      }
+    }
+  },
+  methods: {
+    async getQueryOptions() {
+      const url = `${this.urlMaster}/list/combined`;
+      await axios
+        .get(url)
+        .then(response => {
+          this.queryOptions = response.data;
+        })
+        .catch(error => {
+          if (config.web_debug) {
+            axiosErrorMessage(error);
+          }
+        });
+    },
+    processParams() {
+      if (this.$route.params.id) {
+        this.query = this.$route.params.id;
+      }
+    },
+    async getData() {
+      this.resLoading = true;
+      this.dataSimple = await this.getDataByMethod("simple");
+      this.dataMrres = await this.getDataByMethod("mrres");
+      this.dataSglmr = await this.getDataByMethod("sglmr");
+      this.dataInst = await this.getDataByMethod("inst");
+      this.dataSense = await this.getDataByMethod("sense");
+      this.resLoading = false;
+    },
+    async getDataByMethod(method) {
+      const params = { query: this.query, method: method };
+      const url = this.urlMaster;
+      const data = await axios
+        .get(url, { params: params })
+        .then(r => {
+          return r.data;
+        })
+        .catch(error => console.log(error));
+      return data;
+    },
+    invalidateSearchable() {
+      if (this.resLoading) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+};
+</script>

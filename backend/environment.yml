@@ -1,0 +1,27 @@
+name: web_backend
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.7
+  - cxx-compiler
+  - fastapi=0.42
+  - environs
+  - numpy
+  - pandas
+  - requests
+  - pygments
+  - pytest
+  - loguru
+  - aiofiles
+  - uvicorn
+  - pymongo
+  - elasticsearch
+  - elasticsearch-dsl
+  - black
+  - mypy
+  - jedi
+  - jupyterlab
+  - isort
+  - autoflake
+  - flake8

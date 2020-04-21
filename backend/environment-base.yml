@@ -1,0 +1,7 @@
+name: web_backend_base
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.7
+  - cxx-compiler

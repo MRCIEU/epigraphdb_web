@@ -1,0 +1,91 @@
+image: tiangolo/uwsgi-nginx-flask:python3.7
+
+variables:
+  GIT_SSL_NO_VERIFY: "1"
+  # PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PUBLIC_DOCS_DIR: "/var/epigraphdb/epigraphdb_docs/public-docs/"
+  PRIVATE_DOCS_DIR: "/var/epigraphdb/epigraphdb_docs/private-docs/"
+
+# cache:
+#   key: pipenv
+#   paths:
+#     - .cache
+#     - env
+
+before_script:
+  - python -V
+  - ls -lah
+  # - python -m venv env
+  # - pip install -r requirements.txt
+
+stages:
+  - docs
+  # - build
+  # - unit_tests
+  # - lint
+  # - deploy
+
+docs:
+  stage: docs
+  only:
+    - dev
+  tags:
+    - epigraphdb
+  script:
+    - cp ${CI_PROJECT_DIR}/README.md ${PRIVATE_DOCS_DIR}/docs/development/web-ui-v0.3.md
+
+# build:
+#   stage: build
+#   only:
+#     - merge_requests
+#   tags:
+#     - epigraphdb-docker
+#   script:
+#     - make
+
+# unit_tests:
+#   stage: unit_tests
+#   allow_failure: true
+#   only:
+#     - merge_requests
+#   tags:
+#     - epigraphdb-docker
+#   script:
+#     - make test
+
+# lint:
+#   stage: lint
+#   allow_failure: true
+#   only:
+#     - merge_requests
+#   tags:
+#     - epigraphdb-docker
+#   script:
+#     - make lint
+
+# deploy_dev:
+#   stage: deploy
+#   tags:
+#     - epigraphdb
+#   before_script:
+#     - echo "Deploy to development server"
+#   script:
+#     - cp -R $CI_PROJECT_DIR/* /var/epigraphdb/epigraphdb_compose_dev/epigraphdb_web/
+#   only:
+#     - dev
+#   variables:
+#     GIT_SSL_NO_VERIFY: "1"
+
+# deploy_prod:
+#   stage: deploy
+#   tags:
+#     - epigraphdb
+#   before_script:
+#     - echo "Deploy to production server"
+#   script:
+#     - cp -R $CI_PROJECT_DIR/* /var/epigraphdb/epigraphdb_compose_master/epigraphdb_web/
+#   when: manual
+#   only:
+#   - master
+#   variables:
+#     GIT_SSL_NO_VERIFY: "1"

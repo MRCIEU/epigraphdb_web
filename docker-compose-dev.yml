@@ -1,0 +1,106 @@
+version: "3.4"
+
+services:
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile-dev
+    restart: unless-stopped
+    command: /start-reload.sh
+    env_file:
+      - .env
+    volumes:
+      - ./backend/:/app
+    ports:
+      - ${DOCKER_BACKEND_PORT:-8010}:80
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-dev
+      args:
+        VUE_APP_WEB_BACKEND_URL: ${FRONTEND_BACKEND_URL:-localhost:8010}
+    restart: unless-stopped
+    volumes:
+      - ./frontend/public:/app/public
+      - ./frontend/src:/app/src
+      - ./frontend/babel.config.js:/app/babel.config.js
+      - ./frontend/vue.config.js:/app/vue.config.js
+    ports:
+      - ${DOCKER_FRONTEND_PORT:-8011}:8080
+
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile-dev
+      args:
+        VUE_APP_WEB_BACKEND_URL: ${FRONTEND_BACKEND_URL:-localhost:8010}
+    restart: unless-stopped
+    volumes:
+      - ./dashboard/public:/app/public
+      - ./dashboard/src:/app/src
+      - ./dashboard/babel.config.js:/app/babel.config.js
+      - ./dashboard/vue.config.js:/app/vue.config.js
+    ports:
+      - ${DOCKER_DASHBOARD_PORT:-8012}:8080
+
+  mongodb:
+    image: mongo:4.0.8
+    restart: unless-stopped
+    command: mongod --auth
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - ${DOCKER_MONGO_PORT:-6570}:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: epigraphdb
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWD}
+      MONGO_INITDB_DATABASE: epigraphdb_mongo
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
+
+  admin-mongo:
+    image: mrvautin/adminmongo:latest
+    ports:
+      - ${DOCKER_ADMIN_MONGO_PORT:-6575}:${DOCKER_ADMIN_MONGO_PORT:-6575}
+    environment:
+      - HOST=0.0.0.0
+      - PORT=${DOCKER_ADMIN_MONGO_PORT:-6575}
+      - DB_HOST=mongodb
+      - DB_PORT=27017
+      - DB_USERNAME=epigraphdb
+      - DB_PASSWORD=${MONGO_PASSWD}
+      - CONN_NAME=epigraphdb_mongo
+    depends_on:
+      - mongodb
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    restart: unless-stopped
+    ports:
+      - ${DOCKER_ES_PORT:-6550}:9200
+    tty: true
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - path.repo=/usr/share/elasticsearch/backup
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.5.1
+    restart: unless-stopped
+    ports:
+      - ${DOCKER_KIBANA_PORT:-6555}:5601
+    environment:
+      - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
+    depends_on:
+      - elasticsearch
+
+volumes:
+  mongo_data:
+    name: ${DOCKER_MONGO_VOLUME:-epigraphdb_web_mongo_data}
+    driver: local
+  es_data:
+    name: ${DOCKER_ES_VOLUME:-epigraphdb_web_es_data}
+    driver: local

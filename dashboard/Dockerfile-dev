@@ -1,0 +1,12 @@
+# -*- mode: dockerfile -*-
+FROM node:12.2.0-alpine
+ARG VUE_APP_WEB_BACKEND_URL
+RUN apk add --no-cache git
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package*.json ./
+RUN npm install
+# RUN npm install @vue/cli@3.11.0 -g
+ENV VUE_APP_WEB_BACKEND_URL=${VUE_APP_WEB_BACKEND_URL}
+ENV VUE_APP_DEBUG=true
+CMD ["npm", "run", "serve"]
