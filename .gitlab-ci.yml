@@ -12,27 +12,38 @@ variables:
 #     - .cache
 #     - env
 
-before_script:
-  - python -V
-  - ls -lah
+# before_script:
+#   - python -V
+#   - ls -lah
   # - python -m venv env
   # - pip install -r requirements.txt
 
 stages:
+  - init
   # - docs
   # - build
   # - unit_tests
   # - lint
   # - deploy
 
-docs:
-  stage: docs
+init:
+  stage: init
   only:
     - dev
   tags:
     - epigraphdb
   script:
-    - cp ${CI_PROJECT_DIR}/README.md ${PRIVATE_DOCS_DIR}/docs/development/web-ui-v0.3.md
+    - python -V
+    - ls -lah
+
+# docs:
+#   stage: docs
+#   only:
+#     - dev
+#   tags:
+#     - epigraphdb
+#   script:
+#     - cp ${CI_PROJECT_DIR}/README.md ${PRIVATE_DOCS_DIR}/docs/development/web-ui-v0.3.md
 
 # build:
 #   stage: build
