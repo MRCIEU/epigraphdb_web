@@ -21,8 +21,9 @@ def get_search_node(
 ):
     index_name = get_index_name(meta_node.value)
     if not es_client.indices.exists(index=index_name):
-        index_node_info(meta_node)
-    res = query_node_info(query=q, meta_node=meta_node.value)
+        res = []
+    else:
+        res = query_node_info(query=q, meta_node=meta_node.value)
     return res
 
 

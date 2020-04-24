@@ -19,7 +19,6 @@
         <b-form-select
           v-model="metaNode"
           :options="metaNodeOptions"
-          @change="indexData($event)"
         />
       </template>
     </vue-bootstrap-typeahead>
@@ -60,9 +59,6 @@ export default {
     ],
     url: `${config.web_backend_url}/search/global/node`
   }),
-  mounted: function() {
-    this.indexData("Gwas");
-  },
   methods: {
     search(q, metaNode) {
       const url = `${this.url}/${metaNode}`;
@@ -77,10 +73,6 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
-    indexData(metaNode) {
-      const url = `${this.url}/${metaNode}/index`;
-      axios.get(url);
     },
     gotoExplore(item) {
       if (item.id) {
