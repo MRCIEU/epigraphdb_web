@@ -15,7 +15,7 @@ class EpigraphdbMetaNode(str, Enum):
     Efo = "Efo"
     Event = "Event"
     Gene = "Gene"
-    Gtex = "Gtex"
+    Tissue = "Tissue"
     # # Literature = "Literature"
     Pathway = "Pathway"
     Protein = "Protein"

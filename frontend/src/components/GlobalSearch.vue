@@ -51,7 +51,7 @@ export default {
       { text: "Efo", value: "Efo", disabled: false },
       { text: "Event", value: "Event", disabled: false },
       { text: "Gene", value: "Gene", disabled: false },
-      { text: "Gtex", value: "Gtex", disabled: false },
+      { text: "Tissue", value: "Tissue", disabled: false },
       { text: "Pathway", value: "Pathway", disabled: false },
       { text: "Protein", value: "Protein", disabled: false },
       { text: "SemmedTerm", value: "SemmedTerm", disabled: false },

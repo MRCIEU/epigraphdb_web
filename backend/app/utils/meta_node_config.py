@@ -26,7 +26,7 @@ meta_node_orig = {
         "fg": "black",
         "explore": True,
     },
-    "Gtex": {
+    "Tissue": {
         "bg": color_palette["orange"]["600"],
         "fg": "white",
         "explore": True,

@@ -11,7 +11,7 @@ search_config = {
     "Efo": {"length": 26000, "indexer": name_indexer_edge_ngram_long},
     "Event": {"length": 12000, "indexer": name_indexer_edge_ngram_long},
     "Gene": {"length": 60000, "indexer": name_indexer_edge_ngram_short},
-    "Gtex": {"length": 12000, "indexer": name_indexer_edge_ngram_long},
+    "Tissue": {"length": 12000, "indexer": name_indexer_edge_ngram_long},
     "Pathway": {"length": 2200, "indexer": name_indexer_edge_ngram_long},
     "Protein": {"length": 22000, "indexer": name_indexer_edge_ngram_short},
     "SemmedTerm": {"length": 106000, "indexer": name_indexer_edge_ngram_long},
