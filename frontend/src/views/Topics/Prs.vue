@@ -117,7 +117,7 @@ import VueMarkdown from "vue-markdown";
 
 import _ from "underscore";
 
-import info from "@/assets/docs/genetic-cor.md";
+import info from "@/assets/docs/prs.md";
 import { axiosErrorMessage } from "@/funcs/axios-error-message.js";
 
 import Alert from "@/components/Utils/Alert.vue";
