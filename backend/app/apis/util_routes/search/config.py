@@ -1,7 +1,7 @@
 from app.funcs.elasticsearch.indexers import (
     name_indexer_edge_ngram_long,
     name_indexer_edge_ngram_short,
-    name_indexer_standard
+    name_indexer_standard,
 )
 
 search_config = {

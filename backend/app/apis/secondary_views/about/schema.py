@@ -144,6 +144,7 @@ def schema_graph(nodes_df, rels_df, edges_df):
     #        in the meta_graph
     nodes_df = (
         nodes_df.reset_index(drop=True)
+        .replace({np.nan: None})
         .merge(meta_node_def, left_on="node_name", right_index=True)
         .assign(shape="box")
         .assign(id=lambda df: df["node_name"].astype("category").cat.codes + 1)
@@ -160,7 +161,8 @@ def schema_graph(nodes_df, rels_df, edges_df):
         )
     )
     rels_df = (
-        rels_df.merge(
+        rels_df.replace({np.nan: None})
+        .merge(
             nodes_df.rename(
                 columns={"id": "from", "node_name": "from_node", "bg": "color"}
             )[["from", "from_node", "color"]],

@@ -70,6 +70,7 @@ def format_df_results(df: pd.DataFrame):
     """A general processor to convert a pandas dataframe
     to a format used in the frontend.
     """
+    df = df.replace({np.nan: None})
     res = {
         "table_titles": [{"label": title} for title in df.columns],
         "table_data": df.to_dict(orient="records"),
@@ -81,6 +82,7 @@ def format_df_results_general(df: pd.DataFrame):
     """A general processor to convert a pandas dataframe
     to a format used in the frontend.
     """
+    df = df.replace({np.nan: None})
     res = {
         "table_titles": [
             {"label": title, "key": title, "sortable": True}
