@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from app.funcs.cypher_diagram import CypherDiagram, DiagramEdge, DiagramNode
 from app.funcs.query_processors import (
@@ -38,7 +38,7 @@ class LiteratureTraitQueryProcessor(TopicQueryProcessor):
 
 def cypher_diagram(
     trait: str,
-    semmed_predicate: Optional[str],
+    semmed_predicates: List[Optional[str]],
     pval_threshold: float,
     limit: int,
 ):
@@ -49,7 +49,7 @@ def cypher_diagram(
         DiagramNode(
             id=id["triple"],
             meta_node="SemmedTriple",
-            sub_label=semmed_predicate,
+            sub_label=semmed_predicates[0],
         ),
     ]
     diagram_edges = [

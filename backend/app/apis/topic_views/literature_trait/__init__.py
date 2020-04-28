@@ -22,7 +22,7 @@ class LiteratureTraitAcIndex(str, Enum):
 @router.get("/literature_trait", response_model=bool)
 def get_literature_trait(
     trait: str,
-    semmed_predicates: Optional[str],
+    semmed_predicate: Optional[str],
     pval_threshold: float = 1e-5,
     overwrite: bool = False,
 ) -> bool:
@@ -32,7 +32,7 @@ def get_literature_trait(
     processor = LiteratureTraitQueryProcessor(
         params={
             "trait": trait,
-            "semmed_predicates": semmed_predicates,
+            "semmed_predicates": [semmed_predicate],
             "pval_threshold": pval_threshold,
         }
     )
@@ -63,7 +63,7 @@ def get_literature_trait_endpoints(
     processor = LiteratureTraitQueryProcessor(
         params={
             "trait": trait,
-            "semmed_predicate": semmed_predicate,
+            "semmed_predicates": [semmed_predicate],
             "pval_threshold": pval_threshold,
             "limit": limit,
         }
