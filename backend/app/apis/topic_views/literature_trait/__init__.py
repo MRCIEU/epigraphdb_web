@@ -21,13 +21,20 @@ class LiteratureTraitAcIndex(str, Enum):
 
 @router.get("/literature_trait", response_model=bool)
 def get_literature_trait(
-    trait: str, semmed_predicates: Optional[str], overwrite: bool = False
+    trait: str,
+    semmed_predicates: Optional[str],
+    pval_threshold: float = 1e-5,
+    overwrite: bool = False,
 ) -> bool:
     """This is the master processor. For actual data use sub-apis
     """
     log_args(api="/literature_trait", kwargs=locals())
     processor = LiteratureTraitQueryProcessor(
-        params={"trait": trait, "semmed_predicates": semmed_predicates}
+        params={
+            "trait": trait,
+            "semmed_predicates": semmed_predicates,
+            "pval_threshold": pval_threshold,
+        }
     )
     res = processor.process_master(overwrite=overwrite)
     return res
@@ -47,6 +54,7 @@ def get_literature_trait_endpoints(
     endpoint: models.TopicViewEndpoints,
     trait: str,
     semmed_predicate: Optional[str],
+    pval_threshold: float = 1e-5,
     limit: int = 500,
     rels_limit: int = rels_limit,
     overwrite: bool = False,
@@ -56,6 +64,7 @@ def get_literature_trait_endpoints(
         params={
             "trait": trait,
             "semmed_predicate": semmed_predicate,
+            "pval_threshold": pval_threshold,
             "limit": limit,
         }
     )

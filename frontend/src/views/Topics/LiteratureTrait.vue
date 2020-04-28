@@ -42,6 +42,14 @@
               @hit="semmedPredicate = $event"
             />
           </div>
+          <div>
+            P-value threshold:
+            <vue-slider
+              v-model="pvalBase"
+              :data="pvalBaseOptions"
+              :marks="true"
+            />
+          </div>
         </b-col>
       </b-row>
     </div>
@@ -109,6 +117,9 @@ import {
   faVrCardboard
 } from "@fortawesome/free-solid-svg-icons";
 
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/default.css";
+
 import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
 
 import VueMarkdown from "vue-markdown";
@@ -140,6 +151,7 @@ export default {
   components: {
     FontAwesomeIcon,
     VueMarkdown,
+    VueSlider,
     VueBootstrapTypeahead,
     Alert,
     NetworkPlot,
@@ -151,6 +163,8 @@ export default {
     sizeLimitDefault: 50,
     trait: "",
     semmedPredicate: "",
+    pvalBase: "1e-5",
+    pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
     // ac
     acTrait: [],
     acSemmedPredicate: [],
@@ -309,6 +323,9 @@ export default {
     }, 500)
   },
   computed: {
+    pval: function() {
+      return parseFloat(this.pvalBase);
+    },
     urlNetworkPlot: function() {
       return `${this.urlMaster}/network-plot`;
     },
@@ -324,12 +341,14 @@ export default {
     paramsGeneral: function() {
       return {
         trait: this.trait,
+        pval_threshold: this.pval,
         semmed_predicate: this.semmedPredicate
       };
     },
     paramsPlot: function() {
       return {
         trait: this.trait,
+        pval_threshold: this.pval,
         semmed_predicate: this.semmedPredicate,
         rels_limit: this.sizeLimitDefault
       };

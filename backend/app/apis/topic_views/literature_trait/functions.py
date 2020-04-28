@@ -36,7 +36,12 @@ class LiteratureTraitQueryProcessor(TopicQueryProcessor):
         )
 
 
-def cypher_diagram(trait: str, semmed_predicate: Optional[str], limit: int):
+def cypher_diagram(
+    trait: str,
+    semmed_predicate: Optional[str],
+    pval_threshold: float,
+    limit: int,
+):
     id = {"gwas": 1, "triple": 2, "lit": 3}
     diagram_nodes = [
         DiagramNode(id=id["gwas"], meta_node="Gwas", sub_label=trait),
