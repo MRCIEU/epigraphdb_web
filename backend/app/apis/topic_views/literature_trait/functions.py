@@ -1,5 +1,7 @@
 from typing import Any, Dict, List, Optional
 
+import pandas as pd
+
 from app.funcs.cypher_diagram import CypherDiagram, DiagramEdge, DiagramNode
 from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
@@ -22,6 +24,13 @@ table_cols = [
 ]
 
 
+def table_precaching_hook(df: pd.DataFrame) -> pd.DataFrame:
+    res_df = df.sort_values(by=["gs.pval"], ascending=True).reset_index(
+        drop=True
+    )
+    return res_df
+
+
 class LiteratureTraitQueryProcessor(TopicQueryProcessor):
     def __init__(self, params: Dict[str, Any]):
         super().__init__(
@@ -33,6 +42,7 @@ class LiteratureTraitQueryProcessor(TopicQueryProcessor):
             ),
             api_endpoint=api_endpoint,
             cypher_diagram_fn=cypher_diagram,
+            table_precaching_hook=table_precaching_hook,
         )
 
 

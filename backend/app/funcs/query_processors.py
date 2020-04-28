@@ -49,6 +49,7 @@ class TopicQueryProcessor:
         cypher_diagram_fn: Callable,
         api_endpoint: Optional[str] = None,
         cypher_diagram_params: Optional[Dict[str, Any]] = None,
+        table_precaching_hook: Optional[Callable] = None,
     ):
         """ A generic query class for topic views that handles:
         - master query
@@ -81,6 +82,9 @@ class TopicQueryProcessor:
             self.cypher_diagram_params = self.params
         else:
             self.cypher_diagram_params = cypher_diagram_params
+
+        # hooks
+        self.table_precaching_hook = table_precaching_hook
 
         # urls
         if api_endpoint is None:
@@ -171,6 +175,8 @@ class TopicQueryProcessor:
                 results_df = pd.io.json.json_normalize(results)[
                     self.table_cols
                 ]
+                if self.table_precaching_hook is not None:
+                    results_df = results_df.pipe(self.table_precaching_hook)
                 table_data = format_df_results(results_df)
                 mongo_doc_insert(
                     collection=self.mongo_coll_table,
