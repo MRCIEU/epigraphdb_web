@@ -70,7 +70,7 @@ def render_r_pkg_snippet(
             return str(value)
 
     def format_params(params) -> str:
-        res = ",".join(
+        res = ", ".join(
             [
                 f"{key}={format_arg_value(value)}"
                 for key, value in params.items()
@@ -79,7 +79,6 @@ def render_r_pkg_snippet(
         return res
 
     get_query_template = """
-    library("tidyverse")
     library("epigraphdb")
 
     res = query_epigraphdb(
