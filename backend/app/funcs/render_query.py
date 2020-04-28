@@ -40,7 +40,7 @@ def render_api_snippet(
     import requests
 
 
-    url = {url}
+    url = "{url}"
     params = {params}
     r = requests.get(url, params=params)
     r.raise_for_status()
