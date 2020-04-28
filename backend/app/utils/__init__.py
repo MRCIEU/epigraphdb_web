@@ -47,7 +47,7 @@ def safe_none(x: Optional[str]) -> Optional[str]:
 
 def overwrite_docker_url(
     url,
-    pattern: str = "http://api",
+    pattern: str = "http://api_private:80",
     replacement: str = "http://api.epigraphdb.org",
 ):
     """When deployed inside docker-compose with api,
