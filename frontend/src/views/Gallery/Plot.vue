@@ -26,7 +26,7 @@
 <script>
 import axios from "axios";
 
-import { Network } from "vue2vis";
+import { Network } from "vue-vis-network";
 import { renderForceGraph } from "@/funcs/plot-force-graph.js";
 
 import { JsPanel } from "vue-js-panel/src";

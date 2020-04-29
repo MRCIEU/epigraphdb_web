@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Network } from "vue2vis";
+import { Network } from "vue-vis-network";
 import _ from "lodash";
 
 export default {

@@ -48,7 +48,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCube, faExpand } from "@fortawesome/free-solid-svg-icons";
 
-import { Network } from "vue2vis";
+import { Network } from "vue-vis-network";
 import { renderForceGraph } from "@/funcs/plot-force-graph.js";
 
 library.add(faCube, faExpand);

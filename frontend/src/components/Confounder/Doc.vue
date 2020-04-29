@@ -24,7 +24,7 @@ import axios from "axios";
 
 import VueMarkdown from "vue-markdown";
 
-import { Network } from "vue2vis";
+import { Network } from "vue-vis-network";
 
 import infoPart1 from "@/assets/docs/confounder-part1.md";
 import infoPart2 from "@/assets/docs/confounder-part2.md";

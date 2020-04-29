@@ -27,7 +27,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faExpand } from "@fortawesome/free-solid-svg-icons";
 
-import { Network } from "vue2vis";
+import { Network } from "vue-vis-network";
 
 library.add(faExpand);
 
