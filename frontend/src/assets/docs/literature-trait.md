@@ -1,8 +1,9 @@
 ## Summary
 
-## Data sources
+This view shows the literature evidence (from MEDLINE using SemMedDB) associated with a phenotype term. The trait of interest will map to an associated SemMed triple (Subject-Predicate-Object** derived from text-mining of the literature, then map to a published study with its PubMed ID. For example the `"Adiponectin"` trait will map to a triple such as `"Adiponectin:INHIBITS:Leptin"`and then to literature evidence supporting this mechanism.
 
-* Literature triples (Subject-Predicate-Object) are from [SemMedDB](https://skr3.nlm.nih.gov/SemMedDB/) (1-4)
+**Mapping of IEU GWAS Database trait to SemMed triple**:
+Mapping of trait terms to SemMed terms is applied with an enrichment p-value. For example, the "Body mass index" trait when there is no identical SemMed term EpiGraphDB will be map it to SemMed terms like "Obesity" or "Diabetes".
 
 ## How to use
 
@@ -17,6 +18,10 @@ Top results are presented in the **Network plot** tab, with full results searcha
 - [Adiponectin](/literature/trait/?trait-query=Adiponectin)
 - [HDL cholesterol](/literature/trait/?trait-query=HDL+cholesterol)
 - [Crohn's disease](/literature/trait/?trait-query=Crohn%27s+disease)
+
+## Data sources
+
+* Literature triples are from [SemMedDB](https://skr3.nlm.nih.gov/SemMedDB/)
 
 ## References
 
