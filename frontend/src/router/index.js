@@ -194,6 +194,14 @@ const routes = [
       import(
         /* webpackChunkName: "covid-xqtl" */ "../views/Topics/CovidXQTL.vue"
       )
+  },
+  {
+    path: "/simple-schema",
+    name: "simple-schema",
+    component: () =>
+      import(
+        /* webpackChunkName: "simple-schema" */ "@/components/SimpleSchema.vue"
+      )
   }
 ];
 
