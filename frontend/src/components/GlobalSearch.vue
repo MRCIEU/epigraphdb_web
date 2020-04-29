@@ -16,10 +16,7 @@
         <span v-html="htmlText"></span>
       </template>
       <template slot="append">
-        <b-form-select
-          v-model="metaNode"
-          :options="metaNodeOptions"
-        />
+        <b-form-select v-model="metaNode" :options="metaNodeOptions" />
       </template>
     </vue-bootstrap-typeahead>
   </div>
