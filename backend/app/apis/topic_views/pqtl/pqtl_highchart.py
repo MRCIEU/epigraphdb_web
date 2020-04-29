@@ -11,6 +11,10 @@ def pqtl_highchart(data, method, search_flag):  # noqa:C901
     res["topres"] = []
     res["otherres"] = []
     count_others = 0
+    if search_flag == "proteins":
+        name_field = "outID"
+    else:
+        name_field = "expID"
     for item in data["results"]:
         if method == "mrres":
             pval = item["pvalue"]
@@ -24,7 +28,7 @@ def pqtl_highchart(data, method, search_flag):  # noqa:C901
             if pval < PVAL_THR:
                 res["topres"].append(
                     {
-                        "name": item["expID"],
+                        "name": item[name_field],
                         "x": round(beta / se, 3),
                         "y": round(-math.log10(pval), 3),
                     }
@@ -33,7 +37,7 @@ def pqtl_highchart(data, method, search_flag):  # noqa:C901
                 count_others = count_others + 1
                 res["otherres"].append(
                     {
-                        "name": item["outID"],
+                        "name": item[name_field],
                         "x": round(beta / se, 3),
                         "y": round(-math.log10(pval), 3),
                     }
