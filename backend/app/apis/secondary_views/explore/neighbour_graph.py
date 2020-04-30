@@ -179,7 +179,7 @@ def edges_df_to_dict(edges_df):
             "to": df["to"],
             "arrows": {"to": False},
             "arrowStrikethrough": False,
-            "width": 0.5,
+            "width": 2,
             "dashes": True,
             "title": df["title"],
             "color": {
