@@ -13,6 +13,7 @@
 
 <script>
 import { Network } from "vue-vis-network";
+import schema from "@/assets/schema/simple-schema.json";
 
 export default {
   name: "SimpleSchema",
@@ -20,33 +21,9 @@ export default {
     network: Network
   },
   data: () => ({
-    nodes: [
-      { id: 1, label: "circle", title: "foobar", shape: "circle" },
-      { id: 2, label: "ellipse", shape: "ellipse" },
-      { id: 3, label: "database", shape: "database" },
-      { id: 4, label: "box", shape: "box" },
-      { id: 5, label: "diamond", shape: "diamond" },
-      { id: 6, label: "dot", shape: "dot" },
-      { id: 7, label: "square", shape: "square" },
-      { id: 8, label: "triangle", shape: "triangle" }
-    ],
-    edges: [
-      { from: 1, to: 2 },
-      { from: 2, to: 3 },
-      { from: 2, to: 4 },
-      { from: 2, to: 5 },
-      { from: 5, to: 6 },
-      { from: 5, to: 7 },
-      { from: 6, to: 8 }
-    ],
-    options: {
-      nodes: {
-        borderWidth: 4
-      },
-      edges: {
-        color: "lightgray"
-      }
-    }
+    nodes: schema.nodes,
+    edges: schema.edges,
+    options: schema.options
   })
 };
 </script>
