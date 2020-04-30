@@ -29,7 +29,9 @@ def get_literature_trait(
     """This is the master processor. For actual data use sub-apis
     """
     log_args(api="/literature_trait", kwargs=locals())
-    semmed_predicates = [semmed_predicate] if semmed_predicate is not None else None
+    semmed_predicates = (
+        [semmed_predicate] if semmed_predicate is not None else None
+    )
     processor = LiteratureTraitQueryProcessor(
         params={
             "trait": trait,
@@ -56,18 +58,18 @@ def get_literature_trait_endpoints(
     trait: str,
     semmed_predicate: Optional[str],
     pval_threshold: float = 1e-5,
-    limit: int = 500,
     rels_limit: int = rels_limit,
     overwrite: bool = False,
 ):
     log_args(api=f"/literature_trait/{endpoint.value}", kwargs=locals())
-    semmed_predicates = [semmed_predicate] if semmed_predicate is not None else None
+    semmed_predicates = (
+        [semmed_predicate] if semmed_predicate is not None else None
+    )
     processor = LiteratureTraitQueryProcessor(
         params={
             "trait": trait,
             "semmed_predicates": semmed_predicates,
             "pval_threshold": pval_threshold,
-            "limit": limit,
         }
     )
     res = None

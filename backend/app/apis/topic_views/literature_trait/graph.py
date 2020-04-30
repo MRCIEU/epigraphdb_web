@@ -15,9 +15,13 @@ edge_schemas = [
     NetworkEdgeSchema(
         from_col="gwas.id", to_col="triple.id", from_meta_node="Gwas"
     ),
-    # NetworkEdgeSchema(
-    #     from_col="gwas.id", to_col="lit.pubmed_id", from_meta_node="Gwas"
-    # ),
+    NetworkEdgeSchema(
+        from_col="gwas.id",
+        to_col="lit.pubmed_id",
+        from_meta_node="Gwas",
+        arrows=False,
+        dashes=True,
+    ),
     NetworkEdgeSchema(
         from_col="triple.id",
         to_col="lit.pubmed_id",

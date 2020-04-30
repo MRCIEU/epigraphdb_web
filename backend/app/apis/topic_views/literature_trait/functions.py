@@ -47,10 +47,7 @@ class LiteratureTraitQueryProcessor(TopicQueryProcessor):
 
 
 def cypher_diagram(
-    trait: str,
-    semmed_predicates: Optional[List[str]],
-    pval_threshold: float,
-    limit: int,
+    trait: str, semmed_predicates: Optional[List[str]], pval_threshold: float,
 ):
     id = {"gwas": 1, "triple": 2, "lit": 3}
     diagram_nodes = [
@@ -59,12 +56,21 @@ def cypher_diagram(
         DiagramNode(
             id=id["triple"],
             meta_node="SemmedTriple",
-            sub_label=semmed_predicates[0] if semmed_predicates is not None else None,
+            sub_label=semmed_predicates[0]
+            if semmed_predicates is not None
+            else None,
         ),
     ]
     diagram_edges = [
         DiagramEdge(
             from_id=id["gwas"], to_id=id["triple"], meta_rel="GWAS_SEM"
+        ),
+        DiagramEdge(
+            from_id=id["gwas"],
+            to_id=id["lit"],
+            meta_rel="GWAS_TO_LIT",
+            arrows=False,
+            dashes=True,
         ),
         DiagramEdge(
             from_id=id["triple"], to_id=id["lit"], meta_rel="SEM_TO_LIT"
