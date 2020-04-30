@@ -1,9 +1,16 @@
 ## Summary
 
-This view shows the literature evidence (from MEDLINE using SemMedDB) associated with a phenotype term. The trait of interest will map to an associated SemMed triple (Subject-Predicate-Object** derived from text-mining of the literature, then map to a published study with its PubMed ID. For example the `"Adiponectin"` trait will map to a triple such as `"Adiponectin:INHIBITS:Leptin"`and then to literature evidence supporting this mechanism.
+This view shows the literature evidence (from MEDLINE using SemMedDB) associated with a phenotype term, in a two stage approach:
+
+1. The trait of interest will map to an associated SemMed triple (Subject-Predicate-Object**) derived from text-mining of the literature, then map to a published study with its PubMed ID. For example the `"Adiponectin"` trait will map to a triple such as `"Adiponectin:INHIBITS:Leptin"`and then to literature evidence supporting this mechanism.
+
+2. We then restrict the associated literature to those that are only relevant with the original trait.
 
 **Mapping of IEU GWAS Database trait to SemMed triple**:
 Mapping of trait terms to SemMed terms is applied with an enrichment p-value. For example, the "Body mass index" trait when there is no identical SemMed term EpiGraphDB will be map it to SemMed terms like "Obesity" or "Diabetes".
+
+**Restricting pubmed articles to orignal trait**:
+`[GWAS_TO_LIT]` connects `(Gwas)` nodes to `(Literature)` nodes based on two criteria, both provided via MELODI-Lite (https://github.com/MRCIEU/MELODI-lite). The first is a PubMed search of the trait name, the second is a mapping of those matching PubMed articles to a subset of SemMedDB. Therefore, links between GWAS and literature nodes are only present if there is a link between the literature node and SemMed data.
 
 ## How to use
 
@@ -21,7 +28,7 @@ Top results are presented in the **Network plot** tab, with full results searcha
 
 ## Data sources
 
-* Literature triples are from [SemMedDB](https://skr3.nlm.nih.gov/SemMedDB/)
+* Literature triples are from [SemMedDB](https://skr3.nlm.nih.gov/SemMedDB/) (1-4)
 
 ## References
 
