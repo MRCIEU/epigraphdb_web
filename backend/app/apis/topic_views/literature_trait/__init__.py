@@ -24,6 +24,7 @@ def get_literature_trait(
     trait: str,
     semmed_predicate: Optional[str],
     pval_threshold: float = 1e-5,
+    limit: int = 500,
     overwrite: bool = False,
 ) -> bool:
     """This is the master processor. For actual data use sub-apis
@@ -37,6 +38,7 @@ def get_literature_trait(
             "trait": trait,
             "semmed_predicates": semmed_predicates,
             "pval_threshold": pval_threshold,
+            "limit": limit,
         }
     )
     res = processor.process_master(overwrite=overwrite)
@@ -58,6 +60,7 @@ def get_literature_trait_endpoints(
     trait: str,
     semmed_predicate: Optional[str],
     pval_threshold: float = 1e-5,
+    limit: int = 500,
     rels_limit: int = rels_limit,
     overwrite: bool = False,
 ):
@@ -70,6 +73,7 @@ def get_literature_trait_endpoints(
             "trait": trait,
             "semmed_predicates": semmed_predicates,
             "pval_threshold": pval_threshold,
+            "limit": limit,
         }
     )
     res = None
