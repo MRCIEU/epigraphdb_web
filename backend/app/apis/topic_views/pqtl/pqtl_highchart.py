@@ -24,7 +24,8 @@ def pqtl_highchart(data, method, search_flag):  # noqa:C901
             pval = item["pvalue_sgl"]
             beta = item["beta_sgl"]
             se = item["se_slg"]
-        if pval is not None:
+        # PATCH: pval should not be perfectly zero, otherwise y goes to inf
+        if pval is not None and pval > 0.0:
             if pval < PVAL_THR:
                 res["topres"].append(
                     {
