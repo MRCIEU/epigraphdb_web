@@ -4,7 +4,7 @@ This view provides putative causal estimates between 353 molecular phenotype (e.
 
 ## Data sources
 
-COVID-19 target-disease atlas (CTDA) (Zheng et al, Multi-omics study revealing tissue-dependent putative mechanisms of SARS-CoV-2 drug targets on viral infections and complex diseases, bioRxiv).
+COVID-19 target-disease atlas (CTDA) (Jie Zheng+\*, Yuemiao Zhang+\*, Yi Liu, Denis Baird, Xingzi Liu, Lin Wang, Hong Zhang, George Davey Smith, Tom R Gaunt, Multi-omics study revealing tissue-dependent putative mechanisms of SARS-CoV-2 drug targets on viral infections and complex diseases, bioRxiv).
 
 ## Examples
 
