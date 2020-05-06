@@ -236,7 +236,7 @@ def schema_graph(nodes_df, rels_df, edges_df):
         lambda df: {
             "from": df["from"],
             "to": df["to"],
-            "arrows": {"to": True},
+            "arrows": {"to": False},
             "scaling": {"min": 0.2, "max": 5},
             "arrowStrikethrough": True,
             "url": df["url"],
