@@ -28,7 +28,7 @@ meta_node_orig = {
     },
     "Tissue": {
         "bg": color_palette["orange"]["600"],
-        "fg": "white",
+        "fg": "black",
         "explore": True,
     },
     "Gwas": {
