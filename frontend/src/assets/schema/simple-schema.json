@@ -3,7 +3,6 @@
       {
         "id": 1,
         "label": "Disease",
-        "title": "\n            <h4>Disease</h4>\n            <b>count</b>: 21,829\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#disease",
         "color": {
           "background": "rgba(0, 172, 193, 0.85)",
@@ -24,7 +23,6 @@
       {
         "id": 10,
         "label": "SemmedTerm",
-        "title": "\n            <h4>SemmedTerm</h4>\n            <b>count</b>: 103,967\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#semmedterm",
         "color": {
           "background": "rgba(129, 212, 250, 0.85)",
@@ -45,7 +43,6 @@
       {
         "id": 8,
         "label": "Pathway",
-        "title": "\n            <h4>Pathway</h4>\n            <b>count</b>: 2,180\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#pathway",
         "color": {
           "background": "rgba(94, 53, 177, 0.85)",
@@ -66,7 +63,6 @@
       {
         "id": 5,
         "label": "Gene",
-        "title": "\n            <h4>Gene</h4>\n            <b>count</b>: 59,171\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#gene",
         "color": {
           "background": "rgba(251, 192, 45, 0.85)",
@@ -87,7 +83,6 @@
       {
         "id": 7,
         "label": "Literature",
-        "title": "\n            <h4>Literature</h4>\n            <b>count</b>: 29,137,785\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#literature",
         "color": {
           "background": "rgba(244, 143, 177, 0.85)",
@@ -108,7 +103,6 @@
       {
         "id": 9,
         "label": "Protein",
-        "title": "\n            <h4>Protein</h4>\n            <b>count</b>: 21,543\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#protein",
         "color": {
           "background": "rgba(229, 57, 53, 0.85)",
@@ -129,7 +123,6 @@
       {
         "id": 13,
         "label": "Variant",
-        "title": "\n            <h4>Variant</h4>\n            <b>count</b>: 31,773\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#variant",
         "color": {
           "background": "rgba(51, 105, 30, 0.85)",
@@ -150,7 +143,6 @@
       {
         "id": 11,
         "label": "SemmedTriple",
-        "title": "\n            <h4>SemmedTriple</h4>\n            <b>count</b>: 3,428,531\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#semmedtriple",
         "color": {
           "background": "rgba(64, 196, 255, 0.85)",
@@ -171,7 +163,6 @@
       {
         "id": 3,
         "label": "Efo",
-        "title": "\n            <h4>Efo</h4>\n            <b>count</b>: 25,390\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#efo",
         "color": {
           "background": "rgba(124, 179, 66, 0.85)",
@@ -192,7 +183,6 @@
       {
         "id": 12,
         "label": "Tissue",
-        "title": "\n            <h4>Tissue</h4>\n            <b>count</b>: 53\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#tissue",
         "color": {
           "background": "rgba(251, 140, 0, 0.85)",
@@ -213,7 +203,6 @@
       {
         "id": 6,
         "label": "Gwas",
-        "title": "\n            <h4>Gwas</h4>\n            <b>count</b>: 88,176\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#gwas",
         "color": {
           "background": "rgba(30, 136, 229, 0.85)",
@@ -234,7 +223,6 @@
       {
         "id": 2,
         "label": "Drug",
-        "title": "\n            <h4>Drug</h4>\n            <b>count</b>: 2,455\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#drug",
         "color": {
           "background": "rgba(67, 160, 71, 0.85)",
@@ -255,7 +243,6 @@
       {
         "id": 4,
         "label": "Event",
-        "title": "\n            <h4>Event</h4>\n            <b>count</b>: 11,868\n            ",
         "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#event",
         "color": {
           "background": "rgba(192, 202, 51, 0.85)",
@@ -289,7 +276,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#mondo_map_efo",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>MONDO_MAP_EFO</h4>\n            <b>count</b>: 163\n            ",
         "color": {
           "color": "#00acc1",
           "hover": "#ef5350"
@@ -309,7 +295,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#mondo_map_umls",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>MONDO_MAP_UMLS</h4>\n            <b>count</b>: 424\n            ",
         "color": {
           "color": "#00acc1",
           "hover": "#ef5350"
@@ -329,7 +314,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#opentargets_drug_to_disease",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>OPENTARGETS_DRUG_TO_DISEASE</h4>\n            <b>count</b>: 95,560\n            ",
         "color": {
           "color": "#43a047",
           "hover": "#ef5350"
@@ -349,7 +333,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#cpic",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>CPIC</h4>\n            <b>count</b>: 7,028\n            ",
         "color": {
           "color": "#43a047",
           "hover": "#ef5350"
@@ -369,7 +352,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#opentargets_drug_to_target",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>OPENTARGETS_DRUG_TO_TARGET</h4>\n            <b>count</b>: 159,324\n            ",
         "color": {
           "color": "#43a047",
           "hover": "#ef5350"
@@ -389,7 +371,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#efo_child_of",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>EFO_CHILD_OF</h4>\n            <b>count</b>: 252,515\n            ",
         "color": {
           "color": "#7cb342",
           "hover": "#ef5350"
@@ -409,7 +390,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#preceding_event",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>PRECEDING_EVENT</h4>\n            <b>count</b>: 2,194\n            ",
         "color": {
           "color": "#c0ca33",
           "hover": "#ef5350"
@@ -429,7 +409,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_gene_gene",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>INTACT_INTERACTS_WITH_GENE_GENE</h4>\n            <b>count</b>: 2\n            ",
         "color": {
           "color": "#fbc02d",
           "hover": "#ef5350"
@@ -449,7 +428,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_multi_snp_mr",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>XQTL_MULTI_SNP_MR</h4>\n            <b>count</b>: 682,488,581\n            ",
         "color": {
           "color": "#fbc02d",
           "hover": "#ef5350"
@@ -469,7 +447,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_single_snp_mr_gene_gwas",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>XQTL_SINGLE_SNP_MR_GENE_GWAS</h4>\n            <b>count</b>: 5,302,419,094\n            ",
         "color": {
           "color": "#fbc02d",
           "hover": "#ef5350"
@@ -489,7 +466,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gene_to_literature",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>GENE_TO_LITERATURE</h4>\n            <b>count</b>: 106\n            ",
         "color": {
           "color": "#fbc02d",
           "hover": "#ef5350"
@@ -509,7 +485,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gene_to_protein",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>GENE_TO_PROTEIN</h4>\n            <b>count</b>: 878\n            ",
         "color": {
           "color": "#fbc02d",
           "hover": "#ef5350"
@@ -529,7 +504,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_gene_protein",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>INTACT_INTERACTS_WITH_GENE_PROTEIN</h4>\n            <b>count</b>: 627\n            ",
         "color": {
           "color": "#fbc02d",
           "hover": "#ef5350"
@@ -549,7 +523,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#expressed_in",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>EXPRESSED_IN</h4>\n            <b>count</b>: 243,835,606\n            ",
         "color": {
           "color": "#fbc02d",
           "hover": "#ef5350"
@@ -569,7 +542,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_nlp_efo",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>GWAS_NLP_EFO</h4>\n            <b>count</b>: 2,003\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -589,7 +561,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#bn_gen_cor",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>BN_GEN_COR</h4>\n            <b>count</b>: 11,537,509\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -609,7 +580,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_nlp",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>GWAS_NLP</h4>\n            <b>count</b>: 1,382,751,083\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -629,7 +599,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#mr",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>MR</h4>\n            <b>count</b>: 3,325,993\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -649,7 +618,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#obs_cor",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>OBS_COR</h4>\n            <b>count</b>: 16,315\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -669,7 +637,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#prs",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>PRS</h4>\n            <b>count</b>: 267,170\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -689,7 +656,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_to_lit",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>GWAS_TO_LIT</h4>\n            <b>count</b>: 1,540,982,149\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -709,7 +675,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#metamap_lite",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>METAMAP_LITE</h4>\n            <b>count</b>: 303\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -729,7 +694,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_sem",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>GWAS_SEM</h4>\n            <b>count</b>: 450,483,275\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -749,7 +713,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_to_variant",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>GWAS_TO_VARIANT</h4>\n            <b>count</b>: 160,576\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -769,7 +732,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#tophits",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>TOPHITS</h4>\n            <b>count</b>: 206,274\n            ",
         "color": {
           "color": "#1e88e5",
           "hover": "#ef5350"
@@ -789,7 +751,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#pathway_to_disease",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>PATHWAY_TO_DISEASE</h4>\n            <b>count</b>: 6,571\n            ",
         "color": {
           "color": "#5e35b1",
           "hover": "#ef5350"
@@ -809,7 +770,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#event_in_pathway",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>EVENT_IN_PATHWAY</h4>\n            <b>count</b>: 103,795\n            ",
         "color": {
           "color": "#5e35b1",
           "hover": "#ef5350"
@@ -829,7 +789,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#pathway_to_literature",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>PATHWAY_TO_LITERATURE</h4>\n            <b>count</b>: 67,690\n            ",
         "color": {
           "color": "#5e35b1",
           "hover": "#ef5350"
@@ -849,7 +808,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#protein_to_disease",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>PROTEIN_TO_DISEASE</h4>\n            <b>count</b>: 199\n            ",
         "color": {
           "color": "#e53935",
           "hover": "#ef5350"
@@ -869,7 +827,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#protein_in_event",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>PROTEIN_IN_EVENT</h4>\n            <b>count</b>: 17,325\n            ",
         "color": {
           "color": "#e53935",
           "hover": "#ef5350"
@@ -889,7 +846,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#protein_to_literature",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>PROTEIN_TO_LITERATURE</h4>\n            <b>count</b>: 4,895,469\n            ",
         "color": {
           "color": "#e53935",
           "hover": "#ef5350"
@@ -909,7 +865,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#protein_in_pathway",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>PROTEIN_IN_PATHWAY</h4>\n            <b>count</b>: 30,376\n            ",
         "color": {
           "color": "#e53935",
           "hover": "#ef5350"
@@ -929,7 +884,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_protein_protein",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>INTACT_INTERACTS_WITH_PROTEIN_PROTEIN</h4>\n            <b>count</b>: 422,573\n            ",
         "color": {
           "color": "#e53935",
           "hover": "#ef5350"
@@ -949,7 +903,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#intact_not_interacts_with",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>INTACT_NOT_INTERACTS_WITH</h4>\n            <b>count</b>: 669\n            ",
         "color": {
           "color": "#e53935",
           "hover": "#ef5350"
@@ -969,7 +922,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#string_interact_with",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>STRING_INTERACT_WITH</h4>\n            <b>count</b>: 2,105,329\n            ",
         "color": {
           "color": "#e53935",
           "hover": "#ef5350"
@@ -989,7 +941,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_gene",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>SEM_GENE</h4>\n            <b>count</b>: 4,789\n            ",
         "color": {
           "color": "#81d4fa",
           "hover": "#ef5350"
@@ -1009,7 +960,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_predicate",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>SEM_PREDICATE</h4>\n            <b>count</b>: 45,999,812\n            ",
         "color": {
           "color": "#81d4fa",
           "hover": "#ef5350"
@@ -1029,7 +979,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_to_lit",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>SEM_TO_LIT</h4>\n            <b>count</b>: 40,595\n            ",
         "color": {
           "color": "#40c4ff",
           "hover": "#ef5350"
@@ -1049,7 +998,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_obj",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>SEM_OBJ</h4>\n            <b>count</b>: 1,700,759\n            ",
         "color": {
           "color": "#40c4ff",
           "hover": "#ef5350"
@@ -1069,7 +1017,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_sub",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>SEM_SUB</h4>\n            <b>count</b>: 1,223,465\n            ",
         "color": {
           "color": "#40c4ff",
           "hover": "#ef5350"
@@ -1089,7 +1036,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#variant_to_gene",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>VARIANT_TO_GENE</h4>\n            <b>count</b>: 11,805\n            ",
         "color": {
           "color": "#33691e",
           "hover": "#ef5350"
@@ -1109,7 +1055,6 @@
         "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_single_snp_mr_snp_gene",
         "value": 1,
         "dashes": true,
-        "title": "\n            <h4>XQTL_SINGLE_SNP_MR_SNP_GENE</h4>\n            <b>count</b>: 18,171\n            ",
         "color": {
           "color": "#33691e",
           "hover": "#ef5350"
