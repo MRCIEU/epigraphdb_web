@@ -1,13 +1,13 @@
 <template>
   <div>
     <b-tabs content-class="mt-3">
-      <b-tab>
+      <b-tab :active="$route.hash === '#about'">
         <template v-slot:title>
           <font-awesome-icon :icon="['fas', 'info-circle']" /> About
         </template>
         <vue-markdown>{{ info_text }}</vue-markdown>
       </b-tab>
-      <b-tab>
+      <b-tab :active="$route.hash === '#metadata'">
         <template v-slot:title>
           <font-awesome-icon :icon="['fas', 'info-circle']" /> Metadata
         </template>
@@ -22,7 +22,7 @@
           </b-col>
         </b-row>
       </b-tab>
-      <b-tab active>
+      <b-tab :active="$route.hash === '#schema' || $route.hash === ''">
         <template v-slot:title>
           <font-awesome-icon :icon="['fas', 'project-diagram']" /> Schema
         </template>
@@ -31,13 +31,20 @@
           :graph-data-input="schemaNetworkPlot"
         />
       </b-tab>
-      <b-tab>
+      <b-tab :active="$route.hash === '#data-integration'">
+        <template v-slot:title>
+          <font-awesome-icon :icon="['fas', 'project-diagram']" /> Data
+          integration
+        </template>
+        <DataIntegration />
+      </b-tab>
+      <b-tab :active="$route.hash === '#meta-nodes'">
         <template v-slot:title>
           <font-awesome-icon :icon="['fas', 'table']" /> Metrics for nodes
         </template>
         <Table v-if="schemaNodesData" :table-data-input="schemaNodesData" />
       </b-tab>
-      <b-tab>
+      <b-tab :active="$route.hash === '#meta-rels'">
         <template v-slot:title>
           <font-awesome-icon :icon="['fas', 'table']" /> Metrics for
           relationships
@@ -69,6 +76,7 @@ import {
 
 import NetworkPlot from "@/components/Utils/NetworkPlot";
 import Table from "@/components/Utils/Table";
+import DataIntegration from "@/components/DataIntegration";
 
 const config = require("@/config");
 
@@ -81,7 +89,8 @@ export default {
     VueMarkdown,
     JsonViewer,
     Table,
-    NetworkPlot
+    NetworkPlot,
+    DataIntegration
   },
   data: () => ({
     info_text: info,
