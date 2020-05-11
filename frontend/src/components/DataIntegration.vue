@@ -29,7 +29,8 @@ export default {
   data: () => ({
     options: {
       title: {
-        text: "EpiGraphDB Data Source Flow"
+        // text: "EpiGraphDB Data Source Flow"
+        text: null
       },
       accessibility: {
         point: {
