@@ -1,6 +1,13 @@
 <template>
   <div>
-    <highcharts id="container" :options="options"></highcharts>
+    <b-tabs pills>
+      <b-tab active title="Entity size scaled">
+        <Sankey />
+      </b-tab>
+      <b-tab title="Original">
+        <SankeyNonLog />
+      </b-tab>
+    </b-tabs>
   </div>
 </template>
 
@@ -11,80 +18,14 @@
 </style>
 
 <script>
-import Highcharts from "highcharts";
-import Sankey from "highcharts/modules/sankey";
-import Accessibility from "highcharts/modules/accessibility";
-import { Chart } from "highcharts-vue";
-
-Sankey(Highcharts);
-Accessibility(Highcharts);
-
-import data from "@/assets/schema/data-integration.json";
+import Sankey from "@/components/About/Sankey.vue";
+import SankeyNonLog from "@/components/About/SankeyNonLog.vue";
 
 export default {
   name: "DataIntegrationPlot",
   components: {
-    highcharts: Chart
-  },
-  data: () => ({
-    options: {
-      title: {
-        // text: "EpiGraphDB Data Source Flow"
-        text: null
-      },
-      accessibility: {
-        point: {
-          valueDescriptionFormat:
-            "{index}. From {point.from} to {point.to}: {point.weight}."
-        }
-      },
-      series: [
-        {
-          keys: ["from", "to", "weight", "name"],
-          data: data,
-          type: "sankey",
-          name: "Data relationship",
-          dataLabels: {
-            color: "#333",
-            style: {
-              fontSzie: "10px"
-            },
-            allowOverlap: true
-          },
-          colors: ["#90caf9"]
-        }
-      ],
-      tooltip: {
-        formatter: function() {
-          // console.log(this.point);
-          if (this.point.formatPrefix == "point") {
-            let count = Math.round(Math.pow(10, this.point.weight));
-            return (
-              this.point.from +
-              "->" +
-              this.point.to +
-              ": " +
-              parseInt(count).toLocaleString()
-            );
-          } else {
-            var sum = 0;
-            var i;
-            for (i in this.point.linksTo) {
-              //console.log(this.point.linksTo[i].weight)
-              sum =
-                sum + Math.round(Math.pow(10, this.point.linksTo[i].weight));
-            }
-            for (i in this.point.linksFrom) {
-              //console.log(this.point.linksFrom[i].weight)
-              sum =
-                sum + Math.round(Math.pow(10, this.point.linksFrom[i].weight));
-            }
-            // console.log(sum);
-            return this.point.id + ": " + parseInt(sum).toLocaleString();
-          }
-        }
-      }
-    }
-  })
+    Sankey,
+    SankeyNonLog
+  }
 };
 </script>
