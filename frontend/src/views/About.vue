@@ -1,18 +1,18 @@
 <template>
   <div>
-    <AboutCards />
-    <AboutTabs />
+    <Cards />
+    <Tabs />
   </div>
 </template>
 
 <script>
-import AboutCards from "@/components/AboutCards";
-import AboutTabs from "@/components/AboutTabs";
+import Cards from "@/components/About/Cards";
+import Tabs from "@/components/About/Tabs";
 export default {
   name: "About",
   components: {
-    AboutCards,
-    AboutTabs
+    Cards,
+    Tabs
   },
   data: () => ({})
 };

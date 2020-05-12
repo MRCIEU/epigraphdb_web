@@ -76,7 +76,7 @@ import {
 
 import NetworkPlot from "@/components/Utils/NetworkPlot";
 import Table from "@/components/Utils/Table";
-import DataIntegration from "@/components/DataIntegration";
+import DataIntegration from "@/components/About/DataIntegration";
 
 const config = require("@/config");
 

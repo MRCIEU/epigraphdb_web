@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Card from "@/components/AboutCardsCard";
+import Card from "@/components/About/CardsCard";
 export default {
   name: "AboutCards",
   components: {
