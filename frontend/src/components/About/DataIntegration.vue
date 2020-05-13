@@ -1,21 +1,17 @@
 <template>
   <div>
-    <b-tabs pills>
-      <b-tab active title="Entity size scaled">
-        <Sankey />
-      </b-tab>
-      <b-tab title="Original">
-        <SankeyNonLog />
-      </b-tab>
-    </b-tabs>
+    <b-card no-body>
+      <b-tabs pills vertical card>
+        <b-tab active title="Entity size scaled">
+          <Sankey />
+        </b-tab>
+        <b-tab title="Original">
+          <SankeyNonLog />
+        </b-tab>
+      </b-tabs>
+    </b-card>
   </div>
 </template>
-
-<style>
-#container {
-  height: 1000px;
-}
-</style>
 
 <script>
 import Sankey from "@/components/About/Sankey.vue";
