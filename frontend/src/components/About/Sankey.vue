@@ -19,7 +19,7 @@ import { Chart } from "highcharts-vue";
 Sankey(Highcharts);
 Accessibility(Highcharts);
 
-import data from "@/assets/schema/data-integration.json";
+import data from "@/assets/schema/sankey-graph-data.json";
 
 export default {
   name: "Sankey",
@@ -40,6 +40,7 @@ export default {
       series: [
         {
           keys: ["from", "to", "weight", "name"],
+          linkOpacity: 1,
           data: data,
           type: "sankey",
           name: "Data relationship",
@@ -50,7 +51,7 @@ export default {
             },
             allowOverlap: true
           },
-          colors: ["#90caf9"]
+          colors: ["lightblue"]
         }
       ],
       tooltip: {

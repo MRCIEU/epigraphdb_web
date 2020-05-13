@@ -1,0 +1,462 @@
+[
+  {
+    "color": "#42a5f5",
+    "from": "(Variant)",
+    "to": "xQTL",
+    "weight": 4.354223723264851,
+    "count": 22606
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Variant)",
+    "to": "MR-EvE",
+    "weight": 3.216165902285993,
+    "count": 1645
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Variant)",
+    "to": "IGD",
+    "weight": 4.580810972660946,
+    "count": 38090
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Gwas)",
+    "to": "IGD",
+    "weight": 4.502058222757106,
+    "count": 31773
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Gene)",
+    "to": "Biomart",
+    "weight": 4.772108908989908,
+    "count": 59171
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Protein)",
+    "to": "Biomart",
+    "weight": 4.333306181446832,
+    "count": 21543
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Disease)",
+    "to": "Mondo",
+    "weight": 4.339033840865832,
+    "count": 21829
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Efo)",
+    "to": "EFO",
+    "weight": 4.404662700873722,
+    "count": 25390
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Event)",
+    "to": "Reactome",
+    "weight": 4.074377537644804,
+    "count": 11868
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Pathway)",
+    "to": "Reactome",
+    "weight": 3.3384564936046046,
+    "count": 2180
+  },
+  {
+    "color": "#1565c0",
+    "from": "(SemmedTriple)",
+    "to": "SemMedDB",
+    "weight": 6.535108080611391,
+    "count": 3428531
+  },
+  {
+    "color": "#1e88e5",
+    "from": "(SemmedTerm)",
+    "to": "SemMedDB",
+    "weight": 5.01689551245103,
+    "count": 103967
+  },
+  {
+    "color": "#e3f2fd",
+    "from": "(Tissue)",
+    "to": "GTEx",
+    "weight": 1.7242758696007892,
+    "count": 53
+  },
+  {
+    "color": "#e3f2fd",
+    "from": "(Drug)",
+    "to": "CPIC",
+    "weight": 1.8573324964312685,
+    "count": 72
+  },
+  {
+    "color": "#42a5f5",
+    "from": "(Drug)",
+    "to": "OpenTargets",
+    "weight": 3.3900514964589874,
+    "count": 2455
+  },
+  {
+    "from": "",
+    "to": "MELODI",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "from": "",
+    "to": "Vectology",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "from": "",
+    "to": "BenNeale",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "from": "",
+    "to": "MetaMapLite",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "from": "",
+    "to": "PRS-Atlas",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "from": "",
+    "to": "IntAct",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "from": "",
+    "to": "StringDB",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "from": "",
+    "to": "UKBiobank",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "from": "",
+    "to": "VEP",
+    "weight": 0,
+    "count": 0
+  },
+  {
+    "color": "#42a5f5",
+    "from": "xQTL",
+    "to": "[XQTL_SINGLE_SNP_MR_SNP_GENE]",
+    "weight": 4.618717336150165,
+    "count": 41564
+  },
+  {
+    "color": "#1565c0",
+    "from": "xQTL",
+    "to": "[XQTL_SINGLE_SNP_MR_GENE_GWAS]",
+    "weight": 6.939712046553062,
+    "count": 8703863
+  },
+  {
+    "color": "#1565c0",
+    "from": "xQTL",
+    "to": "[XQTL_MULTI_SNP_MR]",
+    "weight": 6.491088282455247,
+    "count": 3098049
+  },
+  {
+    "color": "#1e88e5",
+    "from": "MR-EvE",
+    "to": "[MR]",
+    "weight": 5.766129422119353,
+    "count": 583619
+  },
+  {
+    "color": "#42a5f5",
+    "from": "MR-EvE",
+    "to": "[GWAS_TO_VARIANT]",
+    "weight": 4.423589895535679,
+    "count": 26521
+  },
+  {
+    "color": "#1e88e5",
+    "from": "IGD",
+    "to": "[TOPHITS]",
+    "weight": 5.088950734218036,
+    "count": 122730
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Biomart",
+    "to": "[GENE_TO_PROTEIN]",
+    "weight": 4.31726918670662,
+    "count": 20762
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Mondo",
+    "to": "[MONDO_MAP_EFO]",
+    "weight": 3.450557009418329,
+    "count": 2822
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Mondo",
+    "to": "[MONDO_MAP_UMLS]",
+    "weight": 3.5332635167787148,
+    "count": 3414
+  },
+  {
+    "color": "#42a5f5",
+    "from": "EFO",
+    "to": "[EFO_CHILD_OF]",
+    "weight": 4.635021057233487,
+    "count": 43154
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Reactome",
+    "to": "[PATHWAY_TO_LITERATURE]",
+    "weight": 3.9519200735202937,
+    "count": 8952
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Reactome",
+    "to": "[EVENT_IN_PATHWAY]",
+    "weight": 4.096492890054361,
+    "count": 12488
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Reactome",
+    "to": "[PRECEDING_EVENT]",
+    "weight": 4.017784353096678,
+    "count": 10418
+  },
+  {
+    "color": "#1e88e5",
+    "from": "Reactome",
+    "to": "[PROTEIN_TO_LITERATURE]",
+    "weight": 5.030660429905649,
+    "count": 107315
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Reactome",
+    "to": "[PROTEIN_IN_PATHWAY]",
+    "weight": 3.998041264363428,
+    "count": 9955
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Reactome",
+    "to": "[PROTEIN_IN_EVENT]",
+    "weight": 4.129818743848935,
+    "count": 13484
+  },
+  {
+    "color": "#e3f2fd",
+    "from": "Reactome",
+    "to": "[PATHWAY_TO_DISEASE]",
+    "weight": 2.7331972651065692,
+    "count": 541
+  },
+  {
+    "color": "#e3f2fd",
+    "from": "Reactome",
+    "to": "[PROTEIN_TO_DISEASE]",
+    "weight": 2.7965743332104296,
+    "count": 626
+  },
+  {
+    "color": "#1565c0",
+    "from": "SemMedDB",
+    "to": "[SEM_TO_LIT]",
+    "weight": 6.787317693565605,
+    "count": 6127985
+  },
+  {
+    "color": "#1565c0",
+    "from": "SemMedDB",
+    "to": "[SEM_SUB]",
+    "weight": 6.535108080611391,
+    "count": 3428531
+  },
+  {
+    "color": "#1565c0",
+    "from": "SemMedDB",
+    "to": "[SEM_OBJ]",
+    "weight": 6.535108080611391,
+    "count": 3428531
+  },
+  {
+    "color": "#1565c0",
+    "from": "SemMedDB",
+    "to": "[SEM_PREDICATE]",
+    "weight": 6.535108080611391,
+    "count": 3428531
+  },
+  {
+    "color": "#0d47a1",
+    "from": "SemMedDB",
+    "to": "[GWAS_TO_LIT]",
+    "weight": 7.280566260940115,
+    "count": 19079468
+  },
+  {
+    "color": "#42a5f5",
+    "from": "SemMedDB",
+    "to": "[SEM_GENE]",
+    "weight": 4.620198538893281,
+    "count": 41706
+  },
+  {
+    "color": "#1e88e5",
+    "from": "GTEx",
+    "to": "[EXPRESSED_IN]",
+    "weight": 5.935281494937296,
+    "count": 861552
+  },
+  {
+    "color": "#e3f2fd",
+    "from": "CPIC",
+    "to": "[CPIC]",
+    "weight": 2.550228353055094,
+    "count": 355
+  },
+  {
+    "color": "#42a5f5",
+    "from": "OpenTargets",
+    "to": "[OPENTARGETS_DRUG_TO_TARGET]",
+    "weight": 3.7798849631926443,
+    "count": 6024
+  },
+  {
+    "color": "#42a5f5",
+    "from": "OpenTargets",
+    "to": "[OPENTARGETS_DRUG_TO_DISEASE]",
+    "weight": 3.395501124305626,
+    "count": 2486
+  },
+  {
+    "color": "#1565c0",
+    "from": "MELODI",
+    "to": "[GWAS_SEM]",
+    "weight": 6.95784759082992,
+    "count": 9075020
+  },
+  {
+    "color": "#0d47a1",
+    "from": "Vectology",
+    "to": "[GWAS_NLP]",
+    "weight": 7.489099779993686,
+    "count": 30838964
+  },
+  {
+    "color": "#42a5f5",
+    "from": "Vectology",
+    "to": "[GWAS_NLP_EFO]",
+    "weight": 3.8411090844681537,
+    "count": 6936
+  },
+  {
+    "color": "#1e88e5",
+    "from": "BenNeale",
+    "to": "[BN_GEN_COR]",
+    "weight": 5.956567951309167,
+    "count": 904832
+  },
+  {
+    "color": "#42a5f5",
+    "from": "MetaMapLite",
+    "to": "[METAMAP_LITE]",
+    "weight": 3.318272080211627,
+    "count": 2081
+  },
+  {
+    "color": "#1e88e5",
+    "from": "PRS-Atlas",
+    "to": "[PRS]",
+    "weight": 5.122880741016044,
+    "count": 132703
+  },
+  {
+    "color": "#1e88e5",
+    "from": "IntAct",
+    "to": "[PROTEIN_TO_LITERATURE]",
+    "weight": 5.030660429905649,
+    "count": 107315
+  },
+  {
+    "color": "#1e88e5",
+    "from": "IntAct",
+    "to": "[INTACT_INTERACTS_WITH_PROTEIN_PROTEIN]",
+    "weight": 5.272829836676071,
+    "count": 187426
+  },
+  {
+    "color": "#e3f2fd",
+    "from": "IntAct",
+    "to": "[INTACT_NOT_INTERACTS_WITH]",
+    "weight": 2.8444771757456815,
+    "count": 699
+  },
+  {
+    "color": "#42a5f5",
+    "from": "IntAct",
+    "to": "[INTACT_INTERACTS_WITH_GENE_PROTEIN]",
+    "weight": 3.161667412437736,
+    "count": 1451
+  },
+  {
+    "color": "#e3f2fd",
+    "from": "IntAct",
+    "to": "[INTACT_INTERACTS_WITH_GENE_GENE]",
+    "weight": 0.3010299956639812,
+    "count": 2
+  },
+  {
+    "color": "#e3f2fd",
+    "from": "IntAct",
+    "to": "[GENE_TO_LITERATURE]",
+    "weight": 2.8870543780509568,
+    "count": 771
+  },
+  {
+    "color": "#1e88e5",
+    "from": "StringDB",
+    "to": "[STRING_INTERACT_WITH]",
+    "weight": 5.5913117504743495,
+    "count": 390222
+  },
+  {
+    "color": "#42a5f5",
+    "from": "UKBiobank",
+    "to": "[OBS_COR]",
+    "weight": 4.253628730193754,
+    "count": 17932
+  },
+  {
+    "color": "#42a5f5",
+    "from": "VEP",
+    "to": "[VARIANT_TO_GENE]",
+    "weight": 4.772006141719693,
+    "count": 59157
+  }
+]
