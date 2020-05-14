@@ -120,6 +120,29 @@
       </b-table>
     </div>
 
+    <!-- Filter -->
+    <b-row class="py-2">
+      <b-col cols="3"></b-col>
+      <b-col>
+        <b-button size="sm" @click="download" variant="outline-secondary">
+          Download results
+        </b-button>
+      </b-col>
+      <b-col cols="6">
+        <b-input-group prepend="Filter" size="sm">
+          <b-form-input
+            v-model="filter"
+            type="search"
+            id="filterInput"
+            placeholder="Type to Search"
+          ></b-form-input>
+          <b-input-group-append>
+            <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </b-col>
+    </b-row>
+
     <!-- User Interface controls -->
     <b-row>
       <b-col sm="5" md="6" class="my-1">
@@ -157,6 +180,7 @@
 </template>
 
 <script>
+import { axiosDownload } from "@/funcs/axios-download.js";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -169,7 +193,8 @@ export default {
     FontAwesomeIcon
   },
   props: {
-    tableDataInput: Object
+    tableDataInput: Object,
+    downloadParams: Object
   },
   data() {
     return {
@@ -220,6 +245,9 @@ export default {
     }
   },
   methods: {
+    download() {
+      axiosDownload(this.downloadUrl, this.downloadParams);
+    },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;

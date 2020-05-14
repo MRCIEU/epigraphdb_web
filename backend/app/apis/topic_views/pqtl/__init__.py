@@ -1,6 +1,9 @@
 from typing import List
+from urllib.parse import quote
 
+import pandas as pd
 from fastapi import APIRouter
+from starlette.responses import Response
 
 from app.funcs.cache import cache_func_call
 from app.models import TableDataResponse
@@ -75,3 +78,20 @@ def get_pqtl_list_combined(overwrite: bool = False) -> List[str]:
     )
     res = exposure_proteins + outcome_traits
     return res
+
+
+@router.get("/pqtl/download")
+def get_pqtl_download(query: str, method: PQTLMethod):
+    log_args(api=f"/pqtl/download", kwargs=locals())
+    pqtl_res = get_pqtl(query=query, method=method)
+    table_df = pd.DataFrame.from_records(
+        pqtl_res["table_output"]["table_items"]
+    )
+    res = table_df.to_csv(index=False)
+    query_text = quote(query)
+    filename = f"pqtl_{query_text}_{method.value}.csv"
+    headers = {
+        "Access-Control-Expose-Headers": "content-disposition",
+        "content-disposition": f"attachment; filename={filename}"
+    }
+    return Response(res, media_type="text/csv", headers=headers)

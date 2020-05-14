@@ -71,9 +71,9 @@ export default {
     this.getQueryOptions();
   },
   methods: {
-    async getQueryOptions() {
+    getQueryOptions() {
       const url = `${this.urlMaster}/list/combined`;
-      await axios
+      axios
         .get(url)
         .then(response => {
           this.queryOptions = response.data;

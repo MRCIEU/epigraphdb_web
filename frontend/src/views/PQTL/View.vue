@@ -39,13 +39,14 @@
     <div class="py-2"></div>
 
     <p>
-      Results presented here can also be downloaded programmatically using the
+      Results presented here can also be accessed programmatically using the
       <a href="http://api.epigraphdb.org" target="_blank">EpiGraphDB API</a>.
     </p>
     <p v-if="searchFlag == 'traits'">
       This browser shows only those results with the p-value less than
       <strong>0.05</strong>, if searching for a trait. The full set of MR
-      results could be downloaded using the 'ALL RESULTS' buttons.
+      results could be accessed via the
+      <a href="http://api.epigraphdb.org" target="_blank">API</a>.
     </p>
 
     <div class="py-3" />
@@ -53,7 +54,10 @@
     <b-tabs>
       <b-tab lazy title="Basic Summary">
         <div v-if="dataSimple">
-          <TableSimple :table-data-input="dataSimple.table_output" />
+          <TableSimple
+            :table-data-input="dataSimple.table_output"
+            :download-params="downloadParamsSimple"
+          />
           <b-row>
             <b-col cols="8">
               <NetworkPlot :graph-data-input="dataSimple" />
@@ -66,7 +70,10 @@
       </b-tab>
       <b-tab lazy title="MR results">
         <div v-if="dataMrres">
-          <Table :table-data-input="dataMrres.table_output" />
+          <Table
+            :table-data-input="dataMrres.table_output"
+            :download-params="downloadParamsMrres"
+          />
           <b-row>
             <b-col cols="8">
               <Highcharts :graph-data-input="dataMrres" :query="query" />
@@ -79,7 +86,10 @@
       </b-tab>
       <b-tab lazy title="Single SNP MR results">
         <div v-if="dataSglmr">
-          <Table :table-data-input="dataSglmr.table_output" />
+          <Table
+            :table-data-input="dataSglmr.table_output"
+            :download-params="downloadParamsSglmr"
+          />
           <b-row>
             <b-col cols="8">
               <Highcharts :graph-data-input="dataSglmr" :query="query" />
@@ -92,7 +102,10 @@
       </b-tab>
       <b-tab lazy title="SNP information">
         <div v-if="dataInst">
-          <Table :table-data-input="dataInst.table_output" />
+          <Table
+            :table-data-input="dataInst.table_output"
+            :download-params="downloadParamsInst"
+          />
           <b-row>
             <b-col cols="8">
               <NetworkPlot :graph-data-input="dataInst" />
@@ -105,7 +118,10 @@
       </b-tab>
       <b-tab lazy title="Sensitivity analysis">
         <div v-if="dataSense">
-          <Table :table-data-input="dataSense.table_output" />
+          <Table
+            :table-data-input="dataSense.table_output"
+            :download-params="downloadParamsSense"
+          />
           <b-row>
             <b-col cols="8">
               <NetworkPlot :graph-data-input="dataSense" />
@@ -184,6 +200,36 @@ export default {
       } else {
         return null;
       }
+    },
+    downloadParamsSimple: function() {
+      return {
+        query: this.query,
+        method: "simple"
+      };
+    },
+    downloadParamsMrres: function() {
+      return {
+        query: this.query,
+        method: "mrres"
+      };
+    },
+    downloadParamsSglmr: function() {
+      return {
+        query: this.query,
+        method: "sglmr"
+      };
+    },
+    downloadParamsInst: function() {
+      return {
+        query: this.query,
+        method: "inst"
+      };
+    },
+    downloadParamsSense: function() {
+      return {
+        query: this.query,
+        method: "sense"
+      };
     }
   },
   methods: {

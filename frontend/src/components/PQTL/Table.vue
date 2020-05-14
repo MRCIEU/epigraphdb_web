@@ -22,8 +22,13 @@
 
     <!-- Filter -->
     <b-row class="py-2">
-      <b-col cols="6"> </b-col>
+      <b-col cols="3"></b-col>
       <b-col>
+        <b-button size="sm" @click="download" variant="outline-secondary">
+          Download results
+        </b-button>
+      </b-col>
+      <b-col cols="6">
         <b-input-group prepend="Filter" size="sm">
           <b-form-input
             v-model="filter"
@@ -75,10 +80,14 @@
 </template>
 
 <script>
+import { axiosDownload } from "@/funcs/axios-download.js";
+const config = require("@/config");
+
 export default {
   name: "Table",
   props: {
-    tableDataInput: Object
+    tableDataInput: Object,
+    downloadParams: Object
   },
   data() {
     return {
@@ -89,7 +98,8 @@ export default {
       sortDesc: false,
       sortDirection: "asc",
       filter: null,
-      filterOn: []
+      filterOn: [],
+      downloadUrl: `${config.web_backend_url}/pqtl/download`
     };
   },
   computed: {
@@ -112,6 +122,9 @@ export default {
     }
   },
   methods: {
+    download() {
+      axiosDownload(this.downloadUrl, this.downloadParams);
+    },
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
