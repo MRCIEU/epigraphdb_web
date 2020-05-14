@@ -45,10 +45,6 @@ export default {
         keyboard: true,
         tooltipDelay: 100
       },
-      manipulation: {
-        deleteNode: true,
-        deleteEdge: true
-      },
       edges: {
         arrowStrikethrough: true
       },
