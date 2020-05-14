@@ -184,6 +184,7 @@ import { axiosDownload } from "@/funcs/axios-download.js";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+const config = require("@/config");
 
 library.add(faInfoCircle);
 
@@ -222,7 +223,8 @@ export default {
       sortDesc: false,
       sortDirection: "asc",
       filter: null,
-      filterOn: []
+      filterOn: [],
+      downloadUrl: `${config.web_backend_url}/pqtl/download`
     };
   },
   computed: {
