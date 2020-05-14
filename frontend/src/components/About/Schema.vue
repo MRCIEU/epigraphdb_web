@@ -9,6 +9,7 @@
           />
         </b-tab>
         <b-tab title="Detailed schema">
+          <h5>Schema diagram</h5>
           <div>
             <b-img
               v-if="schemaImage"
@@ -17,6 +18,7 @@
               alt=""
             />
           </div>
+          <h5>Details</h5>
           <json-viewer
             theme="json-viewer-gruvbox-dark"
             v-if="schemaInfo"
@@ -31,7 +33,6 @@
 
 <script>
 import axios from "axios";
-// import _ from "lodash";
 
 import JsonViewer from "vue-json-viewer";
 import "@/plugins/json-viewer-gruvbox-dark.scss";
@@ -48,8 +49,7 @@ export default {
   },
   data: () => ({
     schemaImage: null,
-    schemaData: null,
-    schemaInfo: null
+    schemaData: null
   }),
   methods: {
     getAboutSchemaData() {
@@ -73,6 +73,9 @@ export default {
   computed: {
     schemaNetworkPlot() {
       return this.schemaData ? this.schemaData.graph : null;
+    },
+    schemaInfo() {
+      return this.schemaData ? this.schemaData.info : null;
     }
   }
 };

@@ -13,13 +13,12 @@
 
 <script>
 import axios from "axios";
-import _ from "lodash";
 
 import Table from "@/components/Utils/Table";
 const config = require("@/config");
 
 export default {
-  name: "Schema",
+  name: "Metrics",
   components: {
     Table
   },
@@ -28,7 +27,7 @@ export default {
   }),
   methods: {
     getAboutSchemaData() {
-      const url = `${config.web_backend_url}/about/schema`;
+      const url = `${config.web_backend_url}/about/metrics`;
       axios.get(url).then(response => {
         this.schemaData = response.data;
       });
@@ -41,32 +40,44 @@ export default {
     schemaNodesData() {
       return this.schemaData
         ? {
-            items: this.schemaData.nodes.table_data,
-            fields: _.chain(this.schemaData.nodes.table_titles)
-              .map(function(item) {
-                return {
-                  key: item["label"],
-                  label: item["label"],
-                  sortable: true
-                };
-              })
-              .value()
+            items: this.schemaData.meta_node,
+            fields: [
+              {
+                key: "node_name",
+                label: "meta_node",
+                sortable: true
+              },
+              {
+                key: "count",
+                label: "count",
+                sortable: true,
+                formatter: value => {
+                  return value.toLocaleString();
+                }
+              }
+            ]
           }
         : null;
     },
     schemaRelsData() {
       return this.schemaData
         ? {
-            items: this.schemaData.rels.table_data,
-            fields: _.chain(this.schemaData.rels.table_titles)
-              .map(function(item) {
-                return {
-                  key: item["label"],
-                  label: item["label"],
-                  sortable: true
-                };
-              })
-              .value()
+            items: this.schemaData.meta_rel,
+            fields: [
+              {
+                key: "relationshipType",
+                label: "meta_rel",
+                sortable: true
+              },
+              {
+                key: "count",
+                label: "count",
+                sortable: true,
+                formatter: value => {
+                  return value.toLocaleString();
+                }
+              }
+            ]
           }
         : null;
     }

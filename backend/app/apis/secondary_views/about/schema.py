@@ -8,7 +8,7 @@ import requests
 
 from app.funcs.cache import cache_func_call
 from app.settings import api_url
-from app.utils import format_df_results, hex_to_rgb
+from app.utils import hex_to_rgb
 from app.utils.meta_graph import (
     color_palette,
     line_color_dict,
@@ -18,21 +18,11 @@ from app.utils.meta_graph import (
 from app.utils.visjs_config import node_alpha, node_wrap, visjs_option
 
 
-def get_schema(overwrite: bool = False):
+def schema_info(overwrite: bool = False):
     nodes_data, edges_data = schema_request(overwrite=overwrite)
     nodes_df, rels_df, edges_df = process_nodes_edges(nodes_data, edges_data)
     graph = schema_graph(nodes_df, rels_df, edges_df)
-    nodes = (
-        nodes_df.rename(columns={"node_name": "node"})[["node", "count"]]
-        .assign(count=lambda df: df["count"].apply(lambda x: f"{x:,}"))
-        .pipe(format_df_results)
-    )
-    rels = (
-        edges_df[["relationship", "count"]]
-        .assign(count=lambda df: df["count"].apply(lambda x: f"{x:,}"))
-        .pipe(format_df_results)
-    )
-    res = {"graph": graph, "nodes": nodes, "rels": rels}
+    res = {"graph": graph, "info": {"nodes": nodes_data, "rels": edges_data}}
     return res
 
 
