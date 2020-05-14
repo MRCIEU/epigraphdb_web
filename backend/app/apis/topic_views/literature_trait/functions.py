@@ -47,7 +47,8 @@ class LiteratureTraitQueryProcessor(TopicQueryProcessor):
 
 
 def cypher_diagram(
-    trait: str, semmed_predicates: Optional[List[str]],
+    trait: str,
+    semmed_predicates: Optional[List[str]],
     pval_threshold: float,
     limit: int,
 ):
