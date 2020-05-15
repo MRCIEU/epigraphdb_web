@@ -21,7 +21,7 @@ def process_query(spec: GalleryGraph, overwrite: bool = False):
         )
 
     if len(results) > 0:
-        results_df = pd.io.json.json_normalize(results)
+        results_df = pd.json_normalize(results)
         graph_data = network_graph(
             df=results_df,
             node_schemas=spec.schema.nodes,

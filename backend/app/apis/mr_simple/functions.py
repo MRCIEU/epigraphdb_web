@@ -49,7 +49,7 @@ def get_mr_simple_data(
     query_data = render_query(r=r, empty_results=empty_results)
     if not empty_results:
         # convert results to pandas df
-        table_df = pd.io.json.json_normalize(results)[table_cols]
+        table_df = pd.json_normalize(results)[table_cols]
     else:
         table_df = None
     return table_df, empty_results, query_data

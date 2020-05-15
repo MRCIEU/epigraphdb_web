@@ -41,7 +41,7 @@ def get_desc_stats(
     )
     r.raise_for_status()
 
-    df = pd.io.json.json_normalize(r.json()["results"])
+    df = pd.json_normalize(r.json()["results"])
     res = generate_df_descriptive_stats(df)
     print(res)
     return res

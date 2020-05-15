@@ -9,7 +9,6 @@ python = "^3.7"
 fastapi = "^0.42.0"
 environs = "^6.1"
 numpy = "^1.17"
-pandas = "^0.25.3"
 requests = "^2.22"
 pygments = "^2.4"
 pytest = "^5.3"
@@ -20,6 +19,7 @@ elasticsearch = "^7.1.0"
 elasticsearch-dsl = "^7.1.0"
 pytest-xdist = "^1.31.0"
 loguru = "^0.4.1"
+pandas = "^1.0"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^18.3-alpha.0", allow-prereleases = true}

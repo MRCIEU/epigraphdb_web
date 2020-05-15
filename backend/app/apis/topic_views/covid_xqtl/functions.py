@@ -13,7 +13,7 @@ def process_data(data):
     table_data = None
     plot_data = None
     if len(data) > 0:
-        df = pd.io.json.json_normalize(data)
+        df = pd.json_normalize(data)
         table_data = process_table_data(df=df)
         plot_data = process_volcano_plot(df=df)
     res = {"table_data": table_data, "plot_data": plot_data}
