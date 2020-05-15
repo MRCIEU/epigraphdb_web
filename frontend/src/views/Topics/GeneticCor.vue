@@ -307,13 +307,13 @@ export default {
     paramsGeneral: function() {
       return {
         trait: this.trait,
-        cor_coef_threshold: this.cor_coef
+        cor_coef_threshold: this.corCoef
       };
     },
     paramsPlot: function() {
       return {
         trait: this.trait,
-        cor_coef_threshold: this.cor_coef,
+        cor_coef_threshold: this.corCoef,
         rels_limit: this.sizeLimitDefault
       };
     }
