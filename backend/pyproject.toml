@@ -6,7 +6,7 @@ authors = ["Yi Liu <yi6240.liu@bristol.ac.uk>", "Tom Gaunt <Tom.Gaunt@bristol.ac
 
 [tool.poetry.dependencies]
 python = "^3.7"
-fastapi = "^0.42.0"
+fastapi = "^0.54"
 environs = "^6.1"
 numpy = "^1.17"
 requests = "^2.22"
