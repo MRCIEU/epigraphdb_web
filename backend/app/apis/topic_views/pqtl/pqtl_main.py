@@ -327,7 +327,7 @@ def pqtl_main_sense(query, pvalue_thr, search_flag, overwrite: bool = False):
         "Direction",
         "Steiger p-value",
         "Associated proteins",
-        "Colocalisation probability",
+        "Post. prob. colocalization",
         "Outcome SNP",
         "LD Value",
         "Heterogeneity p-value",
