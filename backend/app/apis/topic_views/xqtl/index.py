@@ -51,8 +51,7 @@ ac_configs = {
                 variant.name is not null AND gene.name is not null
             RETURN DISTINCT
                 variant.name AS name
-            LIMIT
-                2000;
+            ;
             """.replace(
             "\n", " "
         ),
