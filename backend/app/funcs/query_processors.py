@@ -172,9 +172,7 @@ class TopicQueryProcessor:
                     results=None,
                 )
             else:
-                results_df = pd.json_normalize(results)[
-                    self.table_cols
-                ]
+                results_df = pd.json_normalize(results)[self.table_cols]
                 if self.table_precaching_hook is not None:
                     results_df = results_df.pipe(self.table_precaching_hook)
                 table_data = format_df_results(results_df)

@@ -92,6 +92,6 @@ def get_pqtl_download(query: str, method: PQTLMethod):
     filename = f"pqtl_{query_text}_{method.value}.csv"
     headers = {
         "Access-Control-Expose-Headers": "content-disposition",
-        "content-disposition": f"attachment; filename={filename}"
+        "content-disposition": f"attachment; filename={filename}",
     }
     return Response(res, media_type="text/csv", headers=headers)
