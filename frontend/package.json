@@ -32,6 +32,7 @@
     "vue-bootstrap-typeahead": "^0.2.6",
     "vue-cookieconsent-component": "^1.2.0",
     "vue-fullscreen": "^2.1.5",
+    "vue-gtag": "^1.6.2",
     "vue-highlight.js": "^3.1.0",
     "vue-js-panel": "0.0.1",
     "vue-json-viewer": "^2.2.8",
