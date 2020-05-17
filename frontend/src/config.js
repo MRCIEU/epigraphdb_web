@@ -16,3 +16,7 @@ if (process.env.VUE_APP_DEBUG) {
 if (web_debug) {
   console.log(process.env.VUE_APP_API_URL);
 }
+
+export let gtagId = process.env.VUE_APP_GTAG_ID
+  ? process.env.VUE_APP_GTAG_ID
+  : null;

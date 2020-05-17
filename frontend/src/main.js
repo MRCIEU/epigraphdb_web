@@ -15,6 +15,8 @@ import bash from "highlight.js/lib/languages/bash";
 import r from "highlight.js/lib/languages/r";
 import cypher from "@/plugins/highlight-js/cypher.js";
 
+const config = require("@/config");
+
 Vue.use(fullscreen);
 
 Vue.use(VueHighlightJS, {
@@ -27,6 +29,18 @@ Vue.use(VueHighlightJS, {
 });
 
 Vue.config.productionTip = false;
+
+// google analytics
+import VueGtag from "vue-gtag";
+if (config.gtagId) {
+  Vue.use(VueGtag, {
+    config: {
+      id: config.gtagId
+    }
+  });
+} else {
+  console.log("EpiGraphDB: Google analytics not enabled");
+}
 
 new Vue({
   store,
