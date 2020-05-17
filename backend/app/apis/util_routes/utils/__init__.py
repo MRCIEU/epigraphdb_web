@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from fastapi import APIRouter
 
@@ -24,3 +24,12 @@ def get_utils_cache_drop(
         for collection_name in all_coll_names:
             mongo_epigraphdb_web[collection_name].drop()
         return True
+
+
+@router.get("/utils/cache/list", response_model=List[str])
+def get_utils_cache_list() -> List[str]:
+    """Returns the currently available cache collections.
+    """
+    colls = mongo_epigraphdb_web.list_collection_names()
+    res = sorted(colls)
+    return res
