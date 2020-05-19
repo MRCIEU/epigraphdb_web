@@ -2,7 +2,7 @@
   <div>
     <b-card no-body>
       <b-tabs pills vertical card>
-        <b-tab active title="Entity size scaled">
+        <b-tab active title="Uniform size">
           <Sankey />
         </b-tab>
         <b-tab title="Original">
