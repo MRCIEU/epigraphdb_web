@@ -47,4 +47,5 @@ logger.add(
     compression="tar.gz",
     backtrace=False,
     catch=False,
+    serialize=True,
 )
