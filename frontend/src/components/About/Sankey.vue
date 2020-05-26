@@ -56,7 +56,7 @@ export default {
         }
       });
     },
-options() {
+    options() {
       return {
         title: {
           text: null
