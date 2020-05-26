@@ -55,9 +55,9 @@
               <font-awesome-icon :icon="['fab', 'r-project']" />
               Client
             </b-dropdown-item>
-            <b-dropdown-item href="#">
+            <b-dropdown-item href="https://github.com/MRCIEU/epigraphdb">
               <font-awesome-icon :icon="['fab', 'github']" />
-              Case studies
+              Examples
             </b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item href="http://biocompute.org.uk">

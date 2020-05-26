@@ -33,6 +33,31 @@
                 >feedback@epigraphdb.org</a
               >
             </li>
+            <li>
+              <b-row>
+                <b-col cols="2">
+                  <a href="http://docs.epigraphdb.org"
+                    ><font-awesome-icon :icon="['fas', 'book']" size="2x"
+                  /></a>
+                </b-col>
+                <b-col cols="2">
+                  <a href="http://api.epigraphdb.org"
+                    ><font-awesome-icon :icon="['fas', 'terminal']" size="2x"
+                  /></a>
+                </b-col>
+                <b-col cols="2">
+                  <a href="https://mrcieu.github.io/epigraphdb-r"
+                    ><font-awesome-icon :icon="['fab', 'r-project']" size="2x"
+                  /></a>
+                </b-col>
+                <b-col cols="2">
+                  <a href="https://github.com/MRCIEU/epigraphdb"
+                    ><font-awesome-icon :icon="['fab', 'github']" size="2x"
+                  /></a>
+                </b-col>
+                <b-col></b-col>
+              </b-row>
+            </li>
           </ul>
         </b-col>
       </b-row>
@@ -48,6 +73,21 @@
     <!-- Copyright -->
   </footer>
 </template>
+
+<script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTerminal, faBook } from "@fortawesome/free-solid-svg-icons";
+import { faRProject, faGithub } from "@fortawesome/free-brands-svg-icons";
+library.add(faRProject, faGithub, faTerminal, faBook);
+
+export default {
+  name: "Footer",
+  components: {
+    FontAwesomeIcon
+  }
+};
+</script>
 
 <style scoped>
 .footer {
