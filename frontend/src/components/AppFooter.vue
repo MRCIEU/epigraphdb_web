@@ -28,34 +28,43 @@
               >
             </li>
             <li>
-              Email:
-              <a href="mailto:feedback@epigraphdb.org"
-                >feedback@epigraphdb.org</a
-              >
-            </li>
-            <li>
-              <b-row>
-                <b-col cols="2">
-                  <a href="http://docs.epigraphdb.org"
-                    ><font-awesome-icon :icon="['fas', 'book']" size="2x"
-                  /></a>
-                </b-col>
-                <b-col cols="2">
-                  <a href="http://api.epigraphdb.org"
-                    ><font-awesome-icon :icon="['fas', 'terminal']" size="2x"
-                  /></a>
-                </b-col>
-                <b-col cols="2">
-                  <a href="https://mrcieu.github.io/epigraphdb-r"
-                    ><font-awesome-icon :icon="['fab', 'r-project']" size="2x"
-                  /></a>
-                </b-col>
-                <b-col cols="2">
-                  <a href="https://github.com/MRCIEU/epigraphdb"
-                    ><font-awesome-icon :icon="['fab', 'github']" size="2x"
-                  /></a>
-                </b-col>
-                <b-col></b-col>
+              <b-row class="py-3 px-3">
+                <a
+                  href="mailto:feedback@epigraphdb.org"
+                  target="_blank"
+                  class="px-1"
+                  ><font-awesome-icon :icon="['fas', 'envelope']" size="2x"
+                /></a>
+                <a
+                  href="http://docs.epigraphdb.org"
+                  target="_blank"
+                  class="px-1"
+                  ><font-awesome-icon :icon="['fas', 'book']" size="2x"
+                /></a>
+                <a href="http://api.epigraphdb.org" target="_blank" class="px-2"
+                  ><font-awesome-icon :icon="['fas', 'terminal']" size="2x"
+                /></a>
+                <a
+                  href="https://mrcieu.github.io/epigraphdb-r"
+                  target="_blank"
+                  class="px-1"
+                  ><font-awesome-icon :icon="['fab', 'r-project']" size="2x"
+                /></a>
+                <a
+                  href="https://github.com/MRCIEU/epigraphdb"
+                  target="_blank"
+                  class="px-1"
+                  ><font-awesome-icon
+                    :icon="['fab', 'github']"
+                    target="_blank"
+                    size="2x"
+                /></a>
+                <a
+                  href="https://twitter.com/epigraphdb"
+                  target="_blank"
+                  class="px-1"
+                  ><font-awesome-icon :icon="['fab', 'twitter']" size="2x"
+                /></a>
               </b-row>
             </li>
           </ul>
@@ -77,9 +86,17 @@
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTerminal, faBook } from "@fortawesome/free-solid-svg-icons";
-import { faRProject, faGithub } from "@fortawesome/free-brands-svg-icons";
-library.add(faRProject, faGithub, faTerminal, faBook);
+import {
+  faTerminal,
+  faBook,
+  faEnvelope
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faRProject,
+  faGithub,
+  faTwitter
+} from "@fortawesome/free-brands-svg-icons";
+library.add(faRProject, faGithub, faTerminal, faBook, faEnvelope, faTwitter);
 
 export default {
   name: "Footer",
