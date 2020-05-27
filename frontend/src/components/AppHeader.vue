@@ -3,8 +3,8 @@
     <b-navbar toggleable="lg" id="navbar" fixed="top">
       <b-navbar-brand :to="{ path: '/' }">
         <img
-          src="@/assets/logos/logo_wide.png"
-          height="50rem"
+          src="@/assets/logos/epigraphdb-logo.svg"
+          height="40rem"
           alt="EpiGraphDB"
         />
       </b-navbar-brand>
@@ -80,7 +80,11 @@
             href="http://www.bris.ac.uk/"
             target="_blank"
           >
-            <img src="@/assets/logos/uob40.png" alt="University of Bristol" />
+            <img
+              src="@/assets/logos/uob.svg"
+              alt="University of Bristol"
+              height="40rem"
+            />
           </b-navbar-brand>
           <b-navbar-brand
             right
@@ -88,7 +92,11 @@
             href="http://www.bris.ac.uk/ieu"
             target="_blank"
           >
-            <img src="@/assets/logos/ieu40.png" alt="MRC IEU" />
+            <img
+              src="@/assets/logos/mrc-ieu-logo.png"
+              alt="MRC IEU"
+              height="40rem"
+            />
           </b-navbar-brand>
         </b-navbar-nav>
       </b-collapse>
