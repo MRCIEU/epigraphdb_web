@@ -2,7 +2,7 @@
 
 This view shows the literature evidence (from MEDLINE using SemMedDB) associated with a phenotype term, in a two stage approach:
 
-1. The trait of interest will map to an associated SemMed triple (Subject-Predicate-Object**) derived from text-mining of the literature, then map to a published study with its PubMed ID. For example the `"Adiponectin"` trait will map to a triple such as `"Adiponectin:INHIBITS:Leptin"`and then to literature evidence supporting this mechanism.
+1. The trait of interest will map to an associated SemMed triple (**Subject-Predicate-Object**) derived from text-mining of the literature, then map to a published study with its PubMed ID. For example the `"Adiponectin"` trait will map to a triple such as `"Adiponectin:INHIBITS:Leptin"`and then to literature evidence supporting this mechanism.
 
 2. We then restrict the associated literature to those that are only relevant with the original trait.
 
