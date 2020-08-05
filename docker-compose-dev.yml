@@ -20,8 +20,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile-dev
       args:
-        - VUE_APP_WEB_BACKEND_URL: ${FRONTEND_BACKEND_URL:-localhost:8010}
-        - VUE_APP_GTAG_ID: ${FRONTEND_GTAG_ID}
+        - VUE_APP_WEB_BACKEND_URL=${FRONTEND_BACKEND_URL:-localhost:8010}
+        - VUE_APP_GTAG_ID=${FRONTEND_GTAG_ID}
     restart: unless-stopped
     volumes:
       - ./frontend/public:/app/public

@@ -19,8 +19,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - VUE_APP_WEB_BACKEND_URL: ${FRONTEND_BACKEND_URL:-localhost:8010}
-        - VUE_APP_GTAG_ID: ${FRONTEND_GTAG_ID}
+        - VUE_APP_WEB_BACKEND_URL=${FRONTEND_BACKEND_URL:-localhost:8010}
+        - VUE_APP_GTAG_ID=${FRONTEND_GTAG_ID}
     restart: unless-stopped
     ports:
       - ${DOCKER_FRONTEND_PORT:-8011}:80
