@@ -38,6 +38,7 @@ if (config.gtagId) {
       id: config.gtagId
     }
   });
+  console.log("EpiGraphDB: Google analytics enabled");
 } else {
   console.log("EpiGraphDB: Google analytics not enabled");
 }
