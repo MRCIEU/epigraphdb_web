@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3><strong>Important references:</strong></h3>
+      <h3><strong>Important references</strong></h3>
       <ul class="list-group">
         <li>
           <strong>Sun,B.B. et al.</strong> Genomic atlas of the human plasma
@@ -34,38 +34,103 @@
 
     <b-row>
       <b-col>
-        <h4><strong>Contact development team:</strong></h4>
+        <h4><strong>Proteome MR writing group</strong></h4>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/jie-zheng/index.html"
+          >Jie Zheng</a
+                    >
+        </p>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/valeriia-haberland/index.html"
+          >Valeriia Haberland</a
+                             >
+        </p>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/denis-a-baird/index.html"
+          >Denis Baird</a
+                      >
+        </p>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/venexia-v-walker/index.html"
+          >Venexia Walker</a
+                         >
+        </p>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/philip-c-haycock/index.html"
+          >Philip Haycock</a
+                         >
+        </p>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/george-davey-smith/index.html"
+          >George Davey Smith</a
+                             >
+        </p>
+        <p>
+          <a
+            href="https://www.phpc.cam.ac.uk/people/ceu-group/ceu-senior-academic-staff/adam-butterworth/"
+          >Adam S. Butterworth</a
+                              >
+        </p>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/gibran-hemani/index.html"
+          >Gibran Hemani</a
+                        >
+        </p>
+        <p>
+          <a
+            href="https://scholar.google.co.uk/citations?user=oBzdnfgAAAAJ&hl=en"
+          >Robert A. Scott</a
+                          >
+        </p>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/tom-r-gaunt/index.html"
+            >Tom R. Gaunt</a
+          >
+        </p>
+      </b-col>
+      <b-col>
+        <h4><strong>Browser development team</strong></h4>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/valeriia-haberland/index.html"
             >Valeriia Haberland</a
           >
-          (Lead Developer)
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/benjamin-l-elsworth/index.html"
             >Benjamin Elsworth</a
           >
-          (Developer)
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/yi-liu/index.html"
             >Yi Liu</a
           >
-          (Infrastructure Architect)
+        </p>
+        <p>
+          <a
+            href="http://www.bristol.ac.uk/social-community-medicine/people/jie-zheng/index.html"
+            >Jie Zheng</a
+          >
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/tom-r-gaunt/index.html"
             >Tom R Gaunt</a
           >
-          (PI, Developer)
         </p>
       </b-col>
       <b-col>
-        <h4><strong>Funding:</strong></h4>
+        <h4><strong>Funding</strong></h4>
         <b-row>
           <b-col>
             <a href="http://www.bristol.ac.uk/integrative-epidemiology/"

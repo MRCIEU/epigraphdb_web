@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h4><strong>Welcome!</strong></h4>
     <p>
       This browser currently contains the Mendelian Randomization and
       sensitivity analyses results for <strong>989</strong> proteins and
@@ -9,7 +8,7 @@
       field, for example, ADAM19 or Lung cancer. The full list of proteins can
       be found by following the link on top of the "search" field.
     </p>
-    <h3><strong>Publication:</strong></h3>
+    <h3><strong>Publication</strong></h3>
     Jie Zheng, Valeriia Haberland, Denis Baird, Venexia M Walker, Philip M
     Haycock, Alex X Gutteridge, Tom M Richardson, James Staley, Benjamin
     Elsworth, Stephen Burgess, Benjamin B Sun, John Danesh, Heiko Runz, Joseph C
@@ -23,27 +22,7 @@
     >
     <i>BioRXiv</i> (2019)
     <div class="py-2"></div>
-    <h3><strong>News:</strong></h3>
-    <p>
-      <b-badge variant="info">Preprint:</b-badge>
-      the preprint of our
-      <a href="https://www.biorxiv.org/content/10.1101/627398v1">paper</a> is on
-      BioRXiv now.
-    </p>
-    <p>
-      <b-badge variant="success">Release 1.3.1:</b-badge>
-      the search by trait has been introduced; an improved visualisation.
-    </p>
-    <p>
-      <b-badge variant="primary">New feature:</b-badge>
-      the search autocompletion was added; small fixes elsewhere.
-    </p>
-    <p>
-      <b-badge variant="success">Release 1.3.0:</b-badge>
-      the homepage was created; an improved performance (caching); a new
-      visualisation (a volcano plot).
-    </p>
-    <h3><strong>Basic overview:</strong></h3>
+    <h3><strong>Basic overview</strong></h3>
   </div>
 </template>
 
