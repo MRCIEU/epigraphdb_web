@@ -18,8 +18,8 @@ client = TestClient(app)
 get_response_params_general = [
     # status
     ("/status/ping", None),
-    ("/status/components/table", None),
-    ("/status/components/plot", None),
+    # ("/status/components/table", None),
+    # ("/status/components/plot", None),
     ("/status/env/table", None),
     # about
     ("/about/metadata", None),

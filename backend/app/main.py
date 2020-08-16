@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from app import settings
 from app.utils.logging import logger  # noqa:F401
 
 from .apis import mr_simple
@@ -29,27 +28,27 @@ VERSION = "0.3"
 app = FastAPI(
     title=TITLE, description=DESCRIPTION, version=VERSION, docs_url="/"
 )
-origins = (
-    [
-        # deployed frontend
-        "http://epigraphdb.org",
-        "http://dev.epigraphdb.org",
-        "http://dev-new.epigraphdb.org",
-    ]
-    + [
-        # vm
-        f"http://app-dc1-epigdb-p0.epi.bris.ac.uk:8{digit:03}"
-        for digit in range(100)
-    ]
-    + [
-        # native nodejs
-        f"http://localhost:8{digit:03}"
-        for digit in range(100)
-    ]
-    + [settings.frontend_url, settings.dashboard_url]
-)
-# dedupe origins
-origins = [_ for _ in set(origins) if _ is not None]
+# origins = (
+#     [
+#         # deployed frontend
+#         "http://epigraphdb.org",
+#         "http://dev.epigraphdb.org",
+#         "http://dev-new.epigraphdb.org",
+#     ]
+#     + [
+#         # vm
+#         f"http://app-dc1-epigdb-p0.epi.bris.ac.uk:8{digit:03}"
+#         for digit in range(100)
+#     ]
+#     + [
+#         # native nodejs
+#         f"http://localhost:8{digit:03}"
+#         for digit in range(100)
+#     ]
+#     + [settings.frontend_url, settings.dashboard_url]
+# )
+# # dedupe origins
+# origins = [_ for _ in set(origins) if _ is not None]
 
 app.add_middleware(
     CORSMiddleware,

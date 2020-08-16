@@ -6,11 +6,11 @@ from pydantic import BaseModel
 from app.env_configs import env_configs
 from app.models import TableDataResponse
 
-from .components import generate_component_plot, overview_components
+# from .components import generate_component_plot, overview_components
 
 router = APIRouter()
 
-components = overview_components()
+# components = overview_components()
 
 
 class ComponentNetworkPlotResponse(BaseModel):
@@ -27,31 +27,31 @@ async def get_ping() -> bool:
     return True
 
 
-@router.get("/status/components/table", response_model=TableDataResponse)
-def get_components_table():
-    """Get the current status of components
-    """
-    table = {
-        "table_titles": [
-            {"key": _, "label": _, "sortable": True}
-            for _ in ["name", "url", "linked"]
-        ],
-        "table_data": [
-            {"name": key, "url": value["url"], "linked": value["linked"]}
-            for key, value in components.items()
-        ],
-    }
-    return table
+# @router.get("/status/components/table", response_model=TableDataResponse)
+# def get_components_table():
+#     """Get the current status of components
+#     """
+#     table = {
+#         "table_titles": [
+#             {"key": _, "label": _, "sortable": True}
+#             for _ in ["name", "url", "linked"]
+#         ],
+#         "table_data": [
+#             {"name": key, "url": value["url"], "linked": value["linked"]}
+#             for key, value in components.items()
+#         ],
+#     }
+#     return table
 
 
-@router.get(
-    "/status/components/plot", response_model=ComponentNetworkPlotResponse
-)
-def get_components_plot():
-    """Get the current status of components
-    """
-    plot = generate_component_plot(components=components)
-    return plot
+# @router.get(
+#     "/status/components/plot", response_model=ComponentNetworkPlotResponse
+# )
+# def get_components_plot():
+#     """Get the current status of components
+#     """
+#     plot = generate_component_plot(components=components)
+#     return plot
 
 
 @router.get("/status/env/table", response_model=TableDataResponse)

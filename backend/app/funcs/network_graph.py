@@ -4,7 +4,6 @@ from typing import Any, Callable, List, Optional
 
 import pandas as pd
 
-from app.settings import debug
 from app.utils import hex_to_rgb
 from app.utils.logging import logger  # noqa:F401
 from app.utils.meta_graph import (
@@ -112,24 +111,20 @@ class NetworkGraph:
         self.edge_schemas = edge_schemas
 
         self.nodes_df = nodes_df_from_schema(df, self.node_schemas)
-        if debug:
-            logger.info(f"nodes_df: \n {self.nodes_df.head()}")
+        logger.info(f"nodes_df: \n {self.nodes_df.head()}")
 
         self.edges_df = edges_df_from_schema(
             df, self.nodes_df, self.edge_schemas
         )
-        if debug:
-            logger.info(f"edges_df: \n {self.edges_df.head()}")
+        logger.info(f"edges_df: \n {self.edges_df.head()}")
 
         self.nodes = render_nodes(self.nodes_df)
         self.nodes_3d = render_nodes_3d(self.nodes_df)
-        if debug:
-            logger.info(f"nodes: \n {self.nodes[0:2]}")
+        logger.info(f"nodes: \n {self.nodes[0:2]}")
 
         self.edges = render_edges(self.edges_df)
         self.edges_3d = render_edges_3d(self.edges_df)
-        if debug:
-            logger.info(f"edges: \n {self.edges[0:2]}")
+        logger.info(f"edges: \n {self.edges[0:2]}")
 
     def to_visjs(self):
         self.graph_data = {

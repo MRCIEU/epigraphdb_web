@@ -1,56 +1,53 @@
 .PHONY: clean
 
 #################################################################################
-# GLOBALS                                                                       #
-#################################################################################
-
-PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-PROFILE = default
-PROJECT_NAME = epigraphdb_web
-
-ifndef WEBAPI_PORT
-WEBAPI_PORT=8006
-endif
-
-ifndef DEBUG
-DEBUG=false
-endif
-
-#################################################################################
 # Rules
 #################################################################################
 
-## ==== utils ====
-__utils__:
-
-## Unit tests
-test:
-	python -m pytest -v
+# directories that contain python scripts in the codebase
+python_dirs = app tests scripts epigraphdb_common_utils
 
 ## ==== codebase ====
-__codebase__:
+__codebase__: help
 
-## Lint codebase (flake8, mypy)
-lint:
-	python -m flake8 app tests
-	python -m mypy app tests
+## check for setup status (for epigraphdb_web)
+check:
+	python -m scripts.check
 
-## Format codebase (black, isort)
+## check for setup status (for epigraphdb_compose)
+check_epigraphdb_compose:
+	python -m scripts.check_epigraphdb_compose
+
+## Format codebase
 fmt:
-	python -m autoflake --in-place --remove-all-unused-imports --recursive app tests
-	python -m isort -rc app tests
-	python -m black app tests
+	python -m autoflake \
+		--in-place --remove-all-unused-imports --recursive \
+		$(python_dirs)
+	python -m isort -rc \
+		$(python_dirs)
+	python -m black \
+		$(python_dirs)
 
-## Start API server, default to 8000, overwrite with WEBAPI_PORT make run
+## Lint codebase
+lint:
+	python -m flake8 \
+		$(python_dirs)
+	python -m mypy \
+		$(python_dirs)
+
+
+## Unit tests (takes a LONG time!)
+test:
+	python -m pytest -vv
+
+## ==== running the api ====
+__run__: help
+
+## Start API server, port: 80
 run:
-	uvicorn app.main:app --reload \
-	--port ${WEBAPI_PORT}
-
-## Start API server using port 80 (for docker)
-run80:
+	python -m scripts.check
 	uvicorn app.main:app --reload \
 	--host 0.0.0.0 --port 80
-
 
 #################################################################################
 # Self Documenting Commands                                                     #
