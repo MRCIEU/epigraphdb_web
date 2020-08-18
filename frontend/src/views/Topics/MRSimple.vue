@@ -250,7 +250,7 @@ export default {
       this.resLoading = true;
 
       if (this.queryModeCurr == "exposure") {
-        this.outcomeTrailt = null;
+        this.outcomeTrait = null;
       } else if (this.queryModeCurr == "outcome") {
         this.exposureTrait = null;
       }
