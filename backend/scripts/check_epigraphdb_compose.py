@@ -1,3 +1,5 @@
+from colorama import Fore, Style
+
 from epigraphdb_common_utils import (
     api_env_configs,
     backend_env_configs,
@@ -8,23 +10,78 @@ from epigraphdb_common_utils import (
 
 
 def check_env_configs() -> None:
-    print("\n# Check environment configs")
-    print("\n## Check environment configs for API server")
-    print(api_env_configs.__doc__)
+    print(
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n# Check environment configs"
+        + Style.RESET_ALL
+    )
+    print(
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n## Check environment configs for "
+        + Fore.RED
+        + "API server"
+        + Style.RESET_ALL
+    )
+    print(Style.DIM + Fore.YELLOW + api_env_configs.__doc__ + Style.RESET_ALL)
     print(api_env_configs.env_configs)
-    print("\n## Check environment configs for backend server")
-    print(backend_env_configs.__doc__)
+    print(
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n## Check environment configs for "
+        + Fore.RED
+        + "backend server"
+        + Style.RESET_ALL
+    )
+    print(
+        Style.DIM + Fore.YELLOW + backend_env_configs.__doc__ + Style.RESET_ALL
+    )
     print(backend_env_configs.env_configs)
-    print("\n## Check environment configs for API containers")
-    print(docker_api_env_configs.__doc__)
+    print(
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n## Check environment configs for "
+        + Fore.RED
+        + "API containers"
+        + Style.RESET_ALL
+    )
+    print(
+        Style.DIM
+        + Fore.YELLOW
+        + docker_api_env_configs.__doc__
+        + Style.RESET_ALL
+    )
     print(docker_api_env_configs.env_configs)
-    print("\n## Check environment configs for web app containers")
-    print(docker_web_env_configs.__doc__)
+    print(
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n## Check environment configs for "
+        + Fore.RED
+        + "web app containers"
+        + Style.RESET_ALL
+    )
+    print(
+        Style.DIM
+        + Fore.YELLOW
+        + docker_web_env_configs.__doc__
+        + Style.RESET_ALL
+    )
     print(docker_web_env_configs.env_configs)
     print(
-        "\n## Check environment configs for extra services in epigraphdb_compose"
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n## Check environment configs for extra services in "
+        + Fore.RED
+        + "epigraphdb_compose"
+        + Style.RESET_ALL
     )
-    print(docker_compose_extra_env_configs.__doc__)
+    print(
+        Style.DIM
+        + Fore.YELLOW
+        + docker_compose_extra_env_configs.__doc__
+        + Style.RESET_ALL
+    )
     print(docker_compose_extra_env_configs.env_configs)
 
 

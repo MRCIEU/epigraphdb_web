@@ -1,13 +1,41 @@
+from colorama import Fore, Style
+
 from epigraphdb_common_utils import backend_env_configs, docker_web_env_configs
 
 
 def check_env_configs() -> None:
-    print("\n# Check environment configs")
-    print("\n## Check environment configs for backend server")
-    print(backend_env_configs.__doc__)
+    print(
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n# Check environment configs"
+        + Style.RESET_ALL
+    )
+    print(
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n## Check environment configs for "
+        + Fore.RED
+        + "backend server"
+        + Style.RESET_ALL
+    )
+    print(
+        Style.DIM + Fore.YELLOW + backend_env_configs.__doc__ + Style.RESET_ALL
+    )
     print(backend_env_configs.env_configs)
-    print("\n## Check environment configs for web app containers")
-    print(docker_web_env_configs.__doc__)
+    print(
+        Style.BRIGHT
+        + Fore.GREEN
+        + "\n## Check environment configs for "
+        + Fore.RED
+        + "web app containers"
+        + Style.RESET_ALL
+    )
+    print(
+        Style.DIM
+        + Fore.YELLOW
+        + docker_web_env_configs.__doc__
+        + Style.RESET_ALL
+    )
     print(docker_web_env_configs.env_configs)
 
 
