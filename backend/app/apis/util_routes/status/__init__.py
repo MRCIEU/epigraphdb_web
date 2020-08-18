@@ -1,13 +1,17 @@
-from typing import Any, Dict, List
+from typing import Dict
 
 from fastapi import APIRouter
-from pydantic import BaseModel
 
-from app.env_configs import env_configs
-from app.models import TableDataResponse
-
+from epigraphdb_common_utils import (
+    api_env_configs,
+    backend_env_configs,
+    docker_api_env_configs,
+    docker_compose_extra_env_configs,
+    docker_web_env_configs,
+)
 
 router = APIRouter()
+
 
 @router.get("/status/ping", summary="Ping services.")
 async def get_ping() -> bool:
@@ -17,24 +21,39 @@ async def get_ping() -> bool:
     return True
 
 
-@router.get("/status/env/table", response_model=TableDataResponse)
+@router.get("/status/env/table")
 def get_env_table():
-    """Get the current status of environment variables in web ui
+    """Get the current status of environment variables for all components
     """
+    res = {
+        env_configs_name: {
+            "name": env_configs_name,
+            "desc": env_configs.__doc__,
+            "table": env_configs_to_table(env_configs.env_configs),
+        }
+        for env_configs_name, env_configs in [
+            ("api", api_env_configs),
+            ("docker_api", docker_api_env_configs),
+            ("backend", backend_env_configs),
+            ("docker_web", docker_web_env_configs),
+            ("docker_compose_extra", docker_compose_extra_env_configs),
+        ]
+    }
+    return res
+
+
+def env_configs_to_table(env_configs) -> Dict:
     table = {
         "table_titles": [
             {"key": _, "label": _, "sortable": True}
-            for _ in ["name", "value", "secret"]
+            for _ in ["name", "value_display", "default", "desc"]
         ],
         "table_data": [
             {
-                "name": (key if not value["secret"] else f"{key}[:5]"),
-                "value": (
-                    str(value["value"])
-                    if not value["secret"]
-                    else str(value["value"])[:5]
-                ),
-                "secret": value["secret"],
+                "name": value["name"],
+                "value_display": value["value_display"],
+                "default": value["default"],
+                "desc": value["desc"],
             }
             for key, value in env_configs.items()
         ],

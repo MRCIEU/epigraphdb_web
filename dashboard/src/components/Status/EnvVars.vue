@@ -1,6 +1,9 @@
 <template>
   <div class="env-vars">
-    <h2>Environment variables</h2>
+    <h2>{{ name }}</h2>
+    <p>
+      {{ desc }}
+    </p>
     <Table
       v-if="tableData"
       :table-data-input="tableData"
@@ -10,31 +13,26 @@
 </template>
 
 <script>
-import axios from "axios";
 import Table from "@/components/Utils/Table";
-
-const config = require("@/config");
 
 export default {
   name: "EnvVars",
   components: {
     Table
   },
-  data: () => ({
-    tableData: null
-  }),
-  mounted: function() {
-    this.getTableData();
-  },
-  methods: {
-    getTableData() {
-      const url = `${config.web_backend_url}/status/env/table`;
-      axios.get(url).then(response => {
-        this.tableData = response.data;
-      });
+  props: {
+    name: {
+      type: String,
+      default: ""
+    },
+    desc: {
+      type: String,
+      default: ""
+    },
+    tableData: {
+      type: Object,
+      default: null
     }
   }
 };
 </script>
-
-<style scoped></style>

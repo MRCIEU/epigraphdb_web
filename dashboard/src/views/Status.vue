@@ -4,11 +4,12 @@
     <hr style="margin: 20px 0px;border: 1px solid #e3e3e3;" />
     <b-card no-body>
       <b-tabs card align="center">
-        <b-tab title="Components">
-          <AssocComponents />
-        </b-tab>
-        <b-tab title="Env variables">
-          <EnvVars />
+        <b-tab v-for="item in envConfigs" :key="item.name" :title="item.name">
+          <EnvVars
+            :name="item.name"
+            :desc="item.desc"
+            :table-data="item.table"
+          />
         </b-tab>
       </b-tabs>
     </b-card>
@@ -16,14 +17,29 @@
 </template>
 
 <script>
-import AssocComponents from "@/components/Status/AssocComponents.vue";
+import axios from "axios";
 import EnvVars from "@/components/Status/EnvVars.vue";
 
+const config = require("@/config");
+
 export default {
-  name: "home",
+  name: "Status",
   components: {
-    AssocComponents,
     EnvVars
+  },
+  data: () => ({
+    envConfigs: null
+  }),
+  mounted: function() {
+    this.getEnvConfigs();
+  },
+  methods: {
+    getEnvConfigs() {
+      const url = `${config.web_backend_url}/status/env/table`;
+      axios.get(url).then(response => {
+        this.envConfigs = response.data;
+      });
+    }
   }
 };
 </script>
