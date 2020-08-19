@@ -205,9 +205,11 @@ export default {
     setupRouteQuery() {
       if (this.$route.query["exposure-query"]) {
         this.exposureTrait = this.$route.query["exposure-query"];
+        this.queryModeCurr = "exposure";
       }
       if (this.$route.query["outcome-query"]) {
         this.outcomeTrait = this.$route.query["outcome-query"];
+        this.queryModeCurr = "outcome";
       }
       if (this.exposureTrait || this.outcomeTrait) {
         this.getMaster();
