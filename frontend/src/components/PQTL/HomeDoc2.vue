@@ -38,56 +38,56 @@
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/jie-zheng/index.html"
-          >Jie Zheng</a
-                    >
+            >Jie Zheng</a
+          >
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/valeriia-haberland/index.html"
-          >Valeriia Haberland</a
-                             >
+            >Valeriia Haberland</a
+          >
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/denis-a-baird/index.html"
-          >Denis Baird</a
-                      >
+            >Denis Baird</a
+          >
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/venexia-v-walker/index.html"
-          >Venexia Walker</a
-                         >
+            >Venexia Walker</a
+          >
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/philip-c-haycock/index.html"
-          >Philip Haycock</a
-                         >
+            >Philip Haycock</a
+          >
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/george-davey-smith/index.html"
-          >George Davey Smith</a
-                             >
+            >George Davey Smith</a
+          >
         </p>
         <p>
           <a
             href="https://www.phpc.cam.ac.uk/people/ceu-group/ceu-senior-academic-staff/adam-butterworth/"
-          >Adam S. Butterworth</a
-                              >
+            >Adam S. Butterworth</a
+          >
         </p>
         <p>
           <a
             href="http://www.bristol.ac.uk/social-community-medicine/people/gibran-hemani/index.html"
-          >Gibran Hemani</a
-                        >
+            >Gibran Hemani</a
+          >
         </p>
         <p>
           <a
             href="https://scholar.google.co.uk/citations?user=oBzdnfgAAAAJ&hl=en"
-          >Robert A. Scott</a
-                          >
+            >Robert A. Scott</a
+          >
         </p>
         <p>
           <a
