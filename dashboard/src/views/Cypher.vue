@@ -78,7 +78,7 @@ export default {
   },
   data: () => ({
     activeTab: 0,
-    cypherQuery: "",
+    cypherQuery: null,
     dbOptions: ["epigraphdb", "pqtl"],
     dbSelect: "epigraphdb",
     customGraphHostname: null,

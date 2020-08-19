@@ -175,8 +175,8 @@ export default {
       "reverse_intermediate",
       "collider"
     ],
-    exposureTrait: "",
-    outcomeTrait: "",
+    exposureTrait: null,
+    outcomeTrait: null,
     // ac
     acTrait: [],
     // res

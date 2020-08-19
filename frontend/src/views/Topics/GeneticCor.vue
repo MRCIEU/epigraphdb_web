@@ -154,7 +154,7 @@ export default {
     corCoefBase: "0.80",
     corCoefBaseOptions: ["0.20", "0.40", "0.60", "0.80", "0.90", "1.00"],
     sizeLimitDefault: 50,
-    trait: "",
+    trait: null,
     // ac
     acTrait: [],
     // res

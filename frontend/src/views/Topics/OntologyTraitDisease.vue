@@ -156,9 +156,9 @@ export default {
   data: () => ({
     // queries and candidates
     sizeLimitDefault: 50,
-    trait: "",
-    efoTerm: "",
-    diseaseLabel: "",
+    trait: null,
+    efoTerm: null,
+    diseaseLabel: null,
     // ac
     acTrait: [],
     acEfoTerm: [],

@@ -154,7 +154,7 @@ export default {
     pvalBase: "1e-5",
     pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
     sizeLimitDefault: 50,
-    trait: "",
+    trait: null,
     // ac
     acTrait: [],
     // res

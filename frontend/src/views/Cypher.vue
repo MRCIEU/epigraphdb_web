@@ -70,7 +70,7 @@ export default {
   },
   data: () => ({
     resInit: 0,
-    cypherQuery: "",
+    cypherQuery: null,
     jsonData: null,
     infoText: info
   }),

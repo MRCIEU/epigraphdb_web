@@ -180,8 +180,8 @@ export default {
     pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
     sizeLimit: 50,
     sizeLimitOptions: [20, 50, 100, 300, 500, 800, 1000],
-    exposureTrait: "",
-    outcomeTrait: "",
+    exposureTrait: null,
+    outcomeTrait: null,
     // ac
     acTrait: [],
     // res
