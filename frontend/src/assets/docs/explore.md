@@ -13,7 +13,7 @@ Results:
 - The underlying data of a node.
 - (when using exact matching) The nodes connected to the matched node, with
   - `meta_node`: The meta node (type of a node, e.g. `"Gwas"`, `"Disease"`, etc.).
-  - `meta_rel`: The meta relationship (type of a relationship, e.g. `"MR"`, `"GWAS_TO_VARAINT"`, etc.).
+  - `meta_rel`: The meta relationship (type of a relationship, e.g. `"MR"`, `"GWAS_TO_VARIANT"`, etc.).
 - (when using exact matching) The network plot of the connected node.
   Note that when there are too many connected nodes,
   the network plot will only display a subset of nodes.
