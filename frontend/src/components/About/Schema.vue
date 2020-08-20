@@ -23,7 +23,7 @@
             theme="json-viewer-gruvbox-dark"
             v-if="schemaInfo"
             :value="schemaInfo"
-            :expand-depth="3"
+            :expand-depth="4"
           />
         </b-tab>
       </b-tabs>

@@ -3,7 +3,7 @@
     <json-viewer
       theme="json-viewer-gruvbox-dark"
       :value="responseData"
-      :expand-depth="3"
+      :expand-depth="4"
     />
   </div>
 </template>

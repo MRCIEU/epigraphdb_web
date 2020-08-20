@@ -90,7 +90,7 @@
               theme="json-viewer-gruvbox-dark"
               v-if="resQuery"
               :value="resNodeInfo"
-              :expand-depth="3"
+              :expand-depth="4"
             />
           </b-tab>
           <b-tab>
@@ -101,7 +101,7 @@
               <json-viewer
                 theme="json-viewer-gruvbox-dark"
                 :value="resNeighbourData"
-                :expand-depth="3"
+                :expand-depth="4"
               />
             </div>
             <div v-else>
