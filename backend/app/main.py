@@ -3,7 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from app.utils.logging import logger  # noqa:F401
 
-from .apis import mr_simple
+from .apis import mr_simple, top
 from .apis.secondary_views import about, explore, gallery
 from .apis.topic_views import (
     confounder,
@@ -61,6 +61,7 @@ app.add_middleware(
 )
 
 # ==== Endpoints ====
+app.include_router(top.router, tags=["top endpoints"])
 # secondary views
 app.include_router(about.router, tags=["secondary: about"])
 app.include_router(gallery.router, tags=["secondary: gallery"])
