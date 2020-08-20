@@ -28,7 +28,7 @@ export default {
         content_text: `
           EpiGraphDB documentation site
         `,
-        footer_href: "http://docs.epigraphdb.org"
+        footer_href: "https://docs.epigraphdb.org"
       },
       {
         name: "api",
@@ -36,7 +36,7 @@ export default {
         content_text: `
           API to access EpiGraphDB
         `,
-        footer_href: "http://api.epigraphdb.org"
+        footer_href: "https://api.epigraphdb.org"
       },
       {
         name: "r-pkg-docs",

@@ -5,7 +5,7 @@ Our core objectives are to:
 * Develop approaches for the appropriate application and interpretation of causal inference in systematic automated analyses of many phenotypes using data from a rich array of bioinformatic resources.
 * Apply data mining approaches to the same integrated dataset to make novel discoveries about disease mechanisms and potential interventions relevant to population health
 
-![epigraphdb-architecture](http://docs.epigraphdb.org/img/epigraphdb-architecture.png)
+![epigraphdb-architecture](https://docs.epigraphdb.org/img/epigraphdb-architecture.png)
 
 **Note EpiGraphDB is currently in beta.** There may be issues/errors with data, queries and analyse!
 We welcome any feedback to feedback@epigraphdb.org.
@@ -13,7 +13,7 @@ We welcome any feedback to feedback@epigraphdb.org.
 ## Funding sources
 
 * EpiGraphDB receives core funding from the UK Medical Research Council as part of the [Data Mining Epidemiological Relationships programme](www.biocompute.org.uk) in the [MRC Integrative Epidemiology Unit](www.bristol.ac.uk/ieu).
-* The [pQTL browser](http://www.epigraphdb.org/pqtl/) was developed as part of a collaboration between the MRC IEU, GlaxoSmithKline and Biogen, and is described [here](https://www.biorxiv.org/content/10.1101/627398v1)
+* The [pQTL browser](https://www.epigraphdb.org/pqtl/) was developed as part of a collaboration between the MRC IEU, GlaxoSmithKline and Biogen, and is described [here](https://www.biorxiv.org/content/10.1101/627398v1)
 * The MR-EvE data within EpiGraphDB has been produced by Gibran Hemani on a Wellcome Sir Henry Dale fellowship
 * Pathway data and network analysis methods have been supported by funding from Cancer Research UK
 

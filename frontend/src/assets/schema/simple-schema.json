@@ -3,7 +3,7 @@
     {
       "id": 1,
       "label": "Disease",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#disease",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#disease",
       "color": {
         "background": "rgba(0, 172, 193, 0.85)",
         "highlight": {
@@ -23,7 +23,7 @@
     {
       "id": 10,
       "label": "SemmedTerm",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#semmedterm",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#semmedterm",
       "color": {
         "background": "rgba(129, 212, 250, 0.85)",
         "highlight": {
@@ -43,7 +43,7 @@
     {
       "id": 8,
       "label": "Pathway",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#pathway",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#pathway",
       "color": {
         "background": "rgba(94, 53, 177, 0.85)",
         "highlight": {
@@ -63,7 +63,7 @@
     {
       "id": 5,
       "label": "Gene",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#gene",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#gene",
       "color": {
         "background": "rgba(251, 192, 45, 0.85)",
         "highlight": {
@@ -83,7 +83,7 @@
     {
       "id": 7,
       "label": "Literature",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#literature",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#literature",
       "color": {
         "background": "rgba(244, 143, 177, 0.85)",
         "highlight": {
@@ -103,7 +103,7 @@
     {
       "id": 9,
       "label": "Protein",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#protein",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#protein",
       "color": {
         "background": "rgba(229, 57, 53, 0.85)",
         "highlight": {
@@ -123,7 +123,7 @@
     {
       "id": 13,
       "label": "Variant",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#variant",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#variant",
       "color": {
         "background": "rgba(51, 105, 30, 0.85)",
         "highlight": {
@@ -143,7 +143,7 @@
     {
       "id": 11,
       "label": "SemmedTriple",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#semmedtriple",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#semmedtriple",
       "color": {
         "background": "rgba(64, 196, 255, 0.85)",
         "highlight": {
@@ -163,7 +163,7 @@
     {
       "id": 3,
       "label": "Efo",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#efo",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#efo",
       "color": {
         "background": "rgba(124, 179, 66, 0.85)",
         "highlight": {
@@ -184,7 +184,7 @@
     {
       "id": 12,
       "label": "Tissue",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#tissue",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#tissue",
       "color": {
         "background": "rgba(251, 140, 0, 0.85)",
         "highlight": {
@@ -204,7 +204,7 @@
     {
       "id": 6,
       "label": "Gwas",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#gwas",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas",
       "color": {
         "background": "rgba(30, 136, 229, 0.85)",
         "highlight": {
@@ -225,7 +225,7 @@
     {
       "id": 2,
       "label": "Drug",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#drug",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#drug",
       "color": {
         "background": "rgba(67, 160, 71, 0.85)",
         "highlight": {
@@ -245,7 +245,7 @@
     {
       "id": 4,
       "label": "Event",
-      "url": "http://docs.epigraphdb.org/graph-database/meta-nodes/#event",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-nodes/#event",
       "color": {
         "background": "rgba(192, 202, 51, 0.85)",
         "highlight": {
@@ -275,7 +275,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#mondo_map_efo",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#mondo_map_efo",
       "value": 1,
       "dashes": true,
       "color": {
@@ -294,7 +294,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#mondo_map_umls",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#mondo_map_umls",
       "value": 1,
       "dashes": true,
       "color": {
@@ -313,7 +313,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#opentargets_drug_to_disease",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#opentargets_drug_to_disease",
       "value": 1,
       "dashes": true,
       "color": {
@@ -332,7 +332,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#cpic",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#cpic",
       "value": 1,
       "dashes": true,
       "color": {
@@ -351,7 +351,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#opentargets_drug_to_target",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#opentargets_drug_to_target",
       "value": 1,
       "dashes": true,
       "color": {
@@ -370,7 +370,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#efo_child_of",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#efo_child_of",
       "value": 1,
       "dashes": true,
       "color": {
@@ -389,7 +389,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#preceding_event",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#preceding_event",
       "value": 1,
       "dashes": true,
       "color": {
@@ -408,7 +408,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_gene_gene",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_gene_gene",
       "value": 1,
       "dashes": true,
       "color": {
@@ -427,7 +427,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_multi_snp_mr",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_multi_snp_mr",
       "value": 1,
       "dashes": true,
       "color": {
@@ -446,7 +446,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_single_snp_mr_gene_gwas",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_single_snp_mr_gene_gwas",
       "value": 1,
       "dashes": true,
       "color": {
@@ -465,7 +465,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gene_to_literature",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#gene_to_literature",
       "value": 1,
       "dashes": true,
       "color": {
@@ -484,7 +484,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gene_to_protein",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#gene_to_protein",
       "value": 1,
       "dashes": true,
       "color": {
@@ -503,7 +503,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_gene_protein",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_gene_protein",
       "value": 1,
       "dashes": true,
       "color": {
@@ -522,7 +522,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#expressed_in",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#expressed_in",
       "value": 1,
       "dashes": true,
       "color": {
@@ -541,7 +541,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_nlp_efo",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_nlp_efo",
       "value": 1,
       "dashes": true,
       "color": {
@@ -560,7 +560,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#bn_gen_cor",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#bn_gen_cor",
       "value": 1,
       "dashes": true,
       "color": {
@@ -579,7 +579,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_nlp",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_nlp",
       "value": 1,
       "dashes": true,
       "color": {
@@ -598,7 +598,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#mr",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#mr",
       "value": 1,
       "dashes": true,
       "color": {
@@ -617,7 +617,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#obs_cor",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#obs_cor",
       "value": 1,
       "dashes": true,
       "color": {
@@ -636,7 +636,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#prs",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#prs",
       "value": 1,
       "dashes": true,
       "color": {
@@ -655,7 +655,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_to_lit",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_to_lit",
       "value": 1,
       "dashes": true,
       "color": {
@@ -674,7 +674,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#metamap_lite",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#metamap_lite",
       "value": 1,
       "dashes": true,
       "color": {
@@ -693,7 +693,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_sem",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_sem",
       "value": 1,
       "dashes": true,
       "color": {
@@ -712,7 +712,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_to_variant",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#gwas_to_variant",
       "value": 1,
       "dashes": true,
       "color": {
@@ -731,7 +731,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#tophits",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#tophits",
       "value": 1,
       "dashes": true,
       "color": {
@@ -750,7 +750,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#pathway_to_disease",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#pathway_to_disease",
       "value": 1,
       "dashes": true,
       "color": {
@@ -769,7 +769,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#event_in_pathway",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#event_in_pathway",
       "value": 1,
       "dashes": true,
       "color": {
@@ -788,7 +788,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#pathway_to_literature",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#pathway_to_literature",
       "value": 1,
       "dashes": true,
       "color": {
@@ -807,7 +807,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#protein_to_disease",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#protein_to_disease",
       "value": 1,
       "dashes": true,
       "color": {
@@ -826,7 +826,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#protein_in_event",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#protein_in_event",
       "value": 1,
       "dashes": true,
       "color": {
@@ -845,7 +845,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#protein_to_literature",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#protein_to_literature",
       "value": 1,
       "dashes": true,
       "color": {
@@ -864,7 +864,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#protein_in_pathway",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#protein_in_pathway",
       "value": 1,
       "dashes": true,
       "color": {
@@ -883,7 +883,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_protein_protein",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#intact_interacts_with_protein_protein",
       "value": 1,
       "dashes": true,
       "color": {
@@ -902,7 +902,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#intact_not_interacts_with",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#intact_not_interacts_with",
       "value": 1,
       "dashes": true,
       "color": {
@@ -921,7 +921,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#string_interact_with",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#string_interact_with",
       "value": 1,
       "dashes": true,
       "color": {
@@ -940,7 +940,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_gene",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#sem_gene",
       "value": 1,
       "dashes": true,
       "color": {
@@ -959,7 +959,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_predicate",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#sem_predicate",
       "value": 1,
       "dashes": true,
       "color": {
@@ -978,7 +978,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_to_lit",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#sem_to_lit",
       "value": 1,
       "dashes": true,
       "color": {
@@ -997,7 +997,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_obj",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#sem_obj",
       "value": 1,
       "dashes": true,
       "color": {
@@ -1016,7 +1016,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#sem_sub",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#sem_sub",
       "value": 1,
       "dashes": true,
       "color": {
@@ -1035,7 +1035,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#variant_to_gene",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#variant_to_gene",
       "value": 1,
       "dashes": true,
       "color": {
@@ -1054,7 +1054,7 @@
         "max": 5
       },
       "arrowStrikethrough": true,
-      "url": "http://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_single_snp_mr_snp_gene",
+      "url": "https://docs.epigraphdb.org/graph-database/meta-relationships/#xqtl_single_snp_mr_snp_gene",
       "value": 1,
       "dashes": true,
       "color": {

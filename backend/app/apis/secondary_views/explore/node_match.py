@@ -9,7 +9,7 @@ from .neighbour_graph import neighbour_graph
 
 current_linked_resources = {
     "Gwas": {
-        "url": "http://gwas.mrcieu.ac.uk/gwas/{id}/",
+        "url": "https://gwas.mrcieu.ac.uk/gwas/{id}/",
         "resource_name": "IEU Gwas Database",
         "logo": "igd-neg.svg",
     },

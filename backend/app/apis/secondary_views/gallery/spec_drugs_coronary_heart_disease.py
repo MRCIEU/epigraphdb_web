@@ -14,8 +14,8 @@ drugs_coronary_heart_disease = GalleryGraph(
         </p>
 
         <p>
-        Visit <a href='http://epigraphdb.org/risk-factor-drugs/'>
-        http://epigraphdb.org/risk-factor-drugs/</a>
+        Visit <a href='https://epigraphdb.org/risk-factor-drugs/'>
+        https://epigraphdb.org/risk-factor-drugs/</a>
         for more details.
         </p>
     """.replace(

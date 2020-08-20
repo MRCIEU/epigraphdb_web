@@ -36,12 +36,15 @@
                   ><font-awesome-icon :icon="['fas', 'envelope']" size="2x"
                 /></a>
                 <a
-                  href="http://docs.epigraphdb.org"
+                  href="https://docs.epigraphdb.org"
                   target="_blank"
                   class="px-1"
                   ><font-awesome-icon :icon="['fas', 'book']" size="2x"
                 /></a>
-                <a href="http://api.epigraphdb.org" target="_blank" class="px-2"
+                <a
+                  href="https://api.epigraphdb.org"
+                  target="_blank"
+                  class="px-2"
                   ><font-awesome-icon :icon="['fas', 'terminal']" size="2x"
                 /></a>
                 <a

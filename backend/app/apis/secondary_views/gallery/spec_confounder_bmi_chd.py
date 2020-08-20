@@ -14,8 +14,8 @@ confounder_bmi_chd = GalleryGraph(
         </p>
 
         <p>
-        Visit <a href='http://epigraphdb.org/confounder/'>
-        http://epigraphdb.org/confounder/</a>
+        Visit <a href='https://epigraphdb.org/confounder/'>
+        https://epigraphdb.org/confounder/</a>
         for more details.
         </p>
     """.replace(

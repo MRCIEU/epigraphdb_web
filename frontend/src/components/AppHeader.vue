@@ -39,11 +39,11 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown text="EpiGraphDB" class="my-2 mr-sm-2">
-            <b-dropdown-item href="http://docs.epigraphdb.org">
+            <b-dropdown-item href="https://docs.epigraphdb.org">
               <font-awesome-icon :icon="['fas', 'book']" />
               Docs
             </b-dropdown-item>
-            <b-dropdown-item href="http://api.epigraphdb.org">
+            <b-dropdown-item href="https://api.epigraphdb.org">
               <font-awesome-icon :icon="['fas', 'terminal']" />
               API
             </b-dropdown-item>

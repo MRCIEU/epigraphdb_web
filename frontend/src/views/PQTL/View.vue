@@ -40,13 +40,13 @@
 
     <p>
       Results presented here can also be accessed programmatically using the
-      <a href="http://api.epigraphdb.org" target="_blank">EpiGraphDB API</a>.
+      <a href="https://api.epigraphdb.org" target="_blank">EpiGraphDB API</a>.
     </p>
     <p v-if="searchFlag == 'traits'">
       This browser shows only those results with the p-value less than
       <strong>0.05</strong>, if searching for a trait. The full set of MR
       results could be accessed via the
-      <a href="http://api.epigraphdb.org" target="_blank">API</a>.
+      <a href="https://api.epigraphdb.org" target="_blank">API</a>.
     </p>
 
     <div class="py-3" />

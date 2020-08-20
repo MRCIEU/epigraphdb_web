@@ -28,4 +28,4 @@ log_dir = Path("/tmp/epigraphdb_web/logs")
 log_dir.mkdir(parents=True, exist_ok=True)
 
 # general settings
-docs_url = "http://docs.epigraphdb.org"
+docs_url = "https://docs.epigraphdb.org"

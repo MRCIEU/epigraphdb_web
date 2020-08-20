@@ -13,8 +13,8 @@ pathway_crohns_disease = GalleryGraph(
         </p>
 
         <p>
-        Visit <a href='http://epigraphdb.org/pathway/'>
-        http://epigraphdb.org/pathway/</a>
+        Visit <a href='https://epigraphdb.org/pathway/'>
+        https://epigraphdb.org/pathway/</a>
         for more details.
         </p>
     """.replace(

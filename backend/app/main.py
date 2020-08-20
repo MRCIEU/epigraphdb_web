@@ -31,7 +31,7 @@ app = FastAPI(
 # origins = (
 #     [
 #         # deployed frontend
-#         "http://epigraphdb.org",
+#         "https://epigraphdb.org",
 #         "http://dev.epigraphdb.org",
 #         "http://dev-new.epigraphdb.org",
 #     ]
