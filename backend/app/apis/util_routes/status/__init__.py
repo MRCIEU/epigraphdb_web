@@ -2,6 +2,8 @@ from typing import Dict
 
 from fastapi import APIRouter
 
+from app.settings import api_url
+from app.utils import ping_endpoint
 from epigraphdb_common_utils import (
     api_env_configs,
     backend_env_configs,
@@ -13,12 +15,14 @@ from epigraphdb_common_utils import (
 router = APIRouter()
 
 
-@router.get("/status/ping", summary="Ping services.")
-async def get_ping() -> bool:
+@router.get("/status/ping", summary="Ping connected services.")
+async def get_status_ping():
     """Ping services and return their status.
     Return True if they are running else False.
     """
-    return True
+    res = {"epigraphdb_api": False}
+    res["epigraphdb_api"] = ping_endpoint(f"{api_url}/ping")
+    return res
 
 
 @router.get("/status/env/table")

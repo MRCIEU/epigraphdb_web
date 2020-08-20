@@ -4,6 +4,7 @@ from typing import Optional, Union
 
 import numpy as np
 import pandas as pd
+import requests
 
 color_palette_file = Path(__file__).parent / "colorscheme.json"
 
@@ -91,3 +92,16 @@ def format_df_results_general(df: pd.DataFrame):
         "table_data": df.to_dict(orient="records"),
     }
     return res
+
+
+def ping_endpoint(url: str) -> bool:
+    """Ping a GET endpoint that is expected to return a True.
+    """
+    try:
+        r = requests.get(url)
+        r.raise_for_status()
+        res = r.json()
+        assert res is True
+    except:
+        return False
+    return True
