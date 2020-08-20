@@ -82,10 +82,11 @@
             </template>
             <vue-markdown>{{ infoText }}</vue-markdown>
           </b-tab>
-          <b-tab :active="resInit !== 0 ? true : false">
-            <template v-slot:title>
-              Results
-            </template>
+          <b-tab
+            :active="resInit !== 0 ? true : false"
+            title="Results"
+            v-if="resNodeInfo"
+          >
             <json-viewer
               theme="json-viewer-gruvbox-dark"
               v-if="resQuery"
@@ -93,34 +94,25 @@
               :expand-depth="4"
             />
           </b-tab>
-          <b-tab>
-            <template v-slot:title>
-              Connections: data
-            </template>
-            <div v-if="resNeighbourData">
+          <b-tab
+            title="Connections: data"
+            v-if="resNodeInfo && resNeighbourData"
+          >
+            <div>
               <json-viewer
                 theme="json-viewer-gruvbox-dark"
                 :value="resNeighbourData"
                 :expand-depth="4"
               />
             </div>
-            <div v-else>
-              <p>
-                Results on connections are only available when searched by id
-              </p>
-            </div>
           </b-tab>
-          <b-tab lazy>
-            <template v-slot:title>
-              Connections: plot
-            </template>
-            <div v-if="resNeighbourGraphData">
+          <b-tab
+            lazy
+            title="Connections: plot"
+            v-if="resNodeInfo && resNeighbourGraphData"
+          >
+            <div>
               <NetworkPlot :graph-data-input="resNeighbourGraphData" />
-            </div>
-            <div v-else>
-              <p>
-                Results on connections are only available when searched by id
-              </p>
             </div>
           </b-tab>
         </b-tabs>

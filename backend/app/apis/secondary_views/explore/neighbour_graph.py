@@ -29,6 +29,7 @@ def neighbour_graph(graph_data):
                 "node_name": node_item_get_name(item),
             }
             for item in graph_data["neighbour"]
+            # NOTE: currently semmed triple is excluded
             if item["meta_node"] in epigraphdb_meta_nodes.keys()
         ]
     )
