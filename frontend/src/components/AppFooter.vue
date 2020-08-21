@@ -118,7 +118,8 @@ export default {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #337ab7;
+  /* background-color: #337ab7; */
+  background-color: rgba(51, 122, 183, 0.9);
   color: white;
   text-align: center;
 }
