@@ -9,6 +9,10 @@
         />
       </b-navbar-brand>
 
+      <b-button v-b-toggle.app-sidebar variant="link" text-decoration-none
+        >Web UI</b-button
+      >
+      <AppSidebar />
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
@@ -116,6 +120,7 @@ import {
 import { faRProject, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import GlobalSearch from "@/components/GlobalSearch";
+import AppSidebar from "@/components/AppSidebar";
 
 library.add(faBook, faTerminal, faRProject, faHome, faGithub, faProjectDiagram);
 
@@ -123,7 +128,8 @@ export default {
   name: "AppHeader",
   components: {
     GlobalSearch,
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    AppSidebar
   },
   data: () => ({
     topics: [
