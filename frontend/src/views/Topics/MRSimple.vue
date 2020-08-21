@@ -206,9 +206,17 @@ export default {
       // ie, /?exposure-query=xxx
       if (this.$route.query["exposure-query"]) {
         this.exposureTrait = this.$route.query["exposure-query"];
+        this.queryModeCurr = "exposure";
       }
       if (this.$route.query["outcome-query"]) {
         this.outcomeTrait = this.$route.query["outcome-query"];
+        this.queryModeCurr = "outcome";
+      }
+      if (
+        this.$route.query["exposure-query"] &&
+        this.$route.query["outcome-query"]
+      ) {
+        this.queryModeCurr = "both";
       }
       if (this.exposureTrait || this.outcomeTrait) {
         this.getData();

@@ -212,7 +212,7 @@ export default {
         this.queryModeCurr = "outcome";
       }
       if (
-        this.$route.query["outcome-query"] &&
+        this.$route.query["exposure-query"] &&
         this.$route.query["outcome-query"]
       ) {
         this.queryModeCurr = "both";
