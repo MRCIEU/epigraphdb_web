@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Union
+from typing import List
 
 from fastapi import APIRouter, Query
 
@@ -49,14 +49,7 @@ def get_confounder(
 
 
 @router.get(
-    "/confounder/{endpoint}",
-    response_model=Union[
-        None,
-        models.TableDataResponse,
-        models.GraphDataResponse,
-        models.QueryDataResponse,
-        models.DiagramResponse,
-    ],
+    "/confounder/{endpoint}", response_model=models.standard_endpoint_response
 )
 def get_confounder_endpoints(
     endpoint: models.TopicViewEndpoints,

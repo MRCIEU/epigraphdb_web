@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from fastapi import APIRouter
 
@@ -47,13 +47,7 @@ def get_literature_trait(
 
 @router.get(
     "/literature_trait/{endpoint}",
-    response_model=Union[
-        None,
-        models.TableDataResponse,
-        models.GraphDataResponse,
-        models.QueryDataResponse,
-        models.DiagramResponse,
-    ],
+    response_model=models.standard_endpoint_response,
 )
 def get_literature_trait_endpoints(
     endpoint: models.TopicViewEndpoints,

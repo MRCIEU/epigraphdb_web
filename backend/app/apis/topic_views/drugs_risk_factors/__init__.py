@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List
 
 from fastapi import APIRouter, Query
 
@@ -33,13 +33,7 @@ def get_drugs_risk_factors(
 
 @router.get(
     "/drugs_risk_factors/{endpoint}",
-    response_model=Union[
-        None,
-        models.TableDataResponse,
-        models.GraphDataResponse,
-        models.QueryDataResponse,
-        models.DiagramResponse,
-    ],
+    response_model=models.standard_endpoint_response,
 )
 def get_drugs_risk_factors_endpoints(
     endpoint: models.TopicViewEndpoints,

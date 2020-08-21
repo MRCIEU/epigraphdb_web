@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel
 
@@ -69,3 +69,12 @@ class RequestMethods(str, Enum):
     post = "POST"
     put = "PUT"
     delete = "DELETE"
+
+
+standard_endpoint_response = Union[
+    None,
+    TableDataResponse,
+    GraphDataResponse,
+    QueryDataResponse,
+    DiagramResponse,
+]

@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List
 
 from fastapi import APIRouter, Query
 
@@ -32,14 +32,7 @@ def get_pathway(
 
 
 @router.get(
-    "/pathway/{endpoint}",
-    response_model=Union[
-        None,
-        models.TableDataResponse,
-        models.GraphDataResponse,
-        models.QueryDataResponse,
-        models.DiagramResponse,
-    ],
+    "/pathway/{endpoint}", response_model=models.standard_endpoint_response
 )
 def get_pathway_endpoints(
     endpoint: models.TopicViewEndpoints,

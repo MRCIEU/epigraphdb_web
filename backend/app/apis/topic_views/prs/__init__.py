@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List
 
 from fastapi import APIRouter, Query
 
@@ -43,14 +43,7 @@ def get_prs(
 
 
 @router.get(
-    "/prs/{endpoint}",
-    response_model=Union[
-        None,
-        models.TableDataResponse,
-        models.GraphDataResponse,
-        models.QueryDataResponse,
-        models.DiagramResponse,
-    ],
+    "/prs/{endpoint}", response_model=models.standard_endpoint_response
 )
 def get_genetic_cor_endpoints(
     endpoint: models.TopicViewEndpoints,

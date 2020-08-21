@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from fastapi import APIRouter
 
@@ -44,13 +44,7 @@ def get_ontology_trait_disease(
 
 @router.get(
     "/ontology_trait_disease/{endpoint}",
-    response_model=Union[
-        None,
-        models.TableDataResponse,
-        models.GraphDataResponse,
-        models.QueryDataResponse,
-        models.DiagramResponse,
-    ],
+    response_model=models.standard_endpoint_response,
 )
 def get_ontology_trait_disease_endpoints(
     endpoint: models.TopicViewEndpoints,

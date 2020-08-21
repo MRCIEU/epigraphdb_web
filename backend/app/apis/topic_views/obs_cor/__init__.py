@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List
 
 from fastapi import APIRouter, Query
 
@@ -41,14 +41,7 @@ def get_obs_cor(
 
 
 @router.get(
-    "/obs-cor/{endpoint}",
-    response_model=Union[
-        None,
-        models.TableDataResponse,
-        models.GraphDataResponse,
-        models.QueryDataResponse,
-        models.DiagramResponse,
-    ],
+    "/obs-cor/{endpoint}", response_model=models.standard_endpoint_response
 )
 def get_obs_cor_endpoints(
     endpoint: models.TopicViewEndpoints,

@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, Query
 
@@ -82,14 +82,7 @@ def get_xqtl(
 
 
 @router.get(
-    "/xqtl/{endpoint}",
-    response_model=Union[
-        None,
-        models.TableDataResponse,
-        models.GraphDataResponse,
-        models.QueryDataResponse,
-        models.DiagramResponse,
-    ],
+    "/xqtl/{endpoint}", response_model=models.standard_endpoint_response
 )
 def get_xqtl_endpoints(
     endpoint: models.TopicViewEndpoints,
