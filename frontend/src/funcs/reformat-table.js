@@ -2,8 +2,8 @@ import _ from "lodash";
 
 export function reformatTable(tableData) {
   const res = {
-    table_data: tableData,
-    table_titles: _.chain(Object.keys(tableData[0]))
+    items: tableData,
+    fields: _.chain(Object.keys(tableData[0]))
       .map(function(item) {
         return {
           key: item,

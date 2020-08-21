@@ -6,11 +6,15 @@ from fastapi import APIRouter
 from starlette.responses import Response
 
 from app.funcs.cache import cache_func_call
-from app.models import TableDataResponse
 from app.utils.logging import log_args
 
 from .pqtl_main import pqtl_main
-from .pqtl_models import PQTLMethod, PQTLResponse, PQTLSearchType
+from .pqtl_models import (
+    PQTLListTableResponse,
+    PQTLMethod,
+    PQTLResponse,
+    PQTLSearchType,
+)
 from .pqtl_utils import query_api_pqtl_list
 
 router = APIRouter()
@@ -49,7 +53,7 @@ def get_pqtl_list(
     return res
 
 
-@router.get("/pqtl/list/table", response_model=TableDataResponse)
+@router.get("/pqtl/list/table", response_model=PQTLListTableResponse)
 def get_pqtl_list_table(search_type: PQTLSearchType, overwrite: bool = False):
     log_args(api=f"/pqtl/list/{search_type}", kwargs=locals())
     items = get_pqtl_list(search_type=search_type, overwrite=overwrite)

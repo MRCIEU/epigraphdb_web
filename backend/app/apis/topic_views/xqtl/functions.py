@@ -36,6 +36,7 @@ single_snp_mr_table_cols = [
     "r.p",
     "r.rsid",
 ]
+cols_to_round = ["r.beta", "r.se"]
 
 
 class XqtlQueryProcessor(TopicQueryProcessor):
@@ -68,6 +69,7 @@ class XqtlQueryProcessor(TopicQueryProcessor):
                 cypher_diagram_fn=cypher_diagram,
                 api_endpoint=multi_snp_api_endpoint,
                 cypher_diagram_params=overall_params,
+                cols_to_round=cols_to_round,
             )
         else:
             input_params = {
@@ -88,4 +90,5 @@ class XqtlQueryProcessor(TopicQueryProcessor):
                 cypher_diagram_fn=cypher_diagram,
                 api_endpoint=single_snp_api_endpoint,
                 cypher_diagram_params=overall_params,
+                cols_to_round=cols_to_round,
             )

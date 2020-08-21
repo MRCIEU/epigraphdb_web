@@ -49,3 +49,8 @@ class PQTLResponse(BaseModel):
     no_results: bool
     hierarchy: bool
     search_flag: str
+
+
+class PQTLListTableResponse(BaseModel):
+    table_titles: List[Dict[str, str]]
+    table_data: List[Dict[str, Any]]

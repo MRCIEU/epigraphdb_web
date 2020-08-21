@@ -22,6 +22,7 @@ table_cols = [
     "prs.n",
     "prs.model",
 ]
+cols_to_round = ["prs.beta", "prs.se", "prs.r2"]
 
 
 class PrsQueryProcessor(TopicQueryProcessor):
@@ -34,6 +35,7 @@ class PrsQueryProcessor(TopicQueryProcessor):
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
             cypher_diagram_fn=cypher_diagram,
+            cols_to_round=cols_to_round
         )
 
 

@@ -25,6 +25,15 @@ table_cols = [
     "gc.gcov_int",
     "gc.gcov_int_se",
 ]
+cols_to_round = [
+    "gc.rg",
+    "gc.z",
+    "gc.se",
+    "gc.g2_int",
+    "gc.h2_obs_se",
+    "gc.gcov_int",
+    "gc.gcov_int_se",
+]
 
 
 class GeneticCorQueryProcessor(TopicQueryProcessor):
@@ -37,6 +46,7 @@ class GeneticCorQueryProcessor(TopicQueryProcessor):
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
             cypher_diagram_fn=cypher_diagram,
+            cols_to_round=cols_to_round,
         )
 
 

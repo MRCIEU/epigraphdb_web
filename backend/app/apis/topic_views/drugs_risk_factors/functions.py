@@ -25,6 +25,7 @@ table_cols = [
     "trait.id",
     "trait.trait",
 ]
+cols_to_round = ["mr.b", "mr.se", "mr.moescore"]
 
 
 class DrugsRiskFactorsQueryProcessor(TopicQueryProcessor):
@@ -38,6 +39,7 @@ class DrugsRiskFactorsQueryProcessor(TopicQueryProcessor):
             ),
             cypher_diagram_fn=cypher_diagram,
             api_endpoint=api_endpoint,
+            cols_to_round=cols_to_round,
         )
 
 

@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 
-ROUNDING = 4
+from app.utils.data_table import ROUNDING, process_table_data
+
 # bf corrected pval threshold
 PVAL_THRESHOLD = 1.1e-6
 
@@ -14,18 +15,9 @@ def process_data(data):
     plot_data = None
     if len(data) > 0:
         df = pd.json_normalize(data)
-        table_data = process_table_data(df=df)
+        table_data = process_table_data(df=df, cols_to_round=["b", "se"])
         plot_data = process_volcano_plot(df=df)
     res = {"table_data": table_data, "plot_data": plot_data}
-    return res
-
-
-def process_table_data(df: pd.DataFrame):
-    res = (
-        df.round({"b": ROUNDING, "se": ROUNDING})
-        .replace({np.nan: None})
-        .to_dict(orient="records")
-    )
     return res
 
 

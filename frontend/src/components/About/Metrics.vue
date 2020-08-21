@@ -14,7 +14,7 @@
 <script>
 import axios from "axios";
 
-import Table from "@/components/Utils/Table";
+import Table from "@/components/Utils/TableGeneric";
 const config = require("@/config");
 
 export default {

@@ -140,9 +140,11 @@ import { axiosErrorMessage } from "@/funcs/axios-error-message.js";
 
 import Alert from "@/components/Utils/Alert.vue";
 
-import Table from "@/components/Utils/Table2.vue";
+import Table from "@/components/Utils/TableGeneric.vue";
 import NetworkPlot from "@/components/Utils/NetworkPlot.vue";
 import Query from "@/components/TopicView/Query/Query.vue";
+
+import { reformatTable } from "@/funcs/reformat-table";
 
 const config = require("@/config");
 
@@ -306,11 +308,9 @@ export default {
       return parseFloat(this.pvalBase);
     },
     resTableData: function() {
-      if (this.resBackendData && this.resBackendData.table_data) {
-        return this.resBackendData.table_data;
-      } else {
-        return null;
-      }
+      return this.resBackendData && this.resBackendData.table_data
+        ? reformatTable(this.resBackendData.table_data)
+        : null;
     },
     resQueryData: function() {
       if (this.resBackendData && this.resBackendData.query_data) {

@@ -16,6 +16,7 @@ table_cols = [
     "assoc_trait.id",
     "assoc_trait.trait",
 ]
+cols_to_round = ["obs_cor.cor"]
 
 
 class ObsCorQueryProcessor(TopicQueryProcessor):
@@ -28,6 +29,7 @@ class ObsCorQueryProcessor(TopicQueryProcessor):
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
             cypher_diagram_fn=cypher_diagram,
+            cols_to_round=cols_to_round,
         )
 
 

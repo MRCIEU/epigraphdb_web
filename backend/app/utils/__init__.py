@@ -3,7 +3,6 @@ from pathlib import Path
 from typing import Optional, Union
 
 import numpy as np
-import pandas as pd
 import requests
 
 color_palette_file = Path(__file__).parent / "colorscheme.json"
@@ -65,33 +64,6 @@ def batch_by_n(collection, batch_size):
     """
     for i in range(0, len(collection), batch_size):
         yield collection[i : (i + batch_size)]
-
-
-def format_df_results(df: pd.DataFrame):
-    """A general processor to convert a pandas dataframe
-    to a format used in the frontend.
-    """
-    df = df.replace({np.nan: None})
-    res = {
-        "table_titles": [{"label": title} for title in df.columns],
-        "table_data": df.to_dict(orient="records"),
-    }
-    return res
-
-
-def format_df_results_general(df: pd.DataFrame):
-    """A general processor to convert a pandas dataframe
-    to a format used in the frontend.
-    """
-    df = df.replace({np.nan: None})
-    res = {
-        "table_titles": [
-            {"label": title, "key": title, "sortable": True}
-            for title in df.columns
-        ],
-        "table_data": df.to_dict(orient="records"),
-    }
-    return res
 
 
 def ping_endpoint(url: str) -> bool:

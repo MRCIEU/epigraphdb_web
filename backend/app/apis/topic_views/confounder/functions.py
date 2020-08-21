@@ -35,6 +35,17 @@ table_cols = [
     "r3.se",
     "r3.selection",
 ]
+cols_to_round = [
+    "r1.b",
+    "r1.se",
+    "r1.moescore",
+    "r2.b",
+    "r2.se",
+    "r2.moescore",
+    "r3.b",
+    "r3.se",
+    "r3.moescore",
+]
 
 
 class ConfounderQueryProcessor(TopicQueryProcessor):
@@ -48,4 +59,5 @@ class ConfounderQueryProcessor(TopicQueryProcessor):
                 edge_schemas=create_edge_schemas(type=type),
             ),
             cypher_diagram_fn=cypher_diagram,
+            cols_to_round=cols_to_round,
         )

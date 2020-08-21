@@ -78,12 +78,18 @@
 export default {
   name: "Table",
   props: {
-    tableDataInput: Object
+    // tableDataInput should be in the form of
+    // {"items": [item], "fields": [{"key", "label", ...}]}
+    tableDataInput: Object,
+    perPageInput: {
+      type: Number,
+      default: 10
+    }
   },
   data() {
     return {
       currentPage: 1,
-      perPage: 10,
+      perPage: this.perPageInput,
       pageOptions: [10, 20, 50],
       sortBy: "",
       sortDesc: false,

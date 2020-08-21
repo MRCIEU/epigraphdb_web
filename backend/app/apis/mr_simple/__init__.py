@@ -9,7 +9,6 @@ from app.apis.mr_simple.functions import (
     network_plot,
 )
 from app.settings import api_key, api_url
-from app.utils import format_df_results_general
 from app.utils.logging import log_args
 
 router = APIRouter()
@@ -45,15 +44,15 @@ def get_mr_simple(
         pval_threshold=pval_threshold,
     )
     if not empty_results:
-        # format table for frontend use
-        table_data = format_df_results_general(table_df)
         # process network plot
         network_plot_data = network_plot(
             table_df=table_df, rels_limit=rels_limit
         )
     else:
-        table_data = None
         network_plot_data = None
+    table_data = (
+        table_df.to_dict(orient="records") if table_df is not None else None
+    )
     res = {
         "table_data": table_data,
         "network_plot_data": network_plot_data,

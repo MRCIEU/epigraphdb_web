@@ -8,6 +8,7 @@ from app.funcs.cypher_diagram import CypherDiagram, DiagramEdge, DiagramNode
 from app.funcs.network_graph import network_graph
 from app.funcs.render_query import render_query
 from app.settings import api_url
+from app.utils.data_table import process_table_data
 
 # remote API url endpoint
 url = f"{api_url}/mr"
@@ -49,7 +50,11 @@ def get_mr_simple_data(
     query_data = render_query(r=r, empty_results=empty_results)
     if not empty_results:
         # convert results to pandas df
-        table_df = pd.json_normalize(results)[table_cols]
+        table_df = pd.json_normalize(results)[table_cols].pipe(
+            process_table_data,
+            cols_to_round=["mr.b", "mr.se", "mr.moescore"],
+            to_dict=False,
+        )
     else:
         table_df = None
     return table_df, empty_results, query_data

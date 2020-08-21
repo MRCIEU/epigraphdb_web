@@ -181,7 +181,7 @@ import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
 import Alert from "@/components/Utils/Alert.vue";
 
 import info from "@/assets/docs/covid-ctda.md";
-import Table from "@/components/Utils/Table3.vue";
+import Table from "@/components/Utils/TableGeneric.vue";
 import VolcanoPlot from "@/components/CovidXqtl/VolcanoPlot.vue";
 
 import { reformatTable } from "@/funcs/reformat-table";

@@ -11,7 +11,7 @@ from app.funcs.network_graph import (
 )
 from app.funcs.render_query import render_query
 from app.settings import api_url
-from app.utils import format_df_results
+from app.utils.data_table import process_table_data
 from app.utils.database import (
     create_doc_name,
     mongo_doc_exist,
@@ -50,6 +50,7 @@ class TopicQueryProcessor:
         api_endpoint: Optional[str] = None,
         cypher_diagram_params: Optional[Dict[str, Any]] = None,
         table_precaching_hook: Optional[Callable] = None,
+        cols_to_round: Optional[List[str]] = None,
     ):
         """ A generic query class for topic views that handles:
         - master query
@@ -68,6 +69,9 @@ class TopicQueryProcessor:
           and this function needs to accept the same `params`
         - api_endpoint: upstream api endpoint, if unspecified then
           `master_name` is treated as the api_endpoint.
+        - table_precaching_hook: a function to apply to table data BEFORE
+          it is written to cache
+        - cols_to_round: If supplied, will round them to a predefined decimal place
         """
 
         self.master_name = master_name
@@ -75,6 +79,7 @@ class TopicQueryProcessor:
         self.table_cols = table_cols
         self.doc_name = create_doc_name(self.params)
         self.network_plot_schema = network_plot_schema
+        self.cols_to_round = cols_to_round
 
         # diagram
         self.cypher_diagram_fn = cypher_diagram_fn
@@ -175,7 +180,9 @@ class TopicQueryProcessor:
                 results_df = pd.json_normalize(results)[self.table_cols]
                 if self.table_precaching_hook is not None:
                     results_df = results_df.pipe(self.table_precaching_hook)
-                table_data = format_df_results(results_df)
+                table_data = process_table_data(
+                    results_df, cols_to_round=self.cols_to_round
+                )
                 mongo_doc_insert(
                     collection=self.mongo_coll_table,
                     doc_name=self.doc_name,
@@ -205,7 +212,7 @@ class TopicQueryProcessor:
         table_data = self.get_table_data(overwrite=overwrite)
         if table_data is None:
             return None
-        df = pd.DataFrame.from_records(table_data["table_data"])
+        df = pd.DataFrame.from_records(table_data)
         graph_data = network_graph(
             df=df,
             node_schemas=self.network_plot_schema.node_schemas,

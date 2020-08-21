@@ -21,6 +21,7 @@ table_cols = [
     "mr.selection",
     "mr.moescore",
 ]
+cols_to_round = ["mr.b", "mr.se", "mr.moescore"]
 
 
 class MRQueryProcessor(TopicQueryProcessor):
@@ -33,6 +34,7 @@ class MRQueryProcessor(TopicQueryProcessor):
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
             cypher_diagram_fn=cypher_diagram,
+            cols_to_round=cols_to_round,
         )
 
 

@@ -3,6 +3,7 @@
     <!-- Main table element -->
     <div class="data-table">
       <b-table
+        v-if="tableData && items"
         show-empty
         striped
         small
@@ -76,7 +77,8 @@
 
 <script>
 import axios from "axios";
-import _ from "lodash";
+
+import { reformatTable } from "@/funcs/reformat-table";
 
 export default {
   name: "Table",
@@ -87,8 +89,7 @@ export default {
   },
   data() {
     return {
-      items: [],
-      fields: [],
+      tableData: null,
       currentPage: 1,
       perPage: 10,
       pageOptions: [10, 20, 50],
@@ -100,8 +101,14 @@ export default {
     };
   },
   computed: {
+    items() {
+      return this.tableData ? this.tableData.items : [];
+    },
+    fields() {
+      return this.tableData ? this.tableData.fields : [];
+    },
     totalRows: function() {
-      return this.items.length;
+      return this.items ? this.items.length : 0;
     },
     sortOptions() {
       // Create an options list from our fields
@@ -123,16 +130,7 @@ export default {
   methods: {
     async getTableData() {
       await axios.get(this.url, { params: this.paramsInput }).then(response => {
-        this.items = response.data.table_data;
-        this.fields = _.chain(response.data.table_titles)
-          .map(function(item) {
-            return {
-              key: item["label"],
-              label: item["label"],
-              sortable: true
-            };
-          })
-          .value();
+        this.tableData = reformatTable(response.data);
       });
     },
     onFiltered(filteredItems) {

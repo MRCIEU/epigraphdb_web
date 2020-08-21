@@ -22,6 +22,7 @@ table_cols = [
     "pathway.reactome_id",
     "pathway.name",
 ]
+cols_to_round = ["gwas_to_variant.beta", "gwas_to_variant.se"]
 
 
 class PathwayQueryProcessor(TopicQueryProcessor):

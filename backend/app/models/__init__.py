@@ -34,9 +34,7 @@ class GraphDataResponse(BaseModel):
     num_paths_displayed: int
 
 
-class TableDataResponse(BaseModel):
-    table_titles: List[Dict[str, Any]]
-    table_data: List[Dict[str, Any]]
+TableDataResponse = List[Dict[str, Any]]
 
 
 class TopicResponse(BaseModel):

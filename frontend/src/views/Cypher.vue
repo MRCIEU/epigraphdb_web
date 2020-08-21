@@ -38,7 +38,7 @@
               </div>
             </b-tab>
             <b-tab title="Table results">
-              <Table v-if="tableDataInput" :table-data-input="tableDataInput" />
+              <Table v-if="tableData" :table-data-input="tableData" />
             </b-tab>
           </b-tabs>
         </b-tab>
@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import _ from "lodash";
 import axios from "axios";
 
 import JsonViewer from "vue-json-viewer";
@@ -57,7 +56,9 @@ import "@/plugins/json-viewer-gruvbox-dark.scss";
 import VueMarkdown from "vue-markdown";
 
 import info from "@/assets/docs/cypher.md";
-import Table from "@/components/Utils/Table3";
+import Table from "@/components/Utils/TableGeneric";
+
+import { reformatTable } from "@/funcs/reformat-table";
 
 const config = require("@/config");
 
@@ -92,36 +93,7 @@ export default {
   },
   computed: {
     tableData() {
-      if (this.jsonData) {
-        return this.jsonData.results;
-      } else {
-        return null;
-      }
-    },
-    tableFields() {
-      if (this.tableData) {
-        return _.chain(Object.keys(this.tableData[0]))
-          .map(function(item) {
-            return {
-              key: item,
-              label: item,
-              sortable: true
-            };
-          })
-          .value();
-      } else {
-        return null;
-      }
-    },
-    tableDataInput() {
-      if (this.tableData && this.tableFields) {
-        return {
-          table_data: this.tableData,
-          table_titles: this.tableFields
-        };
-      } else {
-        return null;
-      }
+      return this.jsonData ? reformatTable(this.jsonData.results) : null;
     }
   }
 };

@@ -10,7 +10,7 @@
 import axios from "axios";
 import { axiosErrorMessage } from "@/funcs/axios-error-message.js";
 
-import Table from "@/components/Utils/Table";
+import Table from "@/components/Utils/TableGeneric";
 
 const config = require("@/config");
 
