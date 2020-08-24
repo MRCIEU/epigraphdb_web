@@ -14,7 +14,7 @@
         <b-card v-for="view in viewData.views" :key="view.name">
           <b-row class="vh-10" align-v="center">
             <b-col cols="4">
-              <img :src="view.img" style="height: 4rem; object-fit: cover;" />
+              <img :src="view.img" style="width: 5rem; object-fit: cover;" />
             </b-col>
             <b-col>
               <b-card-text>
