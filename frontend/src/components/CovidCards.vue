@@ -32,7 +32,7 @@ export default {
     cardData: [
       {
         name: "trait",
-        img_path: require("@/assets/cards/Coronavirus-CDC.jpg"),
+        img_path: require("@/assets/cards/Coronavirus-CDC.png"),
         header_text: "Disease-Target Atlas",
         content_text: `
           QTL MR results for COVID-19

@@ -11,7 +11,7 @@ export const topics = [
               Further information about EpiGraphDB
               and our research
             `,
-        img: require("@/assets/cards/about.png"),
+        img: require("@/assets/logos/epigraphdb-short.png"),
         href: "/about"
       },
       {
@@ -31,6 +31,15 @@ export const topics = [
         `,
         img: require("@/assets/cards/gallery.png"),
         href: "/gallery"
+      },
+      {
+        name: "cypher",
+        title: "Cypher",
+        desc: `
+          Query EpiGraphDB using Neo4j Cypher queries
+        `,
+        img: require("@/assets/logos/epigraphdb-short.png"),
+        href: "/cypher"
       }
     ]
   },
@@ -180,7 +189,7 @@ export const topics = [
         desc: `
             QTL MR results for COVID-19
             `,
-        img: require("@/assets/cards/Coronavirus-CDC.jpg"),
+        img: require("@/assets/cards/Coronavirus-CDC.png"),
         href: "/covid-19/ctda/"
       }
     ]

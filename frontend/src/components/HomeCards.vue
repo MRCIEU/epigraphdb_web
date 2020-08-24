@@ -117,7 +117,7 @@ export default {
       },
       {
         name: "covid",
-        img_path: require("@/assets/cards/Coronavirus-CDC.jpg"),
+        img_path: require("@/assets/cards/Coronavirus-CDC.png"),
         header_text: "COVID-19",
         content_text: `
           COVID-19 related evidence in EpiGraphDB
