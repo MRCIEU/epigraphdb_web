@@ -9,45 +9,53 @@
         />
       </b-navbar-brand>
 
-      <b-button v-b-toggle.app-sidebar variant="link" text-decoration-none
+      <b-button
+        v-b-toggle.app-sidebar
+        variant="link"
+        class="text-decoration-none"
         >Web UI</b-button
       >
-      <AppSidebar />
+      <b-navbar-nav>
+        <AppSidebar />
+      </b-navbar-nav>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item-dropdown text="Web UI" class="my-2">
-            <b-dropdown-item href="/about">
-              About
-            </b-dropdown-item>
-            <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item href="/gallery">
-              Gallery
-            </b-dropdown-item>
-            <b-dropdown-item href="/explore">
-              Explore
-            </b-dropdown-item>
-            <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item href="/cypher">
-              Cypher
-            </b-dropdown-item>
-          </b-nav-item-dropdown>
-          <b-nav-item-dropdown text="Topics" class="my-2">
-            <b-dropdown-item
-              v-for="item in topics"
-              :key="item.name"
-              :href="item.href"
-            >
-              <span v-html="item.title"></span>
-            </b-dropdown-item>
-          </b-nav-item-dropdown>
-          <b-nav-item-dropdown text="EpiGraphDB" class="my-2 mr-sm-2">
-            <b-dropdown-item href="https://docs.epigraphdb.org">
+          <b-nav-item
+            class="my-2 mr-sm-2"
+            target="_blank"
+            href="https://docs.epigraphdb.org"
+          >
+            Docs
+          </b-nav-item>
+          <b-nav-item
+            class="my-2 mr-sm-2"
+            target="_blank"
+            href="https://docs.epigraphdb.org"
+          >
+            API
+          </b-nav-item>
+          <b-nav-item
+            class="my-2 mr-sm-2"
+            target="_blank"
+            href="https://mrcieu.github.io/epigraphdb-r"
+          >
+            <font-awesome-icon :icon="['fab', 'r-project']" />
+          </b-nav-item>
+          <b-nav-item
+            class="my-2 mr-sm-2"
+            target="_blank"
+            href="https://github.com/MRCIEU/epigraphdb"
+          >
+            <font-awesome-icon :icon="['fab', 'github']" />
+          </b-nav-item>
+          <b-nav-item-dropdown text="Platform" class="my-2 mr-sm-2">
+            <b-dropdown-item target="_blank" href="https://docs.epigraphdb.org">
               <font-awesome-icon :icon="['fas', 'book']" />
               Docs
             </b-dropdown-item>
-            <b-dropdown-item href="https://api.epigraphdb.org">
+            <b-dropdown-item target="_blank" href="https://api.epigraphdb.org">
               <font-awesome-icon :icon="['fas', 'terminal']" />
               API
             </b-dropdown-item>
@@ -55,22 +63,27 @@
               <font-awesome-icon :icon="['fas', 'project-diagram']" />
               Web UI
             </b-dropdown-item>
-            <b-dropdown-item href="https://mrcieu.github.io/epigraphdb-r">
+            <b-dropdown-item
+              target="_blank"
+              href="https://mrcieu.github.io/epigraphdb-r"
+            >
               <font-awesome-icon :icon="['fab', 'r-project']" />
               Client
             </b-dropdown-item>
-            <b-dropdown-item href="https://github.com/MRCIEU/epigraphdb">
+            <b-dropdown-item
+              target="_blank"
+              href="https://github.com/MRCIEU/epigraphdb"
+            >
               <font-awesome-icon :icon="['fab', 'github']" />
               Examples
             </b-dropdown-item>
             <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item href="http://biocompute.org.uk">
+            <b-dropdown-item target="_blank" href="http://biocompute.org.uk">
               <font-awesome-icon :icon="['fas', 'home']" />
               IEU DMER
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
-
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
@@ -130,64 +143,7 @@ export default {
     GlobalSearch,
     FontAwesomeIcon,
     AppSidebar
-  },
-  data: () => ({
-    topics: [
-      { name: "mr", title: "Mandelian randomization", href: "/mr" },
-      { name: "pathway", title: "Pathway", href: "/pathway" },
-      {
-        name: "pairwise",
-        title: `<div class="text-secondary">+ Pairwise relationships</div>`,
-        href: "/pairwise-rels"
-      },
-      { name: "obs-cor", title: "Observational correlation", href: "/obs-cor" },
-      {
-        name: "genetic-cor",
-        title: "Genetic correlation",
-        href: "/genetic-cor"
-      },
-      { name: "prs", title: "Polygenic risk scores", href: "/prs" },
-      { name: "confounder", title: "Confounder", href: "/confounder" },
-      {
-        name: "drugs",
-        title: `<div class="text-secondary">+ Drugs</div>`,
-        href: "/drugs"
-      },
-      {
-        name: "drugs-risk-factors",
-        title: "Drugs for risk factors",
-        href: "/drugs-risk-factors"
-      },
-      { name: "pqtl", title: "pQTL browser", href: "/pqtl" },
-      { name: "xqtl", title: "QTL browser", href: "/xqtl" },
-      {
-        name: "literature",
-        title: `<div class="text-secondary">+ Literature</div>`,
-        href: "/literature"
-      },
-      {
-        name: "literature-trait",
-        title: "Literature for GWAS trait",
-        href: "/literature/trait"
-      },
-      {
-        name: "ontology",
-        title: `<div class="text-secondary">+ Ontology</div>`,
-        href: "/ontology"
-      },
-      {
-        name: "ontology-trait-disease",
-        title: "Map GWAS and disease",
-        href: "/ontology/trait-disease"
-      },
-      {
-        name: "covid-19",
-        title: `<div class="text-secondary">+ COVID-19</div>`,
-        href: "/covid-19"
-      },
-      { name: "ctda", title: `Target-disease Atlas`, href: "/covid-19/ctda" }
-    ]
-  })
+  }
 };
 </script>
 
