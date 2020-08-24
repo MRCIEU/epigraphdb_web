@@ -32,7 +32,7 @@
           <b-nav-item
             class="my-2 mr-sm-2"
             target="_blank"
-            href="https://docs.epigraphdb.org"
+            href="https://api.epigraphdb.org"
           >
             API
           </b-nav-item>
