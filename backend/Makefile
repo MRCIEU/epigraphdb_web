@@ -1,14 +1,13 @@
 .PHONY: clean
 
+# directories that contain python scripts in the codebase
+python_dirs = app tests scripts epigraphdb_common_utils
+
 #################################################################################
 # Rules
 #################################################################################
 
-# directories that contain python scripts in the codebase
-python_dirs = app tests scripts epigraphdb_common_utils
-
 ## ==== codebase ====
-__codebase__: help
 
 ## check for setup status (for epigraphdb_web)
 check:
@@ -41,7 +40,6 @@ test:
 	python -m pytest -vv
 
 ## ==== running the api ====
-__run__: help
 
 ## Start API server, port: 80
 run:
