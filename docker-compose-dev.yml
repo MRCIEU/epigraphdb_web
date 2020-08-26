@@ -25,11 +25,14 @@ services:
         - VUE_APP_WEB_BACKEND_URL=${FRONTEND_BACKEND_URL:-localhost:8010}
         - VUE_APP_GTAG_ID=${FRONTEND_GTAG_ID}
     restart: unless-stopped
+    # Infinite loop to keep container live doing nothing
+    command: sh -c "while true; do sleep 1; done"
     volumes:
       - ./frontend/public:/app/public
       - ./frontend/src:/app/src
       - ./frontend/babel.config.js:/app/babel.config.js
       - ./frontend/vue.config.js:/app/vue.config.js
+      - ./frontend/Makefile:/app/Makefile
     environment:
       - NODE_ENV=development
       - VUE_APP_WEB_BACKEND_URL=${FRONTEND_BACKEND_URL:-localhost:8010}
@@ -43,11 +46,14 @@ services:
       args:
         VUE_APP_WEB_BACKEND_URL: ${FRONTEND_BACKEND_URL:-localhost:8010}
     restart: unless-stopped
+    # Infinite loop to keep container live doing nothing
+    command: sh -c "while true; do sleep 1; done"
     volumes:
       - ./dashboard/public:/app/public
       - ./dashboard/src:/app/src
       - ./dashboard/babel.config.js:/app/babel.config.js
       - ./dashboard/vue.config.js:/app/vue.config.js
+      - ./dashboard/Makefile:/app/Makefile
     environment:
       - NODE_ENV=development
       - VUE_APP_WEB_BACKEND_URL=${FRONTEND_BACKEND_URL:-localhost:8010}

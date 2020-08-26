@@ -2,7 +2,7 @@
 FROM node:12.4.0-alpine
 ARG VUE_APP_WEB_BACKEND_URL
 ARG VUE_APP_GTAG_ID
-RUN apk add --no-cache git
+RUN apk add --no-cache git make ncurses gawk
 WORKDIR /app
 ENV NODE_ENV=development
 COPY package*.json ./
