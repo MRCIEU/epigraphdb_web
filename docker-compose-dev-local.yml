@@ -11,6 +11,8 @@ services:
       - .env
     # Infinite loop to keep container live doing nothing
     command: bash -c "while true; do sleep 1; done"
+    networks:
+      - local-network
     volumes:
       - ./backend:/app
       - ./logs/web_backend:/tmp/epigraphdb_web/logs
@@ -27,6 +29,8 @@ services:
     restart: unless-stopped
     # Infinite loop to keep container live doing nothing
     command: sh -c "while true; do sleep 1; done"
+    networks:
+      - local-network
     volumes:
       - ./frontend/public:/app/public
       - ./frontend/src:/app/src
@@ -48,6 +52,8 @@ services:
     restart: unless-stopped
     # Infinite loop to keep container live doing nothing
     command: sh -c "while true; do sleep 1; done"
+    networks:
+      - local-network
     volumes:
       - ./dashboard/public:/app/public
       - ./dashboard/src:/app/src
@@ -68,6 +74,8 @@ services:
       - mongo_data:/data/db
     ports:
       - ${DOCKER_MONGO_PORT:-6570}:27017
+    networks:
+      - local-network
     environment:
       MONGO_INITDB_ROOT_USERNAME: epigraphdb
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWD}
@@ -81,6 +89,8 @@ services:
     ports:
       - ${DOCKER_ES_PORT:-6550}:9200
     tty: true
+    networks:
+      - local-network
     volumes:
       - es_data:/usr/share/elasticsearch/data
     environment:
@@ -90,6 +100,8 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.5.1
     restart: unless-stopped
+    networks:
+      - local-network
     ports:
       - ${DOCKER_KIBANA_PORT:-6555}:5601
     environment:
@@ -102,3 +114,9 @@ volumes:
     driver: local
   es_data:
     driver: local
+
+networks:
+  local-network:
+    ipam:
+      config:
+        - subnet: "172.16.250.0/24"
