@@ -48,7 +48,7 @@ def query_metric_meta_node():
     url = f"{api_url}/status/db"
     payload = {"metric": "count_nodes_by_label", "db": "epigraphdb"}
     r = requests.get(url, params=payload)
-    r.raise_for_status
+    r.raise_for_status()
     # Convert from node_name: ["Gwas"] to node_name: "Gwas"
     res = [
         {"node_name": _["node_name"][0], "count": _["count"]} for _ in r.json()
@@ -60,6 +60,6 @@ def query_metric_meta_rel():
     url = f"{api_url}/status/db"
     payload = {"metric": "count_rels_by_type", "db": "epigraphdb"}
     r = requests.get(url, params=payload)
-    r.raise_for_status
+    r.raise_for_status()
     res = r.json()
     return res
