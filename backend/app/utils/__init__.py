@@ -10,7 +10,7 @@ color_palette_file = Path(__file__).parent / "colorscheme.json"
 with open(color_palette_file, "r") as f:
     color_palette = json.load(f)
 
-unittest_headers = {"client-type": "pytest"}
+unittest_headers = {"client-type": "pytest", "ci": "true"}
 
 
 def bin_rescale(x: np.array, n_bins, min=0.0, max=1.0):

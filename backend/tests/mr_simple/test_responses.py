@@ -3,6 +3,7 @@ from loguru import logger
 from starlette.testclient import TestClient
 
 from app.main import app
+from app.utils import unittest_headers
 
 client = TestClient(app)
 
@@ -24,12 +25,14 @@ def test_mr_simple_responses(exposure_trait, outcome_trait, pval_threshold):
         "outcome_trait": outcome_trait,
         "pval_threshold": pval_threshold,
     }
-    response = client.get(url="/mr-simple", params=params)
+    response = client.get(
+        url="/mr-simple", params=params, headers=unittest_headers
+    )
     assert response.status_code == 200
 
 
 def test_mr_simple_ac():
     url = "/mr-simple/ac/trait"
-    response = client.get(url=url)
+    response = client.get(url=url, headers=unittest_headers)
     assert response.status_code == 200
     assert len(response.json()) > 1
