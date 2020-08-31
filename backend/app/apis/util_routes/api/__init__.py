@@ -8,6 +8,7 @@ from starlette.responses import StreamingResponse
 
 from app.models import EpigraphdbGraphsExtended, RequestMethods
 from app.settings import api_url
+from app.utils import api_request_headers
 from app.utils.logging import log_args
 
 router = APIRouter()
@@ -24,9 +25,9 @@ def post_api(data: ApiRequest):
     log_args(api="/api", kwargs=locals())
     url = f"{api_url}{data.endpoint}"
     if data.method == "GET":
-        r = requests.get(url, params=data.params)
+        r = requests.get(url, params=data.params, headers=api_request_headers)
     elif data.method == "POST":
-        r = requests.post(url, json=data.params)
+        r = requests.post(url, json=data.params, headers=api_request_headers)
     r.raise_for_status()
     return r.json()
 
@@ -35,7 +36,11 @@ def post_api(data: ApiRequest):
 def get_schema_plot():
     log_args(api="/api", kwargs=locals())
     url = f"{api_url}/meta/schema"
-    r = requests.get(url, params={"graphviz": True, "plot": True})
+    r = requests.get(
+        url,
+        params={"graphviz": True, "plot": True},
+        headers=api_request_headers,
+    )
     r.raise_for_status()
     return StreamingResponse(io.BytesIO(r.content), media_type="image/png")
 
@@ -61,7 +66,7 @@ def get_api_cypher(
         "user": user,
         "password": password,
     }
-    r = requests.get(url, params=params)
+    r = requests.get(url, params=params, headers=api_request_headers)
     r.raise_for_status()
     res = r.json()
     return res

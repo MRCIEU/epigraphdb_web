@@ -4,6 +4,7 @@ import requests
 from fastapi import APIRouter
 
 from app.settings import api_url
+from app.utils import api_request_headers
 from app.utils.logging import log_args
 
 from . import models
@@ -15,7 +16,10 @@ router = APIRouter()
 @router.get("/covid-19/ctda/list/{entity}")
 def get_list_gwas(entity: models.CovidXqtlList):
     log_args(api=f"/covid-19/ctda/list/{entity}", kwargs=locals())
-    r = requests.get(f"{api_url}/covid-19/ctda/list/{entity.value}")
+    r = requests.get(
+        f"{api_url}/covid-19/ctda/list/{entity.value}",
+        headers=api_request_headers,
+    )
     r.raise_for_status()
     res = r.json()["results"]
     return res
@@ -30,7 +34,9 @@ def get_single_snp_mr(
     log_args(api=f"/covid-19/ctda/single-snp-mr/{entity}", kwargs=locals())
     params = {"q": q, "pval_threshold": pval_threshold}
     r = requests.get(
-        f"{api_url}/covid-19/ctda/single-snp-mr/{entity.value}", params=params
+        f"{api_url}/covid-19/ctda/single-snp-mr/{entity.value}",
+        params=params,
+        headers=api_request_headers,
     )
     r.raise_for_status()
     data = r.json()["results"]
@@ -47,7 +53,9 @@ def get_multi_snp_mr(
     log_args(api=f"/covid-19/ctda/multi-snp-mr/{entity}", kwargs=locals())
     params = {"q": q, "pval_threshold": pval_threshold}
     r = requests.get(
-        f"{api_url}/covid-19/ctda/multi-snp-mr/{entity.value}", params=params
+        f"{api_url}/covid-19/ctda/multi-snp-mr/{entity.value}",
+        params=params,
+        headers=api_request_headers,
     )
     r.raise_for_status()
     data = r.json()["results"]

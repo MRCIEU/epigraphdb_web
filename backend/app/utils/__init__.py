@@ -11,6 +11,7 @@ with open(color_palette_file, "r") as f:
     color_palette = json.load(f)
 
 unittest_headers = {"client-type": "pytest", "ci": "true"}
+api_request_headers = {"client-type": "webui", "ci": "false"}
 
 
 def bin_rescale(x: np.array, n_bins, min=0.0, max=1.0):
@@ -70,7 +71,7 @@ def ping_endpoint(url: str) -> bool:
     """Ping a GET endpoint that is expected to return a True.
     """
     try:
-        r = requests.get(url)
+        r = requests.get(url, headers=api_request_headers)
         r.raise_for_status()
         res = r.json()
         assert res is True

@@ -4,6 +4,7 @@ import requests
 from app.funcs.cache import cache_func_call
 from app.funcs.network_graph import network_graph
 from app.settings import api_key, api_url
+from app.utils import api_request_headers
 
 from .graph import GalleryGraph
 
@@ -37,7 +38,7 @@ def process_query(spec: GalleryGraph, overwrite: bool = False):
 def request_cypher(query: str):
     url = f"{api_url}/raw_cypher/"
     payload = {"query": query, "api_key": api_key}
-    r = requests.get(url, params=payload)
+    r = requests.get(url, params=payload, headers=api_request_headers)
     results = r.json()["results"]
     return results
 

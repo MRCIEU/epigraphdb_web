@@ -7,7 +7,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 
 from app.settings import api_key, api_url
-from app.utils import batch_by_n
+from app.utils import api_request_headers, batch_by_n
 from app.utils.logging import logger
 
 from .indexers import name_indexer_edge_ngram_long
@@ -56,7 +56,9 @@ def index_ac_name_from_cypher(
     if not es_client.indices.exists(index=index_name) or overwrite:
         cypher_url = f"{api_url}/raw_cypher/"
         r = requests.get(
-            cypher_url, params={"query": cypher_query, "api_key": api_key}
+            cypher_url,
+            params={"query": cypher_query, "api_key": api_key},
+            headers=api_request_headers,
         )
         r.raise_for_status()
         input_data = [dict(name=item["name"]) for item in r.json()["results"]]

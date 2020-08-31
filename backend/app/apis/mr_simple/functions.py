@@ -8,6 +8,7 @@ from app.funcs.cypher_diagram import CypherDiagram, DiagramEdge, DiagramNode
 from app.funcs.network_graph import network_graph
 from app.funcs.render_query import render_query
 from app.settings import api_url
+from app.utils import api_request_headers
 from app.utils.data_table import process_table_data
 
 # remote API url endpoint
@@ -39,7 +40,7 @@ def get_mr_simple_data(
         "outcome_trait": outcome_trait,
         "pval_threshold": pval_threshold,
     }
-    r = requests.get(url, params=params)
+    r = requests.get(url, params=params, headers=api_request_headers)
     # raise if status is not 200
     r.raise_for_status()
     response = r.json()

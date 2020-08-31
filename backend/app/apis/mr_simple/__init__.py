@@ -9,6 +9,7 @@ from app.apis.mr_simple.functions import (
     network_plot,
 )
 from app.settings import api_key, api_url
+from app.utils import api_request_headers
 from app.utils.logging import log_args
 
 router = APIRouter()
@@ -81,7 +82,9 @@ def get_mr_simple_ac_trait():
     )
     url = f"{api_url}/raw_cypher"
     r = requests.get(
-        url=url, params={"query": ac_query_trait, "api_key": api_key}
+        url=url,
+        params={"query": ac_query_trait, "api_key": api_key},
+        headers=api_request_headers,
     )
     r.raise_for_status()
     res = [_["name"] for _ in r.json()["results"]]

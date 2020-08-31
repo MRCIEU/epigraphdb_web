@@ -3,6 +3,7 @@ from typing import Any, Dict
 import requests
 
 from app.settings import api_url
+from app.utils import api_request_headers
 
 
 def path_match(
@@ -44,7 +45,7 @@ def query_path(
         "limit": limit,
     }
 
-    r = requests.get(url, params=params)
+    r = requests.get(url, params=params, headers=api_request_headers)
     r.raise_for_status()
 
     response = r.json()

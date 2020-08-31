@@ -4,6 +4,7 @@ import requests
 
 from app.funcs.cache import cache_func_call
 from app.settings import api_url
+from app.utils import api_request_headers
 
 PQTL_URL = f"{api_url}/pqtl/"
 PQTL_PLEIO_URL = f"{api_url}/pqtl/pleio/"
@@ -22,7 +23,7 @@ def query_api_pqtl(
         "pvalue": pvalue,
         "searchflag": searchflag,
     }
-    r = requests.get(PQTL_URL, params=params)
+    r = requests.get(PQTL_URL, params=params, headers=api_request_headers)
     r.raise_for_status()
     res = r.json()
     return res
@@ -32,7 +33,7 @@ def query_api_pqtl_list(search_flag: str) -> List[str]:
     """Returns the list of searchable proteins or traits
     """
     params: Dict[str, Any] = {"flag": search_flag}
-    r = requests.get(PQTL_LIST_URL, params=params)
+    r = requests.get(PQTL_LIST_URL, params=params, headers=api_request_headers)
     r.raise_for_status()
     data = r.json()["results"]
     if search_flag == "exposures":
@@ -46,7 +47,9 @@ def query_api_pqtl_pleio(rsid: str, prflag: str) -> Any:
     """
     """
     params = {"rsid": rsid, "prflag": prflag}
-    r = requests.get(PQTL_PLEIO_URL, params=params)
+    r = requests.get(
+        PQTL_PLEIO_URL, params=params, headers=api_request_headers
+    )
     r.raise_for_status()
     data = r.json()
     return data

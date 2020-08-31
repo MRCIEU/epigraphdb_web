@@ -8,7 +8,7 @@ import requests
 
 from app.funcs.cache import cache_func_call
 from app.settings import api_url
-from app.utils import hex_to_rgb
+from app.utils import api_request_headers, hex_to_rgb
 from app.utils.meta_graph import (
     color_palette,
     line_color_dict,
@@ -30,7 +30,7 @@ def schema_request(overwrite: bool = False):
     def query_func():
         url = f"{api_url}/status/db"
         payload = {"metric": "schema", "db": "epigraphdb"}
-        r = requests.get(url, params=payload)
+        r = requests.get(url, params=payload, headers=api_request_headers)
         r.raise_for_status()
         res = r.json()[0]["value"]
         return res

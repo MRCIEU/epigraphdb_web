@@ -6,6 +6,7 @@ from fastapi import APIRouter
 
 from app.models import EpigraphdbGraphsExtended
 from app.settings import api_url
+from app.utils import api_request_headers
 from app.utils.logging import log_args
 
 from .functions import generate_df_descriptive_stats
@@ -38,6 +39,7 @@ def get_desc_stats(
             "user": user,
             "password": password,
         },
+        headers=api_request_headers,
     )
     r.raise_for_status()
 

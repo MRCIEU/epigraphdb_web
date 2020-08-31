@@ -10,6 +10,7 @@ from app.apis.secondary_views.about.schema import (
 from app.funcs.cache import cache_func_call
 from app.models import EpigraphdbGraphsExtended
 from app.settings import api_key, api_url
+from app.utils import api_request_headers
 
 router = APIRouter()
 
@@ -107,7 +108,7 @@ def get_meta_node(
         "password": password,
         "api_key": api_key,
     }
-    r = requests.get(url, params=params)
+    r = requests.get(url, params=params, headers=api_request_headers)
     r.raise_for_status()
     res = [_["label"] for _ in r.json()["results"]]
     return res
@@ -131,7 +132,7 @@ def get_meta_rel(
         "password": password,
         "api_key": api_key,
     }
-    r = requests.get(url, params=params)
+    r = requests.get(url, params=params, headers=api_request_headers)
     r.raise_for_status()
     res = [_["relationshipType"] for _ in r.json()["results"]]
     return res

@@ -9,7 +9,7 @@ from starlette.requests import Request
 from app import settings
 
 LOGURU_ELASTICSEARCH = "{time:YYYY-MM-DD\tHH:mm:ss}\t{message}"
-LOGURU_MONITORING = "{time:YYYY-MM-DD HH:mm:ss} {message}"
+LOGURU_MONITORING = "{time:YYYY-MM-DD HH:mm:ss zz} {message}"
 MONITORING_MESSAGE = "{host} {client} {special} {method} {url} {headers}"
 
 

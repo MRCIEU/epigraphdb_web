@@ -11,6 +11,7 @@ from app.funcs.network_graph import (
 )
 from app.funcs.render_query import render_query
 from app.settings import api_url
+from app.utils import api_request_headers
 from app.utils.data_table import process_table_data
 from app.utils.database import (
     create_doc_name,
@@ -80,6 +81,7 @@ class TopicQueryProcessor:
         self.doc_name = create_doc_name(self.params)
         self.network_plot_schema = network_plot_schema
         self.cols_to_round = cols_to_round
+        self.headers = api_request_headers
 
         # diagram
         self.cypher_diagram_fn = cypher_diagram_fn
@@ -143,7 +145,9 @@ class TopicQueryProcessor:
             logger.info(
                 f"Request from api: {self.api_url}, params: {self.params}"
             )
-            r = requests.get(self.api_url, params=self.params)
+            r = requests.get(
+                self.api_url, params=self.params, headers=self.headers
+            )
             r.raise_for_status()
             response = r.json()
             results = response["results"]

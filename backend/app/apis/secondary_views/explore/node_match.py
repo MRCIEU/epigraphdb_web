@@ -3,6 +3,7 @@ from typing import Any, Dict, Optional
 import requests
 
 from app.settings import api_url
+from app.utils import api_request_headers
 from app.utils.meta_graph import meta_node_doc_url
 
 from .neighbour_graph import neighbour_graph
@@ -56,7 +57,7 @@ def node_match(meta_node: str, id: Optional[str], name: Optional[str]):
 def search_node(meta_node: str, id: Optional[str], name: Optional[str]):
     url = f"{api_url}/meta/nodes/{meta_node}/search"
     payload: Dict[str, Any] = {"id": id, "name": name}
-    r = requests.get(url, params=payload)
+    r = requests.get(url, params=payload, headers=api_request_headers)
 
     results = r.json()["results"]
 
@@ -66,7 +67,7 @@ def search_node(meta_node: str, id: Optional[str], name: Optional[str]):
 def search_neighbour(meta_node: str, id: str):
     url = f"{api_url}/meta/nodes/{meta_node}/search-neighbour"
     payload = {"id": id}
-    r = requests.get(url, params=payload)
+    r = requests.get(url, params=payload, headers=api_request_headers)
     results = r.json()["results"]
     data = None
     if len(results) > 0:

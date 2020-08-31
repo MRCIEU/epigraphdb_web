@@ -4,6 +4,7 @@ import requests
 
 from app.funcs.elasticsearch.autocomplete import index_data
 from app.settings import api_url
+from app.utils import api_request_headers
 from app.utils.database import es_client
 
 from .config import search_config
@@ -14,7 +15,7 @@ def get_node_info(
 ) -> List[Any]:
     def by_chunk(url: str, offset: int, chunk_size: int) -> List[Any]:
         params = {"limit": chunk_size, "offset": offset, "full_data": False}
-        r = requests.get(url, params=params)
+        r = requests.get(url, params=params, headers=api_request_headers)
         r.raise_for_status()
         return r.json()["results"]
 
