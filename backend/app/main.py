@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from app.utils.logging import logger  # noqa:F401
+from app.utils.logging import MonitoringMiddleware, logger  # noqa:F401
 
 from .apis import mr_simple, top
 from .apis.secondary_views import about, explore, gallery
@@ -59,6 +59,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(MonitoringMiddleware)
 
 # ==== Endpoints ====
 app.include_router(top.router, tags=["top endpoints"])

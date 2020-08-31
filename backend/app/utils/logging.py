@@ -1,8 +1,16 @@
+import json
 import logging
+from typing import Callable
 
 from loguru import logger
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.requests import Request
 
 from app import settings
+
+LOGURU_ELASTICSEARCH = "{time:YYYY-MM-DD\tHH:mm:ss}\t{message}"
+LOGURU_MONITORING = "{time:YYYY-MM-DD HH:mm:ss} {message}"
+MONITORING_MESSAGE = "{host} {client} {special} {method} {url} {headers}"
 
 
 class LoguruInterceptHandler(logging.Handler):
@@ -12,6 +20,18 @@ class LoguruInterceptHandler(logging.Handler):
 
 
 logging.getLogger(None).addHandler(LoguruInterceptHandler())
+
+
+class MonitoringMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next: Callable):
+        request_info = extract_request(request)
+        monitoring_info = format_monitoring_info(request_info)
+        # logging
+        logger.info(request_info)
+        logger.bind(monitoring=True).info(monitoring_info)
+        # finish
+        response = await call_next(request)
+        return response
 
 
 def log_args(**kwargs) -> None:
@@ -28,10 +48,64 @@ def elasticsearch_predicate(record) -> bool:
     return valid
 
 
+def monitoring_predicate(record) -> bool:
+    if "monitoring" in record["extra"] and record["extra"]["monitoring"]:
+        return True
+    return False
+
+
+def extract_request(request: Request):
+    # Process headers and remove cookie field
+    headers = dict(request.headers)
+    headers.pop("cookie", None)
+    info = {
+        "method": request.method,
+        "url": {
+            "url": str(request.url),
+            "path": request.url.path,
+            "port": request.url.port,
+            "scheme": request.url.scheme,
+        },
+        "params": {
+            "query_params": dict(request.query_params),
+            "path_params": dict(request.path_params),
+        },
+        "client": {"host": request.client.host},
+        "headers": headers,
+    }
+    return info
+
+
+def special_headers(headers) -> bool:
+    if "client-type" in headers.keys():
+        if headers["client-type"] == "pytest":
+            return True
+    if "ci" in headers.keys() and json.loads(headers["ci"].lower()):
+        return True
+    return False
+
+
+def format_monitoring_info(info):
+    headers = info["headers"]
+    special = special_headers(headers)
+    client = "others"
+    if "client-type" in headers:
+        client = headers["client-type"]
+    message = MONITORING_MESSAGE.format(
+        host=info["client"]["host"],
+        client=client,
+        special=special,
+        method=info["method"],
+        url=info["url"],
+        headers=headers,
+    )
+    return message
+
+
 # daily logs, verbose
 logger.add(
     settings.log_dir / "api.log",
-    enqueue=True,
+    enqueue=False,
     rotation="7 days",
     retention="7 days",
     compression="tar.gz",
@@ -39,13 +113,23 @@ logger.add(
 # elasticsearch monitor
 logger.add(
     settings.log_dir / "elasticsearch.log",
-    format="{time:YYYY-MM-DD\tHH:mm:ss}\t{message}",
+    format=LOGURU_ELASTICSEARCH,
     filter=elasticsearch_predicate,
-    enqueue=True,
+    enqueue=False,
     rotation="7 days",
     retention="7 days",
     compression="tar.gz",
     backtrace=False,
     catch=False,
     serialize=True,
+)
+# a new attempt at monitoring
+logger.add(
+    settings.log_dir / "monitoring.log",
+    format=LOGURU_MONITORING,
+    enqueue=False,
+    filter=monitoring_predicate,
+    rotation="7 days",
+    retention="7 days",
+    compression="tar.gz",
 )
