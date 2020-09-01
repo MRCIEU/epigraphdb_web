@@ -1,7 +1,8 @@
 import json
 import logging
-from typing import Callable
+from typing import Callable, Dict, Optional
 
+from anonymizeip import anonymize_ip
 from loguru import logger
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
@@ -10,7 +11,7 @@ from app import settings
 
 LOGURU_ELASTICSEARCH = "{time:YYYY-MM-DD\tHH:mm:ss}\t{message}"
 LOGURU_MONITORING = "{time:YYYY-MM-DD HH:mm:ss zz} {message}"
-MONITORING_MESSAGE = "{host} {client} {special} {method} {url} {headers}"
+MONITORING_MESSAGE = "{masked_ip} {client} {special} {method} {url} {headers}"
 
 
 class LoguruInterceptHandler(logging.Handler):
@@ -57,7 +58,6 @@ def monitoring_predicate(record) -> bool:
 def extract_request(request: Request):
     # Process headers and remove cookie field
     headers = dict(request.headers)
-    headers.pop("cookie", None)
     info = {
         "method": request.method,
         "url": {
@@ -76,28 +76,65 @@ def extract_request(request: Request):
     return info
 
 
-def special_headers(headers) -> bool:
+def special_headers(headers) -> str:
+    """Mark incoming request for whether it is for special usage:
+    unit tests, client package building, etc
+
+    If True, returns "special", otherwise returns "normal".
+    """
     if "client-type" in headers.keys():
         if headers["client-type"] == "pytest":
-            return True
+            return "special"
     if "ci" in headers.keys() and json.loads(headers["ci"].lower()):
-        return True
-    return False
+        return "special"
+    return "normal"
+
+
+def get_masked_ip(headers: Dict) -> Optional[str]:
+    if "x-forwarded-for" in headers.keys():
+        field = "x-forwarded-for"
+    elif "X-Forwarded-For" in headers.keys():
+        field = "X-Forwarded-For"
+    else:
+        return None
+    x_forwarded_for = headers[field]
+    masked_ip = None
+    try:
+        # "1.2.3.4, 1.2.3.4" -> "1.2.3.4" the last field
+        if "," in x_forwarded_for:
+            ip = x_forwarded_for.split(",")[-1].strip()
+        else:
+            ip = x_forwarded_for
+        # "1.2.3.4" -> "1.2.3.0"
+        masked_ip = anonymize_ip(ip)
+    except:
+        return None
+    return masked_ip
+
+
+def filter_headers(headers: Dict) -> Dict:
+    filtered_headers = headers
+    filtered_headers.pop("cookie", None)
+    filtered_headers.pop("x-forwarded-for", None)
+    filtered_headers.pop("X-Forwarded-For", None)
+    return filtered_headers
 
 
 def format_monitoring_info(info):
     headers = info["headers"]
     special = special_headers(headers)
+    masked_ip = get_masked_ip(headers)
+    filtered_headers = filter_headers(headers)
     client = "others"
     if "client-type" in headers:
         client = headers["client-type"]
     message = MONITORING_MESSAGE.format(
-        host=info["client"]["host"],
+        masked_ip=masked_ip,
         client=client,
         special=special,
         method=info["method"],
         url=info["url"],
-        headers=headers,
+        headers=filtered_headers,
     )
     return message
 
