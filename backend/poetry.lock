@@ -8,6 +8,14 @@ version = "0.4.0"
 
 [[package]]
 category = "main"
+description = "Python library for anonymizing IP addresses"
+name = "anonymizeip"
+optional = false
+python-versions = ">=3.3.0"
+version = "1.0.0"
+
+[[package]]
+category = "main"
 description = "apipkg: namespace control and lazy-import mechanism"
 name = "apipkg"
 optional = false
@@ -1165,13 +1173,18 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "074b4172cf552f354d8cc14322452ee7a545b43432fd78b1665ac9a899d47f35"
+content-hash = "a813a05a1682f4bb4fd31ce93952496009338d3be74e33b363b9e2632e15612b"
+lock-version = "1.0"
 python-versions = "^3.7"
 
 [metadata.files]
 aiofiles = [
     {file = "aiofiles-0.4.0-py3-none-any.whl", hash = "sha256:1e644c2573f953664368de28d2aa4c89dfd64550429d0c27c4680ccd3aa4985d"},
     {file = "aiofiles-0.4.0.tar.gz", hash = "sha256:021ea0ba314a86027c166ecc4b4c07f2d40fc0f4b3a950d1868a0f2571c2bbee"},
+]
+anonymizeip = [
+    {file = "anonymizeip-1.0.0-py2.py3-none-any.whl", hash = "sha256:e0d446b06b2bbf236394a90b971de403f90f805d14db3a405f8731716acad1fe"},
+    {file = "anonymizeip-1.0.0.tar.gz", hash = "sha256:491cb94a31bae23294c5b93a13dd5c9ed55be98003c622e76e2fe64d6a4f3e91"},
 ]
 apipkg = [
     {file = "apipkg-1.5-py2.py3-none-any.whl", hash = "sha256:58587dd4dc3daefad0487f6d9ae32b4542b185e1c36db6993290e7c41ca2b47c"},
