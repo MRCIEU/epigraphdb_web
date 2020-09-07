@@ -1,4 +1,5 @@
 <template>
+  <!-- prettier-ignore -->
   <div>
     <p>
       This browser currently contains the Mendelian Randomization and
@@ -9,18 +10,45 @@
       be found by following the link on top of the "search" field.
     </p>
     <h3><strong>Publication</strong></h3>
-    Jie Zheng, Valeriia Haberland, Denis Baird, Venexia M Walker, Philip M
-    Haycock, Alex X Gutteridge, Tom M Richardson, James Staley, Benjamin
-    Elsworth, Stephen Burgess, Benjamin B Sun, John Danesh, Heiko Runz, Joseph C
-    Maranville, Hannah Martin, James Yarmolinsky, Charles Laurin, Michael V
-    Holmes, Jimmy Liu, Karol Estrada, Linda C McCarthy, Mark Hurle, Dawn M
-    Waterworth, Matthew R Nelson, Adam S Butterworth, George Davey Smith, Gibran
-    V Hemani, Robert A Scott, Tom R Gaunt.
-    <a href="https://www.biorxiv.org/content/10.1101/627398v1"
-      >Phenome-wide Mendelian randomization mapping the influence of the plasma
-      proteome on complex diseases.</a
-    >
-    <i>BioRXiv</i> (2019)
+    Jie Zheng,
+    Valeriia Haberland,
+    Denis Baird,
+    Venexia Walker,
+    Philip C. Haycock,
+    Mark R. Hurle,
+    Alex Gutteridge,
+    Pau Erola,
+    Yi Liu,
+    Shan Luo,
+    Jamie Robinson,
+    Tom G. Richardson,
+    James R. Staley,
+    Benjamin Elsworth,
+    Stephen Burgess,
+    Benjamin B. Sun,
+    John Danesh,
+    Heiko Runz,
+    Joseph C. Maranville,
+    Hannah M. Martin,
+    James Yarmolinsky,
+    Charles Laurin,
+    Michael V. Holmes,
+    Jimmy Z. Liu,
+    Karol Estrada,
+    Rita Santos,
+    Linda McCarthy,
+    Dawn Waterworth,
+    Matthew R. Nelson,
+    George Davey Smith,
+    Adam S. Butterworth,
+    Gibran Hemani,
+    Robert A. Scott,
+    Tom R. Gaunt.
+    <a href="https://www.nature.com/articles/s41588-020-0682-6">
+      Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases</a>.
+    <i>Nat Genet</i> (2020).
+    <a href="https://doi.org/10.1038/s41588-020-0682-6">
+      https://doi.org/10.1038/s41588-020-0682-6</a>
     <div class="py-2"></div>
     <h3><strong>Basic overview</strong></h3>
   </div>
