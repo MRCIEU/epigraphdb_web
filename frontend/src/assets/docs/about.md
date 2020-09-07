@@ -7,9 +7,6 @@ Our core objectives are to:
 
 ![epigraphdb-architecture](https://docs.epigraphdb.org/img/epigraphdb-architecture.png)
 
-**Note EpiGraphDB is currently in beta.** There may be issues/errors with data, queries and analyse!
-We welcome any feedback to feedback@epigraphdb.org.
-
 ## Funding sources
 
 * EpiGraphDB receives core funding from the UK Medical Research Council as part of the [Data Mining Epidemiological Relationships programme](www.biocompute.org.uk) in the [MRC Integrative Epidemiology Unit](www.bristol.ac.uk/ieu).
@@ -30,3 +27,28 @@ EpiGraphDB integrates data generated at the MRC IEU with data from a range of th
 * Experimental factor ontology (EFO) terms: [https://www.ebi.ac.uk/efo/](https://www.ebi.ac.uk/efo/)
 * Drug-target relationships from Open Targets: [https://www.targetvalidation.org/](https://www.targetvalidation.org/)
 * Medical Subject Headings (MeSH): [https://www.nlm.nih.gov/mesh/](https://www.nlm.nih.gov/mesh/)
+
+## Citation
+
+Please cite EpiGraphDB as
+
+> Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Tom R Gaunt. 2020. EpiGraphDB: a database and data mining platform for health data science. *bioRxiv*. [doi:10.1101/2020.08.01.230193](https://doi.org/10.1101/2020.08.01.230193).
+
+```
+@article {epigraphdb2020,
+  author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Gaunt, Tom R},
+  title = {{EpiGraphDB}: a database and data mining platform for health data science},
+  journal = {bioRxiv},
+  year = {2020},
+  doi = {10.1101/2020.08.01.230193},
+  url = {https://epigraphdb.org}
+}
+```
+
+## Contact
+
+Please get in touch with us for issues, comments, suggestions, etc. via the following methods:
+
+- [The issue tracker on the repo](https://github.com/MRCIEU/epigraphdb/issues)
+- [The support email](mailto:feedback@epigraphdb.org)
+- [The EpiGraphDB twitter](https://twitter.com/epigraphdb)
