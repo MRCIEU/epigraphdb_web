@@ -58,16 +58,17 @@ def gwas_label_formatter(
     id_col: str = "id",
     trait_col: str = "trait",
 ) -> Callable:
-    """A convenient wrapper to format gwas label to be "{id}: {trait}"
+    """Changed to just use "{trait}"
+
+    ~~A convenient wrapper to format gwas label to be "{id}: {trait}"~~
     """
     if node_name is not None:
-        func = lambda row: "{id}: {trait}".format(
-            id=row[f"{node_name}.{id_col}"],
+        func = lambda row: "{trait}".format(
             trait=row[f"{node_name}.{trait_col}"],
         )
     else:
-        func = lambda row: "{id}: {trait}".format(
-            id=row[id_col], trait=row[trait_col]
+        func = lambda row: "{trait}".format(
+            trait=row[trait_col]
         )
     return func
 
