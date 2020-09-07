@@ -65,7 +65,7 @@
         v-if="resGraphData"
         :nodes="resGraphData.nodes"
         :edges="resGraphData.edges"
-        :options="resGraphData.option"
+        :options="options"
         @double-click="clickUrl"
       />
       <div id="force-graph"></div>
@@ -102,7 +102,11 @@ export default {
   props: {
     url: String,
     paramsInput: Object,
-    updateTrigger: Number
+    updateTrigger: Number,
+    visjsOptions: {
+      type: Object,
+      default: null
+    }
   },
   data: () => ({
     fullscreen: false,
@@ -120,6 +124,17 @@ export default {
     },
     sizeLimit: function() {
       this.getGraph();
+    }
+  },
+  computed: {
+    options() {
+      if (this.visjsOptions) {
+        return this.visjsOptions;
+      } else if (this.resGraphData) {
+        return this.resGraphData.option;
+      } else {
+        return null;
+      }
     }
   },
   methods: {
