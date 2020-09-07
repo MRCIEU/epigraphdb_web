@@ -169,6 +169,12 @@
           </ul>
         </b-card>
       </template>
+
+      <template v-slot:[`head(${item.key})`]="data" v-for="item in fields">
+        <span v-b-tooltip.hover :title="item.label" :key="item.key">
+          {{ data.label }}
+        </span>
+      </template>
     </b-table>
 
     <!-- Info modal -->
