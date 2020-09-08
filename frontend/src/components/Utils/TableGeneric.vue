@@ -17,6 +17,20 @@
         :sort-direction="sortDirection"
         @filtered="onFiltered"
       >
+        <template v-slot:[`head(${item.key})`]="data" v-for="item in fields">
+          <span
+            v-if="hoverDataInput && hoverDataInput[item.key]"
+            v-b-tooltip.v-primary.hover.html="hoverDataInput[item.key]"
+            :key="item.key"
+          >
+            <span class="text-underline">
+              {{ data.label }}
+            </span>
+          </span>
+          <span v-else :key="item.key">
+            {{ data.label }}
+          </span>
+        </template>
       </b-table>
     </div>
 
@@ -81,6 +95,10 @@ export default {
     // tableDataInput should be in the form of
     // {"items": [item], "fields": [{"key", "label", ...}]}
     tableDataInput: Object,
+    hoverDataInput: {
+      type: Object,
+      default: null
+    },
     perPageInput: {
       type: Number,
       default: 10
@@ -130,5 +148,9 @@ export default {
 <style scoped>
 .data-table {
   overflow-x: auto;
+}
+
+.text-underline {
+  text-decoration: underline;
 }
 </style>

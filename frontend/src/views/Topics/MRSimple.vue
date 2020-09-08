@@ -97,7 +97,11 @@
           <template v-slot:title>
             <font-awesome-icon :icon="['fas', 'table']" /> Data table
           </template>
-          <Table v-if="resTableData" :table-data-input="resTableData" />
+          <Table
+            v-if="resTableData"
+            :table-data-input="resTableData"
+            :hover-data-input="hoverData"
+          />
         </b-tab>
         <b-tab lazy>
           <template v-slot:title>
@@ -191,6 +195,32 @@ export default {
     resLoading: false,
     resBackendData: null,
     // others
+    hoverData: {
+      "outcome.id": `
+        <p>
+        Outcome
+        <a
+         href="https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas"
+         target="_blank"
+         style="color:white"
+         ><b>Gwas</b></a>
+        </p>
+
+        <p><b>id</b>: OpenGWAS identifier</p>
+      `,
+      "outcome.trait": `
+        <p>
+        Outcome
+        <a
+         href="https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas"
+         target="_blank"
+         style="color:white"
+         ><b>Gwas</b></a>
+        </p>
+
+        <p><b>trait</b>: Name of the phenotypic trait</p>
+      `
+    },
     alert: false,
     alertMsg: "",
     url: `${config.web_backend_url}/mr-simple`,
