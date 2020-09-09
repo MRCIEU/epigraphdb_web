@@ -62,9 +62,11 @@ def render_r_pkg_snippet(
         return res
 
     def format_arg_value(value) -> str:
-        if type(value) is str:
+        if value is None:  # None -> NULL
+            return "NULL"
+        elif type(value) is str:
             return f'"{value}"'
-        elif type(value) is bool:
+        elif type(value) is bool: # True -> TRUE
             return str(value).upper()
         else:
             return str(value)
