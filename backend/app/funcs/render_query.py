@@ -96,7 +96,7 @@ def render_r_pkg_snippet(
 
 def truncate_response(response, limit):
     new_response = {
-        "query": response["metadata"]["query"],
+        "metadata": response["metadata"],
         "results": response["results"][:limit],
     }
     return new_response

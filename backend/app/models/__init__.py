@@ -11,7 +11,7 @@ class DiagramResponse(BaseModel):
 
 
 class ResponseDataResponse(BaseModel):
-    query: str
+    metadata: Dict
     results: List[Any]
 
 
