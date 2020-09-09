@@ -197,28 +197,24 @@ export default {
     // others
     hoverData: {
       "outcome.id": `
-        <p>
-        Outcome
-        <a
-         href="https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas"
-         target="_blank"
-         style="color:white"
-         ><b>Gwas</b></a>
-        </p>
+        <p>Outcome <b>Gwas</b></p>
 
-        <p><b>id</b>: OpenGWAS identifier</p>
+        <p><i>id</i>: OpenGWAS identifier</p>
       `,
       "outcome.trait": `
-        <p>
-        Outcome
-        <a
-         href="https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas"
-         target="_blank"
-         style="color:white"
-         ><b>Gwas</b></a>
-        </p>
+        <p>Outcome <b>Gwas</b></p>
 
-        <p><b>trait</b>: Name of the phenotypic trait</p>
+        <p><i>trait</i>: Name of the phenotypic trait</p>
+      `,
+      "exposure.id": `
+        <p>Exposure <b>Gwas</b></p>
+
+        <p><i>id</i>: OpenGWAS identifier</p>
+      `,
+      "mr.b": `
+        <p>Mandelian randomization (<b>MR</b>) evidence between exposure and outcome</p>
+
+        <p><i>b</i>: Effect size</p>
       `
     },
     alert: false,
