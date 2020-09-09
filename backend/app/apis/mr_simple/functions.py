@@ -15,10 +15,10 @@ from app.utils.data_table import process_table_data
 url = f"{api_url}/mr"
 # names of columns to include in the table, and to determine order in the table
 table_cols = [
-    "outcome.id",
-    "outcome.trait",
     "exposure.id",
     "exposure.trait",
+    "outcome.id",
+    "outcome.trait",
     "mr.b",
     "mr.se",
     "mr.pval",
