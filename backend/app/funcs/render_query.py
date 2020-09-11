@@ -66,7 +66,7 @@ def render_r_pkg_snippet(
             return "NULL"
         elif type(value) is str:
             return f'"{value}"'
-        elif type(value) is bool: # True -> TRUE
+        elif type(value) is bool:  # True -> TRUE
             return str(value).upper()
         else:
             return str(value)

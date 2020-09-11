@@ -64,12 +64,10 @@ def gwas_label_formatter(
     """
     if node_name is not None:
         func = lambda row: "{trait}".format(
-            trait=row[f"{node_name}.{trait_col}"],
+            trait=row[f"{node_name}.{trait_col}"]
         )
     else:
-        func = lambda row: "{trait}".format(
-            trait=row[trait_col]
-        )
+        func = lambda row: "{trait}".format(trait=row[trait_col])
     return func
 
 
