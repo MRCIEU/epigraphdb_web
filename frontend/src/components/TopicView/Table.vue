@@ -130,7 +130,7 @@ export default {
   methods: {
     async getTableData() {
       await axios.get(this.url, { params: this.paramsInput }).then(response => {
-        this.tableData = reformatTable(response.data);
+        this.tableData = reformatTable(response.data.table_data);
       });
     },
     onFiltered(filteredItems) {

@@ -12,7 +12,7 @@ from app.funcs.network_graph import (
 from app.funcs.render_query import render_query
 from app.settings import api_url, use_cache
 from app.utils import api_request_headers
-from app.utils.data_table import process_table_data
+from app.utils.data_table import format_table_data_response, process_table_data
 from app.utils.database import (
     create_doc_name,
     mongo_doc_exist,
@@ -80,8 +80,11 @@ class TopicQueryProcessor:
         self.table_cols = table_cols
         self.doc_name = create_doc_name(self.params)
         self.network_plot_schema = network_plot_schema
-        self.cols_to_round = cols_to_round
         self.headers = api_request_headers
+        # TODO
+        self.cols_to_round = cols_to_round
+        # TODO
+        self.table_docs = None
 
         # diagram
         self.cypher_diagram_fn = cypher_diagram_fn
@@ -184,13 +187,16 @@ class TopicQueryProcessor:
                 results_df = pd.json_normalize(results)[self.table_cols]
                 if self.table_precaching_hook is not None:
                     results_df = results_df.pipe(self.table_precaching_hook)
-                table_data = process_table_data(
-                    results_df, cols_to_round=self.cols_to_round
+                table_data_response = format_table_data_response(
+                    table_data=process_table_data(
+                        results_df, cols_to_round=self.cols_to_round
+                    ),
+                    table_docs=self.table_docs,
                 )
                 mongo_doc_insert(
                     collection=self.mongo_coll_table,
                     doc_name=self.doc_name,
-                    results=table_data,
+                    results=table_data_response,
                 )
 
             if empty_results:
@@ -213,10 +219,10 @@ class TopicQueryProcessor:
     def get_network_plot_data(
         self, rels_limit: int = rels_limit, overwrite: bool = False
     ):
-        table_data = self.get_table_data(overwrite=overwrite)
-        if table_data is None:
+        table_data_response = self.get_table_data(overwrite=overwrite)
+        if table_data_response is None:
             return None
-        df = pd.DataFrame.from_records(table_data)
+        df = pd.DataFrame.from_records(table_data_response["table_data"])
         graph_data = network_graph(
             df=df,
             node_schemas=self.network_plot_schema.node_schemas,

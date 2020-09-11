@@ -34,14 +34,9 @@ class GraphDataResponse(BaseModel):
     num_paths_displayed: int
 
 
-TableDataResponse = List[Dict[str, Any]]
-
-
-class TopicResponse(BaseModel):
-    query_data: QueryDataResponse
-    graph_data: Optional[GraphDataResponse]
-    table_data: Optional[TableDataResponse]
-    empty_results: bool
+class TableDataResponse(BaseModel):
+    table_data: List[Dict[str, Any]]
+    table_docs: Optional[Dict[str, Any]]
 
 
 class TopicViewEndpoints(str, Enum):

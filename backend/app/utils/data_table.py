@@ -13,6 +13,9 @@ def process_table_data(
     rounding: int = ROUNDING,
     to_dict: bool = True,
 ) -> Union[Dict, pd.DataFrame]:
+    """Process the data frame, re. roudings, etc,
+    and optionally converts to dict.
+    """
     if cols_to_round is not None:
         rounding_configs = {col: rounding for col in cols_to_round}
         df = df.round(rounding_configs)
@@ -20,3 +23,14 @@ def process_table_data(
     if to_dict:
         df = df.to_dict(orient="records")
     return df
+
+
+def format_table_data_response(
+    table_data: Dict, table_docs: Optional[Dict]
+) -> Dict:
+    """Wrap table data into a format that is compliant with the
+    response model.
+    """
+    table_docs = None
+    res = {"table_data": table_data, "table_docs": table_docs}
+    return res
