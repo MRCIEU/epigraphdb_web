@@ -6,7 +6,10 @@ from epigraphdb_common_utils.backend_env_configs import env_configs
 # env configs
 #############
 
-# env configs
+# caching
+use_cache = env_configs["use_cache"]
+
+# paired API
 api_url = env_configs["api_url"]
 api_key = env_configs["api_key"]
 

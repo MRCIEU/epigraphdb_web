@@ -10,7 +10,7 @@ from app.funcs.network_graph import (
     network_graph,
 )
 from app.funcs.render_query import render_query
-from app.settings import api_url
+from app.settings import api_url, use_cache
 from app.utils import api_request_headers
 from app.utils.data_table import process_table_data
 from app.utils.database import (
@@ -129,7 +129,7 @@ class TopicQueryProcessor:
                 for coll in self.mongo_coll_list
             ]
         ) == len(self.mongo_coll_list)
-        if doc_found and not overwrite:
+        if doc_found and not overwrite and use_cache:
             logger.info(
                 f"Do nothing: doc found: {doc_found}; overwrite: {overwrite}"
             )
@@ -199,7 +199,7 @@ class TopicQueryProcessor:
                 return True
 
     def get_table_data(self, overwrite: bool = False):
-        if overwrite:
+        if overwrite or not use_cache:
             self.process_master(overwrite=True)
         else:
             res_exists = mongo_doc_exist(self.mongo_coll_table, self.doc_name)
@@ -229,7 +229,7 @@ class TopicQueryProcessor:
         return self.cypher_diagram_fn(**self.cypher_diagram_params)
 
     def get_query_data(self, overwrite: bool = False):
-        if overwrite:
+        if overwrite or not use_cache:
             self.process_master(overwrite=True)
         else:
             res_exists = mongo_doc_exist(self.mongo_coll_query, self.doc_name)

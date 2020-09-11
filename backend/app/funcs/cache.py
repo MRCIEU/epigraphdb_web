@@ -1,5 +1,6 @@
 from typing import Any, Callable, Dict, Optional
 
+from app.settings import use_cache
 from app.utils.database import (
     create_doc_name,
     mongo_doc_exist,
@@ -21,7 +22,7 @@ def cache_func_call(
         doc_name_str = create_doc_name(params=params)
     collection = mongo_epigraphdb_web[coll_name]
     res_exists = mongo_doc_exist(collection=collection, doc_name=doc_name_str)
-    if overwrite or not res_exists:
+    if overwrite or not res_exists or not use_cache:
         if params is None:
             res = func()
         else:
