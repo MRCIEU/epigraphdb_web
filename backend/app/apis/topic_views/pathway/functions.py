@@ -5,24 +5,38 @@ from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
     TopicQueryProcessor,
 )
+from app.utils.data_table import NodeCol, RelCol
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "pathway"
-table_cols = [
-    "gwas.id",
-    "gwas.trait",
-    "gwas_to_variant.beta",
-    "gwas_to_variant.se",
-    "gwas_to_variant.pval",
-    "gwas_to_variant.samplesize",
-    "variant.name",
-    "gene.name",
-    "protein.uniprot_id",
-    "pathway.reactome_id",
-    "pathway.name",
-]
-cols_to_round = ["gwas_to_variant.beta", "gwas_to_variant.se"]
+GWAS_DESC = ""
+GWAS_TO_VARIANT_DESC = ""
+VARIANT_DESC = ""
+GENE_DESC = ""
+PROTEIN_DESC = ""
+PATHWAY_DESC = ""
+table_col_configs = {
+    "gwas.id": NodeCol("Gwas", "id", GWAS_DESC),
+    "gwas.trait": NodeCol("Gwas", "trait", GWAS_DESC),
+    "gwas_to_variant.beta": RelCol(
+        "GWAS_TO_VARIANT", "beta", GWAS_TO_VARIANT_DESC, rounding=True
+    ),
+    "gwas_to_variant.se": RelCol(
+        "GWAS_TO_VARIANT", "se", GWAS_TO_VARIANT_DESC, rounding=True
+    ),
+    "gwas_to_variant.pval": RelCol(
+        "GWAS_TO_VARIANT", "pval", GWAS_TO_VARIANT_DESC
+    ),
+    "gwas_to_variant.samplesize": RelCol(
+        "GWAS_TO_VARIANT", "samplesize", GWAS_TO_VARIANT_DESC
+    ),
+    "variant.name": NodeCol("Variant", "name", VARIANT_DESC),
+    "gene.name": NodeCol("Gene", "name", GENE_DESC),
+    "protein.uniprot_id": NodeCol("Protein", "uniprot_id", PROTEIN_DESC),
+    "pathway.reactome_id": NodeCol("Pathway", "reactome_id", PATHWAY_DESC),
+    "pathway.name": NodeCol("Pathway", "name", PATHWAY_DESC),
+}
 
 
 class PathwayQueryProcessor(TopicQueryProcessor):
@@ -30,7 +44,7 @@ class PathwayQueryProcessor(TopicQueryProcessor):
         super().__init__(
             master_name=master_name,
             params=params,
-            table_cols=table_cols,
+            table_col_configs=table_col_configs,
             network_plot_schema=NetworkPlotSchemaInput(
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),

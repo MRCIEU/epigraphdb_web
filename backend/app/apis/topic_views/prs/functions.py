@@ -5,24 +5,27 @@ from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
     TopicQueryProcessor,
 )
+from app.utils.data_table import NodeCol, RelCol
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "prs"
-table_cols = [
-    "trait.id",
-    "trait.trait",
-    "assoc_trait.id",
-    "assoc_trait.trait",
-    "prs.beta",
-    "prs.se",
-    "prs.p",
-    "prs.r2",
-    "prs.nsnps",
-    "prs.n",
-    "prs.model",
-]
-cols_to_round = ["prs.beta", "prs.se", "prs.r2"]
+TRAIT_DESC = ""
+ASSOC_TRAIT_DESC = ""
+PRS_DESC = ""
+table_col_configs = {
+    "trait.id": NodeCol("Gwas", "id", TRAIT_DESC),
+    "trait.trait": NodeCol("Gwas", "trait", TRAIT_DESC),
+    "assoc_trait.id": NodeCol("Gwas", "id", ASSOC_TRAIT_DESC),
+    "assoc_trait.trait": NodeCol("Gwas", "trait", ASSOC_TRAIT_DESC),
+    "prs.beta": RelCol("PRS", "beta", PRS_DESC, rounding=True),
+    "prs.se": RelCol("PRS", "se", PRS_DESC, rounding=True),
+    "prs.p": RelCol("PRS", "p", PRS_DESC),
+    "prs.r2": RelCol("PRS", "r2", PRS_DESC, rounding=True),
+    "prs.nsnps": RelCol("PRS", "nsnps", PRS_DESC),
+    "prs.n": RelCol("PRS", "n", PRS_DESC),
+    "prs.model": RelCol("PRS", "model", PRS_DESC),
+}
 
 
 class PrsQueryProcessor(TopicQueryProcessor):
@@ -30,12 +33,11 @@ class PrsQueryProcessor(TopicQueryProcessor):
         super().__init__(
             master_name=master_name,
             params=params,
-            table_cols=table_cols,
+            table_col_configs=table_col_configs,
             network_plot_schema=NetworkPlotSchemaInput(
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
             cypher_diagram_fn=cypher_diagram,
-            cols_to_round=cols_to_round,
         )
 
 

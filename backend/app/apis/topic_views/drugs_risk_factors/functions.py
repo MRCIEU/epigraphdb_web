@@ -5,27 +5,33 @@ from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
     TopicQueryProcessor,
 )
+from app.utils.data_table import NodeCol, RelCol
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "drugs_risk_factors"
 api_endpoint = "drugs/risk-factors"
-table_cols = [
-    "assoc_trait.id",
-    "assoc_trait.trait",
-    "drug.label",
-    "gene.name",
-    "mr.b",
-    "mr.method",
-    "mr.moescore",
-    "mr.pval",
-    "mr.se",
-    "mr.selection",
-    "variant.name",
-    "trait.id",
-    "trait.trait",
-]
-cols_to_round = ["mr.b", "mr.se", "mr.moescore"]
+TRAIT_DESC = ""
+ASSOC_TRAIT_DESC = ""
+DRUG_DESC = ""
+GENE_DESC = ""
+MR_DESC = ""
+VARIANT_DESC = ""
+table_col_configs = {
+    "assoc_trait.id": NodeCol("Gwas", "id", ASSOC_TRAIT_DESC),
+    "assoc_trait.trait": NodeCol("Gwas", "trait", ASSOC_TRAIT_DESC),
+    "drug.label": NodeCol("Drug", "label", DRUG_DESC),
+    "gene.name": NodeCol("Gene", "name", GENE_DESC),
+    "mr.b": RelCol("MR", "b", MR_DESC, rounding=True),
+    "mr.se": RelCol("MR", "se", MR_DESC, rounding=True),
+    "mr.pval": RelCol("MR", "pval", MR_DESC),
+    "mr.method": RelCol("MR", "method", MR_DESC),
+    "mr.moescore": RelCol("MR", "moescore", MR_DESC),
+    "mr.selection": RelCol("MR", "selection", MR_DESC),
+    "variant.name": NodeCol("Variant", "name", VARIANT_DESC),
+    "trait.id": NodeCol("Gwas", "id", TRAIT_DESC),
+    "trait.trait": NodeCol("Gwas", "trait", TRAIT_DESC),
+}
 
 
 class DrugsRiskFactorsQueryProcessor(TopicQueryProcessor):
@@ -33,13 +39,12 @@ class DrugsRiskFactorsQueryProcessor(TopicQueryProcessor):
         super().__init__(
             master_name=master_name,
             params=params,
-            table_cols=table_cols,
+            table_col_configs=table_col_configs,
             network_plot_schema=NetworkPlotSchemaInput(
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
             cypher_diagram_fn=cypher_diagram,
             api_endpoint=api_endpoint,
-            cols_to_round=cols_to_round,
         )
 
 

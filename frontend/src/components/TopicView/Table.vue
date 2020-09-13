@@ -18,6 +18,24 @@
         :sort-direction="sortDirection"
         @filtered="onFiltered"
       >
+        <template v-slot:[`head(${item.key})`]="data" v-for="item in fields">
+          <span
+            v-if="
+              hoverData &&
+                hoverData[item.key] &&
+                hoverData[item.key].length !== 0
+            "
+            v-b-tooltip.v-primary.hover.html="hoverData[item.key]"
+            :key="item.key"
+          >
+            <span class="text-underline">
+              {{ data.label }}
+            </span>
+          </span>
+          <span v-else :key="item.key">
+            {{ data.label }}
+          </span>
+        </template>
       </b-table>
     </div>
 
@@ -90,6 +108,7 @@ export default {
   data() {
     return {
       tableData: null,
+      tableDocs: null,
       currentPage: 1,
       perPage: 10,
       pageOptions: [10, 20, 50],
@@ -102,10 +121,12 @@ export default {
   },
   computed: {
     items() {
-      return this.tableData ? this.tableData.items : [];
+      return this.tableData && this.tableData.items ? this.tableData.items : [];
     },
     fields() {
-      return this.tableData ? this.tableData.fields : [];
+      return this.tableData && this.tableData.fields
+        ? this.tableData.fields
+        : [];
     },
     totalRows: function() {
       return this.items ? this.items.length : 0;
@@ -117,6 +138,9 @@ export default {
         .map(f => {
           return { text: f.label, value: f.key };
         });
+    },
+    hoverData() {
+      return this.tableDocs ? this.tableDocs : null;
     }
   },
   mounted() {
@@ -131,6 +155,7 @@ export default {
     async getTableData() {
       await axios.get(this.url, { params: this.paramsInput }).then(response => {
         this.tableData = reformatTable(response.data.table_data);
+        this.tableDocs = response.data.table_docs;
       });
     },
     onFiltered(filteredItems) {
@@ -145,5 +170,9 @@ export default {
 <style scoped>
 .data-table {
   overflow-x: auto;
+}
+
+.text-underline {
+  text-decoration: underline;
 }
 </style>

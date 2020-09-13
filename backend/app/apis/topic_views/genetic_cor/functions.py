@@ -5,35 +5,32 @@ from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
     TopicQueryProcessor,
 )
+from app.utils.data_table import NodeCol, RelCol
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "genetic-cor"
-table_cols = [
-    "trait.id",
-    "trait.trait",
-    "assoc_trait.id",
-    "assoc_trait.trait",
-    "gc.rg",
-    "gc.z",
-    "gc.se",
-    "gc.p",
-    "gc.h2_int",
-    "gc.h2_int_se",
-    "gc.h2_obs",
-    "gc.h2_obs_se",
-    "gc.gcov_int",
-    "gc.gcov_int_se",
-]
-cols_to_round = [
-    "gc.rg",
-    "gc.z",
-    "gc.se",
-    "gc.g2_int",
-    "gc.h2_obs_se",
-    "gc.gcov_int",
-    "gc.gcov_int_se",
-]
+TRAIT_DESC = ""
+ASSOC_TRAIT_DESC = ""
+GC_DESC = ""
+table_col_configs = {
+    "trait.id": NodeCol("Gwas", "id", TRAIT_DESC),
+    "trait.trait": NodeCol("Gwas", "trait", TRAIT_DESC),
+    "assoc_trait.id": NodeCol("Gwas", "id", ASSOC_TRAIT_DESC),
+    "assoc_trait.trait": NodeCol("Gwas", "trait", ASSOC_TRAIT_DESC),
+    "gc.rg": RelCol("BN_GEN_COR", "rg", GC_DESC, rounding=True),
+    "gc.z": RelCol("BN_GEN_COR", "z", GC_DESC, rounding=True),
+    "gc.se": RelCol("BN_GEN_COR", "se", GC_DESC, rounding=True),
+    "gc.p": RelCol("BN_GEN_COR", "p", GC_DESC),
+    "gc.h2_int": RelCol("BN_GEN_COR", "h2_int", GC_DESC, rounding=True),
+    "gc.h2_int_se": RelCol("BN_GEN_COR", "h2_int_se", GC_DESC, rounding=True),
+    "gc.h2_obs": RelCol("BN_GEN_COR", "h2_obs", GC_DESC),
+    "gc.h2_obs_se": RelCol("BN_GEN_COR", "h2_obs_se", GC_DESC, rounding=True),
+    "gc.gcov_int": RelCol("BN_GEN_COR", "gcov_int", GC_DESC, rounding=True),
+    "gc.gcov_int_se": RelCol(
+        "BN_GEN_COR", "gcov_int_se", GC_DESC, rounding=True
+    ),
+}
 
 
 class GeneticCorQueryProcessor(TopicQueryProcessor):
@@ -41,12 +38,11 @@ class GeneticCorQueryProcessor(TopicQueryProcessor):
         super().__init__(
             master_name=master_name,
             params=params,
-            table_cols=table_cols,
+            table_col_configs=table_col_configs,
             network_plot_schema=NetworkPlotSchemaInput(
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
             cypher_diagram_fn=cypher_diagram,
-            cols_to_round=cols_to_round,
         )
 
 

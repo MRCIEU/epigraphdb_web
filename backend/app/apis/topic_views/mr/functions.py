@@ -5,23 +5,36 @@ from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
     TopicQueryProcessor,
 )
+from app.utils.data_table import NodeCol, RelCol
+from app.utils.url_helpers import data_table_entity_link
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "mr"
-table_cols = [
-    "exposure.id",
-    "exposure.trait",
-    "outcome.id",
-    "outcome.trait",
-    "mr.b",
-    "mr.se",
-    "mr.pval",
-    "mr.method",
-    "mr.selection",
-    "mr.moescore",
-]
-cols_to_round = ["mr.b", "mr.se", "mr.moescore"]
+EXPOSURE_DESC = "Exposure {link}.".format(
+    link=data_table_entity_link("Gwas", "node")
+)
+OUTCOME_DESC = "Outcome {link}.".format(
+    link=data_table_entity_link("Gwas", "node")
+)
+MR_DESC = """
+Mendelian randomization ({link})
+evidence between exposure and outcome.
+""".format(
+    link=data_table_entity_link("MR", "rel")
+)
+table_col_configs = {
+    "exposure.id": NodeCol("Gwas", "id", EXPOSURE_DESC),
+    "exposure.trait": NodeCol("Gwas", "trait", EXPOSURE_DESC),
+    "outcome.id": NodeCol("Gwas", "id", OUTCOME_DESC),
+    "outcome.trait": NodeCol("Gwas", "trait", OUTCOME_DESC),
+    "mr.b": RelCol("MR", "b", MR_DESC, rounding=True),
+    "mr.se": RelCol("MR", "se", MR_DESC, rounding=True),
+    "mr.pval": RelCol("MR", "pval", MR_DESC),
+    "mr.method": RelCol("MR", "method", MR_DESC),
+    "mr.selection": RelCol("MR", "selection", MR_DESC),
+    "mr.moescore": RelCol("MR", "moescore", MR_DESC, rounding=True),
+}
 
 
 class MRQueryProcessor(TopicQueryProcessor):
@@ -29,12 +42,12 @@ class MRQueryProcessor(TopicQueryProcessor):
         super().__init__(
             master_name=master_name,
             params=params,
-            table_cols=table_cols,
+            # WIP
+            table_col_configs=table_col_configs,
             network_plot_schema=NetworkPlotSchemaInput(
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
             cypher_diagram_fn=cypher_diagram,
-            cols_to_round=cols_to_round,
         )
 
 

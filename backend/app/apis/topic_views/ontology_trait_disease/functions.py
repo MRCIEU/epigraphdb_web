@@ -5,21 +5,26 @@ from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
     TopicQueryProcessor,
 )
+from app.utils.data_table import NodeCol, RelCol
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "ontology_trait_disease"
 api_endpoint = "ontology/gwas-efo-disease"
-table_cols = [
-    "gwas.id",
-    "gwas.trait",
-    "ge.score",
-    "efo.type",
-    "efo.value",
-    "efo.id",
-    "disease.id",
-    "disease.label",
-]
+GWAS_DESC = ""
+GE_DESC = ""
+EFO_DESC = ""
+DISEASE_DESC = ""
+table_col_configs = {
+    "gwas.id": NodeCol("Gwas", "id", GWAS_DESC),
+    "gwas.trait": NodeCol("Gwas", "trait", GWAS_DESC),
+    "ge.score": RelCol("GWAS_NLP_EFO", "score", GE_DESC),
+    "efo.type": NodeCol("Efo", "type", EFO_DESC),
+    "efo.value": NodeCol("Efo", "value", EFO_DESC),
+    "efo.id": NodeCol("Efo", "id", EFO_DESC),
+    "disease.id": NodeCol("Disease", "id", DISEASE_DESC),
+    "disease.label": NodeCol("Disease", "label", DISEASE_DESC),
+}
 
 
 class OntologyTraitDiseaseQueryProcessor(TopicQueryProcessor):
@@ -27,7 +32,7 @@ class OntologyTraitDiseaseQueryProcessor(TopicQueryProcessor):
         super().__init__(
             master_name=master_name,
             params=params,
-            table_cols=table_cols,
+            table_col_configs=table_col_configs,
             network_plot_schema=NetworkPlotSchemaInput(
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),

@@ -12,7 +12,11 @@ from app.funcs.network_graph import (
 from app.funcs.render_query import render_query
 from app.settings import api_url, use_cache
 from app.utils import api_request_headers
-from app.utils.data_table import format_table_data_response, process_table_data
+from app.utils.data_table import (
+    EntityPropertyCol,
+    format_table_data_response,
+    process_table_data,
+)
 from app.utils.database import (
     create_doc_name,
     mongo_doc_exist,
@@ -45,13 +49,12 @@ class TopicQueryProcessor:
         self,
         master_name: str,
         params: Dict[str, Any],
-        table_cols: List[str],
+        table_col_configs: Dict[str, EntityPropertyCol],
         network_plot_schema: NetworkPlotSchemaInput,
         cypher_diagram_fn: Callable,
         api_endpoint: Optional[str] = None,
         cypher_diagram_params: Optional[Dict[str, Any]] = None,
         table_precaching_hook: Optional[Callable] = None,
-        cols_to_round: Optional[List[str]] = None,
     ):
         """ A generic query class for topic views that handles:
         - master query
@@ -64,7 +67,7 @@ class TopicQueryProcessor:
         Args:
         - master_name: e.g. "mr"
         - params: parameters to be passed to requests
-        - table_cols: columns that are in the expected order
+        - table_col_configs: columns configs
         - network_plot_schema: dictates how the network plot can be generated
         - cypher_diagram_fn: the function to generate the cypher diagram,
           and this function needs to accept the same `params`
@@ -72,19 +75,20 @@ class TopicQueryProcessor:
           `master_name` is treated as the api_endpoint.
         - table_precaching_hook: a function to apply to table data BEFORE
           it is written to cache
-        - cols_to_round: If supplied, will round them to a predefined decimal place
         """
 
         self.master_name = master_name
         self.params = params
-        self.table_cols = table_cols
+        self.table_cols = list(table_col_configs.keys())
         self.doc_name = create_doc_name(self.params)
         self.network_plot_schema = network_plot_schema
         self.headers = api_request_headers
-        # TODO
-        self.cols_to_round = cols_to_round
-        # TODO
-        self.table_docs = None
+        self.cols_to_round = [
+            key for key, value in table_col_configs.items() if value.rounding
+        ]
+        self.table_docs = {
+            key: value.render() for key, value in table_col_configs.items()
+        }
 
         # diagram
         self.cypher_diagram_fn = cypher_diagram_fn

@@ -7,21 +7,28 @@ from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
     TopicQueryProcessor,
 )
+from app.utils.data_table import NodeCol, RelCol
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "literature_trait"
 api_endpoint = "literature/gwas"
-table_cols = [
-    "gwas.id",
-    "gwas.trait",
-    "gs.pval",
-    "gs.localCount",
-    "triple.id",
-    "triple.subject_name",
-    "triple.object_name",
-    "lit.pubmed_id",
-]
+GWAS_DESC = ""
+GS_DESC = ""
+TRIPLE_DESC = ""
+LIT_DESC = ""
+table_col_configs = {
+    "gwas.id": NodeCol("Gwas", "id", GWAS_DESC),
+    "gwas.trait": NodeCol("Gwas", "trait", GWAS_DESC),
+    "gs.pval": RelCol("GWAS_SEM", "pval", GS_DESC),
+    "gs.localCount": RelCol("GWAS_SEM", "localCount", GS_DESC),
+    "triple.id": NodeCol("SemmedTriple", "id", TRIPLE_DESC),
+    "triple.subject_name": NodeCol(
+        "SemmedTriple", "subject_name", TRIPLE_DESC
+    ),
+    "triple.object_name": NodeCol("SemmedTriple", "object_name", TRIPLE_DESC),
+    "lit.pubmed_id": NodeCol("Literature", "pubmed_id", LIT_DESC),
+}
 
 
 def table_precaching_hook(df: pd.DataFrame) -> pd.DataFrame:
@@ -36,7 +43,7 @@ class LiteratureTraitQueryProcessor(TopicQueryProcessor):
         super().__init__(
             master_name=master_name,
             params=params,
-            table_cols=table_cols,
+            table_col_configs=table_col_configs,
             network_plot_schema=NetworkPlotSchemaInput(
                 node_schemas=node_schemas, edge_schemas=edge_schemas
             ),
