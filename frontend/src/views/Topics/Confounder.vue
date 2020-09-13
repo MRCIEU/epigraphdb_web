@@ -221,7 +221,7 @@ export default {
     if (this.$route.query["confounder-type"]) {
       this.confounderType = this.$route.query["confounder-type"];
     }
-    if (this.exposureTrait.length > 1 && this.outcomeTrait.length > 1) {
+    if (this.exposureTrait && this.outcomeTrait) {
       this.getMaster();
     }
   },
