@@ -158,9 +158,9 @@ export const topics = [
         img: require("@/assets/cards/literature.png"),
         title: "Literature evidence",
         desc: `
-          Literature mined / derived evidence
+          Literature mined / derived evidence of related traits.
         `,
-        href: "/literature"
+        href: "/literature/trait"
       }
     ]
   },
@@ -172,10 +172,10 @@ export const topics = [
         name: "ontology",
         title: "Ontology",
         desc: `
-          Ontology of biomedical terms
+          Map GWAS traits to diseases via EFO terms.
             `,
         img: require("@/assets/cards/ontology-trait-disease.png"),
-        href: "/ontology"
+        href: "/ontology/trait-disease"
       }
     ]
   },
