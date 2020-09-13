@@ -22,6 +22,20 @@
                 <font-awesome-icon :icon="['fas', 'cube']" />
                 3D
               </b-button>
+              <b-col>
+                <b-form-radio-group
+                  v-b-tooltip
+                  title="Select layout of the network plot"
+                  id="visjs-layout-radio-group"
+                  v-model="visjsLayoutSelected"
+                  v-if="layoutOptionInput"
+                  :options="Object.keys(visjsOptions)"
+                  buttons
+                  button-variant="outline-primary"
+                  size="sm"
+                  name="radio-options"
+                />
+              </b-col>
             </b-row>
           </b-col>
           <b-col cols="8">
@@ -66,6 +80,7 @@
         :nodes="resGraphData.nodes"
         :edges="resGraphData.edges"
         :options="options"
+        :key="visjsLayoutSelected"
         @double-click="clickUrl"
       />
       <div id="force-graph"></div>
@@ -103,17 +118,55 @@ export default {
     url: String,
     paramsInput: Object,
     updateTrigger: Number,
-    visjsOptions: {
-      type: Object,
-      default: null
+    layoutOptionInput: {
+      type: String,
+      default: "layout1"
     }
   },
-  data: () => ({
-    fullscreen: false,
-    resGraphData: null,
-    sizeLimit: 50,
-    sizeLimitOptions: [20, 50, 100, 300, 500, 800, 1000]
-  }),
+  data: function() {
+    return {
+      fullscreen: false,
+      resGraphData: null,
+      sizeLimit: 50,
+      sizeLimitOptions: [20, 50, 100, 300, 500, 800, 1000],
+      visjsLayoutSelected: this.layoutOptionInput,
+      visjsOptions: {
+        layout1: {
+          physics: {
+            stabilization: true,
+            barnesHut: { damping: 0.5 },
+            timestep: 1.0
+          },
+          layout: { improvedLayout: true },
+          interaction: {
+            hover: true,
+            hoverConnectedEdges: true,
+            navigationButtons: false,
+            keyboard: false
+          }
+        },
+        layout2: {
+          physics: {
+            stabilization: true,
+            barnesHut: {
+              springLength: 300,
+              gravitationalConstant: -8000
+            },
+            timestep: 1.0
+          },
+          layout: {
+            improvedLayout: true
+          },
+          interaction: {
+            hover: true,
+            hoverConnectedEdges: true,
+            navigationButtons: false,
+            keyboard: false
+          }
+        }
+      }
+    };
+  },
   mounted: function() {
     this.sizeLimit = this.paramsInput.rels_limit;
     this.getGraph();
@@ -128,13 +181,9 @@ export default {
   },
   computed: {
     options() {
-      if (this.visjsOptions) {
-        return this.visjsOptions;
-      } else if (this.resGraphData) {
-        return this.resGraphData.option;
-      } else {
-        return null;
-      }
+      return this.visjsLayoutSelected
+        ? this.visjsOptions[this.visjsLayoutSelected]
+        : null;
     }
   },
   methods: {

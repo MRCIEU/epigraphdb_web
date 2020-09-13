@@ -81,7 +81,7 @@
             :url="urlNetworkPlot"
             :params-input="paramsPlot"
             :update-trigger="resInit"
-            :visjs-options="visjsOptions"
+            layout-option-input="layout2"
             v-if="resQueryDiagramData"
           />
         </b-tab>
@@ -189,26 +189,7 @@ export default {
     // others
     alert: false,
     alertMsg: "",
-    urlMaster: `${config.web_backend_url}/confounder`,
-    visjsOptions: {
-      physics: {
-        stabilization: true,
-        barnesHut: {
-          springLength: 300,
-          gravitationalConstant: -8000
-        },
-        timestep: 1.0
-      },
-      layout: {
-        improvedLayout: true
-      },
-      interaction: {
-        hover: true,
-        hoverConnectedEdges: true,
-        navigationButtons: false,
-        keyboard: false
-      }
-    }
+    urlMaster: `${config.web_backend_url}/confounder`
   }),
   mounted: function() {
     this.indexAc();
