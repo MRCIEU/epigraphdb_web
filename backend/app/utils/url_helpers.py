@@ -4,7 +4,15 @@ REL_DOCS_URL = (
 )
 
 
-def data_table_entity_link(label: str, entity_type: str) -> str:
+def data_table_node_link(label: str) -> str:
+    return _entity_link(label, "node")
+
+
+def data_table_rel_link(label: str) -> str:
+    return _entity_link(label, "rel")
+
+
+def _entity_link(label: str, entity_type: str) -> str:
     """Generate an html link for data table columns.
     """
     text = '<a href="{href}" style="color:white;" target="_blank"><b>{label}</b></a>'.format(
