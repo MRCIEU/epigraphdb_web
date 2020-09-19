@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 
 from epigraphdb_common_utils.epigraphdb_data_dicts import (
-    meta_nodes_docs,
-    meta_rels_docs,
+    meta_nodes_property_docs,
+    meta_rels_property_docs,
 )
 
 # global spec on rounding of numeric columns, e.g. effect size, standard error
@@ -67,9 +67,9 @@ class EntityPropertyCol:
         self.rounding = rounding
 
         if self.entity_type == "node":
-            docs_dict: Dict = meta_nodes_docs
+            docs_dict: Dict = meta_nodes_property_docs
         elif self.entity_type == "rel":
-            docs_dict = meta_rels_docs
+            docs_dict = meta_rels_property_docs
         else:
             raise Exception("'node' or 'docs'")
         self.entity_docs = docs_dict[self.meta_entity]
