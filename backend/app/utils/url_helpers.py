@@ -15,8 +15,12 @@ def data_table_rel_link(label: str) -> str:
 def _entity_link(label: str, entity_type: str) -> str:
     """Generate an html link for data table columns.
     """
+    if entity_type == "node":
+        label_code = "({})".format(label)
+    elif entity_type == "rel":
+        label_code = "[{}]".format(label)
     text = '<a href="{href}" style="color:white;" target="_blank"><b>{label}</b></a>'.format(
-        label=label, href=generate_entity_url(label, entity_type)
+        label=label_code, href=generate_entity_url(label, entity_type)
     )
     return text
 
