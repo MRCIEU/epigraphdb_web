@@ -8,15 +8,34 @@ from app.funcs.query_processors import (
     TopicQueryProcessor,
 )
 from app.utils.data_table import NodeCol, RelCol
+from app.utils.url_helpers import data_table_node_link, data_table_rel_link
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "literature_trait"
 api_endpoint = "literature/gwas"
-GWAS_DESC = ""
-GS_DESC = ""
-TRIPLE_DESC = ""
-LIT_DESC = ""
+GWAS_DESC = "{Gwas} trait of interest.".format(
+    Gwas=data_table_node_link("Gwas")
+)
+GS_DESC = "Association between {Gwas} and {SemmedTriple} via {GWAS_SEM}.".format(
+    Gwas=data_table_node_link("Gwas"),
+    SemmedTriple=data_table_node_link("SemmedTriple"),
+    GWAS_SEM=data_table_rel_link("GWAS_SEM"),
+)
+TRIPLE_DESC = """
+The SemMedDB knowledge triplet {SemmedTriple} that links the {Gwas} trait
+with a SemMedDB term {SemmedTerm}.
+""".format(
+    SemmedTriple=data_table_node_link("SemmedTriple"),
+    Gwas=data_table_node_link("Gwas"),
+    SemmedTerm=data_table_node_link("SemmedTerm"),
+)
+LIT_DESC = """
+{Literature} evidence regarding the {Gwas} trait as a PubMed article.
+""".format(
+    Literature=data_table_node_link("Literature"),
+    Gwas=data_table_node_link("Gwas"),
+)
 table_col_configs = {
     "gwas.id": NodeCol("Gwas", "id", GWAS_DESC),
     "gwas.trait": NodeCol("Gwas", "trait", GWAS_DESC),

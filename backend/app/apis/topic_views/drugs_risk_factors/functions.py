@@ -6,21 +6,42 @@ from app.funcs.query_processors import (
     TopicQueryProcessor,
 )
 from app.utils.data_table import NodeCol, RelCol
+from app.utils.url_helpers import data_table_node_link, data_table_rel_link
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "drugs_risk_factors"
 api_endpoint = "drugs/risk-factors"
-TRAIT_DESC = ""
-ASSOC_TRAIT_DESC = ""
-DRUG_DESC = ""
-GENE_DESC = ""
-MR_DESC = ""
-VARIANT_DESC = ""
+TRAIT_DESC = "Disease {Gwas} trait.".format(Gwas=data_table_node_link("Gwas"))
+ASSOC_TRAIT_DESC = """
+Risk factor {Gwas} trait that is identified to
+have {MR} evidence to the disease trait.
+""".format(
+    Gwas=data_table_node_link("Gwas"), MR=data_table_rel_link("MR")
+)
+DRUG_DESC = """
+{Drug} that is identified to be associated with the disease {Gwas} trait
+via the path as shown in the network plot.
+""".format(
+    Gwas=data_table_node_link("Gwas"), Drug=data_table_node_link("Drug")
+)
+GENE_DESC = "Associated {Gene}".format(Gene=data_table_node_link("Gene"))
+MR_DESC = """
+Mendelian randomization ({MR}) evidence
+from the risk factor {Gwas} to the disease {Gwas}.
+""".format(
+    MR=data_table_rel_link("MR"), Gwas=data_table_node_link("Gwas")
+)
+VARIANT_DESC = "Associated {Variant}".format(
+    Variant=data_table_node_link("Variant")
+)
 table_col_configs = {
+    "trait.id": NodeCol("Gwas", "id", TRAIT_DESC),
+    "trait.trait": NodeCol("Gwas", "trait", TRAIT_DESC),
     "assoc_trait.id": NodeCol("Gwas", "id", ASSOC_TRAIT_DESC),
     "assoc_trait.trait": NodeCol("Gwas", "trait", ASSOC_TRAIT_DESC),
     "drug.label": NodeCol("Drug", "label", DRUG_DESC),
+    "variant.name": NodeCol("Variant", "name", VARIANT_DESC),
     "gene.name": NodeCol("Gene", "name", GENE_DESC),
     "mr.b": RelCol("MR", "b", MR_DESC, rounding=True),
     "mr.se": RelCol("MR", "se", MR_DESC, rounding=True),
@@ -28,9 +49,6 @@ table_col_configs = {
     "mr.method": RelCol("MR", "method", MR_DESC),
     "mr.moescore": RelCol("MR", "moescore", MR_DESC),
     "mr.selection": RelCol("MR", "selection", MR_DESC),
-    "variant.name": NodeCol("Variant", "name", VARIANT_DESC),
-    "trait.id": NodeCol("Gwas", "id", TRAIT_DESC),
-    "trait.trait": NodeCol("Gwas", "trait", TRAIT_DESC),
 }
 
 

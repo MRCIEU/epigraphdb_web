@@ -11,13 +11,13 @@ from app.utils.url_helpers import data_table_node_link, data_table_rel_link
 from .graph import edge_schemas, node_schemas
 
 master_name = "mr"
-EXPOSURE_DESC = "Exposure {link}.".format(link=data_table_node_link("Gwas"))
-OUTCOME_DESC = "Outcome {link}.".format(link=data_table_node_link("Gwas"))
+EXPOSURE_DESC = "Exposure {Gwas}.".format(Gwas=data_table_node_link("Gwas"))
+OUTCOME_DESC = "Outcome {Gwas}.".format(Gwas=data_table_node_link("Gwas"))
 MR_DESC = """
-Mendelian randomization ({link})
-evidence between exposure and outcome.
+Mendelian randomization ({MR})
+evidence from exposure to outcome.
 """.format(
-    link=data_table_rel_link("MR")
+    MR=data_table_rel_link("MR")
 )
 table_col_configs = {
     "exposure.id": NodeCol("Gwas", "id", EXPOSURE_DESC),

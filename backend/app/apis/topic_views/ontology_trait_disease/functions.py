@@ -6,15 +6,26 @@ from app.funcs.query_processors import (
     TopicQueryProcessor,
 )
 from app.utils.data_table import NodeCol, RelCol
+from app.utils.url_helpers import data_table_node_link, data_table_rel_link
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "ontology_trait_disease"
 api_endpoint = "ontology/gwas-efo-disease"
-GWAS_DESC = ""
-GE_DESC = ""
-EFO_DESC = ""
-DISEASE_DESC = ""
+GWAS_DESC = "{Gwas} trait of interest.".format(
+    Gwas=data_table_node_link("Gwas")
+)
+GE_DESC = """
+Mapping from {Gwas} to {Efo} via semantic similarity {GWAS_NLP_EFO}.
+""".format(
+    Gwas=data_table_node_link("Gwas"),
+    Efo=data_table_node_link("Efo"),
+    GWAS_NLP_EFO=data_table_rel_link("GWAS_NLP_EFO"),
+)
+EFO_DESC = "Experimental Factor Ontology {Efo}".format(
+    Efo=data_table_node_link("Efo")
+)
+DISEASE_DESC = "{Disease} term".format(Disease=data_table_node_link("Disease"))
 table_col_configs = {
     "gwas.id": NodeCol("Gwas", "id", GWAS_DESC),
     "gwas.trait": NodeCol("Gwas", "trait", GWAS_DESC),

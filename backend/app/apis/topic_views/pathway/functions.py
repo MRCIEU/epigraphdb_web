@@ -6,16 +6,31 @@ from app.funcs.query_processors import (
     TopicQueryProcessor,
 )
 from app.utils.data_table import NodeCol, RelCol
+from app.utils.url_helpers import data_table_node_link, data_table_rel_link
 
 from .graph import edge_schemas, node_schemas
 
 master_name = "pathway"
-GWAS_DESC = ""
-GWAS_TO_VARIANT_DESC = ""
-VARIANT_DESC = ""
-GENE_DESC = ""
-PROTEIN_DESC = ""
-PATHWAY_DESC = ""
+GWAS_DESC = "{Gwas} trait of interests".format(
+    Gwas=data_table_node_link("Gwas")
+)
+GWAS_TO_VARIANT_DESC = """
+Identified association ({GWAS_TO_VARIANT}) between {Gwas} and {Variant}
+""".format(
+    GWAS_TO_VARIANT=data_table_rel_link("GWAS_TO_VARIANT"),
+    Gwas=data_table_node_link("Gwas"),
+    Variant=data_table_node_link("Variant"),
+)
+VARIANT_DESC = "Associated {Variant}".format(
+    Variant=data_table_node_link("Variant")
+)
+GENE_DESC = "Associated {Gene}".format(Gene=data_table_node_link("Gene"))
+PROTEIN_DESC = "Associated {Protein}".format(
+    Protein=data_table_node_link("Protein")
+)
+PATHWAY_DESC = "Biological {Pathway}".format(
+    Pathway=data_table_node_link("Pathway")
+)
 table_col_configs = {
     "gwas.id": NodeCol("Gwas", "id", GWAS_DESC),
     "gwas.trait": NodeCol("Gwas", "trait", GWAS_DESC),

@@ -13,7 +13,7 @@
           <div class="py-2">
             <vue-bootstrap-typeahead
               v-model="trait"
-              placeholder="Enter trait, e.g. Whole body mass weight"
+              placeholder="Enter trait, e.g. Whole body fat mass"
               prepend="Trait"
               :data="acTrait"
               @hit="trait = $event"

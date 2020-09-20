@@ -1,10 +1,10 @@
 ## Summary
 
-This view presents correlations between traits
+This view presents correlations between traits.
 
 ## Data sources
 
-* [EpiGraphDB](www.epigraphdb.org) original data created using data from the IEU GWAS database
+* [EpiGraphDB](https://epigraphdb.org) original data created using data from the IEU GWAS database.
 
 ## How to use
 

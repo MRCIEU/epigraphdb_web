@@ -5,17 +5,44 @@ from app.funcs.query_processors import (
     TopicQueryProcessor,
 )
 from app.utils.data_table import NodeCol, RelCol
+from app.utils.url_helpers import data_table_node_link, data_table_rel_link
 
 from .diagram import cypher_diagram
 from .graph import create_edge_schemas, node_schemas
 
 master_name = "confounder"
-EXPOSURE_DESC = ""
-OUTCOME_DESC = ""
-CF_DESC = ""
-R1_DESC = ""
-R2_DESC = ""
-R3_DESC = ""
+EXPOSURE_DESC = "Exposure {gwas}.".format(gwas=data_table_node_link("Gwas"))
+OUTCOME_DESC = "Outcome {gwas}".format(gwas=data_table_node_link("Gwas"))
+CF_DESC = """
+Confounder* {gwas}.
+
+*subject to the option `confounder_type`, `cf`
+can be a confounder, intermediate, reverse intermediate, or collider
+(see documentation for further details).
+""".format(
+    gwas=data_table_node_link("Gwas")
+)
+R1_DESC = """
+{MR} between exposure and `cf`.
+
+Direction of the MR evidence is determined by `confounder_type`
+(see documentation for further details).
+""".format(
+    MR=data_table_rel_link("MR")
+)
+R2_DESC = """
+{MR} from exposure to outcome.
+""".format(
+    MR=data_table_rel_link("MR")
+)
+R3_DESC = """
+{MR} between outcome and `cf`.
+
+Direction of the MR evidence is determined by `confounder_type`
+(see documentation for further details).
+""".format(
+    MR=data_table_rel_link("MR")
+)
 table_col_configs = {
     "cf.id": NodeCol("Gwas", "id", CF_DESC),
     "cf.trait": NodeCol("Gwas", "trait", CF_DESC),

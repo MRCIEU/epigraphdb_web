@@ -11,13 +11,14 @@ from app.utils.url_helpers import data_table_node_link, data_table_rel_link
 from .graph import edge_schemas, node_schemas
 
 master_name = "prs"
-TRAIT_DESC = "The {gwas} trait of interests".format(
+TRAIT_DESC = "The {gwas} trait of interests.".format(
     gwas=data_table_node_link("Gwas")
 )
-ASSOC_TRAIT_DESC = "The associated {gwas} trait".format(
+ASSOC_TRAIT_DESC = "The associated {gwas} trait.".format(
     gwas=data_table_node_link("Gwas")
 )
-PRS_DESC = "Pre-computed polygenic risk scores ({prs}) associations".format(
+
+PRS_DESC = "Pre-computed polygenic risk scores ({prs}) associations.".format(
     prs=data_table_rel_link("PRS")
 )
 table_col_configs = {
