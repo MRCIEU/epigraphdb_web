@@ -1,0 +1,14 @@
+{
+  "tabs": {
+    "doc": "Documentation on the topic view.",
+    "network_plot": "Network diagram of the returned data.",
+    "data_table": "Tabular format of the returned data.",
+    "query": "How to programmatically access the topic data."
+  },
+  "query": {
+    "cypher_diagram": "Diagram illustrating the sub-graph structure of the returned data.",
+    "cypher_query": "The underlying Neo4j Cypher query to request data from the EpiGraphDB graph database.",
+    "api_call": "How the data showcased can be access via an API query, via cURL, Python requests, or the epigraphdb R package.",
+    "preview": "Preview of the returned data in JSON format."
+  }
+}

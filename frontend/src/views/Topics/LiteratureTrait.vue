@@ -61,14 +61,19 @@
       <b-tabs content-class="mt-3">
         <b-tab :active="resInit === 0 ? true : false">
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'info-circle']" /> Documentation
+            <span v-b-tooltip.hover :title="tooltipDoc.tabs.doc"
+              ><font-awesome-icon :icon="['fas', 'info-circle']" />
+              Documentation</span
+            >
           </template>
           <vue-markdown>{{ infoText }}</vue-markdown>
         </b-tab>
         <b-tab :active="resInit !== 0 ? true : false">
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'project-diagram']" /> Network
-            plot
+            <span v-b-tooltip.hover :title="tooltipDoc.tabs.network_plot"
+              ><font-awesome-icon :icon="['fas', 'project-diagram']" /> Network
+              plot</span
+            >
           </template>
           <NetworkPlot
             :url="urlNetworkPlot"
@@ -79,7 +84,9 @@
         </b-tab>
         <b-tab>
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'table']" /> Data table
+            <span v-b-tooltip.hover :title="tooltipDoc.tabs.data_table"
+              ><font-awesome-icon :icon="['fas', 'table']" /> Data table</span
+            >
           </template>
           <Table
             v-if="resQueryData"
@@ -90,7 +97,9 @@
         </b-tab>
         <b-tab lazy>
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'code']" /> Query
+            <span v-b-tooltip.hover :title="tooltipDoc.tabs.query"
+              ><font-awesome-icon :icon="['fas', 'code']" /> Query</span
+            >
           </template>
           <Query
             :query-data="resQueryData"
@@ -128,6 +137,7 @@ import _ from "underscore";
 
 import info from "@/assets/docs/literature-trait.md";
 import { axiosErrorMessage } from "@/funcs/axios-error-message.js";
+import tooltips from "@/assets/docs/hover-tooltips";
 
 import Alert from "@/components/Utils/Alert.vue";
 
@@ -159,6 +169,7 @@ export default {
     Query
   },
   data: () => ({
+    tooltipDoc: tooltips,
     // queries and candidates
     sizeLimitDefault: 50,
     trait: null,
