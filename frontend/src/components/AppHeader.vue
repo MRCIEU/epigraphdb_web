@@ -22,6 +22,41 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
+          <b-nav-item-dropdown no-caret>
+            <template slot="button-content">
+              <b-button variant="link" class="text-decoration-none">
+                Getting started
+              </b-button>
+            </template>
+            <b-dropdown-item target="_blank" href="#">
+              <span
+                v-b-tooltip.hover
+                title="Access EpiGraphDB functionalities using Python"
+                ><font-awesome-icon :icon="['fab', 'python']" /> Jupyter
+                notebook demo</span
+              >
+            </b-dropdown-item>
+            <b-dropdown-item target="_blank" href="#">
+              <span
+                v-b-tooltip.hover
+                title="Access EpiGraphDB functionalities using R package"
+                ><font-awesome-icon :icon="['fab', 'r-project']" /> R package
+                demo</span
+              >
+            </b-dropdown-item>
+            <b-dropdown-item
+              target="_blank"
+              href="https://docs.epigraphdb.org/web-ui"
+            >
+              <span
+                v-b-tooltip.hover
+                title="Introduction to the EpiGraphDB Web UI"
+                ><font-awesome-icon :icon="['fas', 'project-diagram']" /> Web
+                UI</span
+              >
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+
           <b-nav-item
             class="my-2 mr-sm-2"
             target="_blank"
@@ -130,12 +165,24 @@ import {
   faHome,
   faProjectDiagram
 } from "@fortawesome/free-solid-svg-icons";
-import { faRProject, faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+  faPython,
+  faRProject,
+  faGithub
+} from "@fortawesome/free-brands-svg-icons";
 
 import GlobalSearch from "@/components/GlobalSearch";
 import AppSidebar from "@/components/AppSidebar";
 
-library.add(faBook, faTerminal, faRProject, faHome, faGithub, faProjectDiagram);
+library.add(
+  faBook,
+  faTerminal,
+  faRProject,
+  faHome,
+  faGithub,
+  faProjectDiagram,
+  faPython
+);
 
 export default {
   name: "AppHeader",
