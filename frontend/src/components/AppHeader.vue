@@ -22,41 +22,6 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item-dropdown no-caret>
-            <template slot="button-content">
-              <b-button variant="link" class="text-decoration-none">
-                Getting started
-              </b-button>
-            </template>
-            <b-dropdown-item target="_blank" href="#">
-              <span
-                v-b-tooltip.hover
-                title="Access EpiGraphDB functionalities using Python"
-                ><font-awesome-icon :icon="['fab', 'python']" /> Jupyter
-                notebook demo</span
-              >
-            </b-dropdown-item>
-            <b-dropdown-item target="_blank" href="#">
-              <span
-                v-b-tooltip.hover
-                title="Access EpiGraphDB functionalities using R package"
-                ><font-awesome-icon :icon="['fab', 'r-project']" /> R package
-                demo</span
-              >
-            </b-dropdown-item>
-            <b-dropdown-item
-              target="_blank"
-              href="https://docs.epigraphdb.org/web-ui"
-            >
-              <span
-                v-b-tooltip.hover
-                title="Introduction to the EpiGraphDB Web UI"
-                ><font-awesome-icon :icon="['fas', 'project-diagram']" /> Web
-                UI</span
-              >
-            </b-dropdown-item>
-          </b-nav-item-dropdown>
-
           <b-nav-item
             class="my-2 mr-sm-2"
             target="_blank"
@@ -71,21 +36,8 @@
           >
             API
           </b-nav-item>
-          <b-nav-item
-            class="my-2 mr-sm-2"
-            target="_blank"
-            href="https://mrcieu.github.io/epigraphdb-r"
-          >
-            <font-awesome-icon :icon="['fab', 'r-project']" />
-          </b-nav-item>
-          <b-nav-item
-            class="my-2 mr-sm-2"
-            target="_blank"
-            href="https://github.com/MRCIEU/epigraphdb"
-          >
-            <font-awesome-icon :icon="['fab', 'github']" />
-          </b-nav-item>
-          <b-nav-item-dropdown text="Platform" class="my-2 mr-sm-2">
+
+          <b-nav-item-dropdown text="Platform" class="my-2" no-caret>
             <b-dropdown-item target="_blank" href="https://docs.epigraphdb.org">
               <font-awesome-icon :icon="['fas', 'book']" />
               Docs
@@ -116,6 +68,39 @@
             <b-dropdown-item target="_blank" href="http://biocompute.org.uk">
               <font-awesome-icon :icon="['fas', 'home']" />
               IEU DMER
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+
+          <b-nav-item-dropdown no-caret class="my-2">
+            <template slot="button-content">
+              <span class="text-info">Getting started</span>
+            </template>
+            <b-dropdown-item target="_blank" href="#">
+              <span
+                v-b-tooltip.hover
+                title="Access EpiGraphDB functionalities using Python"
+                ><font-awesome-icon :icon="['fab', 'python']" /> Jupyter
+                notebook demo</span
+              >
+            </b-dropdown-item>
+            <b-dropdown-item target="_blank" href="#">
+              <span
+                v-b-tooltip.hover
+                title="Access EpiGraphDB functionalities using R package"
+                ><font-awesome-icon :icon="['fab', 'r-project']" /> R package
+                demo</span
+              >
+            </b-dropdown-item>
+            <b-dropdown-item
+              target="_blank"
+              href="https://docs.epigraphdb.org/web-ui"
+            >
+              <span
+                v-b-tooltip.hover
+                title="Introduction to the EpiGraphDB Web UI"
+                ><font-awesome-icon :icon="['fas', 'project-diagram']" /> Web
+                UI</span
+              >
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
