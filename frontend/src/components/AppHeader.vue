@@ -93,7 +93,7 @@
             </b-dropdown-item>
             <b-dropdown-item
               target="_blank"
-              href="https://docs.epigraphdb.org/web-ui"
+              href="https://docs.epigraphdb.org/web-ui/"
             >
               <span
                 v-b-tooltip.hover
