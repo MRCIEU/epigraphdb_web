@@ -11,6 +11,8 @@
 
       <b-button
         v-b-toggle.app-sidebar
+        v-b-tooltip.v-primary.hover
+        title="Sidebar toggle of the Web UI"
         variant="link"
         class="text-decoration-none"
         >Web UI</b-button
@@ -24,6 +26,8 @@
         <b-navbar-nav>
           <b-nav-item
             class="my-2 mr-sm-2"
+            v-b-tooltip.v-primary.hover
+            title="Visit the platform documentation"
             target="_blank"
             href="https://docs.epigraphdb.org"
           >
@@ -31,13 +35,21 @@
           </b-nav-item>
           <b-nav-item
             class="my-2 mr-sm-2"
+            v-b-tooltip.v-primary.hover
+            title="Visit the Swagger interface of the API"
             target="_blank"
             href="https://api.epigraphdb.org"
           >
             API
           </b-nav-item>
 
-          <b-nav-item-dropdown text="Platform" class="my-2" no-caret>
+          <b-nav-item-dropdown
+            v-b-tooltip.v-primary.hover
+            title="Major components of the EpiGraphDB platform"
+            text="Platform"
+            class="my-2"
+            no-caret
+          >
             <b-dropdown-item target="_blank" href="https://docs.epigraphdb.org">
               <font-awesome-icon :icon="['fas', 'book']" />
               Docs
@@ -71,13 +83,18 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown no-caret class="my-2">
+          <b-nav-item-dropdown
+            v-b-tooltip.v-primary.hover
+            title="Getting started with EpiGraphDB"
+            no-caret
+            class="my-2"
+          >
             <template slot="button-content">
               <span class="text-info">Getting started</span>
             </template>
             <b-dropdown-item target="_blank" href="#">
               <span
-                v-b-tooltip.hover
+                v-b-tooltip.v-secondary.hover
                 title="Access EpiGraphDB functionalities using Python"
                 ><font-awesome-icon :icon="['fab', 'python']" /> Jupyter
                 notebook demo</span
@@ -85,7 +102,7 @@
             </b-dropdown-item>
             <b-dropdown-item target="_blank" href="#">
               <span
-                v-b-tooltip.hover
+                v-b-tooltip.v-secondary.hover
                 title="Access EpiGraphDB functionalities using R package"
                 ><font-awesome-icon :icon="['fab', 'r-project']" /> R package
                 demo</span
@@ -96,7 +113,7 @@
               href="https://docs.epigraphdb.org/web-ui/"
             >
               <span
-                v-b-tooltip.hover
+                v-b-tooltip.v-secondary.hover
                 title="Introduction to the EpiGraphDB Web UI"
                 ><font-awesome-icon :icon="['fas', 'project-diagram']" /> Web
                 UI</span
