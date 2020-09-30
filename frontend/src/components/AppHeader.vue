@@ -92,15 +92,18 @@
             <template slot="button-content">
               <span class="text-info">Getting started</span>
             </template>
-            <b-dropdown-item target="_blank" href="#">
+            <b-dropdown-item
+              target="_blank"
+              :href="gettingStartedLinks.notebook"
+            >
               <span
                 v-b-tooltip.v-secondary.hover
-                title="Access EpiGraphDB functionalities using Python"
+                title="Access EpiGraphDB functionalities using the API"
                 ><font-awesome-icon :icon="['fab', 'python']" /> Jupyter
                 notebook demo</span
               >
             </b-dropdown-item>
-            <b-dropdown-item target="_blank" href="#">
+            <b-dropdown-item target="_blank" :href="gettingStartedLinks.r_pkg">
               <span
                 v-b-tooltip.v-secondary.hover
                 title="Access EpiGraphDB functionalities using R package"
@@ -108,10 +111,7 @@
                 demo</span
               >
             </b-dropdown-item>
-            <b-dropdown-item
-              target="_blank"
-              href="https://docs.epigraphdb.org/web-ui/"
-            >
+            <b-dropdown-item target="_blank" :href="gettingStartedLinks.web_ui">
               <span
                 v-b-tooltip.v-secondary.hover
                 title="Introduction to the EpiGraphDB Web UI"
@@ -192,7 +192,15 @@ export default {
     GlobalSearch,
     FontAwesomeIcon,
     AppSidebar
-  }
+  },
+  data: () => ({
+    gettingStartedLinks: {
+      web_ui: "https://docs.epigraphdb.org/web-ui/",
+      r_pkg:
+        "https://mrcieu.github.io/epigraphdb-r/articles/getting-started-with-epigraphdb-r.html",
+      notebook: "#"
+    }
+  })
 };
 </script>
 
