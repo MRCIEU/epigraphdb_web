@@ -198,7 +198,8 @@ export default {
       web_ui: "https://docs.epigraphdb.org/web-ui/",
       r_pkg:
         "https://mrcieu.github.io/epigraphdb-r/articles/getting-started-with-epigraphdb-r.html",
-      notebook: "#"
+      notebook:
+        "https://colab.research.google.com/github/MRCIEU/epigraphdb/blob/master/general-examples/getting-started-with-epigraphdb.ipynb"
     }
   })
 };
