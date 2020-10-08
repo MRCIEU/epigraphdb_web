@@ -213,7 +213,7 @@ export default {
           "Tests the consistency of instruments (applicable only to the results with more than one instrument).",
         // cis_acting_instrument: "exclamation-sign indicates trans-SNPs, while OK-sign stands for cis-SNPs.",
         correct_causal_direction:
-          "Tests the directionality of effect of a protein on trait given a SNP, not applicable to the MR results with p-value >10E-7.",
+          "Tests the directionality of effect of a protein on trait given a SNP, not applicable to the MR results with p-value > 1e-5.",
         instrument_associates_with_one_protein:
           "Tests the pleiotropy of instruments (counts the number of associated proteins). Caution! This column currently shows the associated proteins found in the database which excludes the Tier3-instrument only proteins and the proteins with no MR results.",
         shared_causal_variant:
