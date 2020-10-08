@@ -55,7 +55,7 @@
       <b-tab lazy title="Basic Summary">
         <div v-if="dataSimple">
           <TableSimple
-            :table-data-input="dataSimple.table_output"
+            :table-data-input="tableDataSimple"
             :download-params="downloadParamsSimple"
           />
           <b-row>
@@ -71,7 +71,7 @@
       <b-tab lazy title="MR results">
         <div v-if="dataMrres">
           <Table
-            :table-data-input="dataMrres.table_output"
+            :table-data-input="tableDataMrres"
             :download-params="downloadParamsMrres"
           />
           <b-row>
@@ -87,7 +87,7 @@
       <b-tab lazy title="Single SNP MR results">
         <div v-if="dataSglmr">
           <Table
-            :table-data-input="dataSglmr.table_output"
+            :table-data-input="tableDataSglmr"
             :download-params="downloadParamsSglmr"
           />
           <b-row>
@@ -103,7 +103,7 @@
       <b-tab lazy title="SNP information">
         <div v-if="dataInst">
           <Table
-            :table-data-input="dataInst.table_output"
+            :table-data-input="tableDataInst"
             :download-params="downloadParamsInst"
           />
           <b-row>
@@ -119,7 +119,7 @@
       <b-tab lazy title="Sensitivity analysis">
         <div v-if="dataSense">
           <Table
-            :table-data-input="dataSense.table_output"
+            :table-data-input="tableDataSense"
             :download-params="downloadParamsSense"
           />
           <b-row>
@@ -153,6 +153,7 @@ import MRResultsDoc from "@/components/PQTL/MRResultsDoc.vue";
 import SingleSNPMRDoc from "@/components/PQTL/SingleSNPMRDoc.vue";
 import SNPInfoDoc from "@/components/PQTL/SNPInfoDoc.vue";
 import SensitivityAnalysisDoc from "@/components/PQTL/SensitivityAnalysisDoc.vue";
+import { fields } from "@/components/PQTL/pqtl-table-headers.js";
 
 const config = require("@/config");
 
@@ -183,6 +184,7 @@ export default {
       dataSglmr: null,
       dataInst: null,
       dataSense: null,
+      tableFields: fields,
       urlMaster: `${config.web_backend_url}/pqtl`
     };
   },
@@ -230,6 +232,46 @@ export default {
         query: this.query,
         method: "sense"
       };
+    },
+    tableDataSimple() {
+      return this.dataSimple
+        ? {
+            table_fields: this.tableFields.simple,
+            table_items: this.dataSimple.table_output.table_items
+          }
+        : null;
+    },
+    tableDataMrres() {
+      return this.dataMrres
+        ? {
+            table_fields: this.tableFields.mrres,
+            table_items: this.dataMrres.table_output.table_items
+          }
+        : null;
+    },
+    tableDataSglmr() {
+      return this.dataSglmr
+        ? {
+            table_fields: this.tableFields.sglmr,
+            table_items: this.dataSglmr.table_output.table_items
+          }
+        : null;
+    },
+    tableDataInst() {
+      return this.dataInst
+        ? {
+            table_fields: this.tableFields.inst,
+            table_items: this.dataInst.table_output.table_items
+          }
+        : null;
+    },
+    tableDataSense() {
+      return this.dataSense
+        ? {
+            table_fields: this.tableFields.sense,
+            table_items: this.dataSense.table_output.table_items
+          }
+        : null;
     }
   },
   methods: {

@@ -7,7 +7,6 @@ from .pqtl_utils import (
     calc_api_flag_pleio,
     calc_flag_hetero,
     num_to_round,
-    num_to_science,
     query_api_pqtl_cached,
 )
 
@@ -155,7 +154,7 @@ def pqtl_main_simple(query, pvalue_thr, search_flag, overwrite: bool = False):
                 row["expID"],
                 row["outID"],
                 row["outID_mrbase"],
-                num_to_science(row["pvalue"]),
+                row["pvalue"],
                 consist_flag,
                 row["rsID"],
                 row["trans_cis"],
@@ -206,7 +205,7 @@ def pqtl_main_mrres(query, pvalue_thr, search_flag, overwrite: bool = False):
                 row["method"],
                 num_to_round(row["beta"], 4),
                 num_to_round(row["se"], 4),
-                num_to_science(row["pvalue"]),
+                row["pvalue"],
             ]
         )
 
@@ -249,7 +248,7 @@ def pqtl_main_sglmr(query, pvalue_thr, search_flag, overwrite: bool = False):
                 row["tier"],
                 num_to_round(row["beta_sgl"], 4),
                 num_to_round(row["se_slg"], 4),
-                num_to_science(row["pvalue_sgl"]),
+                row["pvalue_sgl"],
                 row["trans_cis"],
             ]
         )
@@ -346,12 +345,12 @@ def pqtl_main_sense(query, pvalue_thr, search_flag, overwrite: bool = False):
                 row["outID_mrbase"],
                 row["tier"],
                 row["direction"],
-                num_to_science(row["steiger_pvalue"]),
+                row["steiger_pvalue"],
                 ptlist,
-                num_to_science(row["coloc_prob"]),
+                row["coloc_prob"],
                 row["outcome_snp"],
-                num_to_science(row["ld_check"]),
-                num_to_science(row["q_pvalue"]),
+                row["ld_check"],
+                row["q_pvalue"],
             ]
         )
 

@@ -1,3 +1,5 @@
+import copy
+
 import numpy as np
 
 COLOC_THR = 0.8
@@ -19,7 +21,8 @@ def pqtl_network_plot(data, method, search_flag):
         pvalue_thr = PVALUE_THR_PROTEINS
     else:
         pvalue_thr = PVALUE_THR_NON_PROTEINS
-    for item in data["results"]:
+    plot_data = copy.deepcopy(data)
+    for item in plot_data["results"]:
         res, nodes = pqtl_network_plot_init(
             item=item,
             res=res,

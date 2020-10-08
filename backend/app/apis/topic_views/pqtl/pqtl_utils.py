@@ -101,20 +101,11 @@ def calc_api_flag_pleio(rsid: str, prflag: str) -> str:
     return ptcount
 
 
-def num_to_science(v: Optional[float]) -> Optional[str]:
-    """Presents the numerical values in a scientific format
-    """
-    if v is not None:
-        return str("{:0.3e}".format(v))
-    else:
-        return v
-
-
-def num_to_round(v: Optional[float], dec: int) -> Optional[str]:
+def num_to_round(v: Optional[float], dec: int) -> Optional[float]:
     """Presents the numerical values in a rounded decimal format
     """
     if v is not None:
-        return str(round(v, dec))
+        return round(v, dec)
     else:
         return v
 
