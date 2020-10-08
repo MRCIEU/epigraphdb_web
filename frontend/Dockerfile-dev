@@ -11,5 +11,7 @@ RUN npm install
 ENV VUE_APP_WEB_BACKEND_URL=${VUE_APP_WEB_BACKEND_URL}
 ENV VUE_APP_DEBUG=true
 ENV VUE_APP_GTAG_ID=${VUE_APP_GTAG_ID}
+# Fix watch file size limit on remote server
+ENV CHOKIDAR_USEPOLLING=1
 ENV PATH /app/node_modules/.bin:$PATH
 CMD ["npm", "run", "serve"]
