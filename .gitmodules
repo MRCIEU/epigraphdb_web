@@ -1,3 +1,3 @@
 [submodule "backend/epigraphdb_common_utils"]
 	path = backend/epigraphdb_common_utils
-	url = git@ieugit-scmv-d0.epi.bris.ac.uk:epigraphdb/epigraphdb_common_utils.git
+	url = https://github.com/MRCIEU/epigraphdb_common_utils
