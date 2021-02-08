@@ -217,7 +217,7 @@ export default {
       { text: "Outcome phenotype", value: "gwas" },
       { text: "Tissue", value: "tissue" }
     ],
-    pvalBase: "1e-5",
+    pvalBase: "1e-3",
     pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
     tissueQuery: null,
     geneQuery: null,

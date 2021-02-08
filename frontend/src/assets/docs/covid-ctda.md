@@ -19,5 +19,6 @@ The volcano plot shows the searched target-disease associations in a Z score sca
 
 
 - [Search by gwas: (ieu-a-7: Coronary heart disease)](/covid-19/ctda/?gwas=7)
+- [Search by gwas: (covid19-severity: COVID19 severity)](/covid-19/ctda/?gwas=covid19-severity)
 - [Search by gene: (ENSG00000102967: DHODH)](/covid-19/ctda/?gene=ENSG00000102967)
 - [Search by tissue: (Lung)](/covid-19/ctda/?tissue=Lung)
