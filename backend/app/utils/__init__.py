@@ -14,7 +14,7 @@ unittest_headers = {"client-type": "pytest", "ci": "true"}
 api_request_headers = {"client-type": "webui", "ci": "false"}
 
 
-def bin_rescale(x: np.array, n_bins, min=0.0, max=1.0):
+def bin_rescale(x: np.array, n_bins, min=0.0, max=1.0):  # type: ignore
     """For a numeric x, convert them to their bins,
     then rescale them.
     """

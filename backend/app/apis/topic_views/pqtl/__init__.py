@@ -22,7 +22,7 @@ router = APIRouter()
 
 @router.get("/pqtl", response_model=PQTLResponse)
 def get_pqtl(query: str, method: PQTLMethod, overwrite: bool = False):
-    log_args(api=f"/pqtl", kwargs=locals())
+    log_args(api="/pqtl", kwargs=locals())
     exposure_proteins = get_pqtl_list(search_type=PQTLSearchType.exposures)
     outcome_traits = get_pqtl_list(search_type=PQTLSearchType.outcomes)
     if query.upper() in exposure_proteins:
@@ -73,7 +73,7 @@ def get_pqtl_list_table(search_type: PQTLSearchType, overwrite: bool = False):
 
 @router.get("/pqtl/list/combined", response_model=List[str])
 def get_pqtl_list_combined(overwrite: bool = False) -> List[str]:
-    log_args(api=f"/pqtl/list/combined", kwargs=locals())
+    log_args(api="/pqtl/list/combined", kwargs=locals())
     exposure_proteins = get_pqtl_list(
         search_type=PQTLSearchType.exposures, overwrite=overwrite
     )
@@ -86,7 +86,7 @@ def get_pqtl_list_combined(overwrite: bool = False) -> List[str]:
 
 @router.get("/pqtl/download")
 def get_pqtl_download(query: str, method: PQTLMethod):
-    log_args(api=f"/pqtl/download", kwargs=locals())
+    log_args(api="/pqtl/download", kwargs=locals())
     pqtl_res = get_pqtl(query=query, method=method)
     table_df = pd.DataFrame.from_records(
         pqtl_res["table_output"]["table_items"]
