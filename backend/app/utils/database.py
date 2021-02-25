@@ -1,22 +1,44 @@
 from typing import Any, Dict
 
 from elasticsearch import Elasticsearch
+from loguru import logger
 from pymongo import MongoClient
 from pymongo.collection import Collection
+from pymongo.errors import ServerSelectionTimeoutError
 
 from app.settings import es_host, es_port, mongo_host, mongo_passwd, mongo_port
 
 mongo_client = MongoClient(
     "mongodb://epigraphdb:{passwd}@{host}:{port}".format(
         passwd=mongo_passwd, host=mongo_host, port=mongo_port
-    )
+    ),
+    serverSelectionTimeoutMS=10,
 )
 
 mongo_epigraphdb_web = mongo_client["epigraphdb_web"]
 
 es_client = Elasticsearch(
-    "http://{host}:{port}".format(host=es_host, port=es_port)
+    "http://{host}:{port}".format(host=es_host, port=es_port),
+    verify_certs=True,
 )
+
+
+def mongo_client_connected() -> bool:
+    try:
+        mongo_client.server_info()
+        return True
+    except ServerSelectionTimeoutError as e:
+        logger.error(e)
+        return False
+
+
+def es_client_connected() -> bool:
+    try:
+        es_client.ping()
+        return True
+    except Exception as e:
+        logger.error(e)
+        return False
 
 
 def mongo_doc_exist(collection: Collection, doc_name: str) -> bool:
