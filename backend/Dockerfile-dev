@@ -4,7 +4,9 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 RUN python -m pip install --upgrade pip
 
 COPY ./poetry.lock ./pyproject.toml ./
-RUN pip install poetry
+# poetry and its dependencies
+  # TODO: why poetry fails to install its dependencies??
+RUN pip install poetry appdirs
 RUN poetry config virtualenvs.create false \
   && poetry install
 
