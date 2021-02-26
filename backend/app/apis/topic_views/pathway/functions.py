@@ -49,7 +49,7 @@ table_col_configs = {
     "variant.name": NodeCol("Variant", "name", VARIANT_DESC),
     "gene.name": NodeCol("Gene", "name", GENE_DESC),
     "protein.uniprot_id": NodeCol("Protein", "uniprot_id", PROTEIN_DESC),
-    "pathway.reactome_id": NodeCol("Pathway", "reactome_id", PATHWAY_DESC),
+    "pathway.id": NodeCol("Pathway", "id", PATHWAY_DESC),
     "pathway.name": NodeCol("Pathway", "name", PATHWAY_DESC),
 }
 

@@ -14,7 +14,7 @@ cardiovascular_outcomes = GalleryGraph(
     query="""
         MATCH
             (disease_gwas:Gwas)
-            <-[mr:MR]-(risk_factor_gwas:Gwas)-[gwas_to_variant:GWAS_TO_VARIANT]->
+            <-[mr:MR_EVE_MR]-(risk_factor_gwas:Gwas)-[gwas_to_variant:GWAS_TO_VARIANT]->
             (variant:Variant)-[:VARIANT_TO_GENE]->(gene:Gene)
             <-[:CPIC|:OPENTARGETS_DRUG_TO_TARGET]-(drug:Drug)
         WHERE

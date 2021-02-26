@@ -15,9 +15,10 @@ api_endpoint = "drugs/risk-factors"
 TRAIT_DESC = "Disease {Gwas} trait.".format(Gwas=data_table_node_link("Gwas"))
 ASSOC_TRAIT_DESC = """
 Risk factor {Gwas} trait that is identified to
-have {MR} evidence to the disease trait.
+have {MR_EVE_MR} evidence to the disease trait.
 """.format(
-    Gwas=data_table_node_link("Gwas"), MR=data_table_rel_link("MR")
+    Gwas=data_table_node_link("Gwas"),
+    MR_EVE_MR=data_table_rel_link("MR_EVE_MR"),
 )
 DRUG_DESC = """
 {Drug} that is identified to be associated with the disease {Gwas} trait
@@ -27,10 +28,11 @@ via the path as shown in the network plot.
 )
 GENE_DESC = "Associated {Gene}".format(Gene=data_table_node_link("Gene"))
 MR_DESC = """
-Mendelian randomization ({MR}) evidence
+Mendelian randomization ({MR_EVE_MR}) evidence
 from the risk factor {Gwas} to the disease {Gwas}.
 """.format(
-    MR=data_table_rel_link("MR"), Gwas=data_table_node_link("Gwas")
+    MR_EVE_MR=data_table_rel_link("MR_EVE_MR"),
+    Gwas=data_table_node_link("Gwas"),
 )
 VARIANT_DESC = "Associated {Variant}".format(
     Variant=data_table_node_link("Variant")
@@ -43,12 +45,12 @@ table_col_configs = {
     "drug.label": NodeCol("Drug", "label", DRUG_DESC),
     "variant.name": NodeCol("Variant", "name", VARIANT_DESC),
     "gene.name": NodeCol("Gene", "name", GENE_DESC),
-    "mr.b": RelCol("MR", "b", MR_DESC, rounding=True),
-    "mr.se": RelCol("MR", "se", MR_DESC, rounding=True),
-    "mr.pval": RelCol("MR", "pval", MR_DESC),
-    "mr.method": RelCol("MR", "method", MR_DESC),
-    "mr.moescore": RelCol("MR", "moescore", MR_DESC),
-    "mr.selection": RelCol("MR", "selection", MR_DESC),
+    "mr.b": RelCol("MR_EVE_MR", "b", MR_DESC, rounding=True),
+    "mr.se": RelCol("MR_EVE_MR", "se", MR_DESC, rounding=True),
+    "mr.pval": RelCol("MR_EVE_MR", "pval", MR_DESC),
+    "mr.method": RelCol("MR_EVE_MR", "method", MR_DESC),
+    "mr.moescore": RelCol("MR_EVE_MR", "moescore", MR_DESC),
+    "mr.selection": RelCol("MR_EVE_MR", "selection", MR_DESC),
 }
 
 
@@ -78,7 +80,7 @@ def cypher_diagram(trait: str, pval_threshold: float):
         DiagramEdge(
             from_id=2,
             to_id=1,
-            meta_rel="MR",
+            meta_rel="MR_EVE_MR",
             sub_label=f"\npval < {pval_threshold}"
             if pval_threshold is not None
             else "",

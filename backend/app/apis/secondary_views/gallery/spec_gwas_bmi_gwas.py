@@ -11,7 +11,7 @@ gwas_bmi_gwas = GalleryGraph(
     ),
     query="""
         MATCH
-            (gwas:Gwas {id: "ieu-a-2"})-[mr:MR]->(assoc_gwas:Gwas)
+            (gwas:Gwas {id: "ieu-a-2"})-[mr:MR_EVE_MR]->(assoc_gwas:Gwas)
         WHERE
             mr.pval < 1e-05 AND
             assoc_gwas.trait <> gwas.trait
@@ -62,7 +62,7 @@ gwas_bmi_gwas = GalleryGraph(
                 from_col="gwas.id",
                 to_col="assoc_gwas.id",
                 from_meta_node="Gwas",
-                meta_rel="MR",
+                meta_rel="MR_EVE_MR",
                 cols=["gwas.id", "assoc_gwas.id", "mr.pval"],
             ),
             # prs

@@ -97,7 +97,7 @@ def cypher_diagram(
         DiagramEdge(
             from_id=1,
             to_id=2,
-            meta_rel="MR",
+            meta_rel="MR_EVE_MR",
             sub_label=f"p < {pval_threshold}",
         )
     ]

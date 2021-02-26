@@ -17,27 +17,23 @@ TRAIT_DESC = "{Gwas} trait of interests.".format(
 ASSOC_TRAIT_DESC = "Associated {Gwas} trait.".format(
     Gwas=data_table_node_link("Gwas")
 )
-GC_DESC = "Genetic correlation ({BN_GEN_COR}) between the two {Gwas} traits.".format(
-    Gwas=data_table_node_link("Gwas"),
-    BN_GEN_COR=data_table_rel_link("BN_GEN_COR"),
+GC_DESC = "Genetic correlation ({GEN_COR}) between the two {Gwas} traits.".format(
+    Gwas=data_table_node_link("Gwas"), GEN_COR=data_table_rel_link("GEN_COR")
 )
 table_col_configs = {
     "trait.id": NodeCol("Gwas", "id", TRAIT_DESC),
     "trait.trait": NodeCol("Gwas", "trait", TRAIT_DESC),
     "assoc_trait.id": NodeCol("Gwas", "id", ASSOC_TRAIT_DESC),
     "assoc_trait.trait": NodeCol("Gwas", "trait", ASSOC_TRAIT_DESC),
-    "gc.rg": RelCol("BN_GEN_COR", "rg", GC_DESC, rounding=True),
-    "gc.z": RelCol("BN_GEN_COR", "z", GC_DESC, rounding=True),
-    "gc.se": RelCol("BN_GEN_COR", "se", GC_DESC, rounding=True),
-    "gc.p": RelCol("BN_GEN_COR", "p", GC_DESC),
-    "gc.h2_int": RelCol("BN_GEN_COR", "h2_int", GC_DESC, rounding=True),
-    "gc.h2_int_se": RelCol("BN_GEN_COR", "h2_int_se", GC_DESC, rounding=True),
-    "gc.h2_obs": RelCol("BN_GEN_COR", "h2_obs", GC_DESC),
-    "gc.h2_obs_se": RelCol("BN_GEN_COR", "h2_obs_se", GC_DESC, rounding=True),
-    "gc.gcov_int": RelCol("BN_GEN_COR", "gcov_int", GC_DESC, rounding=True),
-    "gc.gcov_int_se": RelCol(
-        "BN_GEN_COR", "gcov_int_se", GC_DESC, rounding=True
-    ),
+    "gc.rg": RelCol("GEN_COR", "rg", GC_DESC, rounding=True),
+    "gc.rg_SE": RelCol("GEN_COR", "rg_SE", GC_DESC, rounding=True),
+    "gc.Z": RelCol("GEN_COR", "Z", GC_DESC, rounding=True),
+    "gc.p": RelCol("GEN_COR", "p", GC_DESC),
+    "gc.rg_intercept": RelCol("GEN_COR", "rg_intercept", GC_DESC),
+    "gc.rg_intercept_SE": RelCol("GEN_COR", "rg_intercept_SE", GC_DESC),
+    "gc.h2": RelCol("GEN_COR", "h2", GC_DESC),
+    "gc.h2_SE": RelCol("GEN_COR", "h2_SE", GC_DESC),
+    "gc.h2_intercept": RelCol("GEN_COR", "h2_intercept", GC_DESC),
 }
 
 
@@ -64,7 +60,7 @@ def cypher_diagram(trait: str, cor_coef_threshold: float) -> str:
         DiagramEdge(
             from_id=1,
             to_id=2,
-            meta_rel="BN_GEN_COR",
+            meta_rel="GEN_COR",
             sub_label=f"abs(gc.rg) > {cor_coef_threshold}",
             arrows=False,
         )

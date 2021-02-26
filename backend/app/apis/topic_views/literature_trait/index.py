@@ -20,7 +20,7 @@ ac_configs = {
         "query_fn": query_ac_name,
         "query": """
             MATCH
-                (triple:SemmedTriple)
+                (triple:LiteratureTriple)
             RETURN DISTINCT
                 triple.predicate AS name
             """.replace(

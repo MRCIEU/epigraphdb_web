@@ -23,9 +23,9 @@ confounder_bmi_chd = GalleryGraph(
     ),
     query="""
         MATCH
-            (cf:Gwas)-[r1:MR]->
-            (exposure:Gwas {id: "ieu-a-95"}) -[r2:MR]->
-            (outcome:Gwas {id: "ieu-a-7"}) <-[r3:MR]-(cf:Gwas)
+            (cf:Gwas)-[r1:MR_EVE_MR]->
+            (exposure:Gwas {id: "ieu-a-95"}) -[r2:MR_EVE_MR]->
+            (outcome:Gwas {id: "ieu-a-7"}) <-[r3:MR_EVE_MR]-(cf:Gwas)
         WHERE
             r1.pval < 1e-05 AND r2.pval < 1e-05 AND r3.pval < 1e-05
             AND cf.id <> exposure.id AND cf.id <> outcome.id

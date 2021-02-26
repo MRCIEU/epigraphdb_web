@@ -71,14 +71,14 @@
   },
   {
     "color": "#1565c0",
-    "from": "(SemmedTriple)",
+    "from": "(LiteratureTriple)",
     "to": "SemMedDB",
     "weight": 6.535108080611391,
     "count": 3428531
   },
   {
     "color": "#1e88e5",
-    "from": "(SemmedTerm)",
+    "from": "(LiteratureTerm)",
     "to": "SemMedDB",
     "weight": 5.01689551245103,
     "count": 103967
@@ -357,7 +357,7 @@
   {
     "color": "#1565c0",
     "from": "MELODI",
-    "to": "[GWAS_SEM]",
+    "to": "[GWAS_TO_LITERATURE_TRIPLE]",
     "weight": 6.95784759082992,
     "count": 9075020
   },
@@ -378,7 +378,7 @@
   {
     "color": "#1e88e5",
     "from": "BenNeale",
-    "to": "[BN_GEN_COR]",
+    "to": "[GEN_COR]",
     "weight": 5.956567951309167,
     "count": 904832
   },

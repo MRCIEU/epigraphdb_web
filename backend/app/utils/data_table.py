@@ -54,7 +54,7 @@ class EntityPropertyCol:
         e.g. providing poppup descriptions, declaring rounding, etc.
 
         - entity_type: "node", "rel"
-        - meta_entity: Name of the meta entity, e.g. "Gwas", "MR", etc
+        - meta_entity: Name of the meta entity, e.g. "Gwas", "MR_EVE_MR", etc
         - property: Name of the entity property, "b", "id", "trait"
         - decoration_desc: Any additional descriptions (in markdown)
         - rouding: If this column needs to be rounded

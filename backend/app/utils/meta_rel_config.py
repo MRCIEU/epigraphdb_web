@@ -5,7 +5,7 @@ from . import color_palette
 #       this is only useful when there are multiple meta rels
 #       from a source node
 meta_rel_dict = {
-    "MR": {
+    "MR_EVE_MR": {
         "color": color_palette["red"]["a100"],
         "arrows": True,
         "dashes": False,

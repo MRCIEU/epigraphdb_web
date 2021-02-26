@@ -17,18 +17,18 @@ api_endpoint = "literature/gwas"
 GWAS_DESC = "{Gwas} trait of interest.".format(
     Gwas=data_table_node_link("Gwas")
 )
-GS_DESC = "Association between {Gwas} and {SemmedTriple} via {GWAS_SEM}.".format(
+GS_DESC = "Association between {Gwas} and {LiteratureTriple} via {GWAS_TO_LITERATURE_TRIPLE}.".format(
     Gwas=data_table_node_link("Gwas"),
-    SemmedTriple=data_table_node_link("SemmedTriple"),
-    GWAS_SEM=data_table_rel_link("GWAS_SEM"),
+    LiteratureTriple=data_table_node_link("LiteratureTriple"),
+    GWAS_TO_LITERATURE_TRIPLE=data_table_rel_link("GWAS_TO_LITERATURE_TRIPLE"),
 )
 TRIPLE_DESC = """
-The SemMedDB knowledge triplet {SemmedTriple} that links the {Gwas} trait
-with a SemMedDB term {SemmedTerm}.
+The SemMedDB knowledge triplet {LiteratureTriple} that links the {Gwas} trait
+with a SemMedDB term {LiteratureTerm}.
 """.format(
-    SemmedTriple=data_table_node_link("SemmedTriple"),
+    LiteratureTriple=data_table_node_link("LiteratureTriple"),
     Gwas=data_table_node_link("Gwas"),
-    SemmedTerm=data_table_node_link("SemmedTerm"),
+    LiteratureTerm=data_table_node_link("LiteratureTerm"),
 )
 LIT_DESC = """
 {Literature} evidence regarding the {Gwas} trait as a PubMed article.
@@ -39,14 +39,13 @@ LIT_DESC = """
 table_col_configs = {
     "gwas.id": NodeCol("Gwas", "id", GWAS_DESC),
     "gwas.trait": NodeCol("Gwas", "trait", GWAS_DESC),
-    "gs.pval": RelCol("GWAS_SEM", "pval", GS_DESC),
-    "gs.localCount": RelCol("GWAS_SEM", "localCount", GS_DESC),
-    "triple.id": NodeCol("SemmedTriple", "id", TRIPLE_DESC),
-    "triple.subject_name": NodeCol(
-        "SemmedTriple", "subject_name", TRIPLE_DESC
+    "gs.pval": RelCol("GWAS_TO_LITERATURE_TRIPLE", "pval", GS_DESC),
+    "gs.localCount": RelCol(
+        "GWAS_TO_LITERATURE_TRIPLE", "localCount", GS_DESC
     ),
-    "triple.object_name": NodeCol("SemmedTriple", "object_name", TRIPLE_DESC),
-    "lit.pubmed_id": NodeCol("Literature", "pubmed_id", LIT_DESC),
+    "triple.id": NodeCol("LiteratureTriple", "id", TRIPLE_DESC),
+    "triple.predicate": NodeCol("LiteratureTriple", "predicate", TRIPLE_DESC),
+    "lit.id": NodeCol("Literature", "id", LIT_DESC),
 }
 
 
@@ -84,7 +83,7 @@ def cypher_diagram(
         DiagramNode(id=id["lit"], meta_node="Literature"),
         DiagramNode(
             id=id["triple"],
-            meta_node="SemmedTriple",
+            meta_node="LiteratureTriple",
             sub_label=semmed_predicates[0]
             if semmed_predicates is not None
             else None,
@@ -92,7 +91,9 @@ def cypher_diagram(
     ]
     diagram_edges = [
         DiagramEdge(
-            from_id=id["gwas"], to_id=id["triple"], meta_rel="GWAS_SEM"
+            from_id=id["gwas"],
+            to_id=id["triple"],
+            meta_rel="GWAS_TO_LITERATURE_TRIPLE",
         ),
         DiagramEdge(
             from_id=id["gwas"],

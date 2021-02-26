@@ -40,12 +40,14 @@ def cypher_diagram(
     ]
     diagram_edges = [
         # r2
-        DiagramEdge(from_id=1, to_id=2, meta_rel="MR", sub_label=edge_label),
+        DiagramEdge(
+            from_id=1, to_id=2, meta_rel="MR_EVE_MR", sub_label=edge_label
+        ),
         # r1
         DiagramEdge(
             from_id=int(r1.at[type, "from_id"]),
             to_id=int(r1.at[type, "to_id"]),
-            meta_rel="MR",
+            meta_rel="MR_EVE_MR",
             sub_label=edge_label,
             dashes=True,
         ),
@@ -53,7 +55,7 @@ def cypher_diagram(
         DiagramEdge(
             from_id=int(r3.at[type, "from_id"]),
             to_id=int(r3.at[type, "to_id"]),
-            meta_rel="MR",
+            meta_rel="MR_EVE_MR",
             sub_label=edge_label,
             dashes=True,
         ),

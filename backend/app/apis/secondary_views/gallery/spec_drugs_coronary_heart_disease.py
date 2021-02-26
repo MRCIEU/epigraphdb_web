@@ -25,7 +25,7 @@ drugs_coronary_heart_disease = GalleryGraph(
     query="""
         MATCH
             (trait:Gwas {trait: "Coronary heart disease"})
-            <-[mr:MR]-(assoc_trait:Gwas)-[gwas_to_variant:GWAS_TO_VARIANT]->
+            <-[mr:MR_EVE_MR]-(assoc_trait:Gwas)-[gwas_to_variant:GWAS_TO_VARIANT]->
             (variant:Variant)-[:VARIANT_TO_GENE]->(gene:Gene)
             <-[:CPIC|:OPENTARGETS_DRUG_TO_TARGET]-(drug:Drug)
         WHERE

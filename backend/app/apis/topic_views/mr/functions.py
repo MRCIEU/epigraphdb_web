@@ -14,22 +14,22 @@ master_name = "mr"
 EXPOSURE_DESC = "Exposure {Gwas}.".format(Gwas=data_table_node_link("Gwas"))
 OUTCOME_DESC = "Outcome {Gwas}.".format(Gwas=data_table_node_link("Gwas"))
 MR_DESC = """
-Mendelian randomization ({MR})
+Mendelian randomization ({MR_EVE_MR})
 evidence from exposure to outcome.
 """.format(
-    MR=data_table_rel_link("MR")
+    MR_EVE_MR=data_table_rel_link("MR_EVE_MR")
 )
 table_col_configs = {
     "exposure.id": NodeCol("Gwas", "id", EXPOSURE_DESC),
     "exposure.trait": NodeCol("Gwas", "trait", EXPOSURE_DESC),
     "outcome.id": NodeCol("Gwas", "id", OUTCOME_DESC),
     "outcome.trait": NodeCol("Gwas", "trait", OUTCOME_DESC),
-    "mr.b": RelCol("MR", "b", MR_DESC, rounding=True),
-    "mr.se": RelCol("MR", "se", MR_DESC, rounding=True),
-    "mr.pval": RelCol("MR", "pval", MR_DESC),
-    "mr.method": RelCol("MR", "method", MR_DESC),
-    "mr.selection": RelCol("MR", "selection", MR_DESC),
-    "mr.moescore": RelCol("MR", "moescore", MR_DESC, rounding=True),
+    "mr.b": RelCol("MR_EVE_MR", "b", MR_DESC, rounding=True),
+    "mr.se": RelCol("MR_EVE_MR", "se", MR_DESC, rounding=True),
+    "mr.pval": RelCol("MR_EVE_MR", "pval", MR_DESC),
+    "mr.method": RelCol("MR_EVE_MR", "method", MR_DESC),
+    "mr.selection": RelCol("MR_EVE_MR", "selection", MR_DESC),
+    "mr.moescore": RelCol("MR_EVE_MR", "moescore", MR_DESC, rounding=True),
 }
 
 
@@ -72,7 +72,7 @@ def cypher_diagram(
         DiagramEdge(
             from_id=1,
             to_id=2,
-            meta_rel="MR",
+            meta_rel="MR_EVE_MR",
             sub_label=f"p < {pval_threshold}",
         )
     ]

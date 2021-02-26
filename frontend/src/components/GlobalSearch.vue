@@ -46,12 +46,11 @@ export default {
       { text: "Disease", value: "Disease", disabled: false },
       { text: "Drug", value: "Drug", disabled: false },
       { text: "Efo", value: "Efo", disabled: false },
-      { text: "Event", value: "Event", disabled: false },
       { text: "Gene", value: "Gene", disabled: false },
       { text: "Tissue", value: "Tissue", disabled: false },
       { text: "Pathway", value: "Pathway", disabled: false },
       { text: "Protein", value: "Protein", disabled: false },
-      { text: "SemmedTerm", value: "SemmedTerm", disabled: false },
+      { text: "LiteratureTerm", value: "LiteratureTerm", disabled: false },
       { text: "Variant", value: "Variant", disabled: false }
     ],
     url: `${config.web_backend_url}/search/global/node`

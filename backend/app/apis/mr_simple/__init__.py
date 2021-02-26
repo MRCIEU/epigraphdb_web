@@ -71,7 +71,7 @@ def get_mr_simple_ac_trait():
     #       or have some kind of caching.
     ac_query_trait = """
         MATCH
-            (n:Gwas)-[r:MR]-(m:Gwas)
+            (n:Gwas)-[r:MR_EVE_MR]-(m:Gwas)
         WHERE
             r.pval < 0.1
         RETURN DISTINCT

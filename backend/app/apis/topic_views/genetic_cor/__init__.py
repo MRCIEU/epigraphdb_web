@@ -15,7 +15,7 @@ router = APIRouter()
 
 ac_query_trait = """
     MATCH
-        (n:Gwas)-[gc:BN_GEN_COR]-(m:Gwas)
+        (n:Gwas)-[gc:GEN_COR]-(m:Gwas)
     WHERE
         abs(gc.rg) > 0.6
     RETURN DISTINCT

@@ -16,11 +16,11 @@ meta_node_orig = {
         "fg": "black",
         "explore": True,
     },
-    "Event": {
-        "bg": color_palette["lime"]["600"],
-        "fg": "black",
-        "explore": True,
-    },
+    # "Event": {
+    #     "bg": color_palette["lime"]["600"],
+    #     "fg": "black",
+    #     "explore": True,
+    # },
     "Gene": {
         "bg": color_palette["yellow"]["700"],
         "fg": "black",
@@ -51,12 +51,12 @@ meta_node_orig = {
         "fg": "white",
         "explore": True,
     },
-    "SemmedTerm": {
+    "LiteratureTerm": {
         "bg": color_palette["lightblue"]["200"],
         "fg": "black",
         "explore": True,
     },
-    "SemmedTriple": {
+    "LiteratureTriple": {
         "bg": color_palette["lightblue"]["a200"],
         "fg": "black",
         "explore": False,
