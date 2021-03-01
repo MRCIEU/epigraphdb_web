@@ -29,7 +29,6 @@ def index_data(
     for batch_docs in batch_data:
         requests = [
             dict(**{"_op_type": "index", "_index": index_name}, **doc)
-            # {"_op_type": "index", "_index": index_name, "name": doc.name}
             for doc in batch_docs
         ]
         bulk(es_client, requests)
