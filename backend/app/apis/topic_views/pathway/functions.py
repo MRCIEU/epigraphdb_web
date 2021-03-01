@@ -15,7 +15,7 @@ GWAS_DESC = "{Gwas} trait of interests".format(
     Gwas=data_table_node_link("Gwas")
 )
 GWAS_TO_VARIANT_DESC = """
-Identified association ({GWAS_TO_VARIANT}) between {Gwas} and {Variant}
+Identified association {GWAS_TO_VARIANT} between {Gwas} and {Variant}
 """.format(
     GWAS_TO_VARIANT=data_table_rel_link("GWAS_TO_VARIANT"),
     Gwas=data_table_node_link("Gwas"),

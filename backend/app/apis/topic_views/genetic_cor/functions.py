@@ -17,7 +17,7 @@ TRAIT_DESC = "{Gwas} trait of interests.".format(
 ASSOC_TRAIT_DESC = "Associated {Gwas} trait.".format(
     Gwas=data_table_node_link("Gwas")
 )
-GC_DESC = "Genetic correlation ({GEN_COR}) between the two {Gwas} traits.".format(
+GC_DESC = "Genetic correlation {GEN_COR} between the two {Gwas} traits.".format(
     Gwas=data_table_node_link("Gwas"), GEN_COR=data_table_rel_link("GEN_COR")
 )
 table_col_configs = {

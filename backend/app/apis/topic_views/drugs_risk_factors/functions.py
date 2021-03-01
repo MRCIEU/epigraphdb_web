@@ -28,7 +28,7 @@ via the path as shown in the network plot.
 )
 GENE_DESC = "Associated {Gene}".format(Gene=data_table_node_link("Gene"))
 MR_DESC = """
-Mendelian randomization ({MR_EVE_MR}) evidence
+Mendelian randomization {MR_EVE_MR} evidence
 from the risk factor {Gwas} to the disease {Gwas}.
 """.format(
     MR_EVE_MR=data_table_rel_link("MR_EVE_MR"),

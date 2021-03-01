@@ -14,7 +14,7 @@ master_name = "mr"
 EXPOSURE_DESC = "Exposure {Gwas}.".format(Gwas=data_table_node_link("Gwas"))
 OUTCOME_DESC = "Outcome {Gwas}.".format(Gwas=data_table_node_link("Gwas"))
 MR_DESC = """
-Mendelian randomization ({MR_EVE_MR})
+Mendelian randomization {MR_EVE_MR}
 evidence from exposure to outcome.
 """.format(
     MR_EVE_MR=data_table_rel_link("MR_EVE_MR")

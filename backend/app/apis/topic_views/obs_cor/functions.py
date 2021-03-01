@@ -17,7 +17,7 @@ TRAIT_DESC = "{Gwas} trait of interests.".format(
 ASSOC_TRAIT_DESC = "Associated {Gwas} trait.".format(
     Gwas=data_table_node_link("Gwas")
 )
-OBS_COR_DESC = "Observational correlation ({OBS_COR}) between the two {Gwas} traits.".format(
+OBS_COR_DESC = "Observational correlation {OBS_COR} between the two {Gwas} traits.".format(
     Gwas=data_table_node_link("Gwas"), OBS_COR=data_table_rel_link("OBS_COR")
 )
 table_col_configs = {
