@@ -14,13 +14,14 @@
         </template>
         <Schema />
       </b-tab>
-      <b-tab :active="$route.hash === '#data-integration'">
-        <template v-slot:title>
-          <font-awesome-icon :icon="['fas', 'project-diagram']" /> Data
-          integration
-        </template>
-        <DataIntegration />
-      </b-tab>
+      <!-- TODO: revive this with automated matching -->
+      <!-- <b-tab :active="$route.hash === '#data-integration'">
+           <template v-slot:title>
+           <font-awesome-icon :icon="['fas', 'project-diagram']" /> Data
+           integration
+           </template>
+           <DataIntegration />
+           </b-tab> -->
       <b-tab :active="$route.hash === '#metrics'">
         <template v-slot:title>
           <font-awesome-icon :icon="['fas', 'table']" /> Metrics
@@ -34,7 +35,7 @@
 <script>
 import axios from "axios";
 
-import JsonViewer from "vue-json-viewer";
+// import JsonViewer from "vue-json-viewer";
 import "@/plugins/json-viewer-gruvbox-dark.scss";
 
 import info from "@/assets/docs/about.md";
@@ -50,7 +51,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Cards from "@/components/About/Cards";
-import DataIntegration from "@/components/About/DataIntegration";
+// import DataIntegration from "@/components/About/DataIntegration";
 import Schema from "@/components/About/Schema";
 import Metrics from "@/components/About/Metrics";
 
@@ -63,9 +64,9 @@ export default {
   components: {
     Cards,
     FontAwesomeIcon,
-    JsonViewer,
+    // JsonViewer,
     VueMarkdown,
-    DataIntegration,
+    // DataIntegration,
     Schema,
     Metrics
   },
