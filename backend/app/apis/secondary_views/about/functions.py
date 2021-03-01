@@ -5,25 +5,6 @@ from app.settings import api_url
 from app.utils import api_request_headers
 
 
-def get_metadata(overwrite: bool = False):
-    def query_func():
-        url = f"{api_url}/status/db"
-        payload = {"metric": "graph_metadata", "db": "epigraphdb"}
-        r = requests.get(url, params=payload, headers=api_request_headers)
-        r.raise_for_status()
-        res = r.json()
-        return res
-
-    res = cache_func_call(
-        coll_name="metadata",
-        doc_name="metadata",
-        func=query_func,
-        params=None,
-        overwrite=overwrite,
-    )
-    return res
-
-
 def get_metrics(overwrite: bool = False):
 
     meta_node_res = cache_func_call(

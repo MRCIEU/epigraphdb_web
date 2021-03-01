@@ -8,22 +8,6 @@
         </template>
         <vue-markdown>{{ info_text }}</vue-markdown>
       </b-tab>
-      <b-tab :active="$route.hash === '#metadata'">
-        <template v-slot:title>
-          <font-awesome-icon :icon="['fas', 'info-circle']" /> Metadata
-        </template>
-        <b-row v-if="metadata">
-          <b-col><h4>EpiGraphDB</h4></b-col>
-          <b-col cols="8">
-            <json-viewer
-              theme="json-viewer-gruvbox-dark"
-              v-if="metadata"
-              :value="metadata"
-              :expand-depth="3"
-            />
-          </b-col>
-        </b-row>
-      </b-tab>
       <b-tab :active="$route.hash === '#schema' || $route.hash === ''">
         <template v-slot:title>
           <font-awesome-icon :icon="['fas', 'project-diagram']" /> Schema
