@@ -103,7 +103,7 @@ def cypher_diagram(
             dashes=True,
         ),
         DiagramEdge(
-            from_id=id["triple"], to_id=id["lit"], meta_rel="SEM_TO_LIT"
+            from_id=id["triple"], to_id=id["lit"], meta_rel="SEMMEDDB_TO_LIT"
         ),
     ]
     diagram = CypherDiagram(nodes=diagram_nodes, edges=diagram_edges)
