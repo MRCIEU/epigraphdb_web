@@ -56,27 +56,37 @@ class TopicQueryProcessor:
         cypher_diagram_params: Optional[Dict[str, Any]] = None,
         table_precaching_hook: Optional[Callable] = None,
     ):
-        """ A generic query class for topic views that handles:
+        """The topic view query processer.
+
+        A generic query class for topic views that handles:
         - master query
         - table data query
         - network plot data query
         - query data query
         - query diagram data query
-        # TODO: assess whether to add autocomplete queries in?
 
-        Args:
-        - master_name: e.g. "mr"
-        - params: parameters to be passed to requests
-        - table_col_configs: columns configs
-        - network_plot_schema: dictates how the network plot can be generated
-        - cypher_diagram_fn: the function to generate the cypher diagram,
-          and this function needs to accept the same `params`
-        - api_endpoint: upstream api endpoint, if unspecified then
-          `master_name` is treated as the api_endpoint.
-        - table_precaching_hook: a function to apply to table data BEFORE
-          it is written to cache
+        Parameters
+        ----------
+        master_name : str
+            master name of a topic view, e.g. "MR"
+        params : Dict[str, Any]
+            parameters to be passed to requests
+        table_col_configs : Dict[str, EntityPropertyCol]
+            columns configs
+        network_plot_schema : NetworkPlotSchemaInput
+            dictates how the network plot can be generated
+        cypher_diagram_fn : Callable
+            the function to generate the cypher diagram,
+            and this function needs to accept the same `params`
+        api_endpoint : Optional[str]
+            upstream api endpoint, if unspecified then
+            `master_name` is treated as the api_endpoint.
+        cypher_diagram_params : Optional[Dict[str, Any]]
+            params for cypher diagram.
+        table_precaching_hook : Optional[Callable]
+            a function to apply to table data BEFORE
+            it is written to cache
         """
-
         self.master_name = master_name
         self.params = params
         self.table_cols = list(table_col_configs.keys())
