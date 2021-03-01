@@ -13,6 +13,9 @@ search_config = {
     "Tissue": {"length": 12000, "indexer": name_indexer_edge_ngram_long},
     "Pathway": {"length": 2200, "indexer": name_indexer_edge_ngram_long},
     "Protein": {"length": 22000, "indexer": name_indexer_edge_ngram_short},
-    "LiteratureTerm": {"length": 106000, "indexer": name_indexer_edge_ngram_long},
+    "LiteratureTerm": {
+        "length": 106000,
+        "indexer": name_indexer_edge_ngram_long,
+    },
     "Variant": {"length": 90000, "indexer": name_indexer_standard},
 }

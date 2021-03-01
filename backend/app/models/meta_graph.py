@@ -28,7 +28,6 @@ epigraphdb_meta_nodes = {
     # "Protein": {"id": "uniprot_id", "name": "uniprot_id"},
     # "LiteratureTerm": {"id": "id", "name": "name"},
     # "Variant": {"id": "name", "name": "name"},
-
     # TODO: switch to global scheme
     "Disease": {"id": "id", "name": "label"},
     "Drug": {"id": "id", "name": "value"},

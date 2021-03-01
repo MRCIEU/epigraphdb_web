@@ -194,7 +194,7 @@ const routes = [
       import(
         /* webpackChunkName: "covid-xqtl" */ "../views/Topics/CovidXQTL.vue"
       )
-  },
+  }
 ];
 
 const router = new VueRouter({
