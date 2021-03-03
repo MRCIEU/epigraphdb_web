@@ -39,6 +39,15 @@ lint:
 test:
 	python -m pytest -vv
 
+
+## jupyter lab
+jupyterlab:
+	jupyter lab \
+		--allow-root \
+		--no-browser \
+		--ip 0.0.0.0 \
+		--port 80
+
 ## ==== running the api ====
 
 ## Start API server, port: 80
