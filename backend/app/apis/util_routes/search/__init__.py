@@ -11,19 +11,24 @@ router = APIRouter()
 
 
 @router.get(
-    "/search/global/node/{meta_node}",
+    "/search/global/node",
     response_model=List[Optional[SearchEntityResponse]],
 )
 def get_search_node(
-    meta_node: EpigraphdbMetaNodeForSearch,
+    meta_node: Optional[EpigraphdbMetaNodeForSearch] = None,
     q: str = Query(..., min_length=3),
     size: int = 40,
 ):
-    index_name = get_index_name(meta_node.value)
-    if not es_client.indices.exists(index=index_name):
-        res = []
+    if meta_node is None:
+        res = query_node_info(query=q, meta_node=None, size=size)
     else:
-        res = query_node_info(query=q, meta_node=meta_node.value)
+        index_name = get_index_name(meta_node.value)
+        if not es_client.indices.exists(index=index_name):
+            res = []
+        else:
+            res = query_node_info(
+                query=q, meta_node=meta_node.value, size=size
+            )
     return res
 
 

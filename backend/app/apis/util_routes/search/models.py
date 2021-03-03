@@ -6,6 +6,7 @@ from pydantic import BaseModel
 class SearchEntityResponse(BaseModel):
     id: str
     name: str
+    meta_node: str
 
 
 class EpigraphdbMetaNodeForSearch(str, Enum):
