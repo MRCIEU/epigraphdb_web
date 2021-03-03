@@ -21,8 +21,7 @@ def get_drugs_risk_factors(
     pval_threshold: float = Query(1e-5, ge=0.0, le=1.0),
     overwrite: bool = False,
 ) -> bool:
-    """This is the master processor. For actual data use sub-apis
-    """
+    """This is the master processor. For actual data use sub-apis"""
     log_args(api="/drugs_risk_factors", kwargs=locals())
     processor = DrugsRiskFactorsQueryProcessor(
         params={"trait": trait, "pval_threshold": pval_threshold}

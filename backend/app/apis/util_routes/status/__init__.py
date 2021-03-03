@@ -27,8 +27,7 @@ async def get_status_ping():
 
 @router.get("/status/env/table")
 def get_env_table():
-    """Get the current status of environment variables for all components
-    """
+    """Get the current status of environment variables for all components"""
     res = {
         env_configs_name: {
             "name": env_configs_name,

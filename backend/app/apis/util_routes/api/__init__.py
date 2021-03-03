@@ -54,8 +54,7 @@ def get_api_cypher(
     user: Optional[str] = None,
     password: Optional[str] = None,
 ):
-    """A shorthand for the api /raw_cypher endpoint.
-    """
+    """A shorthand for the api /raw_cypher endpoint."""
     log_args(api="/api/cypher", kwargs=locals())
     url = f"{api_url}/raw_cypher/"
     params = {

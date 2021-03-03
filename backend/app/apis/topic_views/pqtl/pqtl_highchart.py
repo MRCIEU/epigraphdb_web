@@ -5,8 +5,7 @@ COUNT_THR = 1000
 
 
 def pqtl_highchart(data, method, search_flag):  # noqa:C901
-    """Prepares data in the JSON format for Highchat scatter plot
-    """
+    """Prepares data in the JSON format for Highchat scatter plot"""
     res = {}
     res["topres"] = []
     res["otherres"] = []

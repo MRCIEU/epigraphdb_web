@@ -30,8 +30,7 @@ def get_mr(
     pval_threshold: float = Query(1e-5, ge=0.0, le=1.0),
     overwrite: bool = False,
 ) -> bool:
-    """This is the master processor. For actual data use sub-apis
-    """
+    """This is the master processor. For actual data use sub-apis"""
     log_args(api="/mr", kwargs=locals())
     validate_input(locals())
     processor = MRQueryProcessor(

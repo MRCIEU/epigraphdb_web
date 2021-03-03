@@ -32,8 +32,7 @@ def get_prs(
     pval_threshold: float = Query(1e-5, ge=0.0, le=1.0),
     overwrite: bool = False,
 ) -> bool:
-    """This is the master processor. For actual data use sub-apis
-    """
+    """This is the master processor. For actual data use sub-apis"""
     log_args(api="/prs", kwargs=locals())
     processor = PrsQueryProcessor(
         params={"trait": trait, "pval_threshold": pval_threshold}

@@ -32,8 +32,7 @@ def get_confounder(
     pval_threshold: float = Query(1e-5, ge=0.0, le=1.0),
     overwrite: bool = False,
 ) -> bool:
-    """This is the master processor. For actual data use sub-apis
-    """
+    """This is the master processor. For actual data use sub-apis"""
     log_args(api="/confounder", kwargs=locals())
     processor = ConfounderQueryProcessor(
         params={
@@ -96,8 +95,7 @@ def get_confounder_cache_drop() -> bool:
 def get_confounder_query_diagram_plain(
     confounder_type: ConfounderType = ConfounderType.confounder,
 ):
-    """The plain version used in the frontend documentation
-    """
+    """The plain version used in the frontend documentation"""
     log_args(
         api=f"/confounder/query-diagram/plain/{confounder_type}",
         kwargs=locals(),

@@ -98,8 +98,7 @@ class NetworkGraph:
         limit: Optional[int] = 50,
         visjs_option=visjs_option,
     ):
-        """
-        """
+        """"""
         self.num_paths_total = len(df)
         if limit is not None:
             df = df[:limit]

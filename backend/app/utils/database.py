@@ -67,8 +67,7 @@ def create_doc_name(params: Dict[str, Any]) -> str:
 
 
 def mongo_cache_drop(master_name) -> bool:
-    """Drop collections that are associated with the master name, e.g. "mr"
-    """
+    """Drop collections that are associated with the master name, e.g. "mr" """
     # list out the associated collections
     coll_names = [
         f"{master_name}_{coll}" for coll in ["response", "table", "query"]

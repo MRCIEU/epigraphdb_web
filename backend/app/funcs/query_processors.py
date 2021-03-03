@@ -28,8 +28,7 @@ from app.utils.visjs_config import rels_limit
 
 
 class FuncInput:
-    """A struct that contains a func and its kwargs, and can be called.
-    """
+    """A struct that contains a func and its kwargs, and can be called."""
 
     func: Callable
     kwargs: Dict[str, Any]

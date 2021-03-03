@@ -30,8 +30,7 @@ def get_obs_cor(
     cor_coef_threshold: float = Query(0.8, ge=-1.0, le=1.0),
     overwrite: bool = False,
 ) -> bool:
-    """This is the master processor. For actual data use sub-apis
-    """
+    """This is the master processor. For actual data use sub-apis"""
     log_args(api="/obs-cor", kwargs=locals())
     processor = ObsCorQueryProcessor(
         params={"trait": trait, "cor_coef_threshold": cor_coef_threshold}

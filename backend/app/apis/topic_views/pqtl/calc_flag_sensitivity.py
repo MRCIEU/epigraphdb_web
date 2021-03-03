@@ -49,8 +49,7 @@ def calc_flag_sensitivity(
 def calc_flag_coloc(
     steiger: str, steiger_p: float, coloc: float, pvalue: float
 ) -> Tuple[str, str]:
-    """when coloc is not None
-    """
+    """when coloc is not None"""
     stg = "NA"
     coloc_pr = "NA"
     if coloc > COLOC_THR:
@@ -95,8 +94,7 @@ def calc_flag_coloc(
 def calc_flag_ld_score(
     steiger: str, steiger_p: float, pvalue: float, ld_score: float
 ) -> Tuple[str, str]:
-    """when ld_score is not None and coloc is none
-    """
+    """when ld_score is not None and coloc is none"""
     stg = "NA"
     coloc_pr = "NA"
     if ld_score > COLOC_THR:

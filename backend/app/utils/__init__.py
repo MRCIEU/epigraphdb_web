@@ -26,8 +26,7 @@ def bin_rescale(x: np.array, n_bins, min=0.0, max=1.0):  # type: ignore
 
 
 def hex_to_rgb(hex: str, alpha: Union[float, None] = None) -> str:
-    """ "#B4FBBB" -> "rgb(180, 251, 187)"
-    """
+    """ "#B4FBBB" -> "rgb(180, 251, 187)" """
     hex = hex.lstrip("#")
     rr = int(hex[0:2], 16)
     gg = int(hex[2:4], 16)
@@ -68,8 +67,7 @@ def batch_by_n(collection, batch_size):
 
 
 def ping_endpoint(url: str) -> bool:
-    """Ping a GET endpoint that is expected to return a True.
-    """
+    """Ping a GET endpoint that is expected to return a True."""
     try:
         r = requests.get(url, headers=api_request_headers)
         r.raise_for_status()

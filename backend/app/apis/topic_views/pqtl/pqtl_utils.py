@@ -30,8 +30,7 @@ def query_api_pqtl(
 
 
 def query_api_pqtl_list(search_flag: str) -> List[str]:
-    """Returns the list of searchable proteins or traits
-    """
+    """Returns the list of searchable proteins or traits"""
     params: Dict[str, Any] = {"flag": search_flag}
     r = requests.get(PQTL_LIST_URL, params=params, headers=api_request_headers)
     r.raise_for_status()
@@ -44,8 +43,7 @@ def query_api_pqtl_list(search_flag: str) -> List[str]:
 
 
 def query_api_pqtl_pleio(rsid: str, prflag: str) -> Any:
-    """
-    """
+    """"""
     params = {"rsid": rsid, "prflag": prflag}
     r = requests.get(
         PQTL_PLEIO_URL, params=params, headers=api_request_headers
@@ -62,8 +60,7 @@ def query_api_pqtl_cached(
     searchflag: str,
     overwrite: bool = False,
 ) -> Any:
-    """cached version of query_api_pqtl
-    """
+    """cached version of query_api_pqtl"""
     params: Dict[str, Any] = {
         "query": query,
         "rtype": rtype,
@@ -102,8 +99,7 @@ def calc_api_flag_pleio(rsid: str, prflag: str) -> str:
 
 
 def num_to_round(v: Optional[float], dec: int) -> Optional[float]:
-    """Presents the numerical values in a rounded decimal format
-    """
+    """Presents the numerical values in a rounded decimal format"""
     if v is not None:
         return round(v, dec)
     else:

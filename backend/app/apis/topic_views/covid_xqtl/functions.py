@@ -8,8 +8,7 @@ PVAL_THRESHOLD = 1.1e-6
 
 
 def process_data(data):
-    """Process upstream covid xqtl data and add plots
-    """
+    """Process upstream covid xqtl data and add plots"""
 
     table_data = None
     plot_data = None

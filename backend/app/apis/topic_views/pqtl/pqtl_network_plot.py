@@ -12,8 +12,7 @@ SNP_URL = "https://www.ncbi.nlm.nih.gov/snp/?term=%s"
 
 
 def pqtl_network_plot(data, method, search_flag):
-    """Prepares data in the JSON format for vis.js network visualisation
-    """
+    """Prepares data in the JSON format for vis.js network visualisation"""
     res = {"nodes": [], "links": []}
     # records what entities have been registered
     nodes = []

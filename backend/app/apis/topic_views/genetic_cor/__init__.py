@@ -32,8 +32,7 @@ def get_genetic_cor(
     cor_coef_threshold: float = Query(0.8, ge=0.0, le=1.0),
     overwrite: bool = False,
 ) -> bool:
-    """This is the master processor. For actual data use sub-apis
-    """
+    """This is the master processor. For actual data use sub-apis"""
     log_args(api="/genetic-cor", kwargs=locals())
     processor = GeneticCorQueryProcessor(
         params={"trait": trait, "cor_coef_threshold": cor_coef_threshold}

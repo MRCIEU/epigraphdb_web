@@ -25,12 +25,7 @@ def get_node_info(
     url = f"{api_url}{endpoint}"
     offset_list = [_ for _ in range(0, total_length, chunk_size)]
     nested_res = [by_chunk(url, offset, chunk_size) for offset in offset_list]
-    res = [
-        item
-        # dict(meta_node=meta_node, **item)
-        for sub_res in nested_res
-        for item in sub_res
-    ]
+    res = [item for sub_res in nested_res for item in sub_res]
     return res
 
 

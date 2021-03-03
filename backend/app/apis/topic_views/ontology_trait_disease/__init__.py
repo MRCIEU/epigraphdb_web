@@ -27,8 +27,7 @@ def get_ontology_trait_disease(
     disease_label: Optional[str] = None,
     overwrite: bool = False,
 ) -> bool:
-    """This is the master processor. For actual data use sub-apis
-    """
+    """This is the master processor. For actual data use sub-apis"""
     log_args(api="/ontology_trait_disease", kwargs=locals())
     processor = OntologyTraitDiseaseQueryProcessor(
         params={

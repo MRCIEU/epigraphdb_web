@@ -13,8 +13,7 @@ def data_table_rel_link(label: str) -> str:
 
 
 def _entity_link(label: str, entity_type: str) -> str:
-    """Generate an html link for data table columns.
-    """
+    """Generate an html link for data table columns."""
     if entity_type == "node":
         label_code = "({})".format(label)
     elif entity_type == "rel":
@@ -26,8 +25,7 @@ def _entity_link(label: str, entity_type: str) -> str:
 
 
 def generate_entity_url(entity: str, entity_type: str) -> str:
-    """For an epigraphdb entity, returns its url in the docs.
-    """
+    """For an epigraphdb entity, returns its url in the docs."""
     if entity_type == "node":
         return NODE_DOCS_URL.format(node=entity.lower())
     elif entity_type == "rel":

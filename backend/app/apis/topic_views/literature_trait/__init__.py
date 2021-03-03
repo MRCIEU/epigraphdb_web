@@ -27,8 +27,7 @@ def get_literature_trait(
     limit: int = 500,
     overwrite: bool = False,
 ) -> bool:
-    """This is the master processor. For actual data use sub-apis
-    """
+    """This is the master processor. For actual data use sub-apis"""
     log_args(api="/literature_trait", kwargs=locals())
     semmed_predicates = (
         [semmed_predicate] if semmed_predicate is not None else None
