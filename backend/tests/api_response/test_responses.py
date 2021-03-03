@@ -21,7 +21,6 @@ get_response_params_general = [
     ("/status/ping", None),
     ("/status/env/table", None),
     # about
-    ("/about/metadata", None),
     ("/about/schema", None),
     # metadata
     *[

@@ -33,8 +33,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 // import JsonViewer from "vue-json-viewer";
 import "@/plugins/json-viewer-gruvbox-dark.scss";
 
@@ -55,8 +53,6 @@ import Cards from "@/components/About/Cards";
 import Schema from "@/components/About/Schema";
 import Metrics from "@/components/About/Metrics";
 
-const config = require("@/config");
-
 library.add(faInfoCircle, faProjectDiagram, faTable);
 
 export default {
@@ -71,19 +67,7 @@ export default {
     Metrics
   },
   data: () => ({
-    info_text: info,
-    metadata: null
-  }),
-  methods: {
-    getAboutMetadata() {
-      const url = `${config.web_backend_url}/about/metadata`;
-      axios.get(url).then(response => {
-        this.metadata = response.data;
-      });
-    }
-  },
-  mounted: function() {
-    this.getAboutMetadata();
-  }
+    info_text: info
+  })
 };
 </script>
