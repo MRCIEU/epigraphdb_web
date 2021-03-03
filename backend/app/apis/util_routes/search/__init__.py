@@ -5,7 +5,7 @@ from fastapi import APIRouter, Query
 from app.utils.database import es_client
 
 from .functions import get_index_name, index_node_info, query_node_info
-from .models import EpigraphdbMetaNode, SearchEntityResponse
+from .models import EpigraphdbMetaNodeForSearch, SearchEntityResponse
 
 router = APIRouter()
 
@@ -15,7 +15,7 @@ router = APIRouter()
     response_model=List[Optional[SearchEntityResponse]],
 )
 def get_search_node(
-    meta_node: EpigraphdbMetaNode,
+    meta_node: EpigraphdbMetaNodeForSearch,
     q: str = Query(..., min_length=3),
     size: int = 40,
 ):
@@ -29,7 +29,7 @@ def get_search_node(
 
 @router.get("/search/global/node/{meta_node}/index", response_model=bool)
 def get_index_node(
-    meta_node: EpigraphdbMetaNode, overwrite: bool = False
+    meta_node: EpigraphdbMetaNodeForSearch, overwrite: bool = False
 ) -> bool:
     index_name = get_index_name(meta_node.value)
     if not es_client.indices.exists(index=index_name) or overwrite:
@@ -40,7 +40,7 @@ def get_index_node(
 
 @router.get("/search/global/index", response_model=bool)
 def get_index_all(overwrite: bool = False):
-    meta_nodes = [item for item in EpigraphdbMetaNode]
+    meta_nodes = [item for item in EpigraphdbMetaNodeForSearch]
     index_res = [
         get_index_node(meta_node=meta_node, overwrite=overwrite)
         for meta_node in meta_nodes

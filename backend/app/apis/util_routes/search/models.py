@@ -8,13 +8,16 @@ class SearchEntityResponse(BaseModel):
     name: str
 
 
-class EpigraphdbMetaNode(str, Enum):
+class EpigraphdbMetaNodeForSearch(str, Enum):
+    """Meta nodes to search. Exclude meta nodes that do not have meaningful
+    labels, e.g. `(Literature)`, `(LiteratureTriple)`
+    """
+
     Gwas = "Gwas"
     Disease = "Disease"
     Drug = "Drug"
     Efo = "Efo"
     Gene = "Gene"
-    Literature = "Literature"
     LiteratureTerm = "LiteratureTerm"
     Pathway = "Pathway"
     Protein = "Protein"
