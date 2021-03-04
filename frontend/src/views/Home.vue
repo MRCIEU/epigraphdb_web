@@ -10,7 +10,7 @@
           />
         </p>
         <h1>
-          EpiGraphDB <code>{{ platformVersion }}</code>
+          EpiGraphDB <span class="label">{{ platformVersion }}</span>
         </h1>
         <p class="text-muted">
           A database and data mining platform for health data science
@@ -43,13 +43,23 @@ export default {
     HomeCards
   },
   data: () => ({
-    platformVersion: "v1.0"
+    platformVersion: "1.00"
   })
 };
 </script>
 
 <style scoped>
-code {
-  color: #337ab7;
+.label {
+  background-color: #337ab7;
+  border-radius: 0.25em;
+  display: inline;
+  padding: 0.2em 0.4em 0.2em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
 }
 </style>
