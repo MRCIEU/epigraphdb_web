@@ -1,16 +1,12 @@
 <template>
   <div>
     <vue-bootstrap-typeahead
-      v-b-tooltip.v-primary.hover
-      title="Enter name of the entity, e.g. body mass index,
-             across all EpiGraphDB meta-nodes, or narrow down by meta-node.
-             Upon selection will navigate to the detailed information page of
-             the matched entity."
       class="my-2 mr-sm-2"
       v-model="query"
       placeholder="Search EpiGraphDB"
+      size="lg"
       :min-matching-chars="3"
-      :max-matches="40"
+      :max-matches="100"
       :data="queryOptions"
       :serializer="item => item.name"
       @hit="gotoExplore($event)"
@@ -21,8 +17,17 @@
         ><br />
         <span v-html="htmlText"></span>
       </template>
+      <template slot="prepend">
+        <b-form-select
+          size="lg"
+          v-model="metaNode"
+          :options="metaNodeOptions"
+        />
+      </template>
       <template slot="append">
-        <b-form-select v-model="metaNode" :options="metaNodeOptions" />
+        <b-button variant="outline-primary" block>
+          Search
+        </b-button>
       </template>
     </vue-bootstrap-typeahead>
   </div>

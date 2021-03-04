@@ -124,14 +124,14 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <div id="global-search">
-              <GlobalSearch />
+            <div id="quick-search" v-if="!isHome">
+              <QuickSearch />
             </div>
           </b-nav-form>
           <b-navbar-brand
             right
             class="px-1"
-            href="http://www.bris.ac.uk/"
+            href="https://bristol.ac.uk"
             target="_blank"
           >
             <img
@@ -143,7 +143,7 @@
           <b-navbar-brand
             right
             class="px-1"
-            href="http://www.bris.ac.uk/ieu"
+            href="https://www.bristol.ac.uk/integrative-epidemiology/"
             target="_blank"
           >
             <img
@@ -173,7 +173,7 @@ import {
   faGithub
 } from "@fortawesome/free-brands-svg-icons";
 
-import GlobalSearch from "@/components/GlobalSearch";
+import QuickSearch from "@/components/QuickSearch";
 import AppSidebar from "@/components/AppSidebar";
 
 library.add(
@@ -189,7 +189,7 @@ library.add(
 export default {
   name: "AppHeader",
   components: {
-    GlobalSearch,
+    QuickSearch,
     FontAwesomeIcon,
     AppSidebar
   },
@@ -201,12 +201,20 @@ export default {
       notebook:
         "https://colab.research.google.com/github/MRCIEU/epigraphdb/blob/master/general-examples/getting-started-with-epigraphdb.ipynb"
     }
-  })
+  }),
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    isHome() {
+      return this.currentRouteName == "home";
+    }
+  }
 };
 </script>
 
 <style scoped>
-#global-search {
+#quick-search {
   width: 500px;
 }
 #nav {

@@ -17,7 +17,7 @@ router = APIRouter()
 def get_search_node(
     meta_node: Optional[EpigraphdbMetaNodeForSearch] = None,
     q: str = Query(..., min_length=3),
-    size: int = 40,
+    size: int = 100,
 ):
     if meta_node is None:
         res = query_node_info(query=q, meta_node=None, size=size)
