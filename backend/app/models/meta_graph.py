@@ -1,5 +1,9 @@
 from enum import Enum
 
+from epigraphdb_common_utils.epigraphdb_data_dicts import (
+    meta_nodes_dict_sanitised,
+)
+
 
 class EpigraphdbMetaNode(str, Enum):
     Disease = "Disease"
@@ -16,31 +20,10 @@ class EpigraphdbMetaNode(str, Enum):
 
 
 epigraphdb_meta_nodes = {
-    # "Disease": {"id": "id", "name": "label"},
-    # "Drug": {"id": "label", "name": "label"},
-    # "Efo": {"id": "id", "name": "value"},
-    # "Event": {"id": "reactome_id", "name": "name"},
-    # "Gene": {"id": "ensembl_id", "name": "name"},
-    # "Tissue": {"id": "tissue", "name": "tissue"},
-    # "Gwas": {"id": "id", "name": "trait"},
-    # "Literature": {"id": "id", "name": "id"},
-    # "Pathway": {"id": "reactome_id", "name": "name"},
-    # "Protein": {"id": "uniprot_id", "name": "uniprot_id"},
-    # "LiteratureTerm": {"id": "id", "name": "name"},
-    # "Variant": {"id": "name", "name": "name"},
-    # TODO: switch to global scheme
-    "Disease": {"id": "id", "name": "label"},
-    "Drug": {"id": "id", "name": "value"},
-    "Efo": {"id": "id", "name": "value"},
-    "Gene": {"id": "ensembl_id", "name": "name"},
-    "Tissue": {"id": "name", "name": "name"},
-    "Gwas": {"id": "id", "name": "trait"},
-    "Literature": {"id": "id", "name": "id"},
-    "Pathway": {"id": "id", "name": "name"},
-    "Protein": {"id": "uniprot_id", "name": "uniprot_id"},
-    "LiteratureTerm": {"id": "id", "name": "name"},
-    "Variant": {"id": "name", "name": "name"},
+    key: {"id": value["id"], "name": value["name"]}
+    for key, value in meta_nodes_dict_sanitised.items()
 }
+
 
 pqtl_meta_nodes_list = [
     "Instruments",
