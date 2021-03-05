@@ -9,7 +9,7 @@
 
     <b-row>
       <b-col cols="8">
-        <vue-bootstrap-typeahead
+        <vue-typeahead-bootstrap
           v-model="query"
           :data="queryOptions"
           placeholder="eg ADAM19"
@@ -32,7 +32,7 @@
               </b-button>
             </router-link>
           </template>
-        </vue-bootstrap-typeahead>
+        </vue-typeahead-bootstrap>
       </b-col>
     </b-row>
 
@@ -140,7 +140,7 @@
 import axios from "axios";
 import { axiosErrorMessage } from "@/funcs/axios-error-message.js";
 
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import Alert from "@/components/Utils/Alert.vue";
 import Table from "@/components/PQTL/Table.vue";
@@ -160,7 +160,7 @@ const config = require("@/config");
 export default {
   name: "PQTLView",
   components: {
-    VueBootstrapTypeahead,
+    VueTypeaheadBootstrap,
     Alert,
     Table,
     TableSimple,

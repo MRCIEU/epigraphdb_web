@@ -11,7 +11,7 @@
       <b-row>
         <b-col>
           <div class="py-2">
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="trait"
               placeholder="Enter trait, e.g. Insomnia"
               prepend="Trait"
@@ -34,14 +34,14 @@
         <b-col cols="12" md="auto"></b-col>
         <b-col col lg="6">
           <div class="py-2">
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="efoTerm"
               placeholder="Enter EFO term, e.g. Insomnia"
               prepend="EFO term"
               :data="acEfoTerm"
               @hit="efoTerm = $event"
             />
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="diseaseLabel"
               placeholder="Enter disease label, e.g. Insomnia"
               prepend="disease label"
@@ -126,7 +126,7 @@ import {
   faVrCardboard
 } from "@fortawesome/free-solid-svg-icons";
 
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import VueMarkdown from "vue-markdown";
 
@@ -158,7 +158,7 @@ export default {
   components: {
     FontAwesomeIcon,
     VueMarkdown,
-    VueBootstrapTypeahead,
+    VueTypeaheadBootstrap,
     Alert,
     NetworkPlot,
     Table,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-bootstrap-typeahead
+    <vue-typeahead-bootstrap
       v-b-tooltip.v-primary.hover
       title="Enter name of the entity, e.g. body mass index.
              Upon selection will navigate to the detailed information page of
@@ -20,21 +20,21 @@
         ><br />
         <span v-html="htmlText"></span>
       </template>
-    </vue-bootstrap-typeahead>
+    </vue-typeahead-bootstrap>
   </div>
 </template>
 
 <script>
 import _ from "lodash";
 import axios from "axios";
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 const config = require("@/config");
 
 export default {
   name: "GlobalSearch",
   components: {
-    VueBootstrapTypeahead
+    VueTypeaheadBootstrap
   },
   data: () => ({
     query: null,

@@ -11,14 +11,14 @@
       <b-row>
         <b-col>
           <div class="py-2">
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="exposureTrait"
               placeholder="Enter exposure trait"
               prepend="Exposure trait"
               :data="acTrait"
               @hit="exposureTrait = $event"
             />
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="outcomeTrait"
               placeholder="Enter outcome trait"
               prepend="Outcome trait"
@@ -137,7 +137,7 @@ import {
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import _ from "underscore";
 
@@ -167,7 +167,7 @@ export default {
   components: {
     FontAwesomeIcon,
     VueSlider,
-    VueBootstrapTypeahead,
+    VueTypeaheadBootstrap,
     Alert,
     ConfounderDoc,
     NetworkPlot,

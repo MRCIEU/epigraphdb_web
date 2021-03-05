@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-bootstrap-typeahead
+    <vue-typeahead-bootstrap
       class="my-2 mr-sm-2"
       v-model="query"
       placeholder="Search EpiGraphDB"
@@ -29,21 +29,21 @@
           Search
         </b-button>
       </template>
-    </vue-bootstrap-typeahead>
+    </vue-typeahead-bootstrap>
   </div>
 </template>
 
 <script>
 import _ from "lodash";
 import axios from "axios";
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 const config = require("@/config");
 
 export default {
   name: "GlobalSearch",
   components: {
-    VueBootstrapTypeahead
+    VueTypeaheadBootstrap
   },
   data: () => ({
     query: null,

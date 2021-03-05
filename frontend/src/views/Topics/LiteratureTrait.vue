@@ -11,7 +11,7 @@
       <b-row>
         <b-col>
           <div class="py-2">
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="trait"
               placeholder="Enter trait, e.g. Adiponectin"
               prepend="Trait"
@@ -34,7 +34,7 @@
         <b-col cols="12" md="auto"></b-col>
         <b-col col lg="6">
           <div class="py-2">
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="semmedPredicate"
               placeholder="Enter a predicate, e.g. AFFECTS, or leave blank for all predicates"
               prepend="Semmed predicate"
@@ -129,7 +129,7 @@ import {
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import VueMarkdown from "vue-markdown";
 
@@ -162,7 +162,7 @@ export default {
     FontAwesomeIcon,
     VueMarkdown,
     VueSlider,
-    VueBootstrapTypeahead,
+    VueTypeaheadBootstrap,
     Alert,
     NetworkPlot,
     Table,

@@ -22,7 +22,7 @@
       <b-row>
         <b-col>
           <div class="py-2">
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="exposureTrait"
               v-if="queryModeCurr !== 'outcome'"
               placeholder="Enter exposure trait"
@@ -30,7 +30,7 @@
               :data="acTrait"
               @hit="exposureTrait = $event"
             />
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="outcomeTrait"
               v-if="queryModeCurr !== 'exposure'"
               placeholder="Enter outcome trait"
@@ -140,7 +140,7 @@ import {
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import VueMarkdown from "vue-markdown";
 
@@ -173,7 +173,7 @@ export default {
     FontAwesomeIcon,
     VueMarkdown,
     VueSlider,
-    VueBootstrapTypeahead,
+    VueTypeaheadBootstrap,
     Alert,
     NetworkPlot,
     Table,

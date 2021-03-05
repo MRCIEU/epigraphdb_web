@@ -25,7 +25,7 @@
         <b-col>
           <div class="py-4">
             <div class="pt-2"></div>
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="tissueQuery"
               placeholder="Search for tissue"
               prepend="Tissue"
@@ -34,7 +34,7 @@
               :serializer="item => item.name"
               @hit="tissueSelected = $event"
             />
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="geneQuery"
               placeholder="Search for exposure gene"
               prepend="Exposure gene"
@@ -47,8 +47,8 @@
                 <small>{{ data.id }}</small
                 >&nbsp;<span v-html="htmlText"></span>
               </template>
-            </vue-bootstrap-typeahead>
-            <vue-bootstrap-typeahead
+            </vue-typeahead-bootstrap>
+            <vue-typeahead-bootstrap
               v-model="gwasQuery"
               placeholder="Search for outcome phenotype"
               prepend="Outcome phenotype"
@@ -61,7 +61,7 @@
                 <small>{{ data.id }}</small
                 >&nbsp;<span v-html="htmlText"></span>
               </template>
-            </vue-bootstrap-typeahead>
+            </vue-typeahead-bootstrap>
           </div>
           <div>
             <b-button
@@ -176,7 +176,7 @@ import "vue-slider-component/theme/default.css";
 
 import VueMarkdown from "vue-markdown";
 
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import Alert from "@/components/Utils/Alert.vue";
 
@@ -203,7 +203,7 @@ export default {
     FontAwesomeIcon,
     VueMarkdown,
     VueSlider,
-    VueBootstrapTypeahead,
+    VueTypeaheadBootstrap,
     Alert,
     Table,
     VolcanoPlot

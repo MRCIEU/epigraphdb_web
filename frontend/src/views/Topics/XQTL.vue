@@ -25,21 +25,21 @@
       <b-row>
         <b-col>
           <div class="py-2">
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="exposureGene"
               placeholder="Enter exposure gene, e.g. APEH"
               prepend="Exposure gene"
               :data="acOutcomeTrait"
               @hit="exposureGene = $event"
             />
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="outcomeTrait"
               placeholder="Enter outcome trait, e.g. Coronary heart disease"
               prepend="Outcome trait"
               :data="acOutcomeTrait"
               @hit="outcomeTrait = $event"
             />
-            <vue-bootstrap-typeahead
+            <vue-typeahead-bootstrap
               v-model="variant"
               v-if="xqtlMode !== 'multi_snp_mr'"
               placeholder="Enter variant (SNP), e.g. rs13064576"
@@ -179,7 +179,7 @@ import {
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 
-import VueBootstrapTypeahead from "vue-bootstrap-typeahead";
+import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import VueMarkdown from "vue-markdown";
 
@@ -212,7 +212,7 @@ export default {
     FontAwesomeIcon,
     VueMarkdown,
     VueSlider,
-    VueBootstrapTypeahead,
+    VueTypeaheadBootstrap,
     Alert,
     NetworkPlot,
     Table,
