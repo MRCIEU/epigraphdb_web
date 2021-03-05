@@ -67,6 +67,8 @@ def query_node_info(
                 "name": {"query": query, "operator": "and", "fuzziness": 2}
             }
         },
+        # When search across all entities, always boost items from Gwas
+        "indices_boost": [{get_index_name("Gwas"): 3.5}],
         "size": size,
     }
     es_res = es_client.search(index=index, body=query_body)
