@@ -21,11 +21,14 @@
           <b-col md="10" offset-md="1">
             <div id="home-search">
               <HomeSearch />
+              <p class="text-muted text-center">
+                Try: body mass index, coronary heart disease, BRAF
+              </p>
             </div>
           </b-col>
         </b-row>
       </div>
-      <div class="pt-4 pl-4">
+      <div class="pt-5 pl-4">
         <HomeCards />
       </div>
     </section>
