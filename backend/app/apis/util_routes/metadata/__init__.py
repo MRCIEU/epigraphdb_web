@@ -40,6 +40,7 @@ def get_metadata_meta_node_list(
             user=user,
             password=password,
         )
+    res = sorted(res)
     return res
 
 
