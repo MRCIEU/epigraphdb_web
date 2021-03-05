@@ -10,6 +10,7 @@
       :data="queryOptions"
       :serializer="item => item.name"
       @hit="gotoExplore($event)"
+      @keyup.enter="gotoExploreWithFirstItem"
     >
       <template slot="suggestion" slot-scope="{ data, htmlText }">
         <small
@@ -25,8 +26,12 @@
         />
       </template>
       <template slot="append">
-        <b-button variant="outline-primary" block>
-          Search
+        <b-button
+          variant="outline-primary"
+          @click="gotoExploreWithFirstItem"
+          block
+        >
+          <font-awesome-icon :icon="['fas', 'search']" />
         </b-button>
       </template>
     </vue-typeahead-bootstrap>
@@ -37,13 +42,19 @@
 import _ from "lodash";
 import axios from "axios";
 import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const config = require("@/config");
 
+library.add(faSearch);
+
 export default {
-  name: "GlobalSearch",
+  name: "HomeSearch",
   components: {
-    VueTypeaheadBootstrap
+    VueTypeaheadBootstrap,
+    FontAwesomeIcon
   },
   data: () => ({
     query: null,
@@ -88,6 +99,12 @@ export default {
           name: "explore",
           query: { meta_node: item.meta_node, id: item.id }
         });
+      }
+    },
+    gotoExploreWithFirstItem() {
+      if (this.queryOptions) {
+        const item = this.queryOptions[0];
+        this.gotoExplore(item);
       }
     }
   },

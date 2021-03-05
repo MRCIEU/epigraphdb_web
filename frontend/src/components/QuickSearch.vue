@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- TODO: keyup.enter is misbehaving; review at later date -->
     <vue-typeahead-bootstrap
       v-b-tooltip.v-primary.hover
       title="Enter name of the entity, e.g. body mass index.
@@ -20,6 +21,15 @@
         ><br />
         <span v-html="htmlText"></span>
       </template>
+      <template slot="append">
+        <b-button
+          variant="outline-primary"
+          @click="gotoExploreWithFirstItem"
+          block
+        >
+          <font-awesome-icon :icon="['fas', 'search']" />
+        </b-button>
+      </template>
     </vue-typeahead-bootstrap>
   </div>
 </template>
@@ -28,13 +38,19 @@
 import _ from "lodash";
 import axios from "axios";
 import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const config = require("@/config");
 
+library.add(faSearch);
+
 export default {
-  name: "GlobalSearch",
+  name: "QuickSearch",
   components: {
-    VueTypeaheadBootstrap
+    VueTypeaheadBootstrap,
+    FontAwesomeIcon
   },
   data: () => ({
     query: null,
@@ -64,6 +80,13 @@ export default {
           name: "explore",
           query: { meta_node: item.meta_node, id: item.id }
         });
+      }
+    },
+    gotoExploreWithFirstItem() {
+      console.log(this.queryOptions);
+      if (this.queryOptions) {
+        const item = this.queryOptions[0];
+        this.gotoExplore(item);
       }
     }
   },
