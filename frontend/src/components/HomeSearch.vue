@@ -10,7 +10,7 @@
       :data="queryOptions"
       :serializer="item => item.name"
       @hit="gotoExplore($event)"
-      @keyup.enter="gotoExploreWithFirstItem"
+      @keyup.enter="gotoSearch"
     >
       <template slot="suggestion" slot-scope="{ data, htmlText }">
         <small
@@ -26,11 +26,7 @@
         />
       </template>
       <template slot="append">
-        <b-button
-          variant="outline-primary"
-          @click="gotoExploreWithFirstItem"
-          block
-        >
+        <b-button variant="outline-primary" @click="gotoSearch" block>
           <font-awesome-icon :icon="['fas', 'search']" />
         </b-button>
       </template>
@@ -75,7 +71,7 @@ export default {
       { text: "LiteratureTerm", value: "LiteratureTerm" },
       { text: "Variant", value: "Variant" }
     ],
-    url: `${config.web_backend_url}/search/global/node`
+    url: `${config.web_backend_url}/search/quick/node`
   }),
   methods: {
     search(q, metaNode) {
@@ -101,11 +97,11 @@ export default {
         });
       }
     },
-    gotoExploreWithFirstItem() {
-      if (this.queryOptions) {
-        const item = this.queryOptions[0];
-        this.gotoExplore(item);
-      }
+    gotoSearch() {
+      this.$router.push({
+        name: "search",
+        query: { meta_node: this.metaNode, q: this.query }
+      });
     }
   },
   computed: {

@@ -1,5 +1,6 @@
 from typing import Any, List, Optional
 
+import pandas as pd
 import requests
 
 from app.funcs.elasticsearch.autocomplete import index_data
@@ -73,4 +74,17 @@ def query_node_info(
     }
     es_res = es_client.search(index=index, body=query_body)
     res = [item["_source"] for item in es_res["hits"]["hits"]]
+    return res
+
+
+def summarise_results(search_results):
+    df = pd.DataFrame(search_results)[["meta_node", "id"]]
+    df_summary = (
+        df.groupby(["meta_node"])
+        .count()
+        .reset_index(drop=False)
+        .rename(columns={"id": "count"})
+        .sort_values(by=["count"], ascending=False)
+    )
+    res = df_summary.to_dict("records")
     return res

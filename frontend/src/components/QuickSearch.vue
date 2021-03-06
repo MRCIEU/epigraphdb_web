@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- TODO: keyup.enter is misbehaving; review at later date -->
+    <!-- TODO: keyup is still misbehaving -->
     <vue-typeahead-bootstrap
       v-b-tooltip.v-primary.hover
       title="Enter name of the entity, e.g. body mass index.
@@ -22,11 +22,7 @@
         <span v-html="htmlText"></span>
       </template>
       <template slot="append">
-        <b-button
-          variant="outline-primary"
-          @click="gotoExploreWithFirstItem"
-          block
-        >
+        <b-button variant="outline-primary" @click="gotoSearch" block>
           <font-awesome-icon :icon="['fas', 'search']" />
         </b-button>
       </template>
@@ -57,7 +53,7 @@ export default {
     querySelected: null,
     queryOptions: [],
     textLengthMin: 3,
-    url: `${config.web_backend_url}/search/global/node`
+    url: `${config.web_backend_url}/search/quick/node`
   }),
   methods: {
     search(q) {
@@ -82,12 +78,11 @@ export default {
         });
       }
     },
-    gotoExploreWithFirstItem() {
-      console.log(this.queryOptions);
-      if (this.queryOptions) {
-        const item = this.queryOptions[0];
-        this.gotoExplore(item);
-      }
+    gotoSearch() {
+      this.$router.push({
+        name: "search",
+        query: { q: this.query }
+      });
     }
   },
   computed: {

@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Any, List, Optional
 
 from pydantic import BaseModel
 
@@ -7,6 +8,11 @@ class SearchEntityResponse(BaseModel):
     id: str
     name: str
     meta_node: str
+
+
+class SearchFullResponse(BaseModel):
+    results: List[Optional[SearchEntityResponse]]
+    summary: Any
 
 
 class EpigraphdbMetaNodeForSearch(str, Enum):
