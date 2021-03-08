@@ -32,7 +32,7 @@ EpiGraphDB integrates data generated at the MRC IEU with data from a range of th
 
 Please cite EpiGraphDB as
 
-> Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Tom R Gaunt. 2020. EpiGraphDB: a database and data mining platform for health data science. *bioRxiv*. [doi:10.1101/2020.08.01.230193](https://doi.org/10.1101/2020.08.01.230193).
+> Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Oliver Lloyd, Marina Vabistsevits, Tom R Gaunt, EpiGraphDB: a database and data mining platform for health data science, Bioinformatics, btaa961, https://doi.org/10.1093/bioinformatics/btaa961
 
 ```
 @article {epigraphdb2020,
