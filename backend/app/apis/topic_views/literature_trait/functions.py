@@ -44,6 +44,7 @@ table_col_configs = {
         "GWAS_TO_LITERATURE_TRIPLE", "localCount", GS_DESC
     ),
     "triple.id": NodeCol("LiteratureTriple", "id", TRIPLE_DESC),
+    "triple.name": NodeCol("LiteratureTriple", "name", TRIPLE_DESC),
     "triple.predicate": NodeCol("LiteratureTriple", "predicate", TRIPLE_DESC),
     "lit.id": NodeCol("Literature", "id", LIT_DESC),
 }
