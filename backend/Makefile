@@ -34,11 +34,9 @@ lint:
 	python -m mypy \
 		$(python_dirs)
 
-
 ## Unit tests (takes a LONG time!)
 test:
 	python -m pytest -vv
-
 
 ## jupyter lab
 jupyterlab:
@@ -47,6 +45,10 @@ jupyterlab:
 		--no-browser \
 		--ip 0.0.0.0 \
 		--port 80
+
+## Overwrite cache:
+overwrite_cache:
+	python -m scripts.overwrite_cache
 
 ## ==== running the api ====
 
