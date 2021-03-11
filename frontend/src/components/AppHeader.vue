@@ -124,7 +124,9 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <div id="quick-search" v-if="!isHome">
+            <!-- TODO: revert -->
+            <!-- <div id="quick-search" v-if="!isHome"> -->
+            <div id="quick-search">
               <QuickSearch />
             </div>
           </b-nav-form>
