@@ -1,4 +1,6 @@
 from enum import Enum
+from functools import reduce
+from operator import mul
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, Query
@@ -124,11 +126,13 @@ def get_xqtl_endpoints(
 
 @router.get("/xqtl/cache/drop", response_model=bool)
 def get_xqtl_cache_drop() -> bool:
-    res = sum(
+    # wtf there isn't a sum equivalent for multiply until py3.8
+    res = reduce(
+        mul,
         [
             mongo_cache_drop(master_name=single_snp_master_name),
             mongo_cache_drop(master_name=multi_snp_master_name),
-        ]
+        ],
     )
     return res
 
