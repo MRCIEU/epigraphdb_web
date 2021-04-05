@@ -1,8 +1,9 @@
 from enum import Enum
+from typing import Dict
 
-from epigraphdb_common_utils.epigraphdb_data_dicts import (
-    meta_nodes_dict_sanitised,
-)
+from typing_extensions import TypedDict
+
+from epigraphdb_common_utils.epigraphdb_schema import meta_nodes_dict
 
 
 class EpigraphdbMetaNode(str, Enum):
@@ -19,9 +20,14 @@ class EpigraphdbMetaNode(str, Enum):
     Variant = "Variant"
 
 
-epigraphdb_meta_nodes = {
-    key: {"id": value["id"], "name": value["name"]}
-    for key, value in meta_nodes_dict_sanitised.items()
+class MetaNodeInfo(TypedDict):
+    id: str
+    name: str
+
+
+epigraphdb_meta_nodes: Dict[str, MetaNodeInfo] = {
+    key: {"id": value.id, "name": value.name}
+    for key, value in meta_nodes_dict.items()
 }
 
 

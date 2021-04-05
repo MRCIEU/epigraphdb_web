@@ -4,7 +4,7 @@ import markdown
 import numpy as np
 import pandas as pd
 
-from epigraphdb_common_utils.epigraphdb_data_dicts import (
+from epigraphdb_common_utils.epigraphdb_schema import (
     meta_nodes_property_docs,
     meta_rels_property_docs,
 )
@@ -66,13 +66,15 @@ class EntityPropertyCol:
         self.decoration_desc = decoration_desc
         self.rounding = rounding
 
+        docs_dict: Dict[str, Dict[str, str]]
         if self.entity_type == "node":
-            docs_dict: Dict = meta_nodes_property_docs
+            docs_dict = meta_nodes_property_docs
         elif self.entity_type == "rel":
             docs_dict = meta_rels_property_docs
         else:
             raise Exception("'node' or 'docs'")
         self.entity_docs = docs_dict[self.meta_entity]
+        self.property_doc: Optional[str]
         if self.entity_docs[self.property] is not None:
             self.property_doc = self.entity_docs[self.property]
         else:
