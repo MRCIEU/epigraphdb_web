@@ -1,9 +1,10 @@
 import textwrap
 from dataclasses import dataclass
-from typing import Any, Callable, List, Optional
+from typing import Callable, List, Optional
 
 import pandas as pd
 
+import app.models.network_graph_models as models
 from app.utils import hex_to_rgb
 from app.utils.logging import logger  # noqa:F401
 from app.utils.meta_graph import (
@@ -125,8 +126,8 @@ class NetworkGraph:
         self.edges_3d = render_edges_3d(self.edges_df)
         logger.info(f"edges: \n {self.edges[0:2]}")
 
-    def to_visjs(self):
-        self.graph_data = {
+    def to_visjs(self) -> models.VisData:
+        self.graph_data: models.VisData = {
             "nodes": self.nodes,
             "edges": self.edges,
             "nodes_3d": self.nodes_3d,
@@ -143,7 +144,7 @@ def network_graph(
     node_schemas: List[NetworkNodeSchema],
     edge_schemas: List[NetworkEdgeSchema],
     limit: Optional[int],
-):
+) -> models.VisData:
     "Create visjs graph from query data."
     graph = NetworkGraph(
         df=df,
@@ -283,7 +284,7 @@ def edges_df_from_schema(
     return edges_df
 
 
-def render_nodes(nodes_df: pd.DataFrame) -> List[Any]:
+def render_nodes(nodes_df: pd.DataFrame) -> List[models.VisNode]:
     """The final step in processing nodes.
 
     Create a json-like list of nodes from nodes_df.
@@ -313,7 +314,7 @@ def render_nodes(nodes_df: pd.DataFrame) -> List[Any]:
     return nodes
 
 
-def render_nodes_3d(nodes_df: pd.DataFrame) -> List[Any]:
+def render_nodes_3d(nodes_df: pd.DataFrame) -> List[models.VisNode3d]:
     """The final step in processing nodes.
 
     Create a json-like list of nodes from nodes_df.
@@ -330,7 +331,7 @@ def render_nodes_3d(nodes_df: pd.DataFrame) -> List[Any]:
     return nodes
 
 
-def render_edges(edges_df: pd.DataFrame) -> List[Any]:
+def render_edges(edges_df: pd.DataFrame) -> List[models.VisEdge]:
     """The final step in processing edges.
 
     Create a json-like list of nodes from edges_df.
@@ -352,7 +353,7 @@ def render_edges(edges_df: pd.DataFrame) -> List[Any]:
     return edges
 
 
-def render_edges_3d(edges_df: pd.DataFrame) -> List[Any]:
+def render_edges_3d(edges_df: pd.DataFrame) -> List[models.VisEdge3d]:
     """The final step in processing edges.
 
     Create a json-like list of nodes from edges_df.
