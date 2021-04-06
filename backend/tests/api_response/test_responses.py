@@ -1,5 +1,6 @@
 from typing import Dict, List, Tuple
 
+import pydantic
 import pytest
 from loguru import logger
 from starlette.testclient import TestClient
@@ -10,9 +11,11 @@ from app.apis.topic_views.pqtl import pqtl_models
 from app.apis.topic_views.xqtl import XqtlMrMethod, XqtlQtlType
 from app.main import app
 from app.models import EpigraphdbGraphs, TopicViewEndpoints
+from app.models.network_graph_models import VisData
 from app.utils import unittest_headers
 
 client = TestClient(app)
+NetworkGraphDataModel = pydantic.create_model_from_typeddict(VisData)  # type: ignore
 
 # General functionalities
 get_response_params_general = [
@@ -168,6 +171,7 @@ topics_params_nested = (
                         "exposure_trait": "Body mass index",
                         "outcome_trait": None,
                     },
+                    True,
                 ),
                 (
                     f"/mr{route}",
@@ -175,6 +179,7 @@ topics_params_nested = (
                         "exposure_trait": None,
                         "outcome_trait": "Body mass index",
                     },
+                    True,
                 ),
                 (
                     f"/mr{route}",
@@ -182,32 +187,55 @@ topics_params_nested = (
                         "exposure_trait": "Coronary heart disease",
                         "outcome_trait": "Body mass index",
                     },
+                    True,
                 ),
                 # obs-cor
-                (f"/obs-cor{route}", {"trait": "Body mass index"}),
+                (f"/obs-cor{route}", {"trait": "Waist circumference"}, True),
                 # genetic-cor
-                (f"/genetic-cor{route}", {"trait": "Whole body fat mass"}),
-                (f"/prs{route}", {"trait": "Body mass index"}),
+                (
+                    f"/genetic-cor{route}",
+                    {"trait": "Whole body fat mass"},
+                    True,
+                ),
+                (f"/prs{route}", {"trait": "Body mass index"}, True),
                 # confounder
                 # drugs_risk_factors
-                (f"/drugs_risk_factors{route}", {"trait": "Body mass index"}),
+                (
+                    f"/drugs_risk_factors{route}",
+                    {"trait": "Body mass index"},
+                    True,
+                ),
                 # pathway
-                (f"/pathway{route}", {"trait": "Body mass index"}),
+                (f"/pathway{route}", {"trait": "Body mass index"}, True),
                 # literature_trait
-                (f"/literature_trait{route}", {"trait": "Body mass index"}),
+                (
+                    f"/literature_trait{route}",
+                    {"trait": "Body mass index"},
+                    True,
+                ),
                 (
                     f"/literature_trait{route}",
                     {
                         "trait": "Body mass index",
                         "semmed_predicates": ["AFFECTS"],
                     },
+                    True,
                 ),
                 # ontology_trait_disease
-                (f"/ontology_trait_disease{route}", {"trait": "disease"}),
-                (f"/ontology_trait_disease{route}", {"efo_term": "disease"}),
+                (
+                    f"/ontology_trait_disease{route}",
+                    {"trait": "disease"},
+                    True,
+                ),
+                (
+                    f"/ontology_trait_disease{route}",
+                    {"efo_term": "disease"},
+                    True,
+                ),
                 (
                     f"/ontology_trait_disease{route}",
                     {"disease_label": "disease"},
+                    True,
                 ),
             ]
             for route in [
@@ -228,6 +256,7 @@ topics_params_nested = (
                         "outcome_trait": "Coronary heart disease",
                         "confounder_type": confounder_type,
                     },
+                    True,
                 ),
                 (
                     f"/confounder{route}",
@@ -236,6 +265,7 @@ topics_params_nested = (
                         "outcome_trait": "Body mass index",
                         "confounder_type": confounder_type,
                     },
+                    True,
                 ),
             ]
             for route in [
@@ -258,6 +288,7 @@ topics_params_nested = (
                         "qtl_type": qtl_type,
                         "mr_method": mr_method,
                     },
+                    False,
                 ),
                 (
                     f"/xqtl{route}",
@@ -267,6 +298,7 @@ topics_params_nested = (
                         "qtl_type": qtl_type,
                         "mr_method": mr_method,
                     },
+                    False,
                 ),
                 (
                     f"/xqtl{route}",
@@ -277,6 +309,7 @@ topics_params_nested = (
                         "qtl_type": qtl_type,
                         "mr_method": mr_method,
                     },
+                    False,
                 ),
             ]
             for route in [
@@ -299,6 +332,7 @@ topics_params_nested = (
                         "exposure_gene": "PLAU",
                         "qtl_type": qtl_type,
                     },
+                    False,
                 ),
                 (
                     f"/xqtl{route}",
@@ -307,6 +341,7 @@ topics_params_nested = (
                         "outcome_trait": "Coronary heart disease",
                         "qtl_type": qtl_type,
                     },
+                    False,
                 ),
                 (
                     f"/xqtl{route}",
@@ -315,6 +350,7 @@ topics_params_nested = (
                         "variant": "rs10002427",
                         "qtl_type": qtl_type,
                     },
+                    False,
                 ),
                 (
                     f"/xqtl{route}",
@@ -324,6 +360,7 @@ topics_params_nested = (
                         "variant": "rs10002427",
                         "qtl_type": qtl_type,
                     },
+                    False,
                 ),
                 (
                     f"/xqtl{route}",
@@ -333,6 +370,7 @@ topics_params_nested = (
                         "outcome_trait": "Coronary heart disease",
                         "qtl_type": qtl_type,
                     },
+                    False,
                 ),
             ]
             for route in [
@@ -343,7 +381,7 @@ topics_params_nested = (
         ]
     ]
 )
-get_response_params_topics: List[Tuple[str, object]] = [
+get_response_params_topics: List[Tuple[str, object, bool]] = [
     item for nested_item in topics_params_nested for item in nested_item
 ]
 
@@ -426,8 +464,21 @@ def test_get_responses_topics_ac(url: str, params: Dict[str, object]):
     assert len(response.json()) > 0
 
 
-@pytest.mark.parametrize("url, params", get_response_params_topics)
-def test_get_responses_topics(url: str, params: Dict[str, object]):
+@pytest.mark.parametrize(
+    "url, params, check_results", get_response_params_topics
+)
+def test_get_responses_topics(
+    url: str, params: Dict[str, object], check_results: bool
+):
     logger.info(locals())
+    # assert topic endpoint 200
     response = client.get(url=url, params=params, headers=unittest_headers)
     assert response.status_code == 200
+    # for some param combinations we just want to see the endpoints 200
+    if check_results:
+        # test results non empty
+        response_data = response.json()
+        assert response_data is not None
+        # test network plot results and validation
+        if url.endswith(f"/{TopicViewEndpoints.network_plot.value}"):
+            assert NetworkGraphDataModel(**response_data)
