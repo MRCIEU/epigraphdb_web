@@ -3,17 +3,17 @@ from typing import Any, Dict, List, Optional, Union
 from typing_extensions import TypedDict
 
 
-class VisNodeColor(TypedDict):
+class VisNodeColor(TypedDict, total=False):
     background: str
     highlight: Dict[str, str]
     hover: Dict[str, str]
 
 
-class VisNodeFont(TypedDict):
+class VisNodeFont(TypedDict, total=False):
     color: str
 
 
-class VisNode(TypedDict):
+class VisNode(TypedDict, total=False):
     id: str
     label: str
     title: str
@@ -23,23 +23,23 @@ class VisNode(TypedDict):
     font: VisNodeFont
 
 
-class VisNode3d(TypedDict):
+class VisNode3d(TypedDict, total=False):
     id: str
     name: str
     color: str
     url: str
 
 
-class VisEdgeArrows(TypedDict):
+class VisEdgeArrows(TypedDict, total=False):
     to: bool
 
 
-class VisEdgeScaling(TypedDict):
+class VisEdgeScaling(TypedDict, total=False):
     min: Union[int, float]
     max: Union[int, float]
 
 
-class VisEdgeColor(TypedDict):
+class VisEdgeColor(TypedDict, total=False):
     color: str
     hover: str
 
@@ -58,13 +58,16 @@ VisEdge = TypedDict(
         "title": Optional[str],
         "color": VisEdgeColor,
     },
+    total=False,
 )
 
 
-class VisEdge3d(TypedDict):
+class VisEdge3d(TypedDict, total=False):
     source: str
     target: str
     color: str
+    curvature: float
+    rotation: float
 
 
 class VisData(TypedDict):

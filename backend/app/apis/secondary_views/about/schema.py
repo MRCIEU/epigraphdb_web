@@ -1,12 +1,14 @@
 import math
 import textwrap
 from itertools import chain
+from typing import Any, Dict, List
 
 import numpy as np
 import pandas as pd
 import requests
 
 from app.funcs.cache import cache_func_call
+from app.models import network_graph_models
 from app.settings import api_url
 from app.utils import api_request_headers, hex_to_rgb
 from app.utils.meta_graph import (
@@ -17,8 +19,10 @@ from app.utils.meta_graph import (
 )
 from app.utils.visjs_config import node_alpha, node_wrap, visjs_option
 
+from . import models
 
-def schema_info(overwrite: bool = False):
+
+def schema_info(overwrite: bool = False) -> models.SchemaInfoData:
     nodes_data, edges_data = schema_request(overwrite=overwrite)
     nodes_df, rels_df, edges_df = process_nodes_edges(nodes_data, edges_data)
     graph = schema_graph(nodes_df, rels_df, edges_df)
@@ -45,13 +49,13 @@ def schema_request(overwrite: bool = False):
         overwrite=overwrite,
     )
 
-    nodes_data = {
+    nodes_data: Dict[str, Any] = {
         key: value
         for key, value in schema_data.items()
         if value["type"] == "node"
     }
 
-    edges_data = {
+    edges_data: Dict[str, Any] = {
         key: value
         for key, value in schema_data.items()
         if value["type"] == "relationship"
@@ -59,7 +63,9 @@ def schema_request(overwrite: bool = False):
     return nodes_data, edges_data
 
 
-def process_nodes_edges(nodes_data, edges_data):
+def process_nodes_edges(
+    nodes_data: Dict[str, Any], edges_data: Dict[str, Any]
+):
     # fmt: off
     nodes_df = pd.concat(
         map(lambda node_name, node: pd.DataFrame([{
@@ -129,7 +135,7 @@ def process_nodes_edges(nodes_data, edges_data):
     return nodes_df, rels_df, edges_df
 
 
-def schema_graph(nodes_df, rels_df, edges_df):
+def schema_graph(nodes_df, rels_df, edges_df) -> models.SchemaInfoGraphData:
     # FIXME: should show node with default color when the node is not defined
     #        in the meta_graph
     nodes_df = (
@@ -191,7 +197,7 @@ def schema_graph(nodes_df, rels_df, edges_df):
             )
         )
     )
-    nodes_dict = nodes_df.apply(
+    nodes_list: List[network_graph_models.VisNode] = nodes_df.apply(
         lambda df: {
             "id": df["id"],
             "label": textwrap.fill(df["node_name"], node_wrap),
@@ -213,7 +219,7 @@ def schema_graph(nodes_df, rels_df, edges_df):
         },
         axis=1,
     ).tolist()
-    nodes_3d = nodes_df.apply(
+    nodes_3d: List[network_graph_models.VisNode3d] = nodes_df.apply(
         lambda df: {
             "id": df["id"],
             "name": df["node_name"],
@@ -222,7 +228,7 @@ def schema_graph(nodes_df, rels_df, edges_df):
         },
         axis=1,
     ).tolist()
-    rels_dict = rels_df.apply(
+    rels_list: List[network_graph_models.VisRels] = rels_df.apply(
         lambda df: {
             "from": df["from"],
             "to": df["to"],
@@ -237,7 +243,7 @@ def schema_graph(nodes_df, rels_df, edges_df):
         },
         axis=1,
     ).tolist()
-    edges_3d = rels_df.apply(
+    edges_3d: List[network_graph_models.VisEdge3d] = rels_df.apply(
         lambda df: {
             "source": df["from"],
             "target": df["to"],
@@ -248,8 +254,8 @@ def schema_graph(nodes_df, rels_df, edges_df):
         axis=1,
     ).tolist()
     graph_data = {
-        "nodes": nodes_dict,
-        "edges": rels_dict,
+        "nodes": nodes_list,
+        "edges": rels_list,
         "nodes_3d": nodes_3d,
         "edges_3d": edges_3d,
         "option": visjs_option,

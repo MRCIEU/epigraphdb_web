@@ -1,8 +1,12 @@
+from typing import List
+
 import requests
 
 from app.funcs.cache import cache_func_call
 from app.settings import api_url
 from app.utils import api_request_headers
+
+from . import models
 
 
 def get_metrics(overwrite: bool = False):
@@ -26,7 +30,7 @@ def get_metrics(overwrite: bool = False):
     return res
 
 
-def query_metric_meta_node():
+def query_metric_meta_node() -> List[models.SchemaMetricsMetaNode]:
     url = f"{api_url}/status/db"
     payload = {"metric": "count_nodes_by_label", "db": "epigraphdb"}
     r = requests.get(url, params=payload, headers=api_request_headers)
@@ -38,7 +42,7 @@ def query_metric_meta_node():
     return res
 
 
-def query_metric_meta_rel():
+def query_metric_meta_rel() -> List[models.SchemaMetricsMetaRel]:
     url = f"{api_url}/status/db"
     payload = {"metric": "count_rels_by_type", "db": "epigraphdb"}
     r = requests.get(url, params=payload, headers=api_request_headers)
