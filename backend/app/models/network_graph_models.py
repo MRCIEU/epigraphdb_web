@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Union
 
 from typing_extensions import TypedDict
 
@@ -44,22 +44,31 @@ class VisEdgeColor(TypedDict, total=False):
     hover: str
 
 
-# NOTE: can't use class based defn given `from` is an attribute
-VisEdge = TypedDict(
-    "VisEdge",
+# NOTE:
+# can't fully use class based defn given `from` is an attribute
+# yet pydantic (1.8) compatibility with object based
+# typeddict defn is not good (totality).
+VisEdgeBase = TypedDict(
+    "VisEdgeBase",
     {
         "from": str,
         "to": str,
         "arrows": VisEdgeArrows,
-        "scaling": VisEdgeScaling,
-        "arrowStrikethrough": bool,
-        "value": Union[int, float],
         "dashes": bool,
-        "title": Optional[str],
         "color": VisEdgeColor,
     },
-    total=False,
 )
+
+
+class VisEdge(VisEdgeBase, total=False):
+    scaling: VisEdgeScaling
+    arrowStrikethrough: bool
+    value: Union[int, float]
+    title: str
+    url: str
+    label: str
+    length: int
+    width: int
 
 
 class VisEdge3d(TypedDict, total=False):

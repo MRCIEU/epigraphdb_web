@@ -3,6 +3,7 @@ from typing import List, Optional
 
 import pandas as pd
 
+from app.models import cypher_diagram_models
 from app.utils import hex_to_rgb
 from app.utils.meta_graph import (
     color_palette,
@@ -120,8 +121,8 @@ class CypherDiagram:
         self.edges = [edge.generate_edge(nodes_df) for edge in edges]
         self.option = visjs_option
 
-    def generate_diagram(self):
-        self.diagram = {
+    def generate_diagram(self) -> cypher_diagram_models.CypherDiagramData:
+        self.diagram: cypher_diagram_models.CypherDiagramData = {
             "nodes": self.nodes,
             "edges": self.edges,
             "option": self.option,

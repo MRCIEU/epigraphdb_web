@@ -11,11 +11,13 @@ from app.apis.topic_views.pqtl import pqtl_models
 from app.apis.topic_views.xqtl import XqtlMrMethod, XqtlQtlType
 from app.main import app
 from app.models import EpigraphdbGraphs, TopicViewEndpoints
+from app.models.cypher_diagram_models import CypherDiagramData
 from app.models.network_graph_models import VisData
 from app.utils import unittest_headers
 
 client = TestClient(app)
 NetworkGraphDataModel = pydantic.create_model_from_typeddict(VisData)  # type: ignore
+CypherDiagramDataModel = pydantic.create_model_from_typeddict(CypherDiagramData)  # type: ignore
 
 # General functionalities
 get_response_params_general = [
@@ -482,3 +484,6 @@ def test_get_responses_topics(
         # test network plot results and validation
         if url.endswith(f"/{TopicViewEndpoints.network_plot.value}"):
             assert NetworkGraphDataModel(**response_data)
+        # test cypher diagram results and validation
+        if url.endswith(f"/{TopicViewEndpoints.query_diagram.value}"):
+            assert CypherDiagramDataModel(**response_data)
