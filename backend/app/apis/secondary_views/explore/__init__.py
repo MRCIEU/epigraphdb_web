@@ -2,7 +2,7 @@ from typing import Optional
 
 from fastapi import APIRouter
 
-from app.models.meta_graph import EpigraphdbMetaNode
+from app.models.meta_graph import EpigraphdbMetaNodeFull
 
 from .models import ExploreResponse
 from .node_match import node_match
@@ -13,7 +13,7 @@ router = APIRouter()
 
 @router.get("/explore/search/node", response_model=ExploreResponse)
 def get_explore_search_node(
-    meta_node: EpigraphdbMetaNode,
+    meta_node: EpigraphdbMetaNodeFull,
     id: Optional[str] = None,
     name: Optional[str] = None,
 ):
@@ -23,9 +23,9 @@ def get_explore_search_node(
 
 @router.get("/explore/search/path")
 def get_explore_search_path(
-    meta_node_source: EpigraphdbMetaNode,
+    meta_node_source: EpigraphdbMetaNodeFull,
     id_source: str,
-    meta_node_target: EpigraphdbMetaNode,
+    meta_node_target: EpigraphdbMetaNodeFull,
     id_target: str,
     max_path_length: int = 3,
     limit: int = 100,

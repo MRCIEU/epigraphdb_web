@@ -5,6 +5,7 @@ from typing import Callable, List, Optional
 import pandas as pd
 
 import app.models.network_graph_models as models
+from app.funcs.annotate_entity import entity_id_match, entity_name_match
 from app.utils import hex_to_rgb
 from app.utils.logging import logger  # noqa:F401
 from app.utils.meta_graph import (
@@ -370,14 +371,10 @@ def render_edges_3d(edges_df: pd.DataFrame) -> List[models.VisEdge3d]:
 
 
 def id_match_formatter(row: pd.Series) -> str:
-    url = "/explore/?meta_node={meta_node}&id={id}".format(
-        meta_node=find_orig_node(row["meta_node"]), id=row["orig_id"]
-    )
+    url = entity_id_match(meta_node=row["meta_node"], id=row["orig_id"])
     return url
 
 
 def name_match_formatter(row: pd.Series) -> str:
-    url = "/explore/?meta_node={meta_node}&name={name}".format(
-        meta_node=find_orig_node(row["meta_node"]), name=row["orig_id"]
-    )
+    url = entity_name_match(meta_node=row["meta_node"], name=row["orig_id"])
     return url

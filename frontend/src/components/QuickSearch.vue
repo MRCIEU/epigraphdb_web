@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- TODO: keyup is still misbehaving -->
+    <!-- NOTE: there is no fuzzy matching -->
     <vue-typeahead-bootstrap
       v-b-tooltip.v-primary.hover
       title="Enter name of the entity, e.g. body mass index.
@@ -17,7 +18,8 @@
     >
       <template slot="suggestion" slot-scope="{ data, htmlText }">
         <small
-          ><code>({{ data.meta_node }})</code> {{ data.id }}</small
+          ><MetaNode :meta-node="data.meta_node.name" no-url no-code-bg />
+          {{ data.id.id }}</small
         ><br />
         <span v-html="htmlText"></span>
       </template>
@@ -38,6 +40,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+import MetaNode from "@/components/miscs/DecoratedMetaNode";
+
 const config = require("@/config");
 
 library.add(faSearch);
@@ -46,7 +50,8 @@ export default {
   name: "QuickSearch",
   components: {
     VueTypeaheadBootstrap,
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    MetaNode
   },
   data: () => ({
     query: null,
@@ -73,8 +78,8 @@ export default {
     gotoExplore(item) {
       if (item.id) {
         this.$router.push({
-          name: "explore",
-          query: { meta_node: item.meta_node, id: item.id }
+          name: "entity",
+          query: { meta_node: item.meta_node.name, id: item.id.id }
         });
       }
     },

@@ -2,18 +2,16 @@ from typing import List, Optional
 
 from fastapi import APIRouter, Query
 
+from app.models.meta_graph import EpigraphdbMetaNodeForSearch
 from app.utils.database import es_client
 
+from . import models
 from .functions import (
+    annotate_search_results,
     get_index_name,
     index_node_info,
     query_node_info,
     summarise_results,
-)
-from .models import (
-    EpigraphdbMetaNodeForSearch,
-    SearchEntityResponse,
-    SearchFullResponse,
 )
 
 router = APIRouter()
@@ -21,35 +19,36 @@ router = APIRouter()
 
 @router.get(
     "/search/quick/node",
-    response_model=List[Optional[SearchEntityResponse]],
+    response_model=List[Optional[models.SearchEntityResponse]],
 )
 def get_search_quick(
     meta_node: Optional[EpigraphdbMetaNodeForSearch] = None,
     q: str = Query(..., min_length=3),
     size: int = 100,
-):
+) -> List[Optional[models.SearchEntity]]:
     if meta_node is None:
-        res = query_node_info(query=q, meta_node=None, size=size)
+        search_results = query_node_info(query=q, meta_node=None, size=size)
     else:
         index_name = get_index_name(meta_node.value)
         if not es_client.indices.exists(index=index_name):
-            res = []
+            return []
         else:
-            res = query_node_info(
+            search_results = query_node_info(
                 query=q, meta_node=meta_node.value, size=size
             )
+    res = annotate_search_results(search_results)
     return res
 
 
 @router.get(
     "/search/full/node",
-    response_model=SearchFullResponse,
+    response_model=Optional[models.SearchFullResponse],
 )
 def get_search_full(
     meta_node: Optional[EpigraphdbMetaNodeForSearch] = None,
     q: str = Query(..., min_length=3),
     size: int = 500,
-):
+) -> Optional[models.SearchFull]:
     if meta_node is None:
         search_results = query_node_info(query=q, meta_node=None, size=size)
     else:
@@ -61,10 +60,13 @@ def get_search_full(
                 query=q, meta_node=meta_node.value, size=size
             )
     summary = None
-    if len(search_results) > 0:
+    if len(search_results) == 0:
+        return None
+    else:
         summary = summarise_results(search_results)
-    res = {"results": search_results, "summary": summary}
-    return res
+        annotated_results = annotate_search_results(search_results)
+        res = {"results": annotated_results, "summary": summary}
+        return res
 
 
 @router.get("/search/es/node/{meta_node}/index", response_model=bool)

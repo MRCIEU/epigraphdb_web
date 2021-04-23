@@ -5,20 +5,45 @@
         Search results for: <span class="text-info">{{ searchText }}</span>
       </h3>
     </div>
-    <b-row class="py-5" v-if="searchResults">
-      <b-col cols="3">
-        <b-list-group v-if="summaryItems" flush>
-          <b-list-group-item
-            v-for="item in summaryItems"
-            :key="item.meta_node"
-            class="d-flex justify-content-between align-items-center"
+    <b-row class="py-5">
+      <b-col cols="4">
+        <div>
+          <h4>Search filter</h4>
+          <b-form-group description="Search text" class="py-3">
+            <b-form-input v-model="inputText"></b-form-input>
+          </b-form-group>
+          <b-form-group label-cols="3" label="Meta node">
+            <b-form-select
+              v-model="metaNodeSelect"
+              :options="metaNodeOptions"
+            ></b-form-select>
+          </b-form-group>
+          <b-form-group label-cols="3" label="Limit">
+            <vue-slider
+              v-model="searchLimitSelect"
+              :data="searchLimitOptions"
+              :marks="true"
+            />
+          </b-form-group>
+          <b-button block variant="primary" @click="updateSearch"
+            >Update</b-button
           >
-            {{ item.meta_node }}
-            <b-badge variant="secondary">{{ item.count }}</b-badge>
-          </b-list-group-item>
-        </b-list-group>
+        </div>
+        <div class="py-5" v-if="searchResults">
+          <h4>Meta node summary</h4>
+          <b-list-group v-if="summaryItems" flush>
+            <b-list-group-item
+              v-for="item in summaryItems"
+              :key="item.meta_node"
+              class="d-flex justify-content-between align-items-center"
+            >
+              <MetaNode :meta-node="item.meta_node" no-url />
+              <b-badge variant="secondary">{{ item.count }}</b-badge>
+            </b-list-group-item>
+          </b-list-group>
+        </div>
       </b-col>
-      <b-col>
+      <b-col v-if="searchResults">
         <b-table
           id="search-table"
           striped
@@ -30,15 +55,14 @@
           @filtered="onFiltered"
         >
           <template #cell(id)="data">
-            <router-link
-              :to="{
-                name: 'explore',
-                query: { meta_node: data.item.meta_node, id: data.item.id }
-              }"
-              target="_blank"
-            >
-              {{ data.item.id }}
-            </router-link>
+            <a :href="data.item.id.url">{{ data.item.id.id }}</a>
+          </template>
+          <template #cell(meta_node)="data">
+            <MetaNode
+              :meta-node="data.item.meta_node.name"
+              :url="data.item.meta_node.url"
+              no-code-bg
+            />
           </template>
         </b-table>
         <b-row>
@@ -73,19 +97,28 @@
 </template>
 
 <script>
+import _ from "lodash";
 import axios from "axios";
+import MetaNode from "@/components/miscs/DecoratedMetaNode";
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/default.css";
 
 const config = require("@/config");
 
 export default {
   name: "Search",
-  components: {},
+  components: { MetaNode, VueSlider },
   data: () => ({
-    perPage: 10,
+    perPage: 20,
     currentPage: 1,
     searchResults: null,
     searchText: null,
     metaNode: null,
+    metaNodeSelect: null,
+    metaNodesForSearch: [],
+    searchLimitSelect: 50,
+    searchLimitOptions: [50, 100, 300, 500],
+    inputText: "",
     url: `${config.web_backend_url}/search/full/node`,
     fields: [
       {
@@ -107,11 +140,12 @@ export default {
     filter: null
   }),
   methods: {
-    search(q, metaNode) {
+    search(q, metaNode, limit) {
       const url = this.url;
       const params = {
         q: q,
-        meta_node: metaNode
+        meta_node: metaNode,
+        size: limit
       };
       axios
         .get(url, { params: params })
@@ -122,15 +156,33 @@ export default {
           console.log(error);
         });
     },
+    getMetaNodesForSearch() {
+      const url = `${config.web_backend_url}/models/epigraphdb-meta-nodes-for-search`;
+      axios.get(url).then(response => {
+        this.metaNodesForSearch = response.data;
+      });
+    },
+    updateSearch() {
+      this.searchText = this.inputText;
+      this.metaNode = this.metaNodeSelect;
+      this.$router.push({ query: { q: this.inputText } });
+      if (this.metaNode) {
+        this.$router.push({
+          query: { meta_node: this.metaNodeSelect, q: this.inputText }
+        });
+      }
+      this.search(this.searchText, this.metaNode, this.searchLimitSelect);
+    },
     setupRouteQuery() {
       if (this.$route.query["meta_node"]) {
         this.metaNode = this.$route.query["meta_node"];
       }
       if (this.$route.query["q"]) {
         this.searchText = this.$route.query["q"];
+        this.inputText = this.searchText;
       }
       if (this.searchText) {
-        this.search(this.searchText, this.metaNode);
+        this.search(this.searchText, this.metaNode, this.searchLimitSelect);
       }
     },
     onFiltered(filteredItems) {
@@ -141,6 +193,7 @@ export default {
   },
   mounted: function() {
     this.setupRouteQuery();
+    this.getMetaNodesForSearch();
   },
   computed: {
     items() {
@@ -151,6 +204,16 @@ export default {
     summaryItems() {
       return this.searchResults && this.searchResults.summary.length > 0
         ? this.searchResults.summary
+        : null;
+    },
+    metaNodeOptions() {
+      const defaultOption = { value: null, text: "unspecified" };
+      return this.metaNodesForSearch
+        ? [defaultOption].concat(
+            _.map(this.metaNodesForSearch, function(item) {
+              return { value: item, text: item };
+            })
+          )
         : null;
     },
     totalRows() {

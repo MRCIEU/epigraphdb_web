@@ -74,8 +74,13 @@ const routes = [
   {
     path: "/explore/",
     name: "explore",
+    redirect: { name: "search" }
+  },
+  {
+    path: "/entity",
+    name: "entity",
     component: () =>
-      import(/* webpackChunkName: "gallery" */ "../views/Explore.vue")
+      import(/* webpackChunkName: "entity" */ "../views/Entity.vue")
   },
   // topics
   {

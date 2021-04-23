@@ -1,15 +1,17 @@
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional
 
 import pandas as pd
 import requests
 
+from app.funcs.annotate_entity import annotate_meta_entity, annotate_node_id
 from app.funcs.elasticsearch.autocomplete import index_data
+from app.models.meta_graph import EpigraphdbMetaNodeForSearch
 from app.settings import api_url
 from app.utils import api_request_headers
 from app.utils.database import es_client
 
 from .config import search_config
-from .models import EpigraphdbMetaNodeForSearch
+from .models import SearchEntity
 
 
 def get_node_info(
@@ -87,4 +89,18 @@ def summarise_results(search_results):
         .sort_values(by=["count"], ascending=False)
     )
     res = df_summary.to_dict("records")
+    return res
+
+
+def annotate_search_results(
+    search_results: List[Dict[str, Any]]
+) -> List[SearchEntity]:
+    res: List[SearchEntity] = [
+        {
+            "id": annotate_node_id(_["id"], _["meta_node"]),
+            "name": _["name"],
+            "meta_node": annotate_meta_entity(_["meta_node"], "meta_node"),
+        }
+        for _ in search_results
+    ]
     return res

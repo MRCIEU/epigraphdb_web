@@ -4,7 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from app.utils.logging import MonitoringMiddleware, logger  # noqa:F401
 
 from .apis import mr_simple, top
-from .apis.secondary_views import about, explore, gallery
+from .apis.secondary_views import about, entity, explore, gallery
 from .apis.topic_views import (
     confounder,
     covid_xqtl,
@@ -19,7 +19,15 @@ from .apis.topic_views import (
     prs,
     xqtl,
 )
-from .apis.util_routes import analysis, api, metadata, search, status, utils
+from .apis.util_routes import (
+    analysis,
+    api,
+    metadata,
+    models,
+    search,
+    status,
+    utils,
+)
 
 TITLE = "EpiGraphDB webapp backend"
 DESCRIPTION = "Backend API to EpiGraphDB webapp"
@@ -43,6 +51,7 @@ app.include_router(top.router, tags=["top endpoints"])
 app.include_router(about.router, tags=["secondary: about"])
 app.include_router(gallery.router, tags=["secondary: gallery"])
 app.include_router(explore.router, tags=["secondary: explore"])
+app.include_router(entity.router, tags=["secondary: entity"])
 # topic views
 app.include_router(mr.router, tags=["topic: mr"])
 app.include_router(obs_cor.router, tags=["topic: obs_cor"])
@@ -67,5 +76,6 @@ app.include_router(api.router, tags=["utils: api"])
 app.include_router(metadata.router, tags=["utils: metadata"])
 app.include_router(analysis.router, tags=["utils: analysis"])
 app.include_router(search.router, tags=["utils: search"])
+app.include_router(models.router, tags=["utils: models"])
 # others
 app.include_router(mr_simple.router, tags=["example: mr_simple"])

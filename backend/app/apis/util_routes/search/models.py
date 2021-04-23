@@ -1,32 +1,30 @@
-from enum import Enum
-from typing import Any, List, Optional
+from typing import Any, List
 
 from pydantic import BaseModel
+from typing_extensions import TypedDict
+
+from app.models.entities import AnnotatedMetaEntity, AnnotatedNodeId
 
 
-class SearchEntityResponse(BaseModel):
-    id: str
+class SearchEntity(TypedDict):
+    id: AnnotatedNodeId
     name: str
-    meta_node: str
+    meta_node: AnnotatedMetaEntity
 
 
-class SearchFullResponse(BaseModel):
-    results: List[Optional[SearchEntityResponse]]
+class SearchFull(TypedDict):
+    results: List[SearchEntity]
     summary: Any
 
 
-class EpigraphdbMetaNodeForSearch(str, Enum):
-    """Meta nodes to search. Exclude meta nodes that do not have meaningful
-    labels, e.g. `(Literature)`, `(LiteratureTriple)`
-    """
+# NOTE: for some reasons pydantic fails to parse and convert typeddict
+# in this case
+class SearchEntityResponse(BaseModel):
+    id: AnnotatedNodeId
+    name: str
+    meta_node: AnnotatedMetaEntity
 
-    Gwas = "Gwas"
-    Disease = "Disease"
-    Drug = "Drug"
-    Efo = "Efo"
-    Gene = "Gene"
-    LiteratureTerm = "LiteratureTerm"
-    Pathway = "Pathway"
-    Protein = "Protein"
-    Tissue = "Tissue"
-    Variant = "Variant"
+
+class SearchFullResponse(BaseModel):
+    results: List[SearchEntityResponse]
+    summary: Any
