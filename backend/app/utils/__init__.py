@@ -76,3 +76,30 @@ def ping_endpoint(url: str) -> bool:
     except:
         return False
     return True
+
+
+def get_node_role(reference_node_is_source: bool) -> str:
+    """Target in this case refers to the role of the reference node,
+    if the reference node is a source, then the node is a target node.
+    """
+    if reference_node_is_source:
+        return "target"
+    else:
+        return "source"
+
+
+def format_triple(reference_meta_node, meta_node, meta_rel, meta_node_type):
+    template = "({reference_meta_node}){lhs_arrow}-[{meta_rel}]-{rhs_arrow}({meta_node})"
+    if meta_node_type == "source":
+        lhs_arrow = "<"
+        rhs_arrow = ""
+    else:
+        lhs_arrow = ""
+        rhs_arrow = ">"
+    return template.format(
+        reference_meta_node=reference_meta_node,
+        meta_node=meta_node,
+        meta_rel=meta_rel,
+        lhs_arrow=lhs_arrow,
+        rhs_arrow=rhs_arrow,
+    )

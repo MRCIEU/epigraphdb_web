@@ -12,9 +12,10 @@ from app.funcs.annotate_entity import (
 from app.models import EpigraphdbGraphsExtended
 from app.models.meta_graph import EpigraphdbMetaNodeFull
 from app.settings import api_url
-from app.utils import api_request_headers
+from app.utils import api_request_headers, format_triple, get_node_role
 
 from . import models
+from .entity_resource_mapping import map_entity_resources
 from .linked_resources import map_linked_external_resource
 
 router = APIRouter()
@@ -111,9 +112,20 @@ def entity_meta_neighbours(
             }
             for _ in full_data_raw
         ]
+        triples = set(
+            format_triple(
+                meta_node.value,
+                _["meta_node"]["name"],
+                _["meta_rel"]["name"],
+                _["meta_node_type"],
+            )
+            for _ in full_data
+        )
+        entity_resources = map_entity_resources(meta_node.value, triples)
         res = {
             "meta_node_list": meta_node_list,
             "meta_rel_list": meta_rel_list,
+            "entity_resources": entity_resources,
             "full_data": full_data,
         }
         return res
@@ -191,13 +203,3 @@ def entity_neighbours(
             for _ in data_raw
         ]
         return res
-
-
-def get_node_role(reference_node_is_source: bool) -> str:
-    """Target in this case refers to the role of the reference node,
-    if the reference node is a source, then the node is a target node.
-    """
-    if reference_node_is_source:
-        return "target"
-    else:
-        return "source"

@@ -39,9 +39,24 @@ class EntityMetaNeighbourItem(TypedDict):
     count: int
 
 
+class EntityResource(TypedDict):
+    key: str
+    name: str
+    label: str
+    url: str
+    queriable: bool = False
+
+
+class EntityResources(TypedDict):
+    api: Optional[List[EntityResource]]
+    web: Optional[List[EntityResource]]
+    rpkg: Optional[List[EntityResource]]
+
+
 class EntityMetaNeighbours(TypedDict):
     meta_node_list: List[str]
     meta_rel_list: List[str]
+    entity_resources: EntityResources
     full_data: List[EntityMetaNeighbourItem]
 
 

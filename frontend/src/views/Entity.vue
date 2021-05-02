@@ -58,7 +58,91 @@
             <h3 id="epigraphdb-platform">
               EpiGraphDB Platform
             </h3>
-            <p>- web views; - API; - R package</p>
+            <p class="text-muted">
+              Resources that are associated with
+              <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
+              on the EpiGraphDB platform.
+            </p>
+            <p>
+              <b-badge variant="secondary">associated</b-badge>
+              The entity has its data associated as part of the returned data
+              from the resource.
+              <br />
+              <b-badge variant="primary">queriable</b-badge>
+              The entity can be queried either by its <code>id</code> or its
+              <code>name / label</code>.
+            </p>
+            <div v-if="webResources" class="pb-3">
+              <h4>
+                <font-awesome-icon :icon="['fas', 'home']" class="pr-2" />WebUI
+                topic views
+              </h4>
+              <p class="text-muted">
+                Topic views that are associated with
+                <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
+                on the
+                <a href="https://epigraphdb.org" target="_blank"
+                  >EpiGraphDB WebUI</a
+                >.
+              </p>
+              <div class="row">
+                <div
+                  class="col-md-4"
+                  v-for="item in webResources"
+                  :key="item.key"
+                >
+                  <ResourceCard :item="item" />
+                </div>
+              </div>
+            </div>
+            <div v-if="apiResources" class="pb-3">
+              <h4>
+                <font-awesome-icon
+                  :icon="['fas', 'terminal']"
+                  class="pr-2"
+                />API endpoints
+              </h4>
+              <p class="text-muted">
+                API endpoints that are associated with
+                <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
+                on the
+                <a href="https://api.epigraphdb.org" target="_blank"
+                  >EpiGraphDB API</a
+                >.
+              </p>
+              <div class="row">
+                <div
+                  class="col-md-4"
+                  v-for="item in apiResources"
+                  :key="item.key"
+                >
+                  <ResourceCard :item="item" />
+                </div>
+              </div>
+            </div>
+            <div v-if="rpkgResources" class="pb-3">
+              <h4>
+                <font-awesome-icon :icon="['fab', 'r-project']" class="pr-2" />R
+                package functions
+              </h4>
+              <p class="text-muted">
+                Functions that are associated with
+                <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
+                in the
+                <a href="https://mrcieu.github.io/epigraphdb-r"
+                  ><code>epigraphdb</code> R package</a
+                >.
+              </p>
+              <div class="row">
+                <div
+                  class="col-md-4"
+                  v-for="item in rpkgResources"
+                  :key="item.key"
+                >
+                  <ResourceCard :item="item" />
+                </div>
+              </div>
+            </div>
           </div>
           <hr />
           <div class="pb-3">
@@ -167,15 +251,21 @@ import _ from "lodash";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHome,
+  faSearch,
+  faTerminal
+} from "@fortawesome/free-solid-svg-icons";
+import { faRProject } from "@fortawesome/free-brands-svg-icons";
 
 import LinkedResource from "@/components/Entity/LinkedResource";
 import NeighbourMetaTable from "@/components/Entity/NeighbourMetaTable";
 import NeighbourEntityTable from "@/components/Entity/NeighbourEntityTable";
 import SimilarEntityTable from "@/components/Entity/SimilarEntityTable";
+import ResourceCard from "@/components/Entity/ResourceCard";
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
 
-library.add(faSearch);
+library.add(faSearch, faHome, faTerminal, faRProject);
 const config = require("@/config");
 
 export default {
@@ -186,7 +276,8 @@ export default {
     LinkedResource,
     NeighbourMetaTable,
     NeighbourEntityTable,
-    SimilarEntityTable
+    SimilarEntityTable,
+    ResourceCard
   },
   data: () => ({
     metaNode: null,
@@ -253,6 +344,24 @@ export default {
               return { value: item, text: item };
             })
           )
+        : null;
+    },
+    webResources: function() {
+      return this.neighbourMetaData &&
+        this.neighbourMetaData.entity_resources.web
+        ? this.neighbourMetaData.entity_resources.web
+        : null;
+    },
+    apiResources: function() {
+      return this.neighbourMetaData &&
+        this.neighbourMetaData.entity_resources.api
+        ? this.neighbourMetaData.entity_resources.api
+        : null;
+    },
+    rpkgResources: function() {
+      return this.neighbourMetaData &&
+        this.neighbourMetaData.entity_resources.rpkg
+        ? this.neighbourMetaData.entity_resources.rpkg
         : null;
     }
   },
@@ -349,4 +458,7 @@ h4::before {
 .resources-nav {
   margin-left: -20px;
 }
+/* .card-deck .card {
+    max-width: calc(25% - 30px);
+    } */
 </style>
