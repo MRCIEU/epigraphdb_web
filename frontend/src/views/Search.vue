@@ -176,6 +176,7 @@ export default {
     setupRouteQuery() {
       if (this.$route.query["meta_node"]) {
         this.metaNode = this.$route.query["meta_node"];
+        this.metaNodeSelect = this.metaNode;
       }
       if (this.$route.query["q"]) {
         this.searchText = this.$route.query["q"];
