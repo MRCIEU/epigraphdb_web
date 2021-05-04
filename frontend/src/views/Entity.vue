@@ -392,7 +392,8 @@ export default {
       const url = `${config.web_backend_url}/entity/meta-neighbours`;
       const params = {
         meta_node: this.metaNode,
-        id: this.entityId
+        id: this.entityId,
+        name: this.entityName
       };
       axios.get(url, { params: params }).then(response => {
         this.neighbourMetaData = response.data;

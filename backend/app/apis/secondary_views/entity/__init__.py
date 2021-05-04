@@ -1,3 +1,5 @@
+import operator
+from functools import reduce
 from typing import List, Optional
 
 import requests
@@ -72,7 +74,7 @@ def entity_search_node(
     response_model=Optional[models.EntityMetaNeighboursResponse],
 )
 def entity_meta_neighbours(
-    meta_node: EpigraphdbMetaNodeFull, id: str
+    meta_node: EpigraphdbMetaNodeFull, id: str, name: str
 ) -> Optional[models.EntityMetaNeighbours]:
     # NOTE: for is_target checking against n._id is way
     # faster than m._id
@@ -121,7 +123,19 @@ def entity_meta_neighbours(
             )
             for _ in full_data
         )
-        entity_resources = map_entity_resources(meta_node.value, triples)
+        # For now only do binary case and prefers source when reference is both
+        # source and target
+        reference_is_source = reduce(
+            operator.__or__, [_["is_n_source"] for _ in full_data_raw]
+        )
+        entity_node_type = "source" if reference_is_source else "target"
+        entity_resources = map_entity_resources(
+            meta_node.value,
+            triples,
+            entity_id=id,
+            entity_name=name,
+            entity_node_type=entity_node_type,
+        )
         res = {
             "meta_node_list": meta_node_list,
             "meta_rel_list": meta_rel_list,
