@@ -54,3 +54,8 @@ class PQTLResponse(BaseModel):
 class PQTLListTableResponse(BaseModel):
     table_titles: List[Dict[str, str]]
     table_data: List[Dict[str, Any]]
+
+
+class PQTLOutcome(BaseModel):
+    mrbase_id: str
+    label: str

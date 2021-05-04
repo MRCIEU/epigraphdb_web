@@ -196,7 +196,7 @@
               </h4>
               <p class="text-muted">Details by specific entities.</p>
               <b-spinner v-if="neighbourMetaDataLoading" />
-              <b-row align-h="between" v-if="neighbourMetaDataLoading">
+              <b-row align-h="between" v-if="!neighbourMetaDataLoading">
                 <b-col>
                   <b-form-group description="Filter by meta node">
                     <b-form-select
@@ -387,19 +387,19 @@ export default {
     },
     webResources: function() {
       return this.neighbourMetaData &&
-        this.neighbourMetaData.entity_resources.web
+        this.neighbourMetaData.entity_resources.web.length > 0
         ? this.neighbourMetaData.entity_resources.web
         : null;
     },
     apiResources: function() {
       return this.neighbourMetaData &&
-        this.neighbourMetaData.entity_resources.api
+        this.neighbourMetaData.entity_resources.api.length > 0
         ? this.neighbourMetaData.entity_resources.api
         : null;
     },
     rpkgResources: function() {
       return this.neighbourMetaData &&
-        this.neighbourMetaData.entity_resources.rpkg
+        this.neighbourMetaData.entity_resources.rpkg.length > 0
         ? this.neighbourMetaData.entity_resources.rpkg
         : null;
     }

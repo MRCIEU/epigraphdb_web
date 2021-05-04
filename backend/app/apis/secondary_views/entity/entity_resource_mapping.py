@@ -8,6 +8,7 @@ from epigraphdb_common_utils.epigraphdb_schema import (
 from epigraphdb_common_utils.schema_utils.models import Resource
 
 from . import models
+from .resources_extra import get_web_resources_extra
 from .web_view_urls import web_view_urls
 
 rpkg_generic_query: models.EntityResource = {
@@ -27,9 +28,9 @@ def map_entity_resources(
     entity_node_type: str,
 ) -> models.EntityResources:
     resources_by_meta = meta_nodes_dict[meta_node].resources
-    api_resources = None
-    web_resources = None
-    rpkg_resources = None
+    api_resources = []
+    web_resources = []
+    rpkg_resources = []
     if resources_by_meta.api is not None:
         api_resources = get_api_resources(
             meta_node, resources_by_meta.api, triples
@@ -47,13 +48,17 @@ def map_entity_resources(
         rpkg_resources = get_rpkg_resources(
             meta_node, resources_by_meta.rpkg, api_resources, triples
         )
+    web_resources_extra = get_web_resources_extra(
+        meta_node, entity_id, entity_name
+    )
+    web_resources = web_resources + web_resources_extra
     res = {"api": api_resources, "web": web_resources, "rpkg": rpkg_resources}
     return res
 
 
 def get_api_resources(
     meta_node: str, resources_by_meta: Dict[str, Resource], triples: Set[str]
-) -> Optional[List[models.EntityResource]]:
+) -> List[models.EntityResource]:
     resources = resources_dict["api"]
     entity_api_resources = [
         {
@@ -67,7 +72,7 @@ def get_api_resources(
         if len(triples.intersection(resources[resource_id].triples)) > 0
     ]
     if len(entity_api_resources) == 0:
-        return None
+        return []
     return entity_api_resources
 
 
@@ -78,7 +83,7 @@ def get_web_resources(
     entity_id: str,
     entity_name: str,
     entity_node_type: str,
-) -> Optional[List[models.EntityResource]]:
+) -> List[models.EntityResource]:
     resources = resources_dict["web"]
     entity_web_resources = [
         {
@@ -92,7 +97,7 @@ def get_web_resources(
         if len(triples.intersection(resources[resource_id].triples)) > 0
     ]
     if len(entity_web_resources) == 0:
-        return None
+        return []
     else:
         for item in entity_web_resources:
             if (
@@ -114,7 +119,7 @@ def get_rpkg_resources(
     resources_by_meta: Dict[str, Resource],
     api_resources: Optional[Dict[str, Resource]],
     triples: Set[str],
-) -> Optional[List[models.EntityResource]]:
+) -> List[models.EntityResource]:
     resources = resources_dict["rpkg"]
     entity_rpkg_resources = [
         {
@@ -143,5 +148,5 @@ def get_rpkg_resources(
             rpkg_equivalent["queriable"] = api_resource["queriable"]
             entity_rpkg_resources.append(rpkg_equivalent)
     if len(entity_rpkg_resources) == 0:
-        return None
+        return []
     return entity_rpkg_resources

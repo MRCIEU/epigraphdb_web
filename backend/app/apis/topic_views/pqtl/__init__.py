@@ -1,17 +1,20 @@
-from typing import List
+from typing import Dict, List
 from urllib.parse import quote
 
 import pandas as pd
 from fastapi import APIRouter
 from starlette.responses import Response
 
+from app.apis.util_routes.api import get_api_cypher
 from app.funcs.cache import cache_func_call
+from app.models import EpigraphdbGraphsExtended
 from app.utils.logging import log_args
 
 from .pqtl_main import pqtl_main
 from .pqtl_models import (
     PQTLListTableResponse,
     PQTLMethod,
+    PQTLOutcome,
     PQTLResponse,
     PQTLSearchType,
 )
@@ -99,3 +102,17 @@ def get_pqtl_download(query: str, method: PQTLMethod):
         "content-disposition": f"attachment; filename={filename}",
     }
     return Response(res, media_type="text/csv", headers=headers)
+
+
+@router.get("/pqtl/list/outcome", response_model=List[PQTLOutcome])
+def get_pqtl_list_outcome(overwrite: bool = False) -> List[Dict[str, str]]:
+    log_args(api="/pqtl/list/outcome", kwargs=locals())
+    query = "MATCH (o:Outcome) RETURN DISTINCT o.outID_mrbase AS mrbase_id, o.outID AS label"
+    cache_res = cache_func_call(
+        coll_name="pqtl_list_outcome",
+        func=get_api_cypher,
+        params={"query": query, "db": EpigraphdbGraphsExtended.pqtl},
+        overwrite=overwrite,
+    )
+    res = cache_res["results"]
+    return res

@@ -48,9 +48,9 @@ class EntityResource(TypedDict):
 
 
 class EntityResources(TypedDict):
-    api: Optional[List[EntityResource]]
-    web: Optional[List[EntityResource]]
-    rpkg: Optional[List[EntityResource]]
+    api: List[EntityResource]
+    web: List[EntityResource]
+    rpkg: List[EntityResource]
 
 
 class EntityMetaNeighbours(TypedDict):
