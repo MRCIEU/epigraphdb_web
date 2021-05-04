@@ -57,6 +57,12 @@
           <div class="pb-3">
             <h3 id="epigraphdb-platform">
               EpiGraphDB Platform
+              <a href="#resources">
+                <font-awesome-icon
+                  :icon="['fas', 'chevron-up']"
+                  class="text-muted ml-2"
+                />
+              </a>
             </h3>
             <p class="text-muted">
               Resources that are associated with
@@ -72,6 +78,7 @@
               The entity can be queried either by its <code>id</code> or its
               <code>name / label</code>.
             </p>
+            <b-spinner v-if="neighbourMetaDataLoading" />
             <div v-if="webResources" class="pb-3">
               <h4>
                 <font-awesome-icon :icon="['fas', 'home']" class="pr-2" />WebUI
@@ -148,6 +155,12 @@
           <div class="pb-3">
             <h3 id="connected-entities">
               Connected entities
+              <a href="#resources">
+                <font-awesome-icon
+                  :icon="['fas', 'chevron-up']"
+                  class="text-muted ml-2"
+                />
+              </a>
             </h3>
             <p class="text-muted">
               Entities that are connected to
@@ -155,17 +168,35 @@
               in the graph database.
             </p>
             <div class="py-3">
-              <h4 id="connected-overview">Overview</h4>
+              <h4 id="connected-overview">
+                Overview
+                <a href="#resources">
+                  <font-awesome-icon
+                    :icon="['fas', 'chevron-up']"
+                    class="text-muted ml-2"
+                  />
+                </a>
+              </h4>
               <p class="text-muted">Overview summary by meta entities.</p>
+              <b-spinner v-if="neighbourMetaDataLoading" />
               <NeighbourMetaTable
                 v-if="neighbourMetaData"
                 :items="neighbourMetaData.full_data"
               />
             </div>
             <div class="py-3">
-              <h4 id="connected-details">Details</h4>
+              <h4 id="connected-details">
+                Details
+                <a href="#resources">
+                  <font-awesome-icon
+                    :icon="['fas', 'chevron-up']"
+                    class="text-muted ml-2"
+                  />
+                </a>
+              </h4>
               <p class="text-muted">Details by specific entities.</p>
-              <b-row align-h="between">
+              <b-spinner v-if="neighbourMetaDataLoading" />
+              <b-row align-h="between" v-if="neighbourMetaDataLoading">
                 <b-col>
                   <b-form-group description="Filter by meta node">
                     <b-form-select
@@ -216,6 +247,12 @@
           <div class="pb-3">
             <h3 id="similar-entities">
               Similar entities
+              <a href="#resources">
+                <font-awesome-icon
+                  :icon="['fas', 'chevron-up']"
+                  class="text-muted ml-2"
+                />
+              </a>
             </h3>
             <p class="text-muted">
               Entities with similar names to
@@ -254,7 +291,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faHome,
   faSearch,
-  faTerminal
+  faTerminal,
+  faChevronUp
 } from "@fortawesome/free-solid-svg-icons";
 import { faRProject } from "@fortawesome/free-brands-svg-icons";
 
@@ -265,7 +303,7 @@ import SimilarEntityTable from "@/components/Entity/SimilarEntityTable";
 import ResourceCard from "@/components/Entity/ResourceCard";
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
 
-library.add(faSearch, faHome, faTerminal, faRProject);
+library.add(faSearch, faHome, faTerminal, faRProject, faChevronUp);
 const config = require("@/config");
 
 export default {
@@ -286,6 +324,7 @@ export default {
     neighbourEntityData: null,
     neighbourMetaNodeSelect: null,
     neighbourMetaRelSelect: null,
+    neighbourMetaDataLoading: null,
     neighbourNodeTypeSelect: null,
     neighbourNodeTypeOptions: [
       { value: null, text: "unspecified" },
@@ -395,8 +434,10 @@ export default {
         id: this.entityId,
         name: this.entityName
       };
+      this.neighbourMetaDataLoading = true;
       axios.get(url, { params: params }).then(response => {
         this.neighbourMetaData = response.data;
+        this.neighbourMetaDataLoading = false;
       });
     },
     getNeighbourEntityData() {
