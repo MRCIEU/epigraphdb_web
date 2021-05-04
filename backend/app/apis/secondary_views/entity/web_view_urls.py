@@ -52,19 +52,9 @@ genetic_cor = {"Gwas": UrlTranslator(how="name", prefix="trait-query")}
 
 prs = {"Gwas": UrlTranslator(how="name", prefix="trait-query")}
 
-confounder = {
-    "Gwas": UrlTranslator(
-        how="name",
-        source_prefix="exposure-trait",
-        target_prefix="outcome-trait",
-        extra_params={"confounder-type": "confounder"},
-    )
-}
-
 web_view_urls = {
     "mr": mr,
     "genetic_cor": genetic_cor,
     "obs_cor": obs_cor,
-    "confounder": confounder,
     "prs": prs,
 }
