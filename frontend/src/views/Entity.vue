@@ -75,8 +75,9 @@
               from the resource.
               <br />
               <b-badge variant="primary">queriable</b-badge>
-              The entity can be queried either by its <code>id</code> or its
-              <code>name / label</code>.
+              The entity can be queried in one of the following ways: by its
+              <code>id</code>, by its <code>name / label</code> text, or by a
+              similar term related to its <code>name / label</code> text.
             </p>
             <b-spinner v-if="neighbourMetaDataLoading" />
             <div v-if="webResources" class="pb-3">
@@ -91,6 +92,10 @@
                 <a href="https://epigraphdb.org" target="_blank"
                   >EpiGraphDB WebUI</a
                 >.
+                <br />
+                <b-badge variant="success">results</b-badge>
+                Clicking on the resource link will lead users to a page
+                containing query results regarding the entity.
               </p>
               <div class="row">
                 <div
@@ -137,7 +142,7 @@
                 <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
                 in the
                 <a href="https://mrcieu.github.io/epigraphdb-r"
-                  ><code>epigraphdb</code> R package</a
+                  ><code style="color: #d7528b">epigraphdb</code> R package</a
                 >.
               </p>
               <div class="row">

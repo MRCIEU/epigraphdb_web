@@ -1,5 +1,5 @@
 import copy
-from typing import Dict, List, Optional, Set
+from typing import Any, Dict, List, Set
 
 from epigraphdb_common_utils.epigraphdb_schema import (
     meta_nodes_dict,
@@ -21,6 +21,7 @@ rpkg_generic_query: models.EntityResource = {
     "label": "query_epigraphdb to API endpoint `{endpoint}`",
     "url": "https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html",
     "queriable": False,
+    "redirect_results": False,
 }
 
 
@@ -29,7 +30,6 @@ def map_entity_resources(
     triples: Set[str],
     entity_id: str,
     entity_name: str,
-    entity_node_type: str,
 ) -> models.EntityResources:
     resources_by_meta = meta_nodes_dict[meta_node].resources
     api_resources = []
@@ -46,11 +46,10 @@ def map_entity_resources(
             triples,
             entity_id,
             entity_name,
-            entity_node_type,
         )
     if resources_by_meta.rpkg is not None:
         rpkg_resources = get_rpkg_resources(
-            meta_node, resources_by_meta.rpkg, api_resources, triples
+            meta_node, resources_by_meta.rpkg, triples
         )
     web_resources_extra = get_web_resources_extra(
         meta_node, entity_id, entity_name
@@ -58,12 +57,17 @@ def map_entity_resources(
     api_resources_extra = get_api_resources_extra(
         meta_node, entity_id, entity_name
     )
+    rpkg_resources_generic = get_rpkg_resources_generic(
+        meta_node, api_resources
+    )
     rpkg_resources_extra = get_rpkg_resources_extra(
         meta_node, entity_id, entity_name
     )
     web_resources = web_resources + web_resources_extra
     api_resources = api_resources + api_resources_extra
-    rpkg_resources = rpkg_resources + rpkg_resources_extra
+    rpkg_resources = (
+        rpkg_resources + rpkg_resources_generic + rpkg_resources_extra
+    )
     res = {"api": api_resources, "web": web_resources, "rpkg": rpkg_resources}
     return res
 
@@ -79,6 +83,7 @@ def get_api_resources(
             "label": resources[resource_id].label,
             "url": resources[resource_id].url,
             "queriable": item.queriable,
+            "redirect_results": False,
         }
         for resource_id, item in resources_by_meta.items()
         if len(triples.intersection(resources[resource_id].triples)) > 0
@@ -94,7 +99,6 @@ def get_web_resources(
     triples: Set[str],
     entity_id: str,
     entity_name: str,
-    entity_node_type: str,
 ) -> List[models.EntityResource]:
     resources = resources_dict["web"]
     entity_web_resources = [
@@ -104,6 +108,7 @@ def get_web_resources(
             "label": resources[resource_id].label,
             "url": resources[resource_id].url,
             "queriable": item.queriable,
+            "redirect_results": False,
         }
         for resource_id, item in resources_by_meta.items()
         if len(triples.intersection(resources[resource_id].triples)) > 0
@@ -121,15 +126,15 @@ def get_web_resources(
                     root_url=item["url"],
                     entity_id=entity_id,
                     entity_name=entity_name,
-                    entity_node_type=entity_node_type,
+                    entity_triples=triples,
                 )
+                item["redirect_results"] = True
         return entity_web_resources
 
 
 def get_rpkg_resources(
     meta_node: str,
     resources_by_meta: Dict[str, Resource],
-    api_resources: Optional[Dict[str, Resource]],
     triples: Set[str],
 ) -> List[models.EntityResource]:
     resources = resources_dict["rpkg"]
@@ -140,11 +145,19 @@ def get_rpkg_resources(
             "label": resources[resource_id].label,
             "url": resources[resource_id].url,
             "queriable": item.queriable,
+            "redirect_results": False,
         }
         for resource_id, item in resources_by_meta.items()
         if len(triples.intersection(resources[resource_id].triples)) > 0
     ]
+    return entity_rpkg_resources
+
+
+def get_rpkg_resources_generic(
+    meta_node: str, api_resources: Dict[str, Any]
+) -> List[models.EntityResource]:
     if api_resources is not None and len(api_resources) > 0:
+        entity_rpkg_resources = []
         for api_resource in api_resources:
             route = api_resource["label"].split(" ")[1]
             rpkg_equivalent = copy.deepcopy(rpkg_generic_query)
@@ -159,6 +172,6 @@ def get_rpkg_resources(
             )
             rpkg_equivalent["queriable"] = api_resource["queriable"]
             entity_rpkg_resources.append(rpkg_equivalent)
-    if len(entity_rpkg_resources) == 0:
+        return entity_rpkg_resources
+    else:
         return []
-    return entity_rpkg_resources

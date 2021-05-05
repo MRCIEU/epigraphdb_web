@@ -45,6 +45,7 @@ class EntityResource(TypedDict):
     label: str
     url: str
     queriable: bool = False
+    redirect_results: bool = False
 
 
 class EntityResources(TypedDict):

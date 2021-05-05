@@ -205,6 +205,9 @@ def map_web_resource(
             "label": resource["label"],
             "url": url,
             "queriable": queriable,
+            # if queriable, then for resources_extra it is
+            # sufficient for it to contain results
+            "redirect_results": queriable,
         }
         return res
 
@@ -233,6 +236,7 @@ def map_api_resource(
             "label": resource["label"],
             "url": url,
             "queriable": queriable,
+            "redirect_results": False,
         }
         return res
 
@@ -261,5 +265,6 @@ def map_rpkg_resource(
             "label": resource["label"],
             "url": url,
             "queriable": queriable,
+            "redirect_results": False,
         }
         return res

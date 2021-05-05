@@ -7,7 +7,7 @@
     @mouseover="hover = true"
     @mouseleave="hover = false"
   >
-    <b-card-body>
+    <div class="py-2 px-3">
       <b-card-title class="resource-card-title"
         ><a :href="item.url" target="_blank">{{ item.name }}</a></b-card-title
       >
@@ -20,7 +20,10 @@
       <b-badge variant="primary" v-if="item.queriable" class="mr-2"
         >queriable</b-badge
       >
-    </b-card-body>
+      <b-badge variant="success" v-if="item.redirect_results" class="mr-2"
+        >results</b-badge
+      >
+    </div>
   </b-card>
 </template>
 
