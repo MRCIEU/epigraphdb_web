@@ -8,7 +8,11 @@ from epigraphdb_common_utils.epigraphdb_schema import (
 from epigraphdb_common_utils.schema_utils.models import Resource
 
 from . import models
-from .resources_extra import get_web_resources_extra
+from .resources_extra import (
+    get_api_resources_extra,
+    get_rpkg_resources_extra,
+    get_web_resources_extra,
+)
 from .web_view_urls import web_view_urls
 
 rpkg_generic_query: models.EntityResource = {
@@ -51,7 +55,15 @@ def map_entity_resources(
     web_resources_extra = get_web_resources_extra(
         meta_node, entity_id, entity_name
     )
+    api_resources_extra = get_api_resources_extra(
+        meta_node, entity_id, entity_name
+    )
+    rpkg_resources_extra = get_rpkg_resources_extra(
+        meta_node, entity_id, entity_name
+    )
     web_resources = web_resources + web_resources_extra
+    api_resources = api_resources + api_resources_extra
+    rpkg_resources = rpkg_resources + rpkg_resources_extra
     res = {"api": api_resources, "web": web_resources, "rpkg": rpkg_resources}
     return res
 
@@ -63,7 +75,7 @@ def get_api_resources(
     entity_api_resources = [
         {
             "key": resource_id,
-            "name": resource_id,
+            "name": resources[resource_id].label,
             "label": resources[resource_id].label,
             "url": resources[resource_id].url,
             "queriable": item.queriable,

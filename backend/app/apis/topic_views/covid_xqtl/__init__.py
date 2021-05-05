@@ -3,6 +3,7 @@ from typing import Optional
 import requests
 from fastapi import APIRouter
 
+from app.funcs.cache import cache_func_call
 from app.settings import api_url
 from app.utils import api_request_headers
 from app.utils.logging import log_args
@@ -14,15 +15,25 @@ router = APIRouter()
 
 
 @router.get("/covid-19/ctda/list/{entity}")
-def get_list_gwas(entity: models.CovidXqtlList):
+def get_list_ctda(entity: models.CovidXqtlList, overwrite: bool = False):
     log_args(api=f"/covid-19/ctda/list/{entity}", kwargs=locals())
-    r = requests.get(
-        f"{api_url}/covid-19/ctda/list/{entity.value}",
-        headers=api_request_headers,
+
+    def _func(entity: str):
+        r = requests.get(
+            f"{api_url}/covid-19/ctda/list/{entity}",
+            headers=api_request_headers,
+        )
+        r.raise_for_status()
+        res = r.json()["results"]
+        return res
+
+    cache_res = cache_func_call(
+        coll_name="covid_xqtl_list",
+        func=_func,
+        params={"entity": entity.value},
+        overwrite=overwrite,
     )
-    r.raise_for_status()
-    res = r.json()["results"]
-    return res
+    return cache_res
 
 
 @router.get("/covid-19/ctda/single-snp-mr/{entity}")
