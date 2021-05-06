@@ -4,6 +4,7 @@ from app.funcs.elasticsearch.indexers import (
     name_indexer_standard,
 )
 
+# TODO: fetch num ents upstream
 search_config = {
     "Gwas": {"length": 35_000, "indexer": name_indexer_edge_ngram_long},
     "Disease": {"length": 25_000, "indexer": name_indexer_edge_ngram_long},

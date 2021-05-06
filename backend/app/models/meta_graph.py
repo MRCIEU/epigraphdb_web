@@ -23,7 +23,7 @@ class EpigraphdbMetaNodeFull(str, Enum):
 
 class EpigraphdbMetaNodeNonCodeName(str, Enum):
     """Meta nodes with meaningful names, but not necessarily
-    used in indexing. Should be a superset of `EpigraphdbMetaNodeForSearch`.
+    used in indexing.
     """
 
     Gwas = "Gwas"
@@ -36,7 +36,9 @@ class EpigraphdbMetaNodeNonCodeName(str, Enum):
     Pathway = "Pathway"
     Protein = "Protein"
     Tissue = "Tissue"
-    Variant = "Variant"
+    # variant has no meaningful names
+    # but we index variants for them to be searchable
+    # Variant = "Variant"
 
 
 class EpigraphdbMetaNodeForSearch(str, Enum):
