@@ -10,7 +10,7 @@
               alt="EpiGraphDB"
             />
           </span>
-          <span class="label">{{ platformVersion }}</span>
+          <span class="label align-text-bottom">{{ platformVersion }}</span>
         </h1>
         <p class="text-muted">
           A database and data mining platform for health data science

@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <div
+    v-b-tooltip.v-primary.hover.leftbottom
+    title="Enter name of the entity, e.g. body mass index.
+           Upon selection will navigate to the detailed information page of
+           the matched entity."
+  >
     <!-- TODO: keyup is still misbehaving -->
     <!-- NOTE: there is no fuzzy matching -->
     <vue-typeahead-bootstrap
-      v-b-tooltip.v-primary.hover
-      title="Enter name of the entity, e.g. body mass index.
-             Upon selection will navigate to the detailed information page of
-             the matched entity."
       class="my-2 mr-sm-2"
       v-model="query"
       placeholder="Search EpiGraphDB"
@@ -22,6 +23,9 @@
           {{ data.id.id }}</small
         ><br />
         <span v-html="htmlText"></span>
+      </template>
+      <template slot="prepend">
+        <b-form-select v-model="metaNode" :options="metaNodeOptions" />
       </template>
       <template slot="append">
         <b-button variant="outline-primary" @click="gotoSearch" block>
@@ -57,14 +61,29 @@ export default {
     query: null,
     querySelected: null,
     queryOptions: [],
+    metaNode: null,
     textLengthMin: 3,
+    metaNodeOptions: [
+      { text: "All meta-nodes", value: null },
+      { text: "Gwas", value: "Gwas" },
+      { text: "Disease", value: "Disease" },
+      { text: "Drug", value: "Drug" },
+      { text: "Efo", value: "Efo" },
+      { text: "Gene", value: "Gene" },
+      { text: "Tissue", value: "Tissue" },
+      { text: "Pathway", value: "Pathway" },
+      { text: "Protein", value: "Protein" },
+      { text: "LiteratureTerm", value: "LiteratureTerm" },
+      { text: "Variant", value: "Variant" }
+    ],
     url: `${config.web_backend_url}/search/quick/node`
   }),
   methods: {
-    search(q) {
+    search(q, metaNode) {
       const url = this.url;
       const params = {
-        q: q
+        q: q,
+        meta_node: metaNode
       };
       axios
         .get(url, { params: params })
@@ -86,7 +105,7 @@ export default {
     gotoSearch() {
       this.$router.push({
         name: "search",
-        query: { q: this.query }
+        query: { meta_node: this.metaNode, q: this.query }
       });
     }
   },
@@ -100,7 +119,7 @@ export default {
   watch: {
     query: _.debounce(function(q) {
       if (q.length >= this.textLengthMin) {
-        this.search(q);
+        this.search(q, this.metaNode);
       }
     }, 500)
   }

@@ -10,10 +10,17 @@
             </span>
             <MetaNode :meta-node="metaNode" :url="entityData.meta_node.url" />
           </p>
-          <p><span class="text-muted">id: </span>{{ entityId }}</p>
+          <p>
+            <span class="text-muted">id: </span>
+            <span style="overflow-wrap: break-word;">
+              {{ entityId }}
+            </span>
+          </p>
           <p>
             <span class="text-muted">name: </span>
-            {{ entityName }}
+            <span style="overflow-wrap: break-word;">
+              {{ entityName }}
+            </span>
           </p>
           <p>
             <span class="text-muted">source: </span>
@@ -25,7 +32,9 @@
         <p v-for="item in entityData.full_data" :key="item.key">
           <span v-b-tooltip.v-primary.hover :title="item.annotation.doc">
             <span class="text-muted">{{ item.key }}: </span>
-            {{ item.value }}
+            <span style="overflow-wrap: break-word;">
+              {{ item.value }}
+            </span>
           </span>
         </p>
         <hr />
@@ -82,8 +91,10 @@
             <b-spinner v-if="neighbourMetaDataLoading" />
             <div v-if="webResources" class="pb-3">
               <h4>
-                <font-awesome-icon :icon="['fas', 'home']" class="pr-2" />WebUI
-                topic views
+                <font-awesome-icon
+                  :icon="['fas', 'home']"
+                  class="pr-2 text-muted"
+                />WebUI topic views
               </h4>
               <p class="text-muted">
                 Topic views that are associated with
@@ -111,7 +122,7 @@
               <h4>
                 <font-awesome-icon
                   :icon="['fas', 'terminal']"
-                  class="pr-2"
+                  class="pr-2 text-muted"
                 />API endpoints
               </h4>
               <p class="text-muted">
@@ -134,8 +145,10 @@
             </div>
             <div v-if="rpkgResources" class="pb-3">
               <h4>
-                <font-awesome-icon :icon="['fab', 'r-project']" class="pr-2" />R
-                package functions
+                <font-awesome-icon
+                  :icon="['fab', 'r-project']"
+                  class="pr-2 text-muted"
+                />R package functions
               </h4>
               <p class="text-muted">
                 Functions that are associated with
@@ -174,6 +187,10 @@
             </p>
             <div class="py-3">
               <h4 id="connected-overview">
+                <font-awesome-icon
+                  :icon="['fas', 'home']"
+                  class="pr-2 text-muted"
+                />
                 Overview
                 <a href="#resources">
                   <font-awesome-icon
@@ -191,6 +208,10 @@
             </div>
             <div class="py-3">
               <h4 id="connected-details">
+                <font-awesome-icon
+                  :icon="['fas', 'table']"
+                  class="pr-2 text-muted"
+                />
                 Details
                 <a href="#resources">
                   <font-awesome-icon
@@ -260,7 +281,7 @@
               </a>
             </h3>
             <p class="text-muted">
-              Entities with similar names to
+              Entities that are similar to
               <MetaNode
                 :meta-node="metaNode"
                 no-url
@@ -269,8 +290,17 @@
               />.
             </p>
             <div v-if="similaritySearchResults">
+              <h4>
+                <font-awesome-icon
+                  :icon="['fas', 'quote-right']"
+                  class="pr-2 text-muted"
+                />
+                Similar names
+              </h4>
               <p class="text-muted">
-                For detailed search results on entities with similar names go to
+                Entities with similar names to
+                <span class="text-info">"{{ entityName }}"</span>. For
+                customised search results go to
                 <router-link
                   :to="{ name: 'search', query: { q: this.entityName } }"
                   target="_blank"
@@ -297,7 +327,9 @@ import {
   faHome,
   faSearch,
   faTerminal,
-  faChevronUp
+  faChevronUp,
+  faQuoteRight,
+  faTable
 } from "@fortawesome/free-solid-svg-icons";
 import { faRProject } from "@fortawesome/free-brands-svg-icons";
 
@@ -308,7 +340,15 @@ import SimilarEntityTable from "@/components/Entity/SimilarEntityTable";
 import ResourceCard from "@/components/Entity/ResourceCard";
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
 
-library.add(faSearch, faHome, faTerminal, faRProject, faChevronUp);
+library.add(
+  faSearch,
+  faHome,
+  faTerminal,
+  faRProject,
+  faChevronUp,
+  faQuoteRight,
+  faTable
+);
 const config = require("@/config");
 
 export default {
