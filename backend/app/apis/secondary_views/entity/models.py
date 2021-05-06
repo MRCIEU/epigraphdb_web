@@ -4,6 +4,7 @@ from typing import Any, List, Optional
 from pydantic import create_model_from_typeddict
 from typing_extensions import TypedDict
 
+from app.apis.util_routes.search.models import SearchEntity
 from app.models.entities import (
     AnnotatedMetaEntity,
     AnnotatedNodeId,
@@ -67,6 +68,11 @@ class EntityNeighbour(TypedDict):
     node_id: AnnotatedNodeId
     node_name: str
     node_type: str
+
+
+class EntitySimilarResults(TypedDict):
+    summary: Any
+    results: List[SearchEntity]
 
 
 class EntityNodeType(str, Enum):

@@ -4,6 +4,7 @@ import requests
 from fastapi import APIRouter, Query
 
 from app.apis.util_routes.api import get_api_cypher
+from app.apis.util_routes.models import get_meta_nodes_non_code_name
 from app.funcs.annotate_entity import (
     annotate_meta_entity,
     annotate_node_id,
@@ -17,6 +18,7 @@ from app.utils import api_request_headers, format_triple, get_node_role
 from . import models
 from .entity_resource_mapping import map_entity_resources
 from .linked_resources import map_linked_external_resource
+from .similarity_search import entity_similarity_search
 
 router = APIRouter()
 
@@ -207,4 +209,17 @@ def entity_neighbours(
             }
             for _ in data_raw
         ]
+        return res
+
+
+@router.get("/entity/similar-entities")
+def entity_similarity(
+    meta_node: str, id: str, name: str, size: int = 50
+) -> Optional[models.EntitySimilarResults]:
+    candidate_meta_nodes = get_meta_nodes_non_code_name()
+    if meta_node not in candidate_meta_nodes:
+        return None
+    else:
+        search_results = entity_similarity_search(meta_node, id, name, size)
+        res = {"summary": None, "results": search_results}  # placeholder
         return res

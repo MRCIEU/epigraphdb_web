@@ -21,10 +21,26 @@ class EpigraphdbMetaNodeFull(str, Enum):
     Variant = "Variant"
 
 
-class EpigraphdbMetaNodeForSearch(str, Enum):
-    """Meta nodes to search. Exclude meta nodes that do not have meaningful
-    labels, e.g. `(Literature)`, `(LiteratureTriple)`
+class EpigraphdbMetaNodeNonCodeName(str, Enum):
+    """Meta nodes with meaningful names, but not necessarily
+    used in indexing. Should be a superset of `EpigraphdbMetaNodeForSearch`.
     """
+
+    Gwas = "Gwas"
+    Disease = "Disease"
+    Drug = "Drug"
+    Efo = "Efo"
+    Gene = "Gene"
+    LiteratureTerm = "LiteratureTerm"
+    LiteratureTriple = "LiteratureTriple"
+    Pathway = "Pathway"
+    Protein = "Protein"
+    Tissue = "Tissue"
+    Variant = "Variant"
+
+
+class EpigraphdbMetaNodeForSearch(str, Enum):
+    """Meta nodes with meaningful names indexable and searchable."""
 
     Gwas = "Gwas"
     Disease = "Disease"

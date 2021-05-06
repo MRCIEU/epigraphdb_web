@@ -157,7 +157,7 @@ export default {
         });
     },
     getMetaNodesForSearch() {
-      const url = `${config.web_backend_url}/models/epigraphdb-meta-nodes-for-search`;
+      const url = `${config.web_backend_url}/models/meta-nodes/for-search`;
       axios.get(url).then(response => {
         this.metaNodesForSearch = response.data;
       });

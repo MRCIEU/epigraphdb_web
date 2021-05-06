@@ -266,7 +266,7 @@
                 no-url
                 :entity-id="entityId"
                 :entity-name="entityName"
-              />
+              />.
             </p>
             <div v-if="similaritySearchResults">
               <p class="text-muted">
@@ -336,7 +336,6 @@ export default {
       { value: "source", text: "source" },
       { value: "target", text: "target" }
     ],
-    metaNodesForSearch: null,
     similaritySearchResults: null,
     neighbourSizeSelect: 50,
     neighbourSizeOptions: [50, 100, 300, 500],
@@ -350,9 +349,7 @@ export default {
       if (newVal) {
         this.getNeighbourMetaData();
         this.getNeighbourEntityData();
-        if (this.metaNodesForSearch.includes(this.metaNode)) {
-          this.similaritySearch(newVal.entity_name, null);
-        }
+        this.similaritySearch();
       }
     }
   },
@@ -419,7 +416,6 @@ export default {
       }
       if (this.metaNode && this.entityId) {
         this.getMaster();
-        this.getMetaNodesForSimilaritySearch();
       }
     },
     async getMaster() {
@@ -459,17 +455,12 @@ export default {
         this.neighbourEntityData = response.data;
       });
     },
-    getMetaNodesForSimilaritySearch() {
-      const url = `${config.web_backend_url}/models/epigraphdb-meta-nodes-for-search`;
-      axios.get(url).then(response => {
-        this.metaNodesForSearch = response.data;
-      });
-    },
-    similaritySearch(q, metaNode) {
-      const url = `${config.web_backend_url}/search/full/node`;
+    similaritySearch() {
+      const url = `${config.web_backend_url}/entity/similar-entities`;
       const params = {
-        q: q,
-        meta_node: metaNode,
+        meta_node: this.metaNode,
+        name: this.entityName,
+        id: this.entityId,
         size: 50
       };
       axios

@@ -2,7 +2,10 @@ from typing import List
 
 from fastapi import APIRouter
 
-from app.models.meta_graph import EpigraphdbMetaNodeForSearch
+from app.models.meta_graph import (
+    EpigraphdbMetaNodeForSearch,
+    EpigraphdbMetaNodeNonCodeName,
+)
 from epigraphdb_common_utils.epigraphdb_schema import (
     meta_nodes_dict,
     meta_rels_dict,
@@ -23,8 +26,11 @@ def get_epigraphdb_meta_rels() -> List[str]:
     return meta_rels
 
 
-@router.get(
-    "/models/epigraphdb-meta-nodes-for-search", response_model=List[str]
-)
+@router.get("/models/meta-nodes/non-code-name", response_model=List[str])
+def get_meta_nodes_non_code_name():
+    return [_.value for _ in EpigraphdbMetaNodeNonCodeName]
+
+
+@router.get("/models/meta-nodes/for-search", response_model=List[str])
 def get_meta_nodes_for_search():
     return [_.value for _ in EpigraphdbMetaNodeForSearch]
