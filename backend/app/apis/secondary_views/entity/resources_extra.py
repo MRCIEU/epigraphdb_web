@@ -89,7 +89,7 @@ def covid_xqtl_snp_mapper(entity_id: str, entity_name: str) -> Optional[str]:
 def pqtl_url_generator(
     entity: str, meta_node: str, queriable: bool = True
 ) -> str:
-    pqtl_url = "https://epigraphdb.org/pqtl/"
+    pqtl_url = "/pqtl/"
     if queriable:
         url_template = "{pqtl_url}{entity}"
         return url_template.format(pqtl_url=pqtl_url, entity=quote(entity))
@@ -100,7 +100,7 @@ def pqtl_url_generator(
 def covid_xqtl_url_generator(
     entity: str, meta_node: str, queriable: bool = True
 ) -> str:
-    covid_xqtl_url = "https://epigraphdb.org/covid-19/ctda"
+    covid_xqtl_url = "/covid-19/ctda"
     if queriable:
         url_template = "{covid_xqtl_url}/?{query_expr}"
         meta_node_mapping = {
