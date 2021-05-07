@@ -41,10 +41,19 @@ def get_index_name(meta_node: str) -> bool:
     return f"search-global-{meta_node}".lower()
 
 
+def get_meta_node_size(meta_node: str) -> int:
+    url = f"{api_url}/cypher"
+    query = f"MATCH (n:{meta_node}) RETURN count(n) as count"
+    r = requests.post(url, json={"query": query})
+    r.raise_for_status()
+    res = r.json()["results"][0]["count"]
+    return res
+
+
 def index_node_info(meta_node: str, overwrite: bool = False) -> bool:
     index_name = get_index_name(meta_node)
     input_data = get_node_info(
-        meta_node=meta_node, total_length=search_config[meta_node]["length"]
+        meta_node=meta_node, total_length=get_meta_node_size(meta_node)
     )
     if overwrite:
         es_client.indices.delete(index=index_name, ignore=[400, 404])
