@@ -5,7 +5,6 @@
            Upon selection will navigate to the detailed information page of
            the matched entity."
   >
-    <!-- TODO: keyup is still misbehaving -->
     <!-- NOTE: there is no fuzzy matching -->
     <vue-typeahead-bootstrap
       class="my-2 mr-sm-2"
@@ -16,6 +15,8 @@
       :data="queryOptions"
       :serializer="item => item.name"
       @hit="gotoExplore($event)"
+      @keypress.enter.native.prevent
+      @keyup.enter="gotoSearch()"
     >
       <template slot="suggestion" slot-scope="{ data, htmlText }">
         <small
@@ -95,11 +96,12 @@ export default {
         });
     },
     gotoExplore(item) {
-      if (item.id) {
-        this.$router.push({
-          name: "entity",
-          query: { meta_node: item.meta_node.name, id: item.id.id }
-        });
+      this.$router.push({
+        name: "entity",
+        query: { meta_node: item.meta_node.name, id: item.id.id }
+      });
+      if (this.$route.name == "entity") {
+        this.$router.go();
       }
     },
     gotoSearch() {
@@ -107,6 +109,9 @@ export default {
         name: "search",
         query: { meta_node: this.metaNode, q: this.query }
       });
+      if (this.$route.name == "entity" || this.$route.name == "search") {
+        this.$router.go();
+      }
     }
   },
   computed: {
