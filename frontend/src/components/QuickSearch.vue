@@ -96,22 +96,30 @@ export default {
         });
     },
     gotoExplore(item) {
-      this.$router.push({
-        name: "entity",
-        query: { meta_node: item.meta_node.name, id: item.id.id }
-      });
-      if (this.$route.name == "entity") {
-        this.$router.go();
-      }
+      this.$router
+        .push({
+          name: "entity",
+          query: { meta_node: item.meta_node.name, id: item.id.id }
+        })
+        .then(() => {
+          // this is to force a rerendering of the page
+          // if the page is already "entity"
+          if (this.$route.name == "entity") {
+            this.$router.go();
+          }
+        });
     },
     gotoSearch() {
-      this.$router.push({
-        name: "search",
-        query: { meta_node: this.metaNode, q: this.query }
-      });
-      if (this.$route.name == "entity" || this.$route.name == "search") {
-        this.$router.go();
-      }
+      this.$router
+        .push({
+          name: "search",
+          query: { meta_node: this.metaNode, q: this.query }
+        })
+        .then(() => {
+          if (this.$route.name == "search") {
+            this.$router.go();
+          }
+        });
     }
   },
   computed: {
