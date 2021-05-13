@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Linked resource</h3>
+    <h4>Linked external resources</h4>
     <br />
     <div class="justify-content-center align-items-center">
       <a :href="input.url" target="_blank"
