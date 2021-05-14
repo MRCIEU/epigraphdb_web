@@ -80,7 +80,7 @@ const routes = [
     path: "/entity",
     name: "entity",
     component: () =>
-      import(/* webpackChunkName: "entity" */ "../views/Entity.vue")
+      import(/* webpackChunkName: "entity" */ "../views/Entity/Entity.vue")
   },
   // topics
   {
