@@ -3,6 +3,7 @@
     <b-table
       id="search-table"
       striped
+      small
       :items="items"
       :fields="fields"
       :filter="filter"

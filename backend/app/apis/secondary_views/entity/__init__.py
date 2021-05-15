@@ -1,15 +1,20 @@
-from typing import List, Optional
+from typing import Dict, List, Optional, Union
 
 import requests
 from fastapi import APIRouter, Query
 
 from app.apis.util_routes.api import get_api_cypher
-from app.apis.util_routes.models import get_meta_nodes_non_code_name
+from app.apis.util_routes.models import (
+    get_epigraphdb_meta_nodes,
+    get_epigraphdb_meta_paths,
+    get_meta_nodes_non_code_name,
+)
 from app.funcs.annotate_entity import (
     annotate_meta_entity,
     annotate_node_id,
     annotate_property,
 )
+from app.funcs.cache import cache_func_call
 from app.models import EpigraphdbGraphsExtended
 from app.models.meta_graph import EpigraphdbMetaNodeFull
 from app.settings import api_url
@@ -223,3 +228,53 @@ def entity_similarity(
         search_results = entity_similarity_search(meta_node, id, name, size)
         res = {"summary": None, "results": search_results}  # placeholder
         return res
+
+
+@router.get("/entity/meta-ents-list")
+def entity_list_meta() -> Dict[str, List[models.AnnotatedMetaEntity]]:
+    meta_nodes_annotated = [
+        annotate_meta_entity(_, meta_entity_type="meta_node")
+        for _ in get_epigraphdb_meta_nodes()
+    ]
+    meta_rels_annotated = [
+        {
+            "rel": annotate_meta_entity(_["rel"], meta_entity_type="meta_rel"),
+            "source": annotate_meta_entity(
+                _["source"], meta_entity_type="meta_node"
+            ),
+            "target": annotate_meta_entity(
+                _["target"], meta_entity_type="meta_node"
+            ),
+        }
+        for _ in get_epigraphdb_meta_paths()
+    ]
+    res: Dict[
+        str,
+        Union[
+            List[models.AnnotatedMetaEntity],
+            List[Dict[str, models.AnnotatedMetaEntity]],
+        ],
+    ] = {
+        "meta_nodes": meta_nodes_annotated,
+        "meta_rels": meta_rels_annotated,
+    }
+    return res
+
+
+@router.get("/entity/api-endpoints-list")
+def entity_api_endpoints_list(overwrite: bool = False):
+    def _func():
+        url = f"{api_url}/meta/api-endpoints"
+        r = requests.get(url, headers=api_request_headers)
+        r.raise_for_status()
+        data = r.json()
+        return data
+
+    endpoints = cache_func_call(
+        coll_name="entity",
+        doc_name="api_endpoints",
+        func=_func,
+        params=None,
+        overwrite=overwrite,
+    )
+    return endpoints

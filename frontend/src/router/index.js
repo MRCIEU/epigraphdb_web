@@ -71,16 +71,32 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "galleryPlot" */ "../views/Gallery/Plot.vue")
   },
+  // entity
   {
     path: "/explore/",
     name: "explore",
-    redirect: { name: "search" }
+    component: () =>
+      import(/* webpackChunkName: "explore" */ "../views/Entity/Explore.vue")
   },
   {
     path: "/entity",
     name: "entity",
     component: () =>
       import(/* webpackChunkName: "entity" */ "../views/Entity/Entity.vue")
+  },
+  {
+    path: "/meta-node",
+    name: "meta-node",
+    component: () =>
+      import(/* webpackChunkName: "meta-node" */ "../views/Entity/MetaNode.vue")
+  },
+  {
+    path: "/meta-relationship",
+    name: "meta-relationship",
+    component: () =>
+      import(
+        /* webpackChunkName: "meta-relationship" */ "../views/Entity/MetaRel.vue"
+      )
   },
   // topics
   {

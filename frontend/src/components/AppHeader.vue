@@ -124,7 +124,7 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <div id="quick-search" v-if="!isHome">
+            <div id="quick-search" v-if="quickSearchP">
               <QuickSearch />
             </div>
           </b-nav-form>
@@ -206,8 +206,9 @@ export default {
     currentRouteName() {
       return this.$route.name;
     },
-    isHome() {
-      return this.currentRouteName == "home";
+    quickSearchP() {
+      const exclude = ["home", "explore"];
+      return !exclude.includes(this.currentRouteName);
     }
   }
 };

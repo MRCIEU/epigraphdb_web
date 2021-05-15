@@ -1,5 +1,19 @@
 <template>
   <div>
+    <div class="py-3">
+      <b-input-group prepend="Filter" size="sm">
+        <b-form-input
+          v-model="filter"
+          type="search"
+          id="filterInput"
+          placeholder="Type to Search"
+        ></b-form-input>
+        <b-input-group-append>
+          <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+        </b-input-group-append>
+      </b-input-group>
+    </div>
+
     <b-table
       id="search-table"
       striped
@@ -11,31 +25,18 @@
       :current-page="currentPage"
       @filtered="onFiltered"
     >
-      <template #cell(id)="data">
-        <a :href="data.item.id.url">{{ data.item.id.id }}</a>
-      </template>
-      <template #cell(meta_node)="data">
-        <MetaNode
-          :meta-node="data.item.meta_node.name"
-          :url="data.item.meta_node.url"
-          no-code-bg
-        />
+      <template #cell(name)="data">
+        <b>
+          <MetaNode
+            :meta-node="data.item.name"
+            :url="data.item.url"
+            no-code-bg
+          />
+        </b>
       </template>
     </b-table>
     <b-row>
-      <b-col>
-        <b-input-group prepend="Filter" size="sm">
-          <b-form-input
-            v-model="filter"
-            type="search"
-            id="filterInput"
-            placeholder="Type to Search"
-          ></b-form-input>
-          <b-input-group-append>
-            <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-          </b-input-group-append>
-        </b-input-group>
-      </b-col>
+      <b-col> </b-col>
       <b-col>
         <b-pagination
           v-model="currentPage"
@@ -53,7 +54,7 @@
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
 
 export default {
-  name: "SimilarEntityTable",
+  name: "ExploreMetaNodeTable",
   components: { MetaNode },
   props: {
     items: {
@@ -62,24 +63,12 @@ export default {
     }
   },
   data: () => ({
-    perPage: 20,
+    perPage: 15,
     currentPage: 1,
-    searchLimitSelect: 50,
-    searchLimitOptions: [50, 100, 300, 500],
     fields: [
       {
-        key: "meta_node",
-        label: "Meta node",
-        sortable: true
-      },
-      {
-        key: "id",
-        label: "Node id",
-        sortable: true
-      },
-      {
         key: "name",
-        label: "Node name",
+        label: "Meta node",
         sortable: true
       }
     ],

@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 
 from fastapi import APIRouter
 
@@ -24,6 +24,21 @@ def get_epigraphdb_meta_nodes() -> List[str]:
 def get_epigraphdb_meta_rels() -> List[str]:
     meta_rels = [_ for _ in meta_rels_dict.keys()]
     return meta_rels
+
+
+@router.get(
+    "/models/epigraphdb-meta-rels/paths", response_model=List[Dict[str, str]]
+)
+def get_epigraphdb_meta_paths() -> List[Dict[str, str]]:
+    meta_paths = [
+        {
+            "rel": key,
+            "source": value.source,
+            "target": value.target,
+        }
+        for key, value in meta_rels_dict.items()
+    ]
+    return meta_paths
 
 
 @router.get("/models/meta-nodes/non-code-name", response_model=List[str])
