@@ -85,13 +85,13 @@ const routes = [
       import(/* webpackChunkName: "entity" */ "../views/Entity/Entity.vue")
   },
   {
-    path: "/meta-node",
+    path: "/meta-node/:metaNode",
     name: "meta-node",
     component: () =>
       import(/* webpackChunkName: "meta-node" */ "../views/Entity/MetaNode.vue")
   },
   {
-    path: "/meta-relationship",
+    path: "/meta-relationship/:metaRel",
     name: "meta-relationship",
     component: () =>
       import(
