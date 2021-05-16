@@ -7,8 +7,10 @@
     <b-row>
       <b-col>
         <p>Select meta node</p>
-        <b-form-select v-model="metaNode" :options="metaNodeOptions">
-        </b-form-select>
+        <b-form-select
+          v-model="metaNode"
+          :options="metaNodeOptions"
+        ></b-form-select>
       </b-col>
       <b-col cols="8">
         <p>Query field</p>
@@ -52,10 +54,12 @@
             </h3>
             <div class="py-1"></div>
             <p v-if="resMetaInfo.info.name">
-              name: <b>{{ resMetaInfo.info.name }}</b>
+              name:
+              <b>{{ resMetaInfo.info.name }}</b>
             </p>
             <p v-if="resMetaInfo.info.id">
-              id: <b>{{ resMetaInfo.info.id }}</b>
+              id:
+              <b>{{ resMetaInfo.info.id }}</b>
             </p>
           </div>
           <div class="py-1"></div>
@@ -63,13 +67,13 @@
             <h4>Linked resources</h4>
             <br />
             <div class="justify-content-center align-items-center">
-              <a :href="resLinkedResources.url" target="_blank"
-                ><img :src="resLinkedResources.logo" style="width: 150px;"
-              /></a>
+              <a :href="resLinkedResources.url" target="_blank">
+                <img :src="resLinkedResources.logo" style="width: 150px;" />
+              </a>
               <br />
-              <a :href="resLinkedResources.url" target="_blank">{{
-                resLinkedResources.name
-              }}</a>
+              <a :href="resLinkedResources.url" target="_blank">
+                {{ resLinkedResources.name }}
+              </a>
             </div>
           </div>
         </div>

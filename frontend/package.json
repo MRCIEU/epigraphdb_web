@@ -80,6 +80,9 @@
       "parser": "babel-eslint"
     }
   },
+  "prettier": {
+    "htmlWhitespaceSensitivity": "ignore"
+  },
   "postcss": {
     "plugins": {
       "autoprefixer": {}

@@ -4,7 +4,8 @@
     <p>
       <font-awesome-icon :icon="['fas', 'info-circle']" />
       The pvalue threshold for the top MR associations is
-      <strong>3.01e-07</strong>.
+      <strong>3.01e-07</strong>
+      .
     </p>
     <div class="py-2"></div>
     <p>

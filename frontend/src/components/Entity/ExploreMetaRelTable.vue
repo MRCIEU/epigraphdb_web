@@ -53,7 +53,7 @@
       </template>
     </b-table>
     <b-row>
-      <b-col> </b-col>
+      <b-col></b-col>
       <b-col>
         <b-pagination
           v-model="currentPage"

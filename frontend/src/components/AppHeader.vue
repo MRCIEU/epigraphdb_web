@@ -15,8 +15,9 @@
         title="Sidebar toggle of the Web UI"
         variant="link"
         class="text-decoration-none"
-        >Web UI</b-button
       >
+        Web UI
+      </b-button>
       <b-navbar-nav>
         <AppSidebar />
       </b-navbar-nav>
@@ -99,25 +100,28 @@
               <span
                 v-b-tooltip.v-secondary.hover
                 title="Access EpiGraphDB functionalities using the API"
-                ><font-awesome-icon :icon="['fab', 'python']" /> Jupyter
-                notebook demo</span
               >
+                <font-awesome-icon :icon="['fab', 'python']" />
+                Jupyter notebook demo
+              </span>
             </b-dropdown-item>
             <b-dropdown-item target="_blank" :href="gettingStartedLinks.r_pkg">
               <span
                 v-b-tooltip.v-secondary.hover
                 title="Access EpiGraphDB functionalities using R package"
-                ><font-awesome-icon :icon="['fab', 'r-project']" /> R package
-                demo</span
               >
+                <font-awesome-icon :icon="['fab', 'r-project']" />
+                R package demo
+              </span>
             </b-dropdown-item>
             <b-dropdown-item target="_blank" :href="gettingStartedLinks.web_ui">
               <span
                 v-b-tooltip.v-secondary.hover
                 title="Introduction to the EpiGraphDB Web UI"
-                ><font-awesome-icon :icon="['fas', 'project-diagram']" /> Web
-                UI</span
               >
+                <font-awesome-icon :icon="['fas', 'project-diagram']" />
+                Web UI
+              </span>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>

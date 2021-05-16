@@ -68,19 +68,19 @@
       <b-tabs content-class="mt-3">
         <b-tab :active="resInit === 0 ? true : false" lazy>
           <template v-slot:title>
-            <span v-b-tooltip.hover :title="tooltipDoc.tabs.doc"
-              ><font-awesome-icon :icon="['fas', 'info-circle']" />
-              Documentation</span
-            >
+            <span v-b-tooltip.hover :title="tooltipDoc.tabs.doc">
+              <font-awesome-icon :icon="['fas', 'info-circle']" />
+              Documentation
+            </span>
           </template>
           <ConfounderDoc />
         </b-tab>
         <b-tab :active="resInit !== 0 ? true : false">
           <template v-slot:title>
-            <span v-b-tooltip.hover :title="tooltipDoc.tabs.network_plot"
-              ><font-awesome-icon :icon="['fas', 'project-diagram']" /> Network
-              plot</span
-            >
+            <span v-b-tooltip.hover :title="tooltipDoc.tabs.network_plot">
+              <font-awesome-icon :icon="['fas', 'project-diagram']" />
+              Network plot
+            </span>
           </template>
           <NetworkPlot
             :url="urlNetworkPlot"
@@ -92,9 +92,10 @@
         </b-tab>
         <b-tab>
           <template v-slot:title>
-            <span v-b-tooltip.hover :title="tooltipDoc.tabs.data_table"
-              ><font-awesome-icon :icon="['fas', 'table']" /> Data table</span
-            >
+            <span v-b-tooltip.hover :title="tooltipDoc.tabs.data_table">
+              <font-awesome-icon :icon="['fas', 'table']" />
+              Data table
+            </span>
           </template>
           <Table
             v-if="resQueryData"
@@ -105,9 +106,10 @@
         </b-tab>
         <b-tab lazy>
           <template v-slot:title>
-            <span v-b-tooltip.hover :title="tooltipDoc.tabs.query"
-              ><font-awesome-icon :icon="['fas', 'code']" /> Query</span
-            >
+            <span v-b-tooltip.hover :title="tooltipDoc.tabs.query">
+              <font-awesome-icon :icon="['fas', 'code']" />
+              Query
+            </span>
           </template>
           <Query
             :query-data="resQueryData"

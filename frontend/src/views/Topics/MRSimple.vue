@@ -79,14 +79,15 @@
       <b-tabs content-class="mt-3">
         <b-tab :active="refresh === 0 ? true : false">
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'info-circle']" /> Documentation
+            <font-awesome-icon :icon="['fas', 'info-circle']" />
+            Documentation
           </template>
           <vue-markdown>{{ infoText }}</vue-markdown>
         </b-tab>
         <b-tab :active="refresh !== 0 ? true : false">
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'project-diagram']" /> Network
-            plot
+            <font-awesome-icon :icon="['fas', 'project-diagram']" />
+            Network plot
           </template>
           <NetworkPlot
             v-if="resNetworkPlotData"
@@ -95,7 +96,8 @@
         </b-tab>
         <b-tab>
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'table']" /> Data table
+            <font-awesome-icon :icon="['fas', 'table']" />
+            Data table
           </template>
           <Table
             v-if="resTableData"
@@ -105,7 +107,8 @@
         </b-tab>
         <b-tab lazy>
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'code']" /> Query
+            <font-awesome-icon :icon="['fas', 'code']" />
+            Query
           </template>
           <Query
             v-if="resQueryData"

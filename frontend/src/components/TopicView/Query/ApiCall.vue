@@ -4,7 +4,7 @@
       <b-tab active>
         <template v-slot:title>
           <font-awesome-icon :icon="['fas', 'terminal']" />
-          <code> curl</code>
+          <code>curl</code>
         </template>
         <highlight-code lang="bash">
           {{ apiCallData }}
@@ -13,7 +13,7 @@
       <b-tab>
         <template v-slot:title>
           <font-awesome-icon :icon="['fab', 'python']" />
-          <code> python (requests)</code>
+          <code>python (requests)</code>
         </template>
         <div v-if="snippetRequest">
           <highlight-code lang="python">
@@ -27,7 +27,7 @@
       <b-tab>
         <template v-slot:title>
           <font-awesome-icon :icon="['fab', 'r-project']" />
-          <code> R (epigraphdb)</code>
+          <code>R (epigraphdb)</code>
         </template>
         <div v-if="snippetRPkg">
           <highlight-code lang="r">

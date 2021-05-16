@@ -44,8 +44,9 @@
               @hit="geneSelected = $event"
             >
               <template slot="suggestion" slot-scope="{ data, htmlText }">
-                <small>{{ data.id }}</small
-                >&nbsp;<span v-html="htmlText"></span>
+                <small>{{ data.id }}</small>
+                &nbsp;
+                <span v-html="htmlText"></span>
               </template>
             </vue-typeahead-bootstrap>
             <vue-typeahead-bootstrap
@@ -58,8 +59,9 @@
               @hit="gwasSelected = $event"
             >
               <template slot="suggestion" slot-scope="{ data, htmlText }">
-                <small>{{ data.id }}</small
-                >&nbsp;<span v-html="htmlText"></span>
+                <small>{{ data.id }}</small>
+                &nbsp;
+                <span v-html="htmlText"></span>
               </template>
             </vue-typeahead-bootstrap>
           </div>
@@ -96,13 +98,15 @@
       <b-tabs content-class="mt-3">
         <b-tab :active="refresh === 0 ? true : false">
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'info-circle']" /> Documentation
+            <font-awesome-icon :icon="['fas', 'info-circle']" />
+            Documentation
           </template>
           <vue-markdown>{{ infoText }}</vue-markdown>
         </b-tab>
         <b-tab>
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'cube']" /> Entities
+            <font-awesome-icon :icon="['fas', 'cube']" />
+            Entities
           </template>
           <b-tabs>
             <b-tab title="Exposure Gene">
@@ -118,7 +122,8 @@
         </b-tab>
         <b-tab :active="refresh === 0 ? false : true">
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'table']" /> Single SNP MR
+            <font-awesome-icon :icon="['fas', 'table']" />
+            Single SNP MR
           </template>
           <div v-if="resTableDataSingle">
             <VolcanoPlot
@@ -136,7 +141,8 @@
         </b-tab>
         <b-tab>
           <template v-slot:title>
-            <font-awesome-icon :icon="['fas', 'table']" /> Multi SNP MR
+            <font-awesome-icon :icon="['fas', 'table']" />
+            Multi SNP MR
           </template>
           <div v-if="resTableDataMulti">
             <VolcanoPlot

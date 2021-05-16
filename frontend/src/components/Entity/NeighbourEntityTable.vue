@@ -31,9 +31,9 @@
         <a :href="data.item.node_id.url">{{ data.item.node_id.id }}</a>
       </template>
       <template #head(node_type)="data">
-        <span v-b-tooltip.v-primary.hover :title="nodeTypeText">{{
-          data.label
-        }}</span>
+        <span v-b-tooltip.v-primary.hover :title="nodeTypeText">
+          {{ data.label }}
+        </span>
       </template>
     </b-table>
     <b-row>

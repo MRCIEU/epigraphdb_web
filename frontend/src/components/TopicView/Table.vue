@@ -41,7 +41,7 @@
 
     <!-- Filter -->
     <b-row class="py-2">
-      <b-col cols="6"> </b-col>
+      <b-col cols="6"></b-col>
       <b-col>
         <b-input-group prepend="Filter" size="sm">
           <b-form-input

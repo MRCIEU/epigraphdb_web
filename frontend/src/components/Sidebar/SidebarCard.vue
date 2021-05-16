@@ -7,8 +7,9 @@
           @click="visible = !visible"
           variant="link"
           text-decoration-none
-          >{{ viewData.title }}</b-button
         >
+          {{ viewData.title }}
+        </b-button>
       </b-card-header>
       <b-collapse :id="viewData.name" :visible="visible">
         <b-card v-for="view in viewData.views" :key="view.name">

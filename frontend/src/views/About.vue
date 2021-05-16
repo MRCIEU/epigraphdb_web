@@ -4,13 +4,15 @@
     <b-tabs class="mt-4" align="center">
       <b-tab :active="$route.hash === '#about'">
         <template v-slot:title>
-          <font-awesome-icon :icon="['fas', 'info-circle']" /> About
+          <font-awesome-icon :icon="['fas', 'info-circle']" />
+          About
         </template>
         <vue-markdown>{{ info_text }}</vue-markdown>
       </b-tab>
       <b-tab :active="$route.hash === '#schema' || $route.hash === ''">
         <template v-slot:title>
-          <font-awesome-icon :icon="['fas', 'project-diagram']" /> Schema
+          <font-awesome-icon :icon="['fas', 'project-diagram']" />
+          Schema
         </template>
         <Schema />
       </b-tab>
@@ -24,7 +26,8 @@
            </b-tab> -->
       <b-tab :active="$route.hash === '#metrics'">
         <template v-slot:title>
-          <font-awesome-icon :icon="['fas', 'table']" /> Metrics
+          <font-awesome-icon :icon="['fas', 'table']" />
+          Metrics
         </template>
         <Metrics />
       </b-tab>

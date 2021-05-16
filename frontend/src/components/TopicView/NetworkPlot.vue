@@ -62,9 +62,9 @@
                 <p v-if="resGraphData">
                   <font-awesome-icon :icon="['fas', 'info-circle']" />
                   Displays
-                  <span class="text-primary"
-                    ><b>{{ resGraphData.num_paths_displayed }}</b></span
-                  >
+                  <span class="text-primary">
+                    <b>{{ resGraphData.num_paths_displayed }}</b>
+                  </span>
                   / {{ resGraphData.num_paths_total }} paths
                 </p>
               </b-col>

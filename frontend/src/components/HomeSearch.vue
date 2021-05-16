@@ -13,10 +13,11 @@
       @keyup.enter="gotoSearch"
     >
       <template slot="suggestion" slot-scope="{ data, htmlText }">
-        <small
-          ><MetaNode :meta-node="data.meta_node.name" no-url no-code-bg />
-          {{ data.id.id }}</small
-        ><br />
+        <small>
+          <MetaNode :meta-node="data.meta_node.name" no-url no-code-bg />
+          {{ data.id.id }}
+        </small>
+        <br />
         <span v-html="htmlText"></span>
       </template>
       <template slot="prepend">

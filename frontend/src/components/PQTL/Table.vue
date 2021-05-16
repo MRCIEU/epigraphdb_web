@@ -16,8 +16,7 @@
         :sort-desc.sync="sortDesc"
         :sort-direction="sortDirection"
         @filtered="onFiltered"
-      >
-      </b-table>
+      ></b-table>
     </div>
 
     <!-- Filter -->

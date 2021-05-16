@@ -12,19 +12,22 @@
             <MetaNode :meta-node="metaNode" :url="entityData.meta_node.url" />
           </p>
           <p>
-            <span class="text-muted">id: </span>
+            <span class="text-muted">id:</span>
+            &nbsp;
             <span style="overflow-wrap: break-word;">
               <b>{{ entityId }}</b>
             </span>
           </p>
           <p>
-            <span class="text-muted">name: </span>
+            <span class="text-muted">name:</span>
+            &nbsp;
             <span style="overflow-wrap: break-word;">
               <b>{{ entityName }}</b>
             </span>
           </p>
           <p>
-            <span class="text-muted">source: </span>
+            <span class="text-muted">source:</span>
+            &nbsp;
             {{ entityData.entity_source }}
           </p>
         </div>
@@ -32,7 +35,7 @@
         <h4>Entity properties</h4>
         <p v-for="item in entityData.full_data" :key="item.key">
           <span v-b-tooltip.v-primary.hover :title="item.annotation.doc">
-            <span class="text-muted">{{ item.key }}: </span>
+            <span class="text-muted">{{ item.key }}:</span>
             <span style="overflow-wrap: break-word;">
               {{ item.value }}
             </span>
@@ -55,11 +58,12 @@
               <span
                 v-if="visPlatformRes && visConnectedEnts && visSimilarEnts"
                 class="text-muted ml-2"
-                ><font-awesome-icon :icon="['fas', 'chevron-up']"
-              /></span>
-              <span v-else class="text-info ml-2"
-                ><font-awesome-icon :icon="['fas', 'chevron-right']"
-              /></span>
+              >
+                <font-awesome-icon :icon="['fas', 'chevron-up']" />
+              </span>
+              <span v-else class="text-info ml-2">
+                <font-awesome-icon :icon="['fas', 'chevron-right']" />
+              </span>
             </a>
           </h2>
           <div class="pb-3">
@@ -70,12 +74,12 @@
                 href=""
                 @click.prevent
               >
-                <span v-if="visPlatformRes" class="text-muted ml-2"
-                  ><font-awesome-icon :icon="['fas', 'chevron-up']"
-                /></span>
-                <span v-else class="text-info ml-2"
-                  ><font-awesome-icon :icon="['fas', 'chevron-right']"
-                /></span>
+                <span v-if="visPlatformRes" class="text-muted ml-2">
+                  <font-awesome-icon :icon="['fas', 'chevron-up']" />
+                </span>
+                <span v-else class="text-info ml-2">
+                  <font-awesome-icon :icon="['fas', 'chevron-right']" />
+                </span>
               </a>
             </h4>
             <b-collapse :visible="visPlatformRes">
@@ -90,7 +94,8 @@
                   <font-awesome-icon
                     :icon="['fas', 'home']"
                     class="pr-2 text-muted"
-                  />WebUI topic views
+                  />
+                  WebUI topic views
                 </h5>
                 <p class="text-muted">
                   Topic views that are associated with
@@ -100,9 +105,10 @@
                     :entity-id="entityId"
                   />
                   on the
-                  <a href="https://epigraphdb.org" target="_blank"
-                    >EpiGraphDB WebUI</a
-                  >.
+                  <a href="https://epigraphdb.org" target="_blank">
+                    EpiGraphDB WebUI
+                  </a>
+                  .
                   <br />
                 </p>
                 <div class="row">
@@ -111,7 +117,9 @@
                     v-for="item in webResources"
                     :key="item.key"
                   >
-                    <ResourceCard :item="item" />
+                    <div class="py-1">
+                      <ResourceCard :item="item" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -120,7 +128,8 @@
                   <font-awesome-icon
                     :icon="['fas', 'terminal']"
                     class="pr-2 text-muted"
-                  />API endpoints
+                  />
+                  API endpoints
                 </h5>
                 <p class="text-muted">
                   API endpoints that are associated with
@@ -130,9 +139,10 @@
                     :entity-id="entityId"
                   />
                   on the
-                  <a href="https://api.epigraphdb.org" target="_blank"
-                    >EpiGraphDB API</a
-                  >.
+                  <a href="https://api.epigraphdb.org" target="_blank">
+                    EpiGraphDB API
+                  </a>
+                  .
                 </p>
                 <div class="row">
                   <div
@@ -140,7 +150,9 @@
                     v-for="item in apiResources"
                     :key="item.key"
                   >
-                    <ResourceCard :item="item" />
+                    <div class="py-1">
+                      <ResourceCard :item="item" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -149,7 +161,8 @@
                   <font-awesome-icon
                     :icon="['fab', 'r-project']"
                     class="pr-2 text-muted"
-                  />R package functions
+                  />
+                  R package functions
                 </h5>
                 <p class="text-muted">
                   Functions that are associated with
@@ -159,9 +172,11 @@
                     :entity-id="entityId"
                   />
                   in the
-                  <a href="https://mrcieu.github.io/epigraphdb-r"
-                    ><code style="color: #d7528b">epigraphdb</code> R package</a
-                  >.
+                  <a href="https://mrcieu.github.io/epigraphdb-r">
+                    <code style="color: #d7528b">epigraphdb</code>
+                    R package
+                  </a>
+                  .
                 </p>
                 <div class="row">
                   <div
@@ -169,7 +184,9 @@
                     v-for="item in rpkgResources"
                     :key="item.key"
                   >
-                    <ResourceCard :item="item" />
+                    <div class="py-1">
+                      <ResourceCard :item="item" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -184,12 +201,12 @@
                 href=""
                 @click.prevent
               >
-                <span v-if="visConnectedEnts" class="text-muted ml-2"
-                  ><font-awesome-icon :icon="['fas', 'chevron-up']"
-                /></span>
-                <span v-else class="text-info ml-2"
-                  ><font-awesome-icon :icon="['fas', 'chevron-right']"
-                /></span>
+                <span v-if="visConnectedEnts" class="text-muted ml-2">
+                  <font-awesome-icon :icon="['fas', 'chevron-up']" />
+                </span>
+                <span v-else class="text-info ml-2">
+                  <font-awesome-icon :icon="['fas', 'chevron-right']" />
+                </span>
               </a>
             </h4>
             <b-collapse :visible="visConnectedEnts">
@@ -260,8 +277,9 @@
                     <b-button
                       variant="outline-primary"
                       @click="getNeighbourEntityData"
-                      >Update</b-button
                     >
+                      Update
+                    </b-button>
                   </b-col>
                 </b-row>
                 <NeighbourEntityTable
@@ -280,12 +298,12 @@
                 href=""
                 @click.prevent
               >
-                <span v-if="visSimilarEnts" class="text-muted ml-2"
-                  ><font-awesome-icon :icon="['fas', 'chevron-up']"
-                /></span>
-                <span v-else class="text-info ml-2"
-                  ><font-awesome-icon :icon="['fas', 'chevron-right']"
-                /></span>
+                <span v-if="visSimilarEnts" class="text-muted ml-2">
+                  <font-awesome-icon :icon="['fas', 'chevron-up']" />
+                </span>
+                <span v-else class="text-info ml-2">
+                  <font-awesome-icon :icon="['fas', 'chevron-right']" />
+                </span>
               </a>
             </h4>
             <b-collapse :visible="visSimilarEnts">
@@ -296,7 +314,8 @@
                   no-url
                   :entity-id="entityId"
                   :entity-name="entityName"
-                />.
+                />
+                .
               </p>
               <div v-if="similaritySearchResults">
                 <h5>
@@ -308,15 +327,16 @@
                 </h5>
                 <p class="text-muted">
                   Entities with similar names to
-                  <span class="text-info">"{{ entityName }}"</span>. For
-                  customised search results go to
+                  <span class="text-info">"{{ entityName }}"</span>
+                  . For customised search results go to
                   <router-link
                     :to="{ name: 'search', query: { q: this.entityName } }"
                     target="_blank"
-                    ><font-awesome-icon
-                      :icon="['fas', 'search']"
-                    />Search</router-link
-                  >.
+                  >
+                    <font-awesome-icon :icon="['fas', 'search']" />
+                    Search
+                  </router-link>
+                  .
                 </p>
                 <SimilarEntityTable :items="similaritySearchResults.results" />
               </div>

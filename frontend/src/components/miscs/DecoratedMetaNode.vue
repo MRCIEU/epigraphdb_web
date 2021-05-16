@@ -1,17 +1,7 @@
 <template>
-  <span>
-    <code class="text-primary">
-      <span :class="codeColor">
-        <span v-if="entityId">
-          ({{ metaNode }} {_id: "{{ entityId }}"<span v-if="entityName"
-            >, _name: "{{ entityName }}"</span
-          >})</span
-        >
-        <a v-else-if="!noUrl" :href="url" target="_blank"> ({{ metaNode }}) </a>
-        <span v-else> ({{ metaNode }}) </span>
-      </span>
-    </code>
-  </span>
+  <code class="text-primary">
+    <span :class="codeColor">{{ nodeDisplay }}</span>
+  </code>
 </template>
 
 <script>
@@ -46,6 +36,17 @@ export default {
   computed: {
     codeColor: function() {
       return this.noCodeBg ? "meta-node-no-bg" : "meta-node-default";
+    },
+    nodeDisplay: function() {
+      if (this.entityId) {
+        const idField = `_id: "${this.entityId}"`;
+        const nameField = this.entityName
+          ? `, _name: "${this.entityName}"`
+          : ``;
+        return `(${this.metaNode} {${idField}${nameField}})`;
+      } else {
+        return `(${this.metaNode})`;
+      }
     }
   }
 };

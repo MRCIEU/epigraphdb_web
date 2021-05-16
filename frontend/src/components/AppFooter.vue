@@ -5,10 +5,15 @@
         <b-col>
           <h5 class="text-uppercase">EpiGraphDB, developed at the MRC IEU</h5>
           <p>
-            MRC Integrative Epidemiology Unit, University of Bristol<br />
-            Oakfield House, Oakfield Grove<br />
-            Clifton, Bristol, UK<br />
-            BS8 2BN.<br /><br />
+            MRC Integrative Epidemiology Unit, University of Bristol
+            <br />
+            Oakfield House, Oakfield Grove
+            <br />
+            Clifton, Bristol, UK
+            <br />
+            BS8 2BN.
+            <br />
+            <br />
           </p>
         </b-col>
         <b-col cols="12" md="auto"></b-col>
@@ -18,14 +23,14 @@
 
           <ul class="list-unstyled">
             <li>
-              <a href="http://www.biocompute.org.uk/"
-                >IEU data mining programme</a
-              >
+              <a href="http://www.biocompute.org.uk/">
+                IEU data mining programme
+              </a>
             </li>
             <li>
-              <a href="http://www.bristol.ac.uk/integrative-epidemiology/"
-                >MRC Integrative Epidemiology Unit</a
-              >
+              <a href="http://www.bristol.ac.uk/integrative-epidemiology/">
+                MRC Integrative Epidemiology Unit
+              </a>
             </li>
             <li>
               <b-row class="py-3 px-3">
@@ -33,41 +38,48 @@
                   href="mailto:feedback@epigraphdb.org"
                   target="_blank"
                   class="px-1"
-                  ><font-awesome-icon :icon="['fas', 'envelope']" size="2x"
-                /></a>
+                >
+                  <font-awesome-icon :icon="['fas', 'envelope']" size="2x" />
+                </a>
                 <a
                   href="https://docs.epigraphdb.org"
                   target="_blank"
                   class="px-1"
-                  ><font-awesome-icon :icon="['fas', 'book']" size="2x"
-                /></a>
+                >
+                  <font-awesome-icon :icon="['fas', 'book']" size="2x" />
+                </a>
                 <a
                   href="https://api.epigraphdb.org"
                   target="_blank"
                   class="px-2"
-                  ><font-awesome-icon :icon="['fas', 'terminal']" size="2x"
-                /></a>
+                >
+                  <font-awesome-icon :icon="['fas', 'terminal']" size="2x" />
+                </a>
                 <a
                   href="https://mrcieu.github.io/epigraphdb-r"
                   target="_blank"
                   class="px-1"
-                  ><font-awesome-icon :icon="['fab', 'r-project']" size="2x"
-                /></a>
+                >
+                  <font-awesome-icon :icon="['fab', 'r-project']" size="2x" />
+                </a>
                 <a
                   href="https://github.com/MRCIEU/epigraphdb"
                   target="_blank"
                   class="px-1"
-                  ><font-awesome-icon
+                >
+                  <font-awesome-icon
                     :icon="['fab', 'github']"
                     target="_blank"
                     size="2x"
-                /></a>
+                  />
+                </a>
                 <a
                   href="https://twitter.com/epigraphdb"
                   target="_blank"
                   class="px-1"
-                  ><font-awesome-icon :icon="['fab', 'twitter']" size="2x"
-                /></a>
+                >
+                  <font-awesome-icon :icon="['fab', 'twitter']" size="2x" />
+                </a>
               </b-row>
             </li>
           </ul>
@@ -79,8 +91,8 @@
     <div class="footer-copyright text-center">
       © 2018 - 2021 Copyright:
       <a href="http://www.bristol.ac.uk/intergrative-epidemiology/">
-        MRC Integrative Epidemiology Unit, University of Bristol</a
-      >
+        MRC Integrative Epidemiology Unit, University of Bristol
+      </a>
     </div>
     <!-- Copyright -->
   </footer>

@@ -31,9 +31,9 @@
         <div class="text-right">{{ data.item.count.toLocaleString() }}</div>
       </template>
       <template #head(meta_node_type)="data">
-        <span v-b-tooltip.v-primary.hover :title="nodeTypeText">{{
-          data.label
-        }}</span>
+        <span v-b-tooltip.v-primary.hover :title="nodeTypeText">
+          {{ data.label }}
+        </span>
       </template>
     </b-table>
     <b-row>

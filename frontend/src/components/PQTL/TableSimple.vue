@@ -20,15 +20,15 @@
         <template v-slot:thead-top="data">
           <b-tr>
             <b-th colspan="3"></b-th>
-            <b-th colspan="2" variant="secondary"
-              ><div class="text-center">{{ infoData.combined_test }}</div></b-th
-            >
+            <b-th colspan="2" variant="secondary">
+              <div class="text-center">{{ infoData.combined_test }}</div>
+            </b-th>
             <b-th></b-th>
-            <b-th colspan="4" variant="secondary"
-              ><div class="text-center">
+            <b-th colspan="4" variant="secondary">
+              <div class="text-center">
                 {{ infoData.individual_test }}
-              </div></b-th
-            >
+              </div>
+            </b-th>
           </b-tr>
         </template>
 

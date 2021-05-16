@@ -3,8 +3,10 @@
     <div class="py-5"></div>
     <p>
       <font-awesome-icon :icon="['fas', 'info-circle']" />
-      <strong>trans</strong>-SNPs are shown as light-blue boxes, while
-      <strong>cis</strong>-SNPs are depicted as yellow ellipses.
+      <strong>trans</strong>
+      -SNPs are shown as light-blue boxes, while
+      <strong>cis</strong>
+      -SNPs are depicted as yellow ellipses.
     </p>
     <div class="py-2"></div>
     <p>
@@ -22,8 +24,8 @@
     <div class="py-2"></div>
     <p>
       <font-awesome-icon :icon="['fas', 'info-circle']" />
-      <strong>Note!</strong> Visualized associations are those with the p-value
-      less than
+      <strong>Note!</strong>
+      Visualized associations are those with the p-value less than
       <template v-if="searchFlag == 'proteins'">
         0.05.
       </template>

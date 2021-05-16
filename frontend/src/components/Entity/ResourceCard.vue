@@ -8,22 +8,28 @@
     @mouseleave="hover = false"
   >
     <div class="py-2 px-3">
-      <b-card-title class="resource-card-title"
-        ><a :href="item.url" target="_blank">{{ item.name }}</a></b-card-title
-      >
-      <b-card-text class="text-muted resource-card-text">{{
-        item.label
-      }}</b-card-text>
-      <b-badge
-        variant="primary"
-        v-if="item.queriable"
-        class="mr-2"
-        v-b-tooltip.v-primary.hover.html="paramBadgeDoc"
-        >param</b-badge
-      >
-      <!-- <b-badge variant="success" v-if="item.redirect_results" class="mr-2"
-           >results</b-badge
-           > -->
+      <b-row>
+        <b-col cols="8">
+          <b-card-title class="resource-card-title">
+            <a :href="item.url" target="_blank">{{ item.name }}</a>
+          </b-card-title>
+        </b-col>
+        <b-col>
+          <div>
+            <b-badge
+              variant="primary"
+              v-if="item.queriable"
+              class="mr-2"
+              v-b-tooltip.v-primary.hover.html="paramBadgeDoc"
+            >
+              param
+            </b-badge>
+          </div>
+        </b-col>
+      </b-row>
+      <b-card-text class="text-muted resource-card-text">
+        {{ item.label }}
+      </b-card-text>
     </div>
   </b-card>
 </template>

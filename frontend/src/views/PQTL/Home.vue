@@ -2,7 +2,9 @@
   <div>
     <h3>Proteome PheWAS browser</h3>
     <h4>
-      Click to view the list of <a href="/pqtl/list/exposures">proteins</a> or
+      Click to view the list of
+      <a href="/pqtl/list/exposures">proteins</a>
+      or
       <a href="/pqtl/list/outcomes">traits.</a>
     </h4>
     <Alert :alert.sync="alert" :msg="alertMsg" />

@@ -4,8 +4,8 @@
     <p>
       <font-awesome-icon :icon="['fas', 'info-circle']" />
       Click on the protein coding gene name to search for it in
-      <a href="https://www.genecards.org/">GeneCards (Human Gene Database)</a>;
-      or SNP to look it up in
+      <a href="https://www.genecards.org/">GeneCards (Human Gene Database)</a>
+      ; or SNP to look it up in
       <a href="https://www.ncbi.nlm.nih.gov/snp/">dbSNP.</a>
     </p>
     <div class="py-2"></div>

@@ -21,9 +21,9 @@
         />
       </div>
       <br />
-      <b-button :href="footerHref" block variant="outline-primary">{{
-        visitText
-      }}</b-button>
+      <b-button :href="footerHref" block variant="outline-primary">
+        {{ visitText }}
+      </b-button>
     </b-card>
   </div>
 </template>

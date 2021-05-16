@@ -19,8 +19,9 @@
           target="_blank"
           block
           variant="outline-primary"
-          >Visit</b-button
         >
+          Visit
+        </b-button>
       </div>
     </b-card>
   </div>

@@ -2,7 +2,8 @@
   <div>
     <div v-if="searchText">
       <h3>
-        Search results for: <span class="text-info">{{ searchText }}</span>
+        Search results for:
+        <span class="text-info">{{ searchText }}</span>
       </h3>
     </div>
     <b-row class="py-5">
@@ -25,9 +26,9 @@
               :marks="true"
             />
           </b-form-group>
-          <b-button block variant="primary" @click="updateSearch"
-            >Update</b-button
-          >
+          <b-button block variant="primary" @click="updateSearch">
+            Update
+          </b-button>
         </div>
         <div class="py-5" v-if="searchResults">
           <h4>Meta node summary</h4>
@@ -75,9 +76,9 @@
                 placeholder="Type to Search"
               ></b-form-input>
               <b-input-group-append>
-                <b-button :disabled="!filter" @click="filter = ''"
-                  >Clear</b-button
-                >
+                <b-button :disabled="!filter" @click="filter = ''">
+                  Clear
+                </b-button>
               </b-input-group-append>
             </b-input-group>
           </b-col>

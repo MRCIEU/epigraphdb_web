@@ -23,10 +23,12 @@
               <HomeSearch />
               <p class="text-muted text-center">
                 Try:
-                <a href="search?q=body+mass+index">body mass index</a>,
-                <a href="search?q=coronary+heart+disease"
-                  >coronary heart disease</a
-                >,
+                <a href="search?q=body+mass+index">body mass index</a>
+                ,
+                <a href="search?q=coronary+heart+disease">
+                  coronary heart disease
+                </a>
+                ,
                 <a href="search?q=braf&meta_node=Gene">BRAF</a>
               </p>
             </div>

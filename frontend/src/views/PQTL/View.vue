@@ -2,7 +2,9 @@
   <div>
     <h3>Proteome PheWAS browser</h3>
     <h4>
-      Click to view the list of <a href="/pqtl/list/exposures">proteins</a> or
+      Click to view the list of
+      <a href="/pqtl/list/exposures">proteins</a>
+      or
       <a href="/pqtl/list/outcomes">traits.</a>
     </h4>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -40,13 +42,16 @@
 
     <p>
       Results presented here can also be accessed programmatically using the
-      <a href="https://api.epigraphdb.org" target="_blank">EpiGraphDB API</a>.
+      <a href="https://api.epigraphdb.org" target="_blank">EpiGraphDB API</a>
+      .
     </p>
     <p v-if="searchFlag == 'traits'">
       This browser shows only those results with the p-value less than
-      <strong>0.05</strong>, if searching for a trait. The full set of MR
-      results could be accessed via the
-      <a href="https://api.epigraphdb.org" target="_blank">API</a>.
+      <strong>0.05</strong>
+      , if searching for a trait. The full set of MR results could be accessed
+      via the
+      <a href="https://api.epigraphdb.org" target="_blank">API</a>
+      .
     </p>
 
     <div class="py-3" />
