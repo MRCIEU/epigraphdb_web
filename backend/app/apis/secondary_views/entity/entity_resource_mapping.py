@@ -13,7 +13,8 @@ from .resources_extra import (
     get_rpkg_resources_extra,
     get_web_resources_extra,
 )
-from .web_view_urls import web_view_urls
+
+# from .web_view_urls import web_view_urls
 
 rpkg_generic_query: models.EntityResource = {
     "key": "query_epigraphdb_{endpoint_key}",
@@ -21,7 +22,7 @@ rpkg_generic_query: models.EntityResource = {
     "label": "query_epigraphdb to API endpoint `{endpoint}`",
     "url": "https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html",
     "queriable": False,
-    "redirect_results": False,
+    # "redirect_results": False,
 }
 
 
@@ -83,7 +84,7 @@ def get_api_resources(
             "label": resources[resource_id].label,
             "url": resources[resource_id].url,
             "queriable": item.queriable,
-            "redirect_results": False,
+            # "redirect_results": False,
         }
         for resource_id, item in resources_by_meta.items()
         if len(triples.intersection(resources[resource_id].triples)) > 0
@@ -108,7 +109,7 @@ def get_web_resources(
             "label": resources[resource_id].label,
             "url": resources[resource_id].url,
             "queriable": item.queriable,
-            "redirect_results": False,
+            # "redirect_results": False,
         }
         for resource_id, item in resources_by_meta.items()
         if len(triples.intersection(resources[resource_id].triples)) > 0
@@ -116,19 +117,20 @@ def get_web_resources(
     if len(entity_web_resources) == 0:
         return []
     else:
-        for item in entity_web_resources:
-            if (
-                item["key"] in web_view_urls.keys()
-                and meta_node in web_view_urls[item["key"]].keys()
-            ):
-                url_generator = web_view_urls[item["key"]][meta_node]
-                item["url"] = url_generator.generate_url(
-                    root_url=item["url"],
-                    entity_id=entity_id,
-                    entity_name=entity_name,
-                    entity_triples=triples,
-                )
-                item["redirect_results"] = True
+        # for item in entity_web_resources:
+        #     if (
+        #         item["key"] in web_view_urls.keys()
+        #         and meta_node in web_view_urls[item["key"]].keys()
+        #     ):
+        #         url_generator = web_view_urls[item["key"]][meta_node]
+        #         item["url"] = url_generator.generate_url(
+        #             root_url=item["url"],
+        #             entity_id=entity_id,
+        #             entity_name=entity_name,
+        #             entity_triples=triples,
+        #         )
+        #         # item["redirect_results"] = True
+        # return entity_web_resources
         return entity_web_resources
 
 
@@ -145,7 +147,7 @@ def get_rpkg_resources(
             "label": resources[resource_id].label,
             "url": resources[resource_id].url,
             "queriable": item.queriable,
-            "redirect_results": False,
+            # "redirect_results": False,
         }
         for resource_id, item in resources_by_meta.items()
         if len(triples.intersection(resources[resource_id].triples)) > 0

@@ -1,5 +1,4 @@
 from typing import Any, Dict, List, Optional
-from urllib.parse import quote, urlencode
 
 from app.apis.topic_views.covid_xqtl import get_list_ctda
 from app.apis.topic_views.covid_xqtl import models as covid_xqtl_models
@@ -90,29 +89,30 @@ def pqtl_url_generator(
     entity: str, meta_node: str, queriable: bool = True
 ) -> str:
     pqtl_url = "/pqtl/"
-    if queriable:
-        url_template = "{pqtl_url}{entity}"
-        return url_template.format(pqtl_url=pqtl_url, entity=quote(entity))
-    else:
-        return pqtl_url
+    # if queriable:
+    #     url_template = "{pqtl_url}{entity}"
+    #     return url_template.format(pqtl_url=pqtl_url, entity=quote(entity))
+    # else:
+    #     return pqtl_url
+    return pqtl_url
 
 
 def covid_xqtl_url_generator(
     entity: str, meta_node: str, queriable: bool = True
 ) -> str:
     covid_xqtl_url = "/covid-19/ctda"
-    if queriable:
-        url_template = "{covid_xqtl_url}/?{query_expr}"
-        meta_node_mapping = {
-            "Gwas": "gwas",
-            "Gene": "gene",
-            "Tissue": "tissue",
-        }
-        node = meta_node_mapping[meta_node]
-        query_expr = urlencode({node: entity})
-        return url_template.format(
-            covid_xqtl_url=covid_xqtl_url, query_expr=query_expr
-        )
+    # if queriable:
+    #     url_template = "{covid_xqtl_url}/?{query_expr}"
+    #     meta_node_mapping = {
+    #         "Gwas": "gwas",
+    #         "Gene": "gene",
+    #         "Tissue": "tissue",
+    #     }
+    #     node = meta_node_mapping[meta_node]
+    #     query_expr = urlencode({node: entity})
+    #     return url_template.format(
+    #         covid_xqtl_url=covid_xqtl_url, query_expr=query_expr
+    #     )
     return covid_xqtl_url
 
 
@@ -205,9 +205,9 @@ def map_web_resource(
             "label": resource["label"],
             "url": url,
             "queriable": queriable,
-            # if queriable, then for resources_extra it is
-            # sufficient for it to contain results
-            "redirect_results": queriable,
+            # # if queriable, then for resources_extra it is
+            # # sufficient for it to contain results
+            # "redirect_results": queriable,
         }
         return res
 
@@ -236,7 +236,7 @@ def map_api_resource(
             "label": resource["label"],
             "url": url,
             "queriable": queriable,
-            "redirect_results": False,
+            # "redirect_results": False,
         }
         return res
 
@@ -265,6 +265,6 @@ def map_rpkg_resource(
             "label": resource["label"],
             "url": url,
             "queriable": queriable,
-            "redirect_results": False,
+            # "redirect_results": False,
         }
         return res
