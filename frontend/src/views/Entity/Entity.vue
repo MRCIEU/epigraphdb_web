@@ -1,8 +1,34 @@
 <template>
   <div v-if="entityData">
+    <b-row class="pb-4">
+      <b-col cols="3"></b-col>
+      <b-col cols="9">
+        <h2 class="text-center">
+          EpiGraphDB node:
+          <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
+          <a
+            v-b-tooltip.v-primary.hover
+            title="Use this button to toggle the visibility of all sections."
+            @click="toggleAllVis"
+            href=""
+            @click.prevent
+          >
+            <span
+              v-if="visPlatformRes && visConnectedEnts && visSimilarEnts"
+              class="text-muted ml-2"
+            >
+              <font-awesome-icon :icon="['fas', 'chevron-up']" />
+            </span>
+            <span v-else class="text-info ml-2">
+              <font-awesome-icon :icon="['fas', 'chevron-right']" />
+            </span>
+          </a>
+        </h2>
+      </b-col>
+    </b-row>
+    <div></div>
     <b-row>
       <b-col cols="3">
-        <h2 class="pb-4 text-center">Entity Infomation</h2>
         <div>
           <h4>Entity meta data</h4>
           <p>
@@ -46,29 +72,9 @@
       </b-col>
       <b-col cols="9">
         <div id="resources">
-          <h2 class="text-center pb-4">
-            EpiGraphDB Resources
-            <a
-              v-b-tooltip.v-primary.hover
-              title="Use this button to toggle the visibility of all sections."
-              @click="toggleAllVis"
-              href=""
-              @click.prevent
-            >
-              <span
-                v-if="visPlatformRes && visConnectedEnts && visSimilarEnts"
-                class="text-muted ml-2"
-              >
-                <font-awesome-icon :icon="['fas', 'chevron-up']" />
-              </span>
-              <span v-else class="text-info ml-2">
-                <font-awesome-icon :icon="['fas', 'chevron-right']" />
-              </span>
-            </a>
-          </h2>
           <div class="pb-3">
             <h4 id="epigraphdb-platform">
-              EpiGraphDB Platform
+              EpiGraphDB Platform resources
               <a
                 @click="visPlatformRes = !visPlatformRes"
                 href=""
@@ -563,22 +569,22 @@ export default {
 </script>
 
 <style scoped>
-h3::before {
-  display: block;
-  content: " ";
-  margin-top: -100px;
-  height: 100px;
-  visibility: hidden;
-  pointer-events: none;
-}
-h4::before {
-  display: block;
-  content: " ";
-  margin-top: -100px;
-  height: 100px;
-  visibility: hidden;
-  pointer-events: none;
-}
+/* h3::before {
+    display: block;
+    content: " ";
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+    pointer-events: none;
+    }
+    h4::before {
+    display: block;
+    content: " ";
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+    pointer-events: none;
+    } */
 .resources-nav {
   margin-left: -20px;
 }
