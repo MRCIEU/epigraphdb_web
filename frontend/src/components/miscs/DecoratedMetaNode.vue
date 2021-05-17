@@ -10,28 +10,28 @@ export default {
   props: {
     metaNode: {
       type: String,
-      default: ""
+      default: "",
     },
     url: {
       type: String,
-      default: "#"
+      default: "#",
     },
     noUrl: {
       type: Boolean,
-      default: false
+      default: false,
     },
     entityId: {
       type: String,
-      default: null
+      default: null,
     },
     entityName: {
       type: String,
-      default: null
+      default: null,
     },
     noCodeBg: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     codeColor: function() {
@@ -47,8 +47,8 @@ export default {
       } else {
         return `(${this.metaNode})`;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

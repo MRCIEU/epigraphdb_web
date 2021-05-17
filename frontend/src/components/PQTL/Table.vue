@@ -86,7 +86,7 @@ export default {
   name: "Table",
   props: {
     tableDataInput: Object,
-    downloadParams: Object
+    downloadParams: Object,
   },
   data() {
     return {
@@ -98,7 +98,7 @@ export default {
       sortDirection: "asc",
       filter: null,
       filterOn: [],
-      downloadUrl: `${config.web_backend_url}/pqtl/download`
+      downloadUrl: `${config.web_backend_url}/pqtl/download`,
     };
   },
   computed: {
@@ -118,7 +118,7 @@ export default {
         .map(f => {
           return { text: f.label, value: f.key };
         });
-    }
+    },
   },
   methods: {
     download() {
@@ -128,8 +128,8 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
-  }
+    },
+  },
 };
 </script>
 

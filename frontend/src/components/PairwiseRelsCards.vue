@@ -25,7 +25,7 @@ import Card from "@/components/HomeCardsCard";
 export default {
   name: "PairwiseCards",
   components: {
-    Card
+    Card,
   },
   data: () => ({
     hover: false,
@@ -37,7 +37,7 @@ export default {
         content_text: `
             MR evidence on confounding traits
         `,
-        footer_href: "/confounder"
+        footer_href: "/confounder",
       },
       {
         name: "obs-cor",
@@ -46,7 +46,7 @@ export default {
         content_text: `
             Pre-computed observational correlation results
         `,
-        footer_href: "/obs-cor"
+        footer_href: "/obs-cor",
       },
       {
         name: "genetic-cor",
@@ -55,7 +55,7 @@ export default {
         content_text: `
             Genetic correlation results
         `,
-        footer_href: "/genetic-cor"
+        footer_href: "/genetic-cor",
       },
       {
         name: "prs",
@@ -64,9 +64,9 @@ export default {
         content_text: `
             PRS results
             `,
-        footer_href: "/prs"
-      }
-    ]
-  })
+        footer_href: "/prs",
+      },
+    ],
+  }),
 };
 </script>

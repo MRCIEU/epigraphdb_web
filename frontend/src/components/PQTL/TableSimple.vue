@@ -191,11 +191,11 @@ library.add(faInfoCircle);
 export default {
   name: "Table",
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
   },
   props: {
     tableDataInput: Object,
-    downloadParams: Object
+    downloadParams: Object,
   },
   data() {
     return {
@@ -217,14 +217,14 @@ export default {
         instrument_associates_with_one_protein:
           "Tests the pleiotropy of instruments (counts the number of associated proteins). Caution! This column currently shows the associated proteins found in the database which excludes the Tier3-instrument only proteins and the proteins with no MR results.",
         shared_causal_variant:
-          "Tests the colocalisation on a protein and trait given a SNP region, and if not possible then shows an LD check, i.e. LD between the pQTL and the SNP with the strongest LD to the pQTL among the top 30 associated SNPs of the outcome study in the same region."
+          "Tests the colocalisation on a protein and trait given a SNP region, and if not possible then shows an LD check, i.e. LD between the pQTL and the SNP with the strongest LD to the pQTL among the top 30 associated SNPs of the outcome study in the same region.",
       },
       sortBy: "",
       sortDesc: false,
       sortDirection: "asc",
       filter: null,
       filterOn: [],
-      downloadUrl: `${config.web_backend_url}/pqtl/download`
+      downloadUrl: `${config.web_backend_url}/pqtl/download`,
     };
   },
   computed: {
@@ -244,7 +244,7 @@ export default {
         .map(f => {
           return { text: f.label, value: f.key };
         });
-    }
+    },
   },
   methods: {
     download() {
@@ -254,8 +254,8 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -12,7 +12,7 @@ export const topics = [
               and our research
             `,
         img: require("@/assets/logos/epigraphdb-short.png"),
-        href: "/about"
+        href: "/about",
       },
       {
         name: "explore",
@@ -21,7 +21,7 @@ export const topics = [
           Explore EpiGraphDB from the interactive browser
         `,
         img: require("@/assets/cards/explorer.png"),
-        href: "/explore"
+        href: "/explore",
       },
       {
         name: "gallery",
@@ -30,7 +30,7 @@ export const topics = [
           Visualisation gallery for various aspect of EpiGraphDB
         `,
         img: require("@/assets/cards/gallery.png"),
-        href: "/gallery"
+        href: "/gallery",
       },
       {
         name: "cypher",
@@ -39,9 +39,9 @@ export const topics = [
           Query EpiGraphDB using Neo4j Cypher queries
         `,
         img: require("@/assets/logos/epigraphdb-short.png"),
-        href: "/cypher"
-      }
-    ]
+        href: "/cypher",
+      },
+    ],
   },
   {
     name: "mr",
@@ -55,9 +55,9 @@ export const topics = [
             results
             `,
         img: require("@/assets/cards/mr.png"),
-        href: "/mr"
-      }
-    ]
+        href: "/mr",
+      },
+    ],
   },
   {
     name: "pairwise-rels",
@@ -70,7 +70,7 @@ export const topics = [
         desc: `
             MR evidence on confounding traits
         `,
-        href: "/confounder"
+        href: "/confounder",
       },
       {
         name: "obs-cor",
@@ -79,7 +79,7 @@ export const topics = [
         desc: `
             Pre-computed observational correlation results
         `,
-        href: "/obs-cor"
+        href: "/obs-cor",
       },
       {
         name: "genetic-cor",
@@ -88,7 +88,7 @@ export const topics = [
         desc: `
             Genetic correlation results
         `,
-        href: "/genetic-cor"
+        href: "/genetic-cor",
       },
       {
         name: "prs",
@@ -97,9 +97,9 @@ export const topics = [
         desc: `
             PRS results
             `,
-        href: "/prs"
-      }
-    ]
+        href: "/prs",
+      },
+    ],
   },
   {
     name: "drugs",
@@ -112,7 +112,7 @@ export const topics = [
         desc: `
             Drugs for common risk factors of diseases
         `,
-        href: "/drugs-risk-factors"
+        href: "/drugs-risk-factors",
       },
       {
         name: "xqtl",
@@ -121,7 +121,7 @@ export const topics = [
         desc: `
             For plasma proteome and blood transcriptome and other omics
         `,
-        href: "/xqtl"
+        href: "/xqtl",
       },
       {
         name: "pqtl",
@@ -130,9 +130,9 @@ export const topics = [
         desc: `
             MR PheWAS of protein effects on traits
         `,
-        href: "/pqtl"
-      }
-    ]
+        href: "/pqtl",
+      },
+    ],
   },
   {
     name: "pathway",
@@ -145,9 +145,9 @@ export const topics = [
         desc: `
           Pathway-based stratification of instruments
         `,
-        href: "/pathway"
-      }
-    ]
+        href: "/pathway",
+      },
+    ],
   },
   {
     name: "literature",
@@ -160,9 +160,9 @@ export const topics = [
         desc: `
           Literature mined / derived evidence of related traits.
         `,
-        href: "/literature/trait"
-      }
-    ]
+        href: "/literature/trait",
+      },
+    ],
   },
   {
     name: "ontology",
@@ -175,9 +175,9 @@ export const topics = [
           Map GWAS traits to diseases via EFO terms.
             `,
         img: require("@/assets/cards/ontology-trait-disease.png"),
-        href: "/ontology/trait-disease"
-      }
-    ]
+        href: "/ontology/trait-disease",
+      },
+    ],
   },
   {
     name: "covid",
@@ -190,8 +190,8 @@ export const topics = [
             QTL MR results for COVID-19
             `,
         img: require("@/assets/cards/Coronavirus-CDC.png"),
-        href: "/covid-19/ctda/"
-      }
-    ]
-  }
+        href: "/covid-19/ctda/",
+      },
+    ],
+  },
 ];

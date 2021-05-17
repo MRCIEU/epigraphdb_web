@@ -38,7 +38,7 @@
 export default {
   name: "ResourceCard",
   props: {
-    item: Object
+    item: Object,
   },
   data: () => ({
     paramBadgeDoc: `
@@ -48,7 +48,7 @@ export default {
 <b>NOTE</b>: To check the existence of the entity results in the associated resources, users will need to query this entity.
     `,
     hover: false,
-    cardBorderVariant: null
+    cardBorderVariant: null,
   }),
   watch: {
     hover: function(newVal) {
@@ -57,8 +57,8 @@ export default {
       } else {
         this.cardBorderVariant = null;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

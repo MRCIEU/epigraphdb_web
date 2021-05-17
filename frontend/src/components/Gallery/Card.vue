@@ -45,7 +45,7 @@ library.add(faExpand, faCube);
 export default {
   name: "Card",
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
   },
   props: {
     imgPath: String,
@@ -53,14 +53,14 @@ export default {
     name: String,
     disable2d: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => ({
     hover: false,
     cardHeaderBgVariant: null,
     cardHeaderTextVariant: null,
-    cardBorderVariant: null
+    cardBorderVariant: null,
   }),
   computed: {
     href2d() {
@@ -68,7 +68,7 @@ export default {
     },
     href3d() {
       return `/gallery/plot/?name=${this.name}&type=3d`;
-    }
+    },
   },
   watch: {
     hover: function(newVal) {
@@ -81,8 +81,8 @@ export default {
         this.cardHeaderBgVariant = null;
         this.cardBorderVariant = null;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

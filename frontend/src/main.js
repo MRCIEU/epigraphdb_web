@@ -24,8 +24,8 @@ Vue.use(VueHighlightJS, {
     python,
     bash,
     r,
-    cypher
-  }
+    cypher,
+  },
 });
 
 Vue.config.productionTip = false;
@@ -35,8 +35,8 @@ import VueGtag from "vue-gtag";
 if (config.gtagId) {
   Vue.use(VueGtag, {
     config: {
-      id: config.gtagId
-    }
+      id: config.gtagId,
+    },
   });
   console.log("EpiGraphDB: Google analytics enabled");
 } else {
@@ -46,5 +46,5 @@ if (config.gtagId) {
 new Vue({
   store,
   router,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount("#app");

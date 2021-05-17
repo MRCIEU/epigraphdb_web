@@ -366,7 +366,7 @@ import {
   faChevronUp,
   faChevronRight,
   faQuoteRight,
-  faTable
+  faTable,
 } from "@fortawesome/free-solid-svg-icons";
 import { faRProject } from "@fortawesome/free-brands-svg-icons";
 
@@ -385,7 +385,7 @@ library.add(
   faChevronUp,
   faChevronRight,
   faQuoteRight,
-  faTable
+  faTable,
 );
 const config = require("@/config");
 
@@ -398,7 +398,7 @@ export default {
     NeighbourMetaTable,
     NeighbourEntityTable,
     SimilarEntityTable,
-    ResourceCard
+    ResourceCard,
   },
   data: () => ({
     metaNode: null,
@@ -412,7 +412,7 @@ export default {
     neighbourNodeTypeOptions: [
       { value: null, text: "unspecified" },
       { value: "source", text: "source" },
-      { value: "target", text: "target" }
+      { value: "target", text: "target" },
     ],
     similaritySearchResults: null,
     neighbourSizeSelect: 50,
@@ -420,7 +420,7 @@ export default {
     visPlatformRes: true,
     visConnectedEnts: true,
     visSimilarEnts: true,
-    entityData: null
+    entityData: null,
   }),
   mounted: function() {
     this.setupRouteQuery();
@@ -432,7 +432,7 @@ export default {
         this.getNeighbourEntityData();
         this.similaritySearch();
       }
-    }
+    },
   },
   computed: {
     entityName: function() {
@@ -444,7 +444,7 @@ export default {
             name: this.entityData.linked_resource.name,
             url: this.entityData.linked_resource.url,
             logo: require(`@/assets/linked-resources/` +
-              this.entityData.linked_resource.logo)
+              this.entityData.linked_resource.logo),
           }
         : null;
     },
@@ -454,7 +454,7 @@ export default {
         ? [defaultOption].concat(
             _.map(this.neighbourMetaData.meta_node_list, function(item) {
               return { value: item, text: item };
-            })
+            }),
           )
         : null;
     },
@@ -464,7 +464,7 @@ export default {
         ? [defaultOption].concat(
             _.map(this.neighbourMetaData.meta_rel_list, function(item) {
               return { value: item, text: item };
-            })
+            }),
           )
         : null;
     },
@@ -485,7 +485,7 @@ export default {
         this.neighbourMetaData.entity_resources.rpkg.length > 0
         ? this.neighbourMetaData.entity_resources.rpkg
         : null;
-    }
+    },
   },
   methods: {
     setupRouteQuery() {
@@ -503,7 +503,7 @@ export default {
       const url = `${config.web_backend_url}/entity/search/node`;
       const params = {
         meta_node: this.metaNode,
-        id: this.entityId
+        id: this.entityId,
       };
       await axios.get(url, { params: params }).then(response => {
         this.entityData = response.data;
@@ -514,7 +514,7 @@ export default {
       const params = {
         meta_node: this.metaNode,
         id: this.entityId,
-        name: this.entityName
+        name: this.entityName,
       };
       this.neighbourMetaDataLoading = true;
       axios.get(url, { params: params }).then(response => {
@@ -530,7 +530,7 @@ export default {
         limit: this.neighbourSizeSelect,
         filter_meta_rel: this.neighbourMetaRelSelect,
         filter_meta_node: this.neighbourMetaNodeSelect,
-        filter_node_type: this.neighbourNodeTypeSelect
+        filter_node_type: this.neighbourNodeTypeSelect,
       };
       axios.get(url, { params: params }).then(response => {
         this.neighbourEntityData = response.data;
@@ -542,7 +542,7 @@ export default {
         meta_node: this.metaNode,
         name: this.entityName,
         id: this.entityId,
-        size: 50
+        size: 50,
       };
       axios
         .get(url, { params: params })
@@ -563,8 +563,8 @@ export default {
         this.visConnectedEnts = true;
         this.visSimilarEnts = true;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -24,10 +24,10 @@ export default {
   components: {
     AppHeader,
     AppFooter,
-    CookieConsent
+    CookieConsent,
   },
   data: () => ({}),
-  mounted: function() {}
+  mounted: function() {},
 };
 </script>
 

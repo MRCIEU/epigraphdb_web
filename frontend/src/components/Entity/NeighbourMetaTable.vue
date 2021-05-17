@@ -73,8 +73,8 @@ export default {
   props: {
     items: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     perPage: 10,
@@ -89,37 +89,37 @@ export default {
       {
         key: "meta_node",
         label: "Meta node",
-        sortable: true
+        sortable: true,
       },
       {
         key: "meta_rel",
         label: "Meta relationship",
-        sortable: true
+        sortable: true,
       },
       {
         key: "meta_node_type",
         label: "Meta node type",
-        sortable: true
+        sortable: true,
       },
       {
         key: "count",
         label: "Count",
-        sortable: true
-      }
+        sortable: true,
+      },
     ],
-    filter: null
+    filter: null,
   }),
   methods: {
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
+    },
   },
   computed: {
     totalRows() {
       return this.items ? this.items.length : 0;
-    }
-  }
+    },
+  },
 };
 </script>

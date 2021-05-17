@@ -20,16 +20,16 @@ export default {
     msg: String,
     alert: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => ({
-    alertState: false
+    alertState: false,
   }),
   watch: {
     alert(newVal) {
       this.alertState = newVal;
-    }
-  }
+    },
+  },
 };
 </script>

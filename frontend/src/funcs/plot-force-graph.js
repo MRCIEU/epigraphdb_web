@@ -6,7 +6,7 @@ export function renderForceGraph(data, elem) {
   const forceGraph = ForceGraph3D();
   const graphData = {
     nodes: data.nodes_3d,
-    links: data.edges_3d
+    links: data.edges_3d,
   };
   forceGraph(elem)
     .graphData(graphData)
@@ -26,8 +26,8 @@ export function renderForceGraph(data, elem) {
           refractionRatio: 0.2,
           roughness: 0.8,
           transparent: true,
-          opacity: 0.95
-        })
+          opacity: 0.95,
+        }),
       );
       const sprite = new SpriteText(node.name);
       sprite.color = "white";

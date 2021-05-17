@@ -25,7 +25,7 @@ import Card from "@/components/HomeCardsCard";
 export default {
   name: "LiteratureCards",
   components: {
-    Card
+    Card,
   },
   data: () => ({
     hover: false,
@@ -37,9 +37,9 @@ export default {
         content_text: `
             Literature evidence of related traits
         `,
-        footer_href: "/literature/trait"
-      }
-    ]
-  })
+        footer_href: "/literature/trait",
+      },
+    ],
+  }),
 };
 </script>

@@ -70,14 +70,14 @@ export default {
     QueryDiagram,
     CypherQuery,
     ApiCall,
-    ResponseData
+    ResponseData,
   },
   data: () => ({
-    tooltipDoc: tooltips
+    tooltipDoc: tooltips,
   }),
   props: {
     queryData: Object,
-    queryDiagramData: Object
+    queryDiagramData: Object,
   },
   computed: {
     resQueryCypher: function() {
@@ -94,7 +94,7 @@ export default {
     },
     resQueryResponsePreview: function() {
       return this.queryData ? this.queryData.response_data : null;
-    }
-  }
+    },
+  },
 };
 </script>

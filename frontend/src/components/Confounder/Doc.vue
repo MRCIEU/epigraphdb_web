@@ -35,7 +35,7 @@ export default {
   name: "ConfounderDoc",
   components: {
     VueMarkdown,
-    Network
+    Network,
   },
   data: () => ({
     infoTextPart1: infoPart1,
@@ -44,10 +44,10 @@ export default {
       confounder: null,
       intermediate: null,
       reverse_intermediate: null,
-      collider: null
+      collider: null,
     },
     init: false,
-    urlMaster: `${config.web_backend_url}/confounder/query-diagram/plain`
+    urlMaster: `${config.web_backend_url}/confounder/query-diagram/plain`,
   }),
   mounted: function() {
     this.getConfounderDiagram("confounder");
@@ -62,7 +62,7 @@ export default {
       await axios.get(url).then(response => {
         this.graphDataAll[type] = response.data;
       });
-    }
-  }
+    },
+  },
 };
 </script>

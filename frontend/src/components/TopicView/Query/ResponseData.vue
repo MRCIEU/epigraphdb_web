@@ -15,10 +15,10 @@ import "@/plugins/json-viewer-gruvbox-dark.scss";
 export default {
   name: "QueryDiagram",
   components: {
-    JsonViewer
+    JsonViewer,
   },
   props: {
-    responseData: Object
-  }
+    responseData: Object,
+  },
 };
 </script>

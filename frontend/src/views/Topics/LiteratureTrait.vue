@@ -125,7 +125,7 @@ import {
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 } from "@fortawesome/free-solid-svg-icons";
 
 import VueSlider from "vue-slider-component";
@@ -155,7 +155,7 @@ library.add(
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 );
 
 export default {
@@ -168,7 +168,7 @@ export default {
     Alert,
     NetworkPlot,
     Table,
-    Query
+    Query,
   },
   data: () => ({
     tooltipDoc: tooltips,
@@ -191,7 +191,7 @@ export default {
     alert: false,
     alertMsg: "",
     urlMaster: `${config.web_backend_url}/literature_trait`,
-    infoText: info
+    infoText: info,
   }),
   mounted: function() {
     this.indexAc();
@@ -228,8 +228,8 @@ export default {
       await axios
         .get(url, {
           params: {
-            query: query
-          }
+            query: query,
+          },
         })
         .then(response => {
           if (config.web_debug) {
@@ -248,8 +248,8 @@ export default {
       await axios
         .get(url, {
           params: {
-            query: query
-          }
+            query: query,
+          },
         })
         .then(response => {
           if (config.web_debug) {
@@ -268,7 +268,7 @@ export default {
 
       await axios
         .get(this.urlMaster, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           if (config.web_debug) {
@@ -301,7 +301,7 @@ export default {
     async getQueryData() {
       await axios
         .get(this.urlQuery, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           this.resQueryData = response.data;
@@ -315,7 +315,7 @@ export default {
     async getQueryDiagramData() {
       await axios
         .get(this.urlQueryDiagram, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           this.resQueryDiagramData = response.data;
@@ -325,7 +325,7 @@ export default {
             axiosErrorMessage(error);
           }
         });
-    }
+    },
   },
   watch: {
     trait: _.debounce(function(query) {
@@ -333,7 +333,7 @@ export default {
     }, 500),
     semmedPredicate: _.debounce(function(query) {
       this.searchSemmedPredicate(query);
-    }, 500)
+    }, 500),
   },
   computed: {
     pval: function() {
@@ -355,7 +355,7 @@ export default {
       return {
         trait: this.trait,
         pval_threshold: this.pval,
-        semmed_predicate: this.semmedPredicate
+        semmed_predicate: this.semmedPredicate,
       };
     },
     paramsPlot: function() {
@@ -363,9 +363,9 @@ export default {
         trait: this.trait,
         pval_threshold: this.pval,
         semmed_predicate: this.semmedPredicate,
-        rels_limit: this.sizeLimitDefault
+        rels_limit: this.sizeLimitDefault,
       };
-    }
-  }
+    },
+  },
 };
 </script>

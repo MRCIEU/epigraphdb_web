@@ -54,7 +54,7 @@ export default {
     HomeSearch,
     ExploreMetaNodeTable,
     ExploreMetaRelTable,
-    ExploreApiEndpointsTable
+    ExploreApiEndpointsTable,
   },
   data: () => ({
     searchExamples: [
@@ -62,28 +62,28 @@ export default {
         key: "body mass index",
         label: "body mass index",
         params: {
-          q: "body mass index"
-        }
+          q: "body mass index",
+        },
       },
       {
         key: "coronary heart disease",
         label: "coronary heart disease",
         params: {
-          q: "coronary heart disease"
-        }
+          q: "coronary heart disease",
+        },
       },
       {
         key: "braf gene",
         label: "Gene: BRAF",
         params: {
           q: "braf",
-          meta_node: "Gene"
-        }
-      }
+          meta_node: "Gene",
+        },
+      },
     ],
     metaNodes: null,
     metaRels: null,
-    apiEndpoints: null
+    apiEndpoints: null,
   }),
   mounted: function() {
     this.init();
@@ -101,8 +101,8 @@ export default {
       axios.get(api_endpoints_url).then(r => {
         this.apiEndpoints = r.data;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -38,11 +38,11 @@ const config = require("@/config");
 export default {
   name: "MetaNodeView",
   components: {
-    MetaNode
+    MetaNode,
   },
   data: () => ({
     metaNodeName: null,
-    epigraphdbMetaNodes: null
+    epigraphdbMetaNodes: null,
   }),
   mounted: async function() {
     const paramNode = this.$route.params.metaNode;
@@ -62,8 +62,8 @@ export default {
     },
     async getMaster() {
       return null;
-    }
-  }
+    },
+  },
 };
 </script>
 

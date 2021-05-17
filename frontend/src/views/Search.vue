@@ -125,20 +125,20 @@ export default {
       {
         key: "meta_node",
         label: "Meta node",
-        sortable: true
+        sortable: true,
       },
       {
         key: "id",
         label: "Node id",
-        sortable: true
+        sortable: true,
       },
       {
         key: "name",
         label: "Node name",
-        sortable: true
-      }
+        sortable: true,
+      },
     ],
-    filter: null
+    filter: null,
   }),
   methods: {
     search(q, metaNode, limit) {
@@ -146,7 +146,7 @@ export default {
       const params = {
         q: q,
         meta_node: metaNode,
-        size: limit
+        size: limit,
       };
       axios
         .get(url, { params: params })
@@ -169,7 +169,7 @@ export default {
       this.$router.push({ query: { q: this.inputText } });
       if (this.metaNode) {
         this.$router.push({
-          query: { meta_node: this.metaNodeSelect, q: this.inputText }
+          query: { meta_node: this.metaNodeSelect, q: this.inputText },
         });
       }
       this.search(this.searchText, this.metaNode, this.searchLimitSelect);
@@ -191,7 +191,7 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
+    },
   },
   mounted: function() {
     this.setupRouteQuery();
@@ -214,13 +214,13 @@ export default {
         ? [defaultOption].concat(
             _.map(this.metaNodesForSearch, function(item) {
               return { value: item, text: item };
-            })
+            }),
           )
         : null;
     },
     totalRows() {
       return this.items ? this.items.length : 0;
-    }
-  }
+    },
+  },
 };
 </script>

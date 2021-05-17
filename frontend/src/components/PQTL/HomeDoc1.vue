@@ -56,6 +56,6 @@
 
 <script>
 export default {
-  name: "HomeDoc1"
+  name: "HomeDoc1",
 };
 </script>

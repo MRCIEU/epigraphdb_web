@@ -17,8 +17,8 @@ export default {
   name: "LinkedResource",
   props: {
     input: {
-      type: Object
-    }
-  }
+      type: Object,
+    },
+  },
 };
 </script>

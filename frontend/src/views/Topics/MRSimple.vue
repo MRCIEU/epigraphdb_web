@@ -132,7 +132,7 @@ import {
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 } from "@fortawesome/free-solid-svg-icons";
 
 import VueSlider from "vue-slider-component";
@@ -161,7 +161,7 @@ library.add(
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 );
 
 export default {
@@ -174,7 +174,7 @@ export default {
     Alert,
     NetworkPlot,
     Table,
-    Query
+    Query,
   },
   data: () => ({
     // queries and candidates
@@ -183,7 +183,7 @@ export default {
     queryModeOptions: [
       { text: "Exposure trait", value: "exposure" },
       { text: "Outcome trait", value: "outcome" },
-      { text: "Exposure and outcome trait", value: "both" }
+      { text: "Exposure and outcome trait", value: "both" },
     ],
     pvalBase: "1e-5",
     pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
@@ -218,12 +218,12 @@ export default {
         <p>Mandelian randomization (<b>MR</b>) evidence between exposure and outcome</p>
 
         <p><i>b</i>: Effect size</p>
-      `
+      `,
     },
     alert: false,
     alertMsg: "",
     url: `${config.web_backend_url}/mr-simple`,
-    infoText: info
+    infoText: info,
   }),
   mounted: function() {
     // logics at the mounted stage of this component
@@ -300,8 +300,8 @@ export default {
             exposure_trait: this.exposureTrait,
             outcome_trait: this.outcomeTrait,
             pval_threshold: this.pval,
-            rels_limit: this.sizeLimit
-          }
+            rels_limit: this.sizeLimit,
+          },
         })
         .then(response => {
           if (config.web_debug) {
@@ -329,7 +329,7 @@ export default {
           }
           this.resLoading = false;
         });
-    }
+    },
   },
   computed: {
     // reactive variables based on other variables
@@ -361,7 +361,7 @@ export default {
       } else {
         return null;
       }
-    }
-  }
+    },
+  },
 };
 </script>

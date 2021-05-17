@@ -49,7 +49,7 @@ import Card from "@/components/Gallery/Card.vue";
 export default {
   name: "Gallery",
   components: {
-    Card
+    Card,
     // Plot
   },
   data: () => ({
@@ -59,33 +59,33 @@ export default {
         title: "Drugs: Coronary heart disease",
         img_path: require("@/assets/gallery/drugs_coronary_heart_disease.png"),
         name: "drugs_coronary_heart_disease",
-        disable2d: true
-      }
+        disable2d: true,
+      },
     },
     gallerySpecsMedium: {
       pathway_crohns_disease: {
         title: "Pathway: Crohn's disease",
         img_path: require("@/assets/gallery/pathway_crohns_disease.png"),
-        name: "pathway_crohns_disease"
+        name: "pathway_crohns_disease",
       },
       cardiovascular_outcomes: {
         title: "Cardiovascular outcomes",
         img_path: require("@/assets/gallery/drugs_coronary_heart_disease.png"),
-        name: "cardiovascular_outcomes"
-      }
+        name: "cardiovascular_outcomes",
+      },
     },
     gallerySpecsSmall: {
       confounder_bmi_chd: {
         title: "Confounder: BMI, CHD",
         img_path: require("@/assets/gallery/confounder_bmi_chd.png"),
-        name: "confounder_bmi_chd"
+        name: "confounder_bmi_chd",
       },
       gwas_bmi_gwas: {
         title: "GWAS: associations",
         img_path: require("@/assets/gallery/gwas_bmi_gwas.png"),
-        name: "gwas_bmi_gwas"
-      }
-    }
+        name: "gwas_bmi_gwas",
+      },
+    },
   }),
   mounted: function() {
     this.redirectPlot();
@@ -95,7 +95,7 @@ export default {
       if (this.$route.query["name"]) {
         this.$router.push({ path: "/gallery/plot/", query: this.$route.query });
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -76,14 +76,19 @@
     "rules": {
       "no-console": "off",
       "no-unused-vars": "warn",
-      "vue/no-unused-components": "warn"
+      "vue/no-unused-components": "warn",
+      "comma-dangle": [
+        "warn",
+        "always-multiline"
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"
     }
   },
   "prettier": {
-    "htmlWhitespaceSensitivity": "ignore"
+    "htmlWhitespaceSensitivity": "ignore",
+    "trailingComma": "all"
   },
   "postcss": {
     "plugins": {

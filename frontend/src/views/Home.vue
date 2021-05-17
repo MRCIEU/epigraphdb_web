@@ -50,11 +50,11 @@ export default {
   name: "home",
   components: {
     HomeCards,
-    HomeSearch
+    HomeSearch,
   },
   data: () => ({
-    platformVersion: "1.10"
-  })
+    platformVersion: "1.10",
+  }),
 };
 </script>
 

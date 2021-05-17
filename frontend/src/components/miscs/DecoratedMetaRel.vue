@@ -19,28 +19,28 @@ export default {
   props: {
     metaRel: {
       type: String,
-      default: ""
+      default: "",
     },
     url: {
       type: String,
-      default: "#"
+      default: "#",
     },
     noUrl: {
       type: Boolean,
-      default: false
+      default: false,
     },
     noCodeBg: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     codeColor: function() {
       return this.noCodeBg
         ? "meta-rel-no-bg text-info"
         : "meta-rel-default text-info";
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -30,7 +30,7 @@ import data from "@/assets/schema/sankey-graph-data.json";
 export default {
   name: "Sankey",
   components: {
-    highcharts: Chart
+    highcharts: Chart,
   },
   computed: {
     rescaledData() {
@@ -40,20 +40,20 @@ export default {
           from: item.from,
           to: item.to,
           weight: item.count,
-          count: item.count
+          count: item.count,
         };
       });
     },
     options() {
       return {
         title: {
-          text: null
+          text: null,
         },
         accessibility: {
           point: {
             valueDescriptionFormat:
-              "{index}. From {point.from} to {point.to}: {point.count}."
-          }
+              "{index}. From {point.from} to {point.to}: {point.count}.",
+          },
         },
         series: [
           {
@@ -65,12 +65,12 @@ export default {
             dataLabels: {
               color: "#333",
               style: {
-                fontSzie: "10px"
+                fontSzie: "10px",
               },
-              allowOverlap: true
+              allowOverlap: true,
             },
-            colors: ["lightblue"]
-          }
+            colors: ["lightblue"],
+          },
         ],
         tooltip: {
           formatter: function() {
@@ -94,10 +94,10 @@ export default {
               }
               return this.point.id + ": " + parseInt(sum).toLocaleString();
             }
-          }
-        }
+          },
+        },
       };
-    }
-  }
+    },
+  },
 };
 </script>

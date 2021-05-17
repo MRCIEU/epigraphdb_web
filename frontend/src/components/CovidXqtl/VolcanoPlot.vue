@@ -10,10 +10,10 @@ import { Chart } from "highcharts-vue";
 export default {
   name: "VolcanoPlot",
   components: {
-    highcharts: Chart
+    highcharts: Chart,
   },
   props: {
-    graphDataInput: Object
+    graphDataInput: Object,
   },
   computed: {
     options: function() {
@@ -21,30 +21,30 @@ export default {
         return {
           chart: {
             type: "scatter",
-            zoomType: "xy"
+            zoomType: "xy",
           },
           title: {
-            text: "MR results"
+            text: "MR results",
           },
           subtitle: {
-            text: "P-value threshold for top results: 1.1e-6"
+            text: "P-value threshold for top results: 1.1e-6",
           },
           xAxis: {
             title: {
               enabled: true,
-              text: "Z-score (beta/se)"
+              text: "Z-score (beta/se)",
             },
             startOnTick: true,
             endOnTick: true,
-            showLastLabel: true
+            showLastLabel: true,
           },
           yAxis: {
             title: {
-              text: "-log10(pval)"
-            }
+              text: "-log10(pval)",
+            },
           },
           credits: {
-            enabled: false
+            enabled: false,
           },
           plotOptions: {
             scatter: {
@@ -53,16 +53,16 @@ export default {
                 states: {
                   hover: {
                     enabled: true,
-                    lineColor: "rgb(100,100,100)"
-                  }
-                }
+                    lineColor: "rgb(100,100,100)",
+                  },
+                },
               },
               states: {
                 hover: {
                   marker: {
-                    enabled: false
-                  }
-                }
+                    enabled: false,
+                  },
+                },
               },
               tooltip: {
                 headerFormat: "{series.name}<br>",
@@ -75,28 +75,28 @@ export default {
                    Z-score: <b>{point.x}</b>
                    <br>
                    -log10(pval): <b>{point.y}</b>
-                  `
-              }
-            }
+                  `,
+              },
+            },
           },
           series: [
             {
               name: "Top MR associations",
               color: "rgba(238, 83, 80, .8)",
-              data: this.graphDataInput.top_results
+              data: this.graphDataInput.top_results,
             },
             {
               name: "Other MR associations",
               color: "rgba(51, 122, 183, .8)",
               data: this.graphDataInput.other_results,
-              turboThreshold: 2000
-            }
-          ]
+              turboThreshold: 2000,
+            },
+          ],
         };
       } else {
         return null;
       }
-    }
-  }
+    },
+  },
 };
 </script>

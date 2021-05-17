@@ -35,23 +35,23 @@ export default {
   name: "QueryDiagram",
   components: {
     FontAwesomeIcon,
-    Network
+    Network,
   },
   props: {
-    diagramData: Object
+    diagramData: Object,
   },
   methods: {
     toggleFullScreen(container_id) {
       const elem = this.$el.querySelector(container_id);
       this.$fullscreen.toggle(elem, {
         wrap: false,
-        callback: this.fullscreenChange
+        callback: this.fullscreenChange,
       });
     },
     fullscreenChange(fullscreen) {
       this.fullscreen = fullscreen;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -169,12 +169,12 @@ import {
   faBook,
   faTerminal,
   faHome,
-  faProjectDiagram
+  faProjectDiagram,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faPython,
   faRProject,
-  faGithub
+  faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
 import QuickSearch from "@/components/QuickSearch";
@@ -187,7 +187,7 @@ library.add(
   faHome,
   faGithub,
   faProjectDiagram,
-  faPython
+  faPython,
 );
 
 export default {
@@ -195,7 +195,7 @@ export default {
   components: {
     QuickSearch,
     FontAwesomeIcon,
-    AppSidebar
+    AppSidebar,
   },
   data: () => ({
     gettingStartedLinks: {
@@ -203,8 +203,8 @@ export default {
       r_pkg:
         "https://mrcieu.github.io/epigraphdb-r/articles/getting-started-with-epigraphdb-r.html",
       notebook:
-        "https://colab.research.google.com/github/MRCIEU/epigraphdb/blob/master/general-examples/getting-started-with-epigraphdb.ipynb"
-    }
+        "https://colab.research.google.com/github/MRCIEU/epigraphdb/blob/master/general-examples/getting-started-with-epigraphdb.ipynb",
+    },
   }),
   computed: {
     currentRouteName() {
@@ -213,8 +213,8 @@ export default {
     quickSearchP() {
       const exclude = ["home", "explore"];
       return !exclude.includes(this.currentRouteName);
-    }
-  }
+    },
+  },
 };
 </script>
 

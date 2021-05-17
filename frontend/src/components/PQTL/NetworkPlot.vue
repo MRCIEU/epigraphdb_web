@@ -20,33 +20,33 @@ import _ from "lodash";
 export default {
   name: "NetworkPlot",
   components: {
-    Network
+    Network,
   },
   props: {
-    graphDataInput: Object
+    graphDataInput: Object,
   },
   data: () => ({
     options: {
       physics: {
         stabilization: false,
         barnesHut: {
-          damping: 0.5
+          damping: 0.5,
         },
-        timestep: 1.0
+        timestep: 1.0,
       },
       layout: {
         improvedLayout: true,
-        hierarchical: false
+        hierarchical: false,
       },
       interaction: {
         hover: true,
         hoverConnectedEdges: true,
         navigationButtons: true,
         keyboard: true,
-        tooltipDelay: 100
+        tooltipDelay: 100,
       },
       edges: {
-        arrowStrikethrough: true
+        arrowStrikethrough: true,
       },
       groups: {
         expo: {
@@ -54,39 +54,51 @@ export default {
             border: "#b94a32",
             background: "#b94a32",
             highlight: { border: "#f5c1b6", background: "#f5c1b6" },
-            hover: { border: "#f5c1b6", background: "#f5c1b6" }
+            hover: { border: "#f5c1b6", background: "#f5c1b6" },
           },
-          font: { color: "white", bold: { color: "white", "bold.mod": "bold" } }
+          font: {
+            color: "white",
+            bold: { color: "white", "bold.mod": "bold" },
+          },
         },
         out: {
           color: {
             border: "#1a69bc",
             background: "#1a69bc",
             highlight: { border: "#90beef", background: "#90beef" },
-            hover: { border: "#90beef", background: "#90beef" }
+            hover: { border: "#90beef", background: "#90beef" },
           },
-          font: { color: "white", bold: { color: "white", "bold.mod": "bold" } }
+          font: {
+            color: "white",
+            bold: { color: "white", "bold.mod": "bold" },
+          },
         },
         snp_cis: {
           color: {
             border: "#e5db44",
             background: "#e5db44",
             highlight: { border: "#f3eea6", background: "#f3eea6" },
-            hover: { border: "#f3eea6", background: "#f3eea6" }
+            hover: { border: "#f3eea6", background: "#f3eea6" },
           },
-          font: { color: "black", bold: { color: "black", "bold.mod": "bold" } }
+          font: {
+            color: "black",
+            bold: { color: "black", "bold.mod": "bold" },
+          },
         },
         snp_trans: {
           color: {
             border: "#54F3DE",
             background: "#54F3DE",
             highlight: { border: "#C0F6EE", background: "#C0F6EE" },
-            hover: { border: "#C0F6EE", background: "#C0F6EE" }
+            hover: { border: "#C0F6EE", background: "#C0F6EE" },
           },
-          font: { color: "black", bold: { color: "black", "bold.mod": "bold" } }
-        }
-      }
-    }
+          font: {
+            color: "black",
+            bold: { color: "black", "bold.mod": "bold" },
+          },
+        },
+      },
+    },
   }),
   methods: {
     clickUrl(params) {
@@ -96,16 +108,16 @@ export default {
           window.open(node.url, "_blank");
         }
       }
-    }
+    },
   },
   computed: {
     resGraphData() {
       return this.graphDataInput.plot_output;
-    }
+    },
   },
   mounted: function() {
     this.options.layout.hierarchical = this.graphDataInput.hierarchy;
-  }
+  },
 };
 </script>
 

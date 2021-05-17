@@ -47,10 +47,10 @@ library.add(faInfoCircle);
 export default {
   name: "BasicSummaryDoc",
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
   },
   props: {
-    searchFlag: String
-  }
+    searchFlag: String,
+  },
 };
 </script>

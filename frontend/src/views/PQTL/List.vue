@@ -17,22 +17,22 @@ const config = require("@/config");
 export default {
   name: "PQTList",
   components: {
-    Table
+    Table,
   },
   data: function() {
     return {
       searchType: null,
       searchTypeOptions: {
         exposures: {
-          title: "This view shows the list of searchable proteins (exposures)."
+          title: "This view shows the list of searchable proteins (exposures).",
         },
         outcomes: {
-          title: "This view shows the list of searchable traits (outcomes)."
-        }
+          title: "This view shows the list of searchable traits (outcomes).",
+        },
       },
       tableData: null,
       descTitle: null,
-      urlMaster: `${config.web_backend_url}/pqtl`
+      urlMaster: `${config.web_backend_url}/pqtl`,
     };
   },
   mounted: function() {
@@ -61,19 +61,19 @@ export default {
             axiosErrorMessage(error);
           }
         });
-    }
+    },
   },
   computed: {
     tableDataInput: function() {
       if (this.tableData) {
         return {
           items: this.tableData.table_data,
-          fields: this.tableData.table_titles
+          fields: this.tableData.table_titles,
         };
       } else {
         return null;
       }
-    }
-  }
+    },
+  },
 };
 </script>

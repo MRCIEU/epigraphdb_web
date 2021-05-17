@@ -53,12 +53,12 @@ library.add(faTerminal, faPython, faRProject);
 export default {
   name: "ApiCall",
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
   },
   props: {
     apiCallData: String,
     snippetRequest: String,
-    snippetRPkg: String
-  }
+    snippetRPkg: String,
+  },
 };
 </script>

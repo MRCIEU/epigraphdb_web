@@ -174,7 +174,7 @@ import {
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 } from "@fortawesome/free-solid-svg-icons";
 
 import VueSlider from "vue-slider-component";
@@ -200,7 +200,7 @@ library.add(
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 );
 
 export default {
@@ -212,7 +212,7 @@ export default {
     VueTypeaheadBootstrap,
     Alert,
     Table,
-    VolcanoPlot
+    VolcanoPlot,
   },
   data: () => ({
     // queries and candidates
@@ -221,7 +221,7 @@ export default {
     queryModeOptions: [
       { text: "Exposure gene", value: "gene" },
       { text: "Outcome phenotype", value: "gwas" },
-      { text: "Tissue", value: "tissue" }
+      { text: "Tissue", value: "tissue" },
     ],
     pvalBase: "1e-3",
     pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
@@ -244,7 +244,7 @@ export default {
     alert: false,
     alertMsg: "",
     infoText: info,
-    url: `${config.web_backend_url}/covid-19/ctda`
+    url: `${config.web_backend_url}/covid-19/ctda`,
   }),
   mounted: function() {
     this.getAcTissue();
@@ -258,19 +258,19 @@ export default {
       if (this.$route.query["gwas"]) {
         this.queryModeCurr = "gwas";
         this.gwasSelected = {
-          id: this.$route.query["gwas"]
+          id: this.$route.query["gwas"],
         };
       }
       if (this.$route.query["gene"]) {
         this.queryModeCurr = "gene";
         this.geneSelected = {
-          id: this.$route.query["gene"]
+          id: this.$route.query["gene"],
         };
       }
       if (this.$route.query["tissue"]) {
         this.queryModeCurr = "tissue";
         this.tissueSelected = {
-          name: this.$route.query["tissue"]
+          name: this.$route.query["tissue"],
         };
       }
       if (this.gwasSelected || this.geneSelected || this.tissueSelected) {
@@ -331,7 +331,7 @@ export default {
       const url = `${this.url}/single-snp-mr/${endpoint}`;
       const params = {
         q: q,
-        pval_threshold: this.pval
+        pval_threshold: this.pval,
       };
       axios
         .get(url, { params: params })
@@ -373,7 +373,7 @@ export default {
       const url = `${this.url}/multi-snp-mr/${endpoint}`;
       const params = {
         q: q,
-        pval_threshold: this.pval
+        pval_threshold: this.pval,
       };
       axios
         .get(url, { params: params })
@@ -397,7 +397,7 @@ export default {
           }
           this.resLoading = false;
         });
-    }
+    },
   },
   computed: {
     // reactive variables based on other variables
@@ -436,7 +436,7 @@ export default {
     },
     resTableGene: function() {
       return this.acGene.length > 0 ? reformatTable(this.acGene) : null;
-    }
-  }
+    },
+  },
 };
 </script>

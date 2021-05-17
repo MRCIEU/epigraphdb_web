@@ -112,7 +112,7 @@ export default {
   components: {
     FontAwesomeIcon,
     VueSlider,
-    Network
+    Network,
   },
   props: {
     url: String,
@@ -120,8 +120,8 @@ export default {
     updateTrigger: Number,
     layoutOptionInput: {
       type: String,
-      default: "layout1"
-    }
+      default: "layout1",
+    },
   },
   data: function() {
     return {
@@ -135,36 +135,36 @@ export default {
           physics: {
             stabilization: true,
             barnesHut: { damping: 0.5 },
-            timestep: 1.0
+            timestep: 1.0,
           },
           layout: { improvedLayout: true },
           interaction: {
             hover: true,
             hoverConnectedEdges: true,
             navigationButtons: false,
-            keyboard: false
-          }
+            keyboard: false,
+          },
         },
         layout2: {
           physics: {
             stabilization: true,
             barnesHut: {
               springLength: 300,
-              gravitationalConstant: -8000
+              gravitationalConstant: -8000,
             },
-            timestep: 1.0
+            timestep: 1.0,
           },
           layout: {
-            improvedLayout: true
+            improvedLayout: true,
           },
           interaction: {
             hover: true,
             hoverConnectedEdges: true,
             navigationButtons: false,
-            keyboard: false
-          }
-        }
-      }
+            keyboard: false,
+          },
+        },
+      },
     };
   },
   mounted: function() {
@@ -177,14 +177,14 @@ export default {
     },
     sizeLimit: function() {
       this.getGraph();
-    }
+    },
   },
   computed: {
     options() {
       return this.visjsLayoutSelected
         ? this.visjsOptions[this.visjsLayoutSelected]
         : null;
-    }
+    },
   },
   methods: {
     clickUrl(params) {
@@ -198,11 +198,11 @@ export default {
     async getGraph() {
       const graphParams = {
         ...this.paramsInput,
-        rels_limit: this.sizeLimit
+        rels_limit: this.sizeLimit,
       };
       await axios
         .get(this.url, {
-          params: graphParams
+          params: graphParams,
         })
         .then(response => {
           this.resGraphData = response.data;
@@ -217,7 +217,7 @@ export default {
       const elem = this.$el.querySelector(container_id);
       this.$fullscreen.toggle(elem, {
         wrap: false,
-        callback: this.fullscreenChange
+        callback: this.fullscreenChange,
       });
     },
     fullscreenChange(fullscreen) {
@@ -237,10 +237,10 @@ export default {
       };
       this.$fullscreen.toggle(elem, {
         wrap: false,
-        callback: toggleFullScreen3D
+        callback: toggleFullScreen3D,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

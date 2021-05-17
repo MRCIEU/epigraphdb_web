@@ -36,11 +36,11 @@ const config = require("@/config");
 export default {
   name: "MetaRelView",
   components: {
-    MetaRel
+    MetaRel,
   },
   data: () => ({
     metaRelName: null,
-    epigraphdbMetaRels: null
+    epigraphdbMetaRels: null,
   }),
   mounted: async function() {
     const paramRel = this.$route.params.metaRel;
@@ -57,8 +57,8 @@ export default {
       return await axios.get(url).then(r => {
         return r.data;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

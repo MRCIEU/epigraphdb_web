@@ -104,20 +104,20 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faTerminal,
   faBook,
-  faEnvelope
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faRProject,
   faGithub,
-  faTwitter
+  faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 library.add(faRProject, faGithub, faTerminal, faBook, faEnvelope, faTwitter);
 
 export default {
   name: "Footer",
   components: {
-    FontAwesomeIcon
-  }
+    FontAwesomeIcon,
+  },
 };
 </script>
 

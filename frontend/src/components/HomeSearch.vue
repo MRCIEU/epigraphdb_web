@@ -55,7 +55,7 @@ export default {
   components: {
     VueTypeaheadBootstrap,
     FontAwesomeIcon,
-    MetaNode
+    MetaNode,
   },
   data: () => ({
     query: null,
@@ -74,16 +74,16 @@ export default {
       { text: "Pathway", value: "Pathway" },
       { text: "Protein", value: "Protein" },
       { text: "LiteratureTerm", value: "LiteratureTerm" },
-      { text: "Variant", value: "Variant" }
+      { text: "Variant", value: "Variant" },
     ],
-    url: `${config.web_backend_url}/search/quick/node`
+    url: `${config.web_backend_url}/search/quick/node`,
   }),
   methods: {
     search(q, metaNode) {
       const url = this.url;
       const params = {
         q: q,
-        meta_node: metaNode
+        meta_node: metaNode,
       };
       axios
         .get(url, { params: params })
@@ -98,31 +98,31 @@ export default {
       if (item.id) {
         this.$router.push({
           name: "entity",
-          query: { meta_node: item.meta_node.name, id: item.id.id }
+          query: { meta_node: item.meta_node.name, id: item.id.id },
         });
       }
     },
     gotoSearch() {
       this.$router.push({
         name: "search",
-        query: { meta_node: this.metaNode, q: this.query }
+        query: { meta_node: this.metaNode, q: this.query },
       });
-    }
+    },
   },
   computed: {
     searchId: function() {
       return this.querySelected && this.querySelected.id
         ? this.querySelected.id
         : null;
-    }
+    },
   },
   watch: {
     query: _.debounce(function(q) {
       if (q.length >= this.textLengthMin) {
         this.search(q, this.metaNode);
       }
-    }, 500)
-  }
+    }, 500),
+  },
 };
 </script>
 

@@ -175,7 +175,7 @@ export default {
     MRResultsDoc,
     SingleSNPMRDoc,
     SNPInfoDoc,
-    SensitivityAnalysisDoc
+    SensitivityAnalysisDoc,
   },
   data: function() {
     return {
@@ -190,7 +190,7 @@ export default {
       dataInst: null,
       dataSense: null,
       tableFields: fields,
-      urlMaster: `${config.web_backend_url}/pqtl`
+      urlMaster: `${config.web_backend_url}/pqtl`,
     };
   },
   mounted: function() {
@@ -211,38 +211,38 @@ export default {
     downloadParamsSimple: function() {
       return {
         query: this.query,
-        method: "simple"
+        method: "simple",
       };
     },
     downloadParamsMrres: function() {
       return {
         query: this.query,
-        method: "mrres"
+        method: "mrres",
       };
     },
     downloadParamsSglmr: function() {
       return {
         query: this.query,
-        method: "sglmr"
+        method: "sglmr",
       };
     },
     downloadParamsInst: function() {
       return {
         query: this.query,
-        method: "inst"
+        method: "inst",
       };
     },
     downloadParamsSense: function() {
       return {
         query: this.query,
-        method: "sense"
+        method: "sense",
       };
     },
     tableDataSimple() {
       return this.dataSimple
         ? {
             table_fields: this.tableFields.simple,
-            table_items: this.dataSimple.table_output.table_items
+            table_items: this.dataSimple.table_output.table_items,
           }
         : null;
     },
@@ -250,7 +250,7 @@ export default {
       return this.dataMrres
         ? {
             table_fields: this.tableFields.mrres,
-            table_items: this.dataMrres.table_output.table_items
+            table_items: this.dataMrres.table_output.table_items,
           }
         : null;
     },
@@ -258,7 +258,7 @@ export default {
       return this.dataSglmr
         ? {
             table_fields: this.tableFields.sglmr,
-            table_items: this.dataSglmr.table_output.table_items
+            table_items: this.dataSglmr.table_output.table_items,
           }
         : null;
     },
@@ -266,7 +266,7 @@ export default {
       return this.dataInst
         ? {
             table_fields: this.tableFields.inst,
-            table_items: this.dataInst.table_output.table_items
+            table_items: this.dataInst.table_output.table_items,
           }
         : null;
     },
@@ -274,10 +274,10 @@ export default {
       return this.dataSense
         ? {
             table_fields: this.tableFields.sense,
-            table_items: this.dataSense.table_output.table_items
+            table_items: this.dataSense.table_output.table_items,
           }
         : null;
-    }
+    },
   },
   methods: {
     async getQueryOptions() {
@@ -324,7 +324,7 @@ export default {
       } else {
         return false;
       }
-    }
-  }
+    },
+  },
 };
 </script>

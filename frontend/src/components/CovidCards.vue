@@ -25,7 +25,7 @@ import Card from "@/components/HomeCardsCard";
 export default {
   name: "CovidCards",
   components: {
-    Card
+    Card,
   },
   data: () => ({
     hover: false,
@@ -37,9 +37,9 @@ export default {
         content_text: `
           QTL MR results for COVID-19
         `,
-        footer_href: "/covid-19/ctda/"
-      }
-    ]
-  })
+        footer_href: "/covid-19/ctda/",
+      },
+    ],
+  }),
 };
 </script>

@@ -23,7 +23,7 @@ import Card from "@/components/HomeCardsCard";
 export default {
   name: "HomeCards",
   components: {
-    Card
+    Card,
   },
   data: () => ({
     hover: false,
@@ -36,7 +36,7 @@ export default {
               Further information about EpiGraphDB
               and our research
             `,
-        footer_href: "/about"
+        footer_href: "/about",
       },
       {
         name: "explorer",
@@ -45,7 +45,7 @@ export default {
         content_text: `
           Explore EpiGraphDB from the interactive browser
         `,
-        footer_href: "/explore"
+        footer_href: "/explore",
       },
       {
         name: "gallery",
@@ -55,7 +55,7 @@ export default {
           Visualisation gallery for various aspect of EpiGraphDB
         `,
         footer_href: "/gallery",
-        visit_text: "+Expand"
+        visit_text: "+Expand",
       },
       {
         name: "mr",
@@ -64,7 +64,7 @@ export default {
         content_text: `
           Pre-computed Mendelian randomization results
         `,
-        footer_href: "/mr"
+        footer_href: "/mr",
       },
       {
         name: "pairwise-rels",
@@ -74,7 +74,7 @@ export default {
           Look up of pairwise relationships of different types
         `,
         footer_href: "/pairwise-rels",
-        visit_text: "+Expand"
+        visit_text: "+Expand",
       },
       {
         name: "drugs",
@@ -84,7 +84,7 @@ export default {
           Drugs for risk factors and QTL browsers
         `,
         footer_href: "/drugs",
-        visit_text: "+Expand"
+        visit_text: "+Expand",
       },
       {
         name: "pathway",
@@ -93,7 +93,7 @@ export default {
         content_text: `
           Pathway-based stratification of instruments
         `,
-        footer_href: "/pathway"
+        footer_href: "/pathway",
       },
       {
         name: "literature",
@@ -103,7 +103,7 @@ export default {
           Literature mined / derived evidence
         `,
         footer_href: "/literature",
-        visit_text: "+Expand"
+        visit_text: "+Expand",
       },
       {
         name: "ontology",
@@ -113,7 +113,7 @@ export default {
           Ontology of biomedical terms
         `,
         footer_href: "/ontology",
-        visit_text: "+Expand"
+        visit_text: "+Expand",
       },
       {
         name: "covid",
@@ -123,9 +123,9 @@ export default {
           COVID-19 related evidence in EpiGraphDB
         `,
         footer_href: "/covid-19/",
-        visit_text: "+Expand"
-      }
-    ]
-  })
+        visit_text: "+Expand",
+      },
+    ],
+  }),
 };
 </script>

@@ -21,7 +21,7 @@ export default {
   name: "DataIntegrationPlot",
   components: {
     Sankey,
-    SankeyNonLog
-  }
+    SankeyNonLog,
+  },
 };
 </script>

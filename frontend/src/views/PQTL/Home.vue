@@ -58,7 +58,7 @@ export default {
     Alert,
     Doc1,
     Doc2,
-    Carousel
+    Carousel,
   },
   data: function() {
     return {
@@ -66,7 +66,7 @@ export default {
       alert: false,
       alertMsg: "",
       query: null,
-      queryOptions: []
+      queryOptions: [],
     };
   },
   mounted: function() {
@@ -85,7 +85,7 @@ export default {
             axiosErrorMessage(error);
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>

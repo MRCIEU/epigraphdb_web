@@ -57,18 +57,18 @@ export default {
   name: "NetworkPlot",
   components: {
     FontAwesomeIcon,
-    Network
+    Network,
   },
   props: {
-    graphDataInput: Object
+    graphDataInput: Object,
   },
   data: () => ({
-    fullscreen: false
+    fullscreen: false,
   }),
   computed: {
     resGraphData() {
       return this.graphDataInput;
-    }
+    },
   },
   methods: {
     clickUrl(params) {
@@ -83,7 +83,7 @@ export default {
       const elem = this.$el.querySelector(container_id);
       this.$fullscreen.toggle(elem, {
         wrap: false,
-        callback: this.fullscreenChange
+        callback: this.fullscreenChange,
       });
     },
     fullscreenChange(fullscreen) {
@@ -103,10 +103,10 @@ export default {
       };
       this.$fullscreen.toggle(elem, {
         wrap: false,
-        callback: toggleFullScreen3D
+        callback: toggleFullScreen3D,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

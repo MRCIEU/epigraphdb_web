@@ -18,7 +18,7 @@ import Card from "@/components/About/CardsCard";
 export default {
   name: "AboutCards",
   components: {
-    Card
+    Card,
   },
   data: () => ({
     cardData: [
@@ -28,7 +28,7 @@ export default {
         content_text: `
           EpiGraphDB documentation site
         `,
-        footer_href: "https://docs.epigraphdb.org"
+        footer_href: "https://docs.epigraphdb.org",
       },
       {
         name: "api",
@@ -36,7 +36,7 @@ export default {
         content_text: `
           API to access EpiGraphDB
         `,
-        footer_href: "https://api.epigraphdb.org"
+        footer_href: "https://api.epigraphdb.org",
       },
       {
         name: "r-pkg-docs",
@@ -44,7 +44,7 @@ export default {
         content_text: `
           Documentation for R package
         `,
-        footer_href: "https://mrcieu.github.io/epigraphdb-r"
+        footer_href: "https://mrcieu.github.io/epigraphdb-r",
       },
       {
         name: "r-pkg-src",
@@ -52,9 +52,9 @@ export default {
         content_text: `
           Source code for R package
         `,
-        footer_href: "https://github.com/MRCIEU/epigraphdb-r"
-      }
-    ]
-  })
+        footer_href: "https://github.com/MRCIEU/epigraphdb-r",
+      },
+    ],
+  }),
 };
 </script>

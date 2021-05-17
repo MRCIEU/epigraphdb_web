@@ -34,13 +34,13 @@ export default {
     imgPath: String,
     headerText: String,
     contentText: String,
-    footerHref: String
+    footerHref: String,
   },
   data: () => ({
     hover: false,
     cardHeaderBgVariant: null,
     cardHeaderTextVariant: null,
-    cardBorderVariant: null
+    cardBorderVariant: null,
   }),
   watch: {
     hover: function(newVal) {
@@ -53,7 +53,7 @@ export default {
         this.cardHeaderBgVariant = null;
         this.cardBorderVariant = null;
       }
-    }
-  }
+    },
+  },
 };
 </script>

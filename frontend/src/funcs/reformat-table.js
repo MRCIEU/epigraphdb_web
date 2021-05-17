@@ -8,10 +8,10 @@ export function reformatTable(tableData) {
         return {
           key: item,
           label: item,
-          sortable: true
+          sortable: true,
         };
       })
-      .value()
+      .value(),
   };
   return res;
 }

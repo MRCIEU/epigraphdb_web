@@ -116,7 +116,7 @@ import {
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 } from "@fortawesome/free-solid-svg-icons";
 
 import VueSlider from "vue-slider-component";
@@ -146,7 +146,7 @@ library.add(
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 );
 
 export default {
@@ -159,7 +159,7 @@ export default {
     Alert,
     NetworkPlot,
     Table,
-    Query
+    Query,
   },
   data: () => ({
     tooltipDoc: tooltips,
@@ -180,7 +180,7 @@ export default {
     alert: false,
     alertMsg: "",
     urlMaster: `${config.web_backend_url}/drugs_risk_factors`,
-    infoText: info
+    infoText: info,
   }),
   mounted: function() {
     this.indexAc();
@@ -217,8 +217,8 @@ export default {
       await axios
         .get(url, {
           params: {
-            query: query
-          }
+            query: query,
+          },
         })
         .then(response => {
           if (config.web_debug) {
@@ -237,7 +237,7 @@ export default {
 
       await axios
         .get(this.urlMaster, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           if (config.web_debug) {
@@ -270,7 +270,7 @@ export default {
     async getQueryData() {
       await axios
         .get(this.urlQuery, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           this.resQueryData = response.data;
@@ -284,7 +284,7 @@ export default {
     async getQueryDiagramData() {
       await axios
         .get(this.urlQueryDiagram, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           this.resQueryDiagramData = response.data;
@@ -294,12 +294,12 @@ export default {
             axiosErrorMessage(error);
           }
         });
-    }
+    },
   },
   watch: {
     trait: _.debounce(function(query) {
       this.searchTrait(query);
-    }, 500)
+    }, 500),
   },
   computed: {
     pval: function() {
@@ -320,16 +320,16 @@ export default {
     paramsGeneral: function() {
       return {
         trait: this.trait,
-        pval_threshold: this.pval
+        pval_threshold: this.pval,
       };
     },
     paramsPlot: function() {
       return {
         trait: this.trait,
         pval_threshold: this.pval,
-        rels_limit: this.sizeLimitDefault
+        rels_limit: this.sizeLimitDefault,
       };
-    }
-  }
+    },
+  },
 };
 </script>

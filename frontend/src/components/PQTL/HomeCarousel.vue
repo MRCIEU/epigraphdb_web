@@ -32,44 +32,44 @@ export default {
         {
           id: 1,
           caption: "Neo4J (graph-based) Database",
-          imgSrc: require("@/assets/pqtl-carousel/browser1.png")
+          imgSrc: require("@/assets/pqtl-carousel/browser1.png"),
         },
         {
           id: 2,
           caption: "Summary of the results",
-          imgSrc: require("@/assets/pqtl-carousel/browser2.png")
+          imgSrc: require("@/assets/pqtl-carousel/browser2.png"),
         },
         {
           id: 3,
           caption:
             "Mendelian Randomization results with combined genetic variants",
-          imgSrc: require("@/assets/pqtl-carousel/browser3.png")
+          imgSrc: require("@/assets/pqtl-carousel/browser3.png"),
         },
         {
           id: 4,
           caption: "Sensitivity analyses for each genetic variant",
-          imgSrc: require("@/assets/pqtl-carousel/browser4.png")
+          imgSrc: require("@/assets/pqtl-carousel/browser4.png"),
         },
         {
           id: 5,
           caption:
             "Interactive visualisation of the relationships among different components",
-          imgSrc: require("@/assets/pqtl-carousel/browser5.png")
+          imgSrc: require("@/assets/pqtl-carousel/browser5.png"),
         },
         {
           id: 6,
           caption:
             "Interactive visualisation of the Mendelian Randomization results",
-          imgSrc: require("@/assets/pqtl-carousel/browser6.png")
+          imgSrc: require("@/assets/pqtl-carousel/browser6.png"),
         },
         {
           id: 7,
           caption: "EpiGraphDB API",
-          imgSrc: require("@/assets/pqtl-carousel/browser7.png")
-        }
-      ]
+          imgSrc: require("@/assets/pqtl-carousel/browser7.png"),
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 

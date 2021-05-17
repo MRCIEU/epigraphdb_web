@@ -103,7 +103,7 @@ export default {
   props: {
     url: String,
     paramsInput: Object,
-    updateTrigger: Number
+    updateTrigger: Number,
   },
   data() {
     return {
@@ -116,7 +116,7 @@ export default {
       sortDesc: false,
       sortDirection: "asc",
       filter: null,
-      filterOn: []
+      filterOn: [],
     };
   },
   computed: {
@@ -141,7 +141,7 @@ export default {
     },
     hoverData() {
       return this.tableDocs ? this.tableDocs : null;
-    }
+    },
   },
   mounted() {
     this.getTableData();
@@ -149,7 +149,7 @@ export default {
   watch: {
     updateTrigger: function() {
       this.getTableData();
-    }
+    },
   },
   methods: {
     async getTableData() {
@@ -162,8 +162,8 @@ export default {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
-  }
+    },
+  },
 };
 </script>
 

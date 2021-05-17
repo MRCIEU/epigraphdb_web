@@ -45,11 +45,11 @@ export default {
   name: "Schema",
   components: {
     JsonViewer,
-    NetworkPlot
+    NetworkPlot,
   },
   data: () => ({
     schemaImage: null,
-    schemaData: null
+    schemaData: null,
   }),
   methods: {
     getAboutSchemaData() {
@@ -64,7 +64,7 @@ export default {
         const image = Buffer.from(response.data, "binary").toString("base64");
         this.schemaImage = image;
       });
-    }
+    },
   },
   mounted: function() {
     this.getAboutSchemaData();
@@ -76,7 +76,7 @@ export default {
     },
     schemaInfo() {
       return this.schemaData ? this.schemaData.info : null;
-    }
-  }
+    },
+  },
 };
 </script>

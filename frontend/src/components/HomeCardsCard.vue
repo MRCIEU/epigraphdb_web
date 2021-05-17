@@ -37,15 +37,15 @@ export default {
     contentText: String,
     visitText: {
       type: String,
-      default: "Visit"
+      default: "Visit",
     },
-    footerHref: String
+    footerHref: String,
   },
   data: () => ({
     hover: false,
     cardHeaderBgVariant: null,
     cardHeaderTextVariant: null,
-    cardBorderVariant: null
+    cardBorderVariant: null,
   }),
   watch: {
     hover: function(newVal) {
@@ -58,7 +58,7 @@ export default {
         this.cardHeaderBgVariant = null;
         this.cardBorderVariant = null;
       }
-    }
-  }
+    },
+  },
 };
 </script>

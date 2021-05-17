@@ -25,7 +25,7 @@ import Card from "@/components/HomeCardsCard";
 export default {
   name: "OntologyCards",
   components: {
-    Card
+    Card,
   },
   data: () => ({
     hover: false,
@@ -37,9 +37,9 @@ export default {
         content_text: `
             Map GWAS traits to diseases via EFO terms
         `,
-        footer_href: "/ontology/trait-disease"
-      }
-    ]
-  })
+        footer_href: "/ontology/trait-disease",
+      },
+    ],
+  }),
 };
 </script>

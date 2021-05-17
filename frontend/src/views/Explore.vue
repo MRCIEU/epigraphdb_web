@@ -149,7 +149,7 @@ export default {
     Alert,
     VueMarkdown,
     JsonViewer,
-    NetworkPlot
+    NetworkPlot,
   },
   data: () => ({
     // queries and options
@@ -165,7 +165,7 @@ export default {
     alert: false,
     alertMsg: "",
     url: `${config.web_backend_url}/explore/search/node`,
-    infoText: info
+    infoText: info,
   }),
   mounted: function() {
     this.getMetaNodeOptions();
@@ -181,7 +181,7 @@ export default {
         this.searchType = "id";
       }
       this.getMaster();
-    }
+    },
   },
   computed: {
     queryPlaceholder: function() {
@@ -207,8 +207,8 @@ export default {
             url: this.resQuery.node_info.doc_url,
             info: {
               id: this.resQuery.node_info.id,
-              name: this.resQuery.node_info.name
-            }
+              name: this.resQuery.node_info.name,
+            },
           }
         : null;
     },
@@ -218,10 +218,10 @@ export default {
             name: this.resQuery.node_info.linked_resource.name,
             url: this.resQuery.node_info.linked_resource.url,
             logo: require(`@/assets/linked-resources/` +
-              this.resQuery.node_info.linked_resource.logo)
+              this.resQuery.node_info.linked_resource.logo),
           }
         : null;
-    }
+    },
   },
   methods: {
     setupRouteQuery() {
@@ -257,7 +257,7 @@ export default {
       const params = {
         meta_node: this.metaNode,
         id: this.searchType == "id" ? this.queryInput : null,
-        name: this.searchType == "name" ? this.queryInput : null
+        name: this.searchType == "name" ? this.queryInput : null,
       };
       await axios
         .get(url, { params: params })
@@ -279,7 +279,7 @@ export default {
             axiosErrorMessage(error);
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>

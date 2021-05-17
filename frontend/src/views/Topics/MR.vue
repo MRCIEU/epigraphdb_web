@@ -136,7 +136,7 @@ import {
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 } from "@fortawesome/free-solid-svg-icons";
 
 import VueSlider from "vue-slider-component";
@@ -166,7 +166,7 @@ library.add(
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 );
 
 export default {
@@ -179,7 +179,7 @@ export default {
     Alert,
     NetworkPlot,
     Table,
-    Query
+    Query,
   },
   data: () => ({
     tooltipDoc: tooltips,
@@ -189,7 +189,7 @@ export default {
     queryModeOptions: [
       { text: "Exposure trait", value: "exposure" },
       { text: "Outcome trait", value: "outcome" },
-      { text: "Exposure and outcome trait", value: "both" }
+      { text: "Exposure and outcome trait", value: "both" },
     ],
     pvalBase: "1e-5",
     pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
@@ -208,7 +208,7 @@ export default {
     alert: false,
     alertMsg: "",
     urlMaster: `${config.web_backend_url}/mr`,
-    infoText: info
+    infoText: info,
   }),
   mounted: function() {
     this.indexAc();
@@ -267,8 +267,8 @@ export default {
       await axios
         .get(url, {
           params: {
-            query: query
-          }
+            query: query,
+          },
         })
         .then(response => {
           if (config.web_debug) {
@@ -293,7 +293,7 @@ export default {
 
       await axios
         .get(this.urlMaster, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           if (config.web_debug) {
@@ -326,7 +326,7 @@ export default {
     async getQueryData() {
       await axios
         .get(this.urlQuery, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           this.resQueryData = response.data;
@@ -340,7 +340,7 @@ export default {
     async getQueryDiagramData() {
       await axios
         .get(this.urlQueryDiagram, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           this.resQueryDiagramData = response.data;
@@ -350,7 +350,7 @@ export default {
             axiosErrorMessage(error);
           }
         });
-    }
+    },
   },
   watch: {
     exposureTrait: _.debounce(function(query) {
@@ -358,7 +358,7 @@ export default {
     }, 500),
     outcomeTrait: _.debounce(function(query) {
       this.searchTrait(query);
-    }, 500)
+    }, 500),
   },
   computed: {
     pval: function() {
@@ -380,7 +380,7 @@ export default {
       return {
         exposure_trait: this.exposureTrait,
         outcome_trait: this.outcomeTrait,
-        pval_threshold: this.pval
+        pval_threshold: this.pval,
       };
     },
     paramsPlot: function() {
@@ -388,9 +388,9 @@ export default {
         exposure_trait: this.exposureTrait,
         outcome_trait: this.outcomeTrait,
         pval_threshold: this.pval,
-        rels_limit: this.sizeLimitDefault
+        rels_limit: this.sizeLimitDefault,
       };
-    }
-  }
+    },
+  },
 };
 </script>

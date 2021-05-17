@@ -1,6 +1,6 @@
 module.exports = {
   devServer: {
-    disableHostCheck: true
+    disableHostCheck: true,
   },
   chainWebpack: config => {
     config.module
@@ -17,5 +17,5 @@ module.exports = {
         options.prettify = false;
         return options;
       });
-  }
+  },
 };

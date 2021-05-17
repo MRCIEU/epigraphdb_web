@@ -58,8 +58,8 @@ export default {
   props: {
     items: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     perPage: 20,
@@ -70,32 +70,32 @@ export default {
       {
         key: "meta_node",
         label: "Meta node",
-        sortable: true
+        sortable: true,
       },
       {
         key: "id",
         label: "Node id",
-        sortable: true
+        sortable: true,
       },
       {
         key: "name",
         label: "Node name",
-        sortable: true
-      }
+        sortable: true,
+      },
     ],
-    filter: null
+    filter: null,
   }),
   methods: {
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
+    },
   },
   computed: {
     totalRows() {
       return this.items ? this.items.length : 0;
-    }
-  }
+    },
+  },
 };
 </script>

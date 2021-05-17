@@ -20,10 +20,10 @@ const config = require("@/config");
 export default {
   name: "Metrics",
   components: {
-    Table
+    Table,
   },
   data: () => ({
-    schemaData: null
+    schemaData: null,
   }),
   methods: {
     getAboutSchemaData() {
@@ -31,7 +31,7 @@ export default {
       axios.get(url).then(response => {
         this.schemaData = response.data;
       });
-    }
+    },
   },
   mounted: function() {
     this.getAboutSchemaData();
@@ -45,7 +45,7 @@ export default {
               {
                 key: "node_name",
                 label: "meta_node",
-                sortable: true
+                sortable: true,
               },
               {
                 key: "count",
@@ -53,9 +53,9 @@ export default {
                 sortable: true,
                 formatter: value => {
                   return value.toLocaleString();
-                }
-              }
-            ]
+                },
+              },
+            ],
           }
         : null;
     },
@@ -67,7 +67,7 @@ export default {
               {
                 key: "relationshipType",
                 label: "meta_rel",
-                sortable: true
+                sortable: true,
               },
               {
                 key: "count",
@@ -75,12 +75,12 @@ export default {
                 sortable: true,
                 formatter: value => {
                   return value.toLocaleString();
-                }
-              }
-            ]
+                },
+              },
+            ],
           }
         : null;
-    }
-  }
+    },
+  },
 };
 </script>

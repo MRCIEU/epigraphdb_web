@@ -38,11 +38,11 @@ export default {
   props: {
     viewData: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
-    visible: false
-  })
+    visible: false,
+  }),
 };
 </script>

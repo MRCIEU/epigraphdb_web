@@ -77,8 +77,8 @@ export default {
   props: {
     items: {
       type: Array,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     perPage: 15,
@@ -89,20 +89,20 @@ export default {
       {
         key: "source",
         label: "Source meta node",
-        sortable: true
+        sortable: true,
       },
       {
         key: "rel",
         label: "Meta relationship",
-        sortable: true
+        sortable: true,
       },
       {
         key: "target",
         label: "Target meta node",
-        sortable: true
-      }
+        sortable: true,
+      },
     ],
-    filter: null
+    filter: null,
   }),
   methods: {
     onFiltered(filteredItems) {
@@ -114,12 +114,12 @@ export default {
       const a = aRow[key]["name"];
       const b = bRow[key]["name"];
       return a.localeCompare(b);
-    }
+    },
   },
   computed: {
     totalRows() {
       return this.items ? this.items.length : 0;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -67,13 +67,13 @@ export default {
   components: {
     JsonViewer,
     Table,
-    VueMarkdown
+    VueMarkdown,
   },
   data: () => ({
     resInit: 0,
     cypherQuery: null,
     jsonData: null,
-    infoText: info
+    infoText: info,
   }),
   methods: {
     getData() {
@@ -82,19 +82,19 @@ export default {
         endpoint: "/cypher",
         method: "POST",
         params: {
-          query: this.cypherQuery
-        }
+          query: this.cypherQuery,
+        },
       };
       axios.post(url, params).then(response => {
         this.jsonData = response.data;
         this.resInit = this.resInit + 1;
       });
-    }
+    },
   },
   computed: {
     tableData() {
       return this.jsonData ? reformatTable(this.jsonData.results) : null;
-    }
-  }
+    },
+  },
 };
 </script>

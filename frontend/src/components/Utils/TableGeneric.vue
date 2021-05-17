@@ -97,12 +97,12 @@ export default {
     tableDataInput: Object,
     hoverDataInput: {
       type: Object,
-      default: null
+      default: null,
     },
     perPageInput: {
       type: Number,
-      default: 10
-    }
+      default: 10,
+    },
   },
   data() {
     return {
@@ -113,7 +113,7 @@ export default {
       sortDesc: false,
       sortDirection: "asc",
       filter: null,
-      filterOn: []
+      filterOn: [],
     };
   },
   computed: {
@@ -133,15 +133,15 @@ export default {
         .map(f => {
           return { text: f.label, value: f.key };
         });
-    }
+    },
   },
   methods: {
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -133,7 +133,7 @@ import {
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 } from "@fortawesome/free-solid-svg-icons";
 
 import VueSlider from "vue-slider-component";
@@ -161,7 +161,7 @@ library.add(
   faTable,
   faCode,
   faCube,
-  faVrCardboard
+  faVrCardboard,
 );
 
 export default {
@@ -174,7 +174,7 @@ export default {
     ConfounderDoc,
     NetworkPlot,
     Table,
-    Query
+    Query,
   },
   data: () => ({
     tooltipDoc: tooltips,
@@ -187,7 +187,7 @@ export default {
       "confounder",
       "intermediate",
       "reverse_intermediate",
-      "collider"
+      "collider",
     ],
     exposureTrait: null,
     outcomeTrait: null,
@@ -202,7 +202,7 @@ export default {
     // others
     alert: false,
     alertMsg: "",
-    urlMaster: `${config.web_backend_url}/confounder`
+    urlMaster: `${config.web_backend_url}/confounder`,
   }),
   mounted: function() {
     this.indexAc();
@@ -239,8 +239,8 @@ export default {
       await axios
         .get(url, {
           params: {
-            query: query
-          }
+            query: query,
+          },
         })
         .then(response => {
           if (config.web_debug) {
@@ -259,7 +259,7 @@ export default {
 
       await axios
         .get(this.urlMaster, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           if (config.web_debug) {
@@ -292,7 +292,7 @@ export default {
     async getQueryData() {
       await axios
         .get(this.urlQuery, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           this.resQueryData = response.data;
@@ -306,7 +306,7 @@ export default {
     async getQueryDiagramData() {
       await axios
         .get(this.urlQueryDiagram, {
-          params: this.paramsGeneral
+          params: this.paramsGeneral,
         })
         .then(response => {
           this.resQueryDiagramData = response.data;
@@ -316,7 +316,7 @@ export default {
             axiosErrorMessage(error);
           }
         });
-    }
+    },
   },
   watch: {
     exposureTrait: _.debounce(function(query) {
@@ -324,7 +324,7 @@ export default {
     }, 500),
     outcomeTrait: _.debounce(function(query) {
       this.searchTrait(query);
-    }, 500)
+    }, 500),
   },
   computed: {
     pval: function() {
@@ -347,7 +347,7 @@ export default {
         exposure_trait: this.exposureTrait,
         outcome_trait: this.outcomeTrait,
         pval_threshold: this.pval,
-        confounder_type: this.confounderType
+        confounder_type: this.confounderType,
       };
     },
     paramsPlot: function() {
@@ -356,9 +356,9 @@ export default {
         outcome_trait: this.outcomeTrait,
         pval_threshold: this.pval,
         confounder_type: this.confounderType,
-        rels_limit: this.sizeLimitDefault
+        rels_limit: this.sizeLimitDefault,
       };
-    }
-  }
+    },
+  },
 };
 </script>

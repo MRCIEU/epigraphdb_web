@@ -39,7 +39,7 @@ export default {
   name: "NetworkPlot",
   components: {
     Network,
-    JsPanel
+    JsPanel,
   },
   data: () => ({
     resGraphData: null,
@@ -48,7 +48,7 @@ export default {
     plotType: "2d",
     bgType: "dark",
     plotClass: "vis-network-plot",
-    jsPanelVisible: true
+    jsPanelVisible: true,
   }),
   mounted: function() {
     this.setupRouteQuery();
@@ -67,7 +67,7 @@ export default {
       } else {
         this.plotClass = "vis-network-plot";
       }
-    }
+    },
   },
   computed: {
     jsPanelOptions: function() {
@@ -77,19 +77,19 @@ export default {
         headerControls: {
           size: "md",
           smallify: "remove",
-          maximize: "remove"
+          maximize: "remove",
         },
         position: "left-bottom",
         contentSize: "600 300",
         content: this.resSpecData ? this.resSpecData.description : "",
         dragit: {
-          opacity: 0.3
+          opacity: 0.3,
         },
         callback: function(panel) {
           panel.content.style.padding = "20px";
-        }
+        },
       };
-    }
+    },
   },
   methods: {
     setupRouteQuery() {
@@ -108,8 +108,8 @@ export default {
       await axios
         .get(url, {
           params: {
-            spec: this.gallerySpec
-          }
+            spec: this.gallerySpec,
+          },
         })
         .then(response => {
           this.resGraphData = response.data.graph_data;
@@ -120,8 +120,8 @@ export default {
             axiosErrorMessage(error);
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

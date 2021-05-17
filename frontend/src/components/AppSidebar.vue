@@ -19,10 +19,10 @@ import { topics } from "@/components/topics";
 export default {
   name: "AppSidebar",
   components: {
-    SidebarCard
+    SidebarCard,
   },
   data: () => ({
-    viewList: topics
-  })
+    viewList: topics,
+  }),
 };
 </script>

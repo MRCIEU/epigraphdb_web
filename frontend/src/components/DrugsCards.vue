@@ -25,7 +25,7 @@ import Card from "@/components/HomeCardsCard";
 export default {
   name: "DrugsCards",
   components: {
-    Card
+    Card,
   },
   data: () => ({
     hover: false,
@@ -37,7 +37,7 @@ export default {
         content_text: `
             Drugs for common risk factors of diseases
         `,
-        footer_href: "/drugs-risk-factors"
+        footer_href: "/drugs-risk-factors",
       },
       {
         name: "xqtl",
@@ -46,7 +46,7 @@ export default {
         content_text: `
             For plasma proteome and blood transcriptome and other omics
         `,
-        footer_href: "/xqtl"
+        footer_href: "/xqtl",
       },
       {
         name: "pqtl",
@@ -55,9 +55,9 @@ export default {
         content_text: `
             MR PheWAS of protein effects on traits
         `,
-        footer_href: "/pqtl"
-      }
-    ]
-  })
+        footer_href: "/pqtl",
+      },
+    ],
+  }),
 };
 </script>

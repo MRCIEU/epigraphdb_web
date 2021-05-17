@@ -12,7 +12,7 @@
 export default {
   name: "CypherQuery",
   props: {
-    cypherQuery: String
-  }
+    cypherQuery: String,
+  },
 };
 </script>

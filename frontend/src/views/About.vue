@@ -48,7 +48,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faInfoCircle,
   faProjectDiagram,
-  faTable
+  faTable,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Cards from "@/components/About/Cards";
@@ -67,10 +67,10 @@ export default {
     VueMarkdown,
     // DataIntegration,
     Schema,
-    Metrics
+    Metrics,
   },
   data: () => ({
-    info_text: info
-  })
+    info_text: info,
+  }),
 };
 </script>
