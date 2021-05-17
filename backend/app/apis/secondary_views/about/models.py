@@ -34,9 +34,17 @@ class SchemaMetricsMetaRel(TypedDict):
     count: int
 
 
+class SchemaMetricsMetaPath(TypedDict):
+    from_node: str
+    to_node: str
+    rel: str
+    count: int
+
+
 class SchemaMetricsData(TypedDict):
-    meta_node: List[SchemaMetricsMetaNode]
-    meta_rel: List[SchemaMetricsMetaRel]
+    meta_node: Dict[str, SchemaMetricsMetaNode]
+    meta_rel: Dict[str, SchemaMetricsMetaRel]
+    meta_path: Dict[str, SchemaMetricsMetaPath]
 
 
 AboutSchemaResponse = create_model_from_typeddict(SchemaInfoData)

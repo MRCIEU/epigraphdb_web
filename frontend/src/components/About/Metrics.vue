@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 import axios from "axios";
 
 import Table from "@/components/Utils/TableGeneric";
@@ -40,7 +41,7 @@ export default {
     schemaNodesData() {
       return this.schemaData
         ? {
-            items: this.schemaData.meta_node,
+            items: _.toArray(this.schemaData.meta_node),
             fields: [
               {
                 key: "node_name",
@@ -62,7 +63,7 @@ export default {
     schemaRelsData() {
       return this.schemaData
         ? {
-            items: this.schemaData.meta_rel,
+            items: _.toArray(this.schemaData.meta_rel),
             fields: [
               {
                 key: "relationshipType",
