@@ -4,7 +4,9 @@ from starlette.middleware.cors import CORSMiddleware
 from app.utils.logging import MonitoringMiddleware, logger  # noqa:F401
 
 from .apis import mr_simple, top
-from .apis.secondary_views import about, entity, explore, gallery
+from .apis.secondary_views import about, explore, gallery
+from .apis.secondary_views.entity import entity_routes as entity
+from .apis.secondary_views.entity import meta_entity_routes as meta_entity
 from .apis.topic_views import (
     confounder,
     covid_xqtl,
@@ -52,6 +54,7 @@ app.include_router(about.router, tags=["secondary: about"])
 app.include_router(gallery.router, tags=["secondary: gallery"])
 app.include_router(explore.router, tags=["secondary: explore"])
 app.include_router(entity.router, tags=["secondary: entity"])
+app.include_router(meta_entity.router, tags=["secondary: meta-entity"])
 # topic views
 app.include_router(mr.router, tags=["topic: mr"])
 app.include_router(obs_cor.router, tags=["topic: obs_cor"])

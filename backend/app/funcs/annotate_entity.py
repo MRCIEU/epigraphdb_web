@@ -3,7 +3,7 @@ from app.models.entities import (
     AnnotatedNodeId,
     AnnotatedProperty,
 )
-from app.utils.meta_graph import meta_node_doc_url, meta_rel_doc_url
+from app.utils.meta_graph import meta_node_explore_url, meta_rel_explore_url
 from epigraphdb_common_utils import epigraphdb_schema
 
 
@@ -11,10 +11,10 @@ def annotate_meta_entity(
     meta_entity_name: str, meta_entity_type: str
 ) -> AnnotatedMetaEntity:
     if meta_entity_type == "meta_rel":
-        url = meta_rel_doc_url(meta_entity_name)
+        url = meta_rel_explore_url(meta_entity_name)
         meta_dict = epigraphdb_schema.meta_rels_dict  # type: ignore
     else:
-        url = meta_node_doc_url(meta_entity_name)
+        url = meta_node_explore_url(meta_entity_name)
         meta_dict = epigraphdb_schema.meta_nodes_dict  # type: ignore
     doc = meta_dict[meta_entity_name].doc
     res: AnnotatedMetaEntity = {

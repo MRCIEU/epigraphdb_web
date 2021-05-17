@@ -9,7 +9,7 @@ from app.utils.meta_graph import (
     color_palette,
     line_color_dict,
     meta_node_def,
-    meta_rel_doc_url,
+    meta_rel_explore_url,
 )
 from app.utils.visjs_config import diagram_option, node_alpha
 
@@ -84,7 +84,7 @@ class DiagramEdge:
             elif self.meta_rel is not None:
                 self.label = self.meta_rel
         if self.meta_rel is not None:
-            self.url = meta_rel_doc_url(self.meta_rel)
+            self.url = meta_rel_explore_url(self.meta_rel)
         else:
             self.url = None
 

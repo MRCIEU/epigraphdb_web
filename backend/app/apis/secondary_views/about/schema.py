@@ -15,7 +15,7 @@ from app.utils.meta_graph import (
     color_palette,
     line_color_dict,
     meta_node_def,
-    meta_rel_doc_url,
+    meta_rel_explore_url,
 )
 from app.utils.visjs_config import node_alpha, node_wrap, visjs_option
 
@@ -189,7 +189,7 @@ def schema_graph(nodes_df, rels_df, edges_df) -> models.SchemaInfoGraphData:
         )
         .assign(
             url=lambda df: df.apply(
-                lambda row: meta_rel_doc_url(
+                lambda row: meta_rel_explore_url(
                     meta_rel=row.at["relationship"].lower()
                 ),
                 axis=1,

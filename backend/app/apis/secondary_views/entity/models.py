@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import create_model_from_typeddict
 from typing_extensions import TypedDict
@@ -79,8 +79,42 @@ class EntityNodeType(str, Enum):
     target = "target"
 
 
+class MetaNodeData(TypedDict):
+    url: str
+    id_prop: str
+    name_prop: str
+    props: List[Dict[str, Any]]
+    statistics: List[Dict[str, Any]]
+    neighbours: List[EntityMetaNeighbourItem]
+    linked_resource: Optional[LinkedResource]
+
+
+class MetaRelData(TypedDict):
+    url: str
+    source_meta_node: AnnotatedMetaEntity
+    target_meta_node: AnnotatedMetaEntity
+    props: Optional[List[Dict[str, Any]]]
+    statistics: List[Dict[str, Any]]
+    linked_resource: Optional[LinkedResource]
+
+
+class MetaNodeEntitySearchItem(TypedDict):
+    node_id: AnnotatedNodeId
+    node_name: str
+    node_data: Dict[str, Any]
+
+
+class MetaNodeEntitySearch(TypedDict):
+    items: Optional[List[MetaNodeEntitySearchItem]]
+
+
 EntitySearchNodeResponse = create_model_from_typeddict(EntitySearchNode)
 EntityMetaNeighboursResponse = create_model_from_typeddict(
     EntityMetaNeighbours
 )
 EntityNeighbourResponse = create_model_from_typeddict(EntityNeighbour)
+MetaNodeDataResponse = create_model_from_typeddict(MetaNodeData)
+MetaRelDataResponse = create_model_from_typeddict(MetaRelData)
+MetaNodeEntitySearchResponse = create_model_from_typeddict(
+    MetaNodeEntitySearch
+)

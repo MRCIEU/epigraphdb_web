@@ -1,7 +1,14 @@
 <template>
-  <code class="text-primary">
-    <span :class="codeColor">{{ nodeDisplay }}</span>
-  </code>
+  <span>
+    <code v-if="noUrl" class="text-primary">
+      <span :class="codeColor">{{ nodeDisplay }}</span>
+    </code>
+    <code v-else class="text-primary">
+      <span :class="codeColor">
+        <a :href="url">{{ nodeDisplay }}</a>
+      </span>
+    </code>
+  </span>
 </template>
 
 <script>

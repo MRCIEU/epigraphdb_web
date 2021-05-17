@@ -92,8 +92,8 @@ export default {
   computed: {},
   methods: {
     init() {
-      const meta_ents_url = `${config.web_backend_url}/entity/meta-ents-list`;
-      const api_endpoints_url = `${config.web_backend_url}/entity/api-endpoints-list`;
+      const meta_ents_url = `${config.web_backend_url}/meta-ent/list`;
+      const api_endpoints_url = `${config.web_backend_url}/meta-ent/api-endpoints-list`;
       axios.get(meta_ents_url).then(r => {
         this.metaNodes = r.data.meta_nodes;
         this.metaRels = r.data.meta_rels;

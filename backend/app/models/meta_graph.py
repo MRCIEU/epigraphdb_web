@@ -3,7 +3,10 @@ from typing import Dict
 
 from typing_extensions import TypedDict
 
-from epigraphdb_common_utils.epigraphdb_schema import meta_nodes_dict
+from epigraphdb_common_utils.epigraphdb_schema import (
+    meta_nodes_dict,
+    meta_rels_dict,
+)
 
 
 class EpigraphdbMetaNodeFull(str, Enum):
@@ -66,6 +69,9 @@ epigraphdb_meta_nodes: Dict[str, MetaNodeInfo] = {
     for key, value in meta_nodes_dict.items()
 }
 
+EpigraphdbMetaRelFull = Enum(  # type: ignore
+    "EpigraphdbMetaRelFull", {_: _ for _ in meta_rels_dict.keys()}
+)
 
 pqtl_meta_nodes_list = [
     "Instruments",

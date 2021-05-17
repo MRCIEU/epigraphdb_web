@@ -26,6 +26,16 @@ def meta_rel_doc_url(meta_rel: str) -> str:
     return url
 
 
+def meta_node_explore_url(meta_node: str) -> str:
+    url = "/meta-node/{meta_node}".format(meta_node=meta_node)
+    return url
+
+
+def meta_rel_explore_url(meta_rel: str) -> str:
+    url = "/meta-relationship/{meta_rel}".format(meta_rel=meta_rel)
+    return url
+
+
 meta_node_def = (
     pd.DataFrame.from_dict(meta_node_dict, orient="index")
     # Fill orig column
