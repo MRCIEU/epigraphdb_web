@@ -25,6 +25,7 @@ pyyaml = "^5.3.1"
 Markdown = "^3.2.2"
 pydantic = "^1.8.1"
 fastapi = "^0.63.0"
+pydash = "^5.0.0"
 
 [tool.poetry.dev-dependencies]
 mypy = {version = "^0.740.0", allow-prereleases = true}
