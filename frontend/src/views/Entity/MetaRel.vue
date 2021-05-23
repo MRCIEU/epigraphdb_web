@@ -69,12 +69,46 @@
       </b-col>
       <b-col cols="9">
         <h4>EpiGraphDB platform resources</h4>
+        <hr />
+        <div>
+          <h4>Entity paths</h4>
+          <b-row align-h="between">
+            <b-col cols="4">
+              <b-form-group description="Source node: search by name">
+                <b-form-input
+                  v-model="sourceQuery"
+                  placeholder="Search by name"
+                  @keyup.enter="refreshEntityData"
+                />
+              </b-form-group>
+            </b-col>
+            <b-col cols="4">
+              <b-form-group description="Target node: search by name">
+                <b-form-input
+                  v-model="targetQuery"
+                  placeholder="Search by name"
+                  @keyup.enter="refreshEntityData"
+                />
+              </b-form-group>
+            </b-col>
+            <b-col cols="2">
+              <b-form-group description="Number of entities">
+                <b-form-select
+                  v-model="entitySearchLimit"
+                  :options="entitySearchLimitOptions"
+                />
+              </b-form-group>
+            </b-col>
+            <b-col cols="2">
+              <b-button variant="outline-primary" @click="refreshEntityData">
+                Update
+              </b-button>
+            </b-col>
+          </b-row>
+          <MetaRelEntityTable v-if="entityData" :items="entityData.items" />
+        </div>
       </b-col>
     </b-row>
-    <hr />
-    <div>
-      <h4>Entity paths</h4>
-    </div>
   </div>
 </template>
 
@@ -87,6 +121,7 @@ library.add(faSearch);
 
 import MetaRel from "@/components/miscs/DecoratedMetaRel";
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
+import MetaRelEntityTable from "@/components/Entity/MetaRelEntityTable";
 
 const config = require("@/config");
 
@@ -96,11 +131,17 @@ export default {
     FontAwesomeIcon,
     MetaRel,
     MetaNode,
+    MetaRelEntityTable,
   },
   data: () => ({
     metaRelName: null,
     epigraphdbMetaRels: null,
     metaRelData: null,
+    sourceQuery: null,
+    targetQuery: null,
+    entitySearchLimit: 15,
+    entitySearchLimitOptions: [15, 50, 100],
+    entityData: null,
   }),
   mounted: async function() {
     const paramRel = this.$route.params.metaRel;
@@ -109,6 +150,7 @@ export default {
       ? paramRel
       : null;
     this.metaRelData = await this.getMaster();
+    this.entityData = await this.getEntityData();
   },
   watch: {},
   computed: {
@@ -140,6 +182,23 @@ export default {
       return await axios.get(url, { params: params }).then(r => {
         return r.data;
       });
+    },
+    async getEntityData() {
+      const url = `${config.web_backend_url}/meta-ent/rel/search`;
+      const params = {
+        meta_rel: this.metaRelName,
+        source_meta_node: this.sourceMetaNode.name,
+        target_meta_node: this.targetMetaNode.name,
+        source_query: this.sourceQuery,
+        target_query: this.targetQuery,
+        size: this.entitySearchLimit,
+      };
+      return await axios.get(url, { params: params }).then(r => {
+        return r.data;
+      });
+    },
+    async refreshEntityData() {
+      this.entityData = await this.getEntityData();
     },
   },
 };

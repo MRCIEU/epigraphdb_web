@@ -2,6 +2,7 @@ from typing import Dict, List, Optional, Union
 
 import requests
 from fastapi import APIRouter
+from pydash import py_
 
 from app.apis.secondary_views.about import get_about_metrics
 from app.apis.util_routes.models import (
@@ -204,5 +205,63 @@ def meta_rel_data(meta_rel: EpigraphdbMetaRelFull) -> models.MetaRelData:
         "props": props,
         "statistics": stats,
         "linked_resource": None,
+    }
+    return res
+
+
+@router.get("/meta-ent/rel/search")
+def meta_rel_ent_search(
+    source_meta_node: EpigraphdbMetaNodeFull,
+    target_meta_node: EpigraphdbMetaNodeFull,
+    meta_rel: EpigraphdbMetaRelFull,
+    source_query: Optional[str] = None,
+    target_query: Optional[str] = None,
+    size: int = 20,
+):
+    if source_query is None and target_query is None:
+        search_results = meta_ent_funcs.list_paths(
+            source_meta_node=source_meta_node.value,
+            target_meta_node=target_meta_node.value,
+            meta_rel=meta_rel.value,
+            size=size,
+        )
+    else:
+        search_results = meta_ent_funcs.match_path_by_name(
+            source_meta_node=source_meta_node.value,
+            target_meta_node=target_meta_node.value,
+            meta_rel=meta_rel.value,
+            source_query=source_query,
+            target_query=target_query,
+            size=size,
+        )
+
+    items = [
+        {
+            "source_node_info": {
+                "id": annotate_node_id(
+                    _["source"]["_id"], meta_node=source_meta_node
+                ),
+                "name": _["source"]["_name"],
+            },
+            "target_node_info": {
+                "id": annotate_node_id(
+                    _["target"]["_id"], meta_node=target_meta_node
+                ),
+                "name": _["target"]["_name"],
+            },
+            "source_data": _["source"],
+            "target_data": _["target"],
+            "rel_data": _["rel"],
+        }
+        for _ in search_results
+    ]
+    rel_cols = list(
+        set(py_.flatten_deep([list(_["rel"].keys()) for _ in search_results]))
+    )
+    if len(rel_cols) == 0:
+        rel_cols = None
+    res = {
+        "rel_cols": rel_cols,
+        "items": items,
     }
     return res

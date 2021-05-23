@@ -104,8 +104,21 @@ class MetaNodeEntitySearchItem(TypedDict):
     node_data: Dict[str, Any]
 
 
+class MetaRelEntitySearchItem(TypedDict):
+    source_node_info: Dict[str, Any]
+    target_node_info: Dict[str, Any]
+    source_data: List[Dict[str, Any]]
+    target_data: List[Dict[str, Any]]
+    rel_data: List[Dict[str, Any]]
+
+
 class MetaNodeEntitySearch(TypedDict):
     items: Optional[List[MetaNodeEntitySearchItem]]
+
+
+class MetaRelEntitySearch(TypedDict):
+    rel_cols: Optional[List[str]]
+    items: Optional[List[MetaRelEntitySearchItem]]
 
 
 EntitySearchNodeResponse = create_model_from_typeddict(EntitySearchNode)
@@ -118,3 +131,4 @@ MetaRelDataResponse = create_model_from_typeddict(MetaRelData)
 MetaNodeEntitySearchResponse = create_model_from_typeddict(
     MetaNodeEntitySearch
 )
+MetaRelEntitySearchResponse = create_model_from_typeddict(MetaRelEntitySearch)
