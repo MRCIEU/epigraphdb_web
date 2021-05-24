@@ -69,6 +69,7 @@
       </b-col>
       <b-col cols="9">
         <div><h4>EpiGraphDB platform resources</h4></div>
+        <code>WIP</code>
         <hr />
         <div>
           <h4>Connected meta nodes</h4>
