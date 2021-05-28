@@ -2,7 +2,7 @@
   <span>
     <code>
       <span>
-        <a v-if="!noUrl" :href="url" target="_blank">
+        <a v-if="!noUrl" :href="url">
           <span :class="codeColor">[{{ metaRel }}]</span>
         </a>
         <a v-else>
