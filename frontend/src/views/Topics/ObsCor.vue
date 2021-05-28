@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>Observational correlation estimate</h3>
+      <h3>{{ pageTitle }}</h3>
       <p>Pre-computed Observational correlation results</p>
     </div>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -151,6 +151,9 @@ library.add(
 
 export default {
   name: "ObsCor",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueMarkdown,
@@ -162,6 +165,7 @@ export default {
     Query,
   },
   data: () => ({
+    pageTitle: `Observational correlation estimate`,
     tooltipDoc: tooltips,
     // queries and candidates
     corCoefBase: "0.80",

@@ -15,6 +15,7 @@ import bash from "highlight.js/lib/languages/bash";
 import r from "highlight.js/lib/languages/r";
 import cypher from "@/plugins/highlight-js/cypher.js";
 
+import titleMixin from "@/mixin/titleMixin.js";
 const config = require("@/config");
 
 Vue.use(fullscreen);
@@ -27,6 +28,8 @@ Vue.use(VueHighlightJS, {
     cypher,
   },
 });
+
+Vue.mixin(titleMixin);
 
 Vue.config.productionTip = false;
 

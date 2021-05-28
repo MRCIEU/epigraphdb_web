@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>COVID-19 Disease-Target Atlas</h3>
+      <h3>{{ pageTitle }}</h3>
       <p></p>
     </div>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -205,6 +205,9 @@ library.add(
 
 export default {
   name: "CovidXQTL",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueMarkdown,
@@ -215,6 +218,7 @@ export default {
     VolcanoPlot,
   },
   data: () => ({
+    pageTitle: `COVID-19 Disease-Target Atlas`,
     // queries and candidates
     showBottom: false,
     queryModeCurr: "gene",

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>Drugs for risk factors</h3>
+      <h3>{{ pageTitle }}</h3>
       <p>Drugs for common risk factors of diseases</p>
     </div>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -151,6 +151,9 @@ library.add(
 
 export default {
   name: "DrugsRiskFactors",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueMarkdown,
@@ -162,6 +165,7 @@ export default {
     Query,
   },
   data: () => ({
+    pageTitle: `Drugs for risk factors`,
     tooltipDoc: tooltips,
     // queries and candidates
     pvalBase: "1e-5",

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>Literature</h3>
+      <h3>{{ pageTitle }}</h3>
       <p>Literature evidence regarding trait</p>
     </div>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -160,6 +160,9 @@ library.add(
 
 export default {
   name: "LiteratureTrait",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueMarkdown,
@@ -171,6 +174,7 @@ export default {
     Query,
   },
   data: () => ({
+    pageTitle: `Literature`,
     tooltipDoc: tooltips,
     // queries and candidates
     sizeLimitDefault: 50,

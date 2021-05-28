@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Proteome PheWAS browser</h3>
+    <h3>{{ pageTitle }}</h3>
     <p v-if="descTitle">{{ descTitle }}</p>
     <Table v-if="tableDataInput" :table-data-input="tableDataInput" />
   </div>
@@ -16,11 +16,15 @@ const config = require("@/config");
 
 export default {
   name: "PQTList",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     Table,
   },
   data: function() {
     return {
+      pageTitle: `Proteome PheWAS browser`,
       searchType: null,
       searchTypeOptions: {
         exposures: {

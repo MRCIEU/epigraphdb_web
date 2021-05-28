@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>MR causal estimate</h3>
+      <h3>{{ pageTitle }}</h3>
       <p>Pre-computed Mendelian randomization results</p>
     </div>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -171,6 +171,9 @@ library.add(
 
 export default {
   name: "MR",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueMarkdown,
@@ -182,6 +185,7 @@ export default {
     Query,
   },
   data: () => ({
+    pageTitle: "MR causal estimate",
     tooltipDoc: tooltips,
     // queries and candidates
     showBottom: false,

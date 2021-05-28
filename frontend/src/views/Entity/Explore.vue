@@ -50,6 +50,7 @@ const config = require("@/config");
 
 export default {
   name: "Explore",
+  title: "Explore EpiGraphDB",
   components: {
     HomeSearch,
     ExploreMetaNodeTable,

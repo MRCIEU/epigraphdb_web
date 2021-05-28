@@ -424,6 +424,7 @@ export default {
   }),
   mounted: function() {
     this.setupRouteQuery();
+    document.title = `${this.metaNode}: ${this.entityId}`;
   },
   watch: {
     entityData: function(newVal) {

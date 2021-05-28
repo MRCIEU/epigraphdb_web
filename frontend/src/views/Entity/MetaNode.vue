@@ -147,6 +147,7 @@ export default {
     this.metaNodeName = this.epigraphdbMetaNodes.includes(paramNode)
       ? paramNode
       : null;
+    document.title = this.metaNodeName;
     this.metaNodeData = await this.getMaster();
     this.entityData = await this.getEntityData();
   },

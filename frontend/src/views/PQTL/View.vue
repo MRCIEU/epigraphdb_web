@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Proteome PheWAS browser</h3>
+    <h3>{{ pageTitle }}</h3>
     <h4>
       Click to view the list of
       <a href="/pqtl/list/exposures">proteins</a>
@@ -164,6 +164,9 @@ const config = require("@/config");
 
 export default {
   name: "PQTLView",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     VueTypeaheadBootstrap,
     Alert,
@@ -179,6 +182,7 @@ export default {
   },
   data: function() {
     return {
+      pageTitle: `Proteome PheWAS browser`,
       alert: false,
       alertMsg: "",
       query: null,

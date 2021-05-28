@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>QTL browser</h3>
+      <h3>{{ pageTitle }}</h3>
       <p>
         QTL MR results for plasma proteome, blood transcriptome and other omics
         data
@@ -210,6 +210,9 @@ library.add(
 
 export default {
   name: "MR",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueMarkdown,
@@ -221,6 +224,7 @@ export default {
     Query,
   },
   data: () => ({
+    pageTitle: `QTL browser`,
     tooltipDoc: tooltips,
     // queries and candidates
     xqtlMode: "single_snp_mr",

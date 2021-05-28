@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>PRS</h3>
+      <h3>{{ pageTitle }}</h3>
       <p>Polygenic risk scores results</p>
     </div>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -151,6 +151,9 @@ library.add(
 
 export default {
   name: "Prs",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueMarkdown,
@@ -162,6 +165,7 @@ export default {
     Query,
   },
   data: () => ({
+    pageTitle: `PRS`,
     tooltipDoc: tooltips,
     // queries and candidates
     pvalBase: "1e-5",

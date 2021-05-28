@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>Ontology</h3>
+      <h3>{{ pageTitle }}</h3>
       <p>Map GWAS traits to disease labels via EFO terms</p>
     </div>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -157,6 +157,9 @@ library.add(
 
 export default {
   name: "LiteratureTrait",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueMarkdown,
@@ -167,6 +170,7 @@ export default {
     Query,
   },
   data: () => ({
+    pageTitle: `Ontology`,
     tooltipDoc: tooltips,
     // queries and candidates
     sizeLimitDefault: 50,

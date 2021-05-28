@@ -150,6 +150,7 @@ export default {
     this.metaRelName = this.epigraphdbMetaRels.includes(paramRel)
       ? paramRel
       : null;
+    document.title = this.metaRelName;
     this.metaRelData = await this.getMaster();
     this.entityData = await this.getEntityData();
   },

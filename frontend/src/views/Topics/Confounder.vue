@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h3>Confounder MR causal estimate</h3>
+      <h3>{{ pageTitle }}</h3>
       <p>MR evidence on confounding traits between exposure and outcome</p>
     </div>
     <Alert :alert.sync="alert" :msg="alertMsg" />
@@ -166,6 +166,9 @@ library.add(
 
 export default {
   name: "Confounder",
+  title() {
+    return `${this.pageTitle}`;
+  },
   components: {
     FontAwesomeIcon,
     VueSlider,
@@ -177,6 +180,7 @@ export default {
     Query,
   },
   data: () => ({
+    pageTitle: `Confounder MR causal estimate`,
     tooltipDoc: tooltips,
     // queries and candidates
     pvalBase: "1e-5",
