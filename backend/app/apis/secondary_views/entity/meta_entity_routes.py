@@ -4,7 +4,7 @@ import requests
 from fastapi import APIRouter
 from pydash import py_
 
-from app.apis.secondary_views.about import get_about_metrics
+from app.apis.secondary_views.about import get_metrics
 from app.apis.util_routes.models import (
     get_epigraphdb_meta_nodes,
     get_epigraphdb_meta_paths,
@@ -81,7 +81,7 @@ def api_endpoints_list(overwrite: bool = False) -> List[Dict[str, str]]:
 @router.get("/meta-ent/node", response_model=models.MetaNodeDataResponse)
 def meta_node_data(meta_node: EpigraphdbMetaNodeFull) -> models.MetaNodeData:
     meta_node_name = meta_node.value
-    metrics = get_about_metrics()
+    metrics = get_metrics()
     meta_node_dict = meta_nodes_dict[meta_node_name]
 
     url = meta_node_doc_url(meta_node_name)
@@ -175,7 +175,7 @@ def meta_node_ent_search(
 @router.get("/meta-ent/rel", response_model=models.MetaRelDataResponse)
 def meta_rel_data(meta_rel: EpigraphdbMetaRelFull) -> models.MetaRelData:
     meta_rel_name = meta_rel.value
-    metrics = get_about_metrics()
+    metrics = get_metrics()
     meta_rel_dict = meta_rels_dict[meta_rel_name]
 
     url = meta_rel_doc_url(meta_rel_name)

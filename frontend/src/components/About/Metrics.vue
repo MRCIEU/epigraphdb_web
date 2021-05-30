@@ -2,25 +2,44 @@
   <div>
     <b-tabs>
       <b-tab title="Metrics for nodes">
-        <Table v-if="schemaNodesData" :table-data-input="schemaNodesData" />
+        <Table v-if="schemaNodesData" :table-data-input="schemaNodesData">
+          <template #cell(node_name)="data">
+            <MetaNode
+              :meta-node="data.item.node_name.name"
+              :url="data.item.node_name.url"
+              no-code-bg
+            />
+          </template>
+        </Table>
       </b-tab>
       <b-tab title="Metrics for relationships">
-        <Table v-if="schemaRelsData" :table-data-input="schemaRelsData" />
+        <Table v-if="schemaRelsData" :table-data-input="schemaRelsData">
+          <template #cell(relationshipType)="data">
+            <MetaRel
+              :meta-rel="data.item.relationshipType.name"
+              :url="data.item.relationshipType.url"
+              no-code-bg
+            />
+          </template>
+        </Table>
       </b-tab>
     </b-tabs>
   </div>
 </template>
 
 <script>
-import _ from "lodash";
 import axios from "axios";
 
-import Table from "@/components/Utils/TableGeneric";
+import MetaNode from "@/components/miscs/DecoratedMetaNode";
+import MetaRel from "@/components/miscs/DecoratedMetaRel";
+import Table from "@/components/Utils/TableGeneric1";
 const config = require("@/config");
 
 export default {
   name: "Metrics",
   components: {
+    MetaNode,
+    MetaRel,
     Table,
   },
   data: () => ({
@@ -41,11 +60,11 @@ export default {
     schemaNodesData() {
       return this.schemaData
         ? {
-            items: _.toArray(this.schemaData.meta_node),
+            items: this.schemaData.meta_node,
             fields: [
               {
                 key: "node_name",
-                label: "meta_node",
+                label: "Meta node",
                 sortable: true,
               },
               {
@@ -63,11 +82,11 @@ export default {
     schemaRelsData() {
       return this.schemaData
         ? {
-            items: _.toArray(this.schemaData.meta_rel),
+            items: this.schemaData.meta_rel,
             fields: [
               {
                 key: "relationshipType",
-                label: "meta_rel",
+                label: "Meta relationship",
                 sortable: true,
               },
               {
