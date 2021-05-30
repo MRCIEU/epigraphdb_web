@@ -6,6 +6,7 @@ import numpy as np
 import requests
 
 color_palette_file = Path(__file__).parent / "colorscheme.json"
+rpkg_file = Path(__file__).parent / "rpkg-funcs.yml"
 
 with open(color_palette_file, "r") as f:
     color_palette = json.load(f)

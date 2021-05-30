@@ -1,0 +1,67 @@
+funcs:
+  query_epigraphdb:
+    uri: query_epigraphdb
+    desc: "Send data request to an EpiGraphDB API endpoint"
+  mr:
+    uri: mr
+    desc: "Return information related to Mendelian Randomisation"
+  confounder:
+    uri: confounder
+    desc: "MR evidence on confounding traits between exposure and outcome"
+  obs_cor:
+    uri: obs_cor
+    desc: "Observational correlations between traits"
+  genetic_cor:
+    uri: genetic_cor
+    desc: "Genetic correlations between traits"
+  literature_gwas:
+    uri: literature_gwas
+    desc: "Literature evidence regarding a GWAS trait"
+  ontology_gwas_efo:
+    uri: ontology_gwas_efo
+    desc: "Ontology association between EFO term and Gwas"
+  pathway:
+    uri: pathway
+    desc: "Pathway evidence"
+  drugs_risk_factors:
+    uri: drugs_risk_factors
+    desc: "Drugs for risk factors"
+  protein_in_pathway:
+    uri: protein_in_pathway
+    desc: "For the list of proteins, returns their associated pathway data"
+  xqtl_single_snp_mr:
+    uri: xqtl_single_snp_mr
+    desc: "Single SNP QTL MR evidence"
+  xqtl_multi_snp_mr:
+    uri: xqtl_multi_snp_mr
+    desc: "Multi SNP QTL MR evidence"
+  pqtl:
+    uri: pqtl
+    desc: "Return information related to the pQTL analysis"
+  pqtl_list:
+    uri: pqtl_list
+    desc: "Return a list of all proteins/exposures or traits/outcomes available in the database"
+  pqtl_pleio:
+    uri: pqtl_pleio
+    desc: "Return information related to the pleiotropy of SNPs"
+  mappings_gene_to_protein:
+    uri: mappings_gene_to_protein
+    desc: "Return protein uniprot_id from associated genes"
+  meta_nodes_list:
+    uri: meta_nodes_list
+    desc: "List meta nodes (e.g. Gwas, Gene, etc.)"
+  meta_rels_list:
+    uri: meta_rels_list
+    desc: "List meta rels (e.g. MR, etc.)"
+  meta_nodes_list_node:
+    uri: meta_nodes_list_node
+    desc: "List nodes under a meta node"
+  meta_rels_list_rel:
+    uri: meta_rels_list_rel
+    desc: "List relationships under a meta relationship"
+  meta_nodes_search_node:
+    uri: meta_nodes_search_node
+    desc: "Search a node by its id field, or its name field"
+  cypher:
+    uri: cypher
+    desc: "Send a query in Cypher to EpiGraphDB"

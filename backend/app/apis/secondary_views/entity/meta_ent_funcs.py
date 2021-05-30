@@ -113,3 +113,20 @@ def match_path_by_name(
         return res
     else:
         return []
+
+
+def process_rpkg_funcs(rpkg_funcs_raw: Dict[str, Any]):
+    def _process(item):
+        url_template = (
+            "https://mrcieu.github.io/epigraphdb-r/reference/{uri}.html"
+        )
+        res = {
+            "name": item["uri"],
+            "url": url_template.format(uri=item["uri"]),
+            "desc": item["desc"],
+        }
+        return res
+
+    print(rpkg_funcs_raw)
+    res = [_process(_) for _ in rpkg_funcs_raw["funcs"].values()]
+    return res

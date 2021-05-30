@@ -82,9 +82,14 @@ export default {
   name: "Table",
   components: {},
   props: {
-    // tableDataInput should be in the form of
-    // {"items": [item], "fields": [{"key", "label", ...}]}
-    tableDataInput: Object,
+    items: {
+      type: Array,
+      default: null,
+    },
+    fields: {
+      type: Array,
+      default: null,
+    },
     perPageInput: {
       type: Number,
       default: 10,
@@ -103,12 +108,6 @@ export default {
     };
   },
   computed: {
-    items() {
-      return this.tableDataInput ? this.tableDataInput.items : [];
-    },
-    fields() {
-      return this.tableDataInput ? this.tableDataInput.fields : [];
-    },
     totalRows: function() {
       return this.items.length;
     },

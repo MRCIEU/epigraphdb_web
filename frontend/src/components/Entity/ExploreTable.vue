@@ -14,27 +14,24 @@
       </b-input-group>
     </div>
 
-    <b-table
-      id="search-table"
-      striped
-      small
-      :items="items"
-      :fields="fields"
-      :filter="filter"
-      :per-page="perPage"
-      :current-page="currentPage"
-      @filtered="onFiltered"
-    >
-      <template #cell(name)="data">
-        <code class="text-primary">
-          <a :href="data.item.url" target="_blank">
-            <span>
-              {{ data.item.name }}
-            </span>
-          </a>
-        </code>
-      </template>
-    </b-table>
+    <div class="data-table">
+      <b-table
+        show-empty
+        striped
+        small
+        :items="items"
+        :current-page="currentPage"
+        :filter="filter"
+        :per-page="perPage"
+        v-bind="inputProps"
+        @filtered="onFiltered"
+      >
+        <template v-for="(index, name) in $scopedSlots" v-slot:[name]="data">
+          <slot :name="name" v-bind="data"></slot>
+        </template>
+      </b-table>
+    </div>
+
     <b-row>
       <b-col></b-col>
       <b-col>
@@ -52,24 +49,24 @@
 
 <script>
 export default {
-  name: "ExploreApiEndpoints",
+  name: "ExploreTable",
   components: {},
   props: {
     items: {
       type: Array,
       default: null,
     },
+    perPage: {
+      type: Number,
+      default: 15,
+    },
+    inputProps: {
+      type: Object,
+      default: null,
+    },
   },
   data: () => ({
-    perPage: 15,
     currentPage: 1,
-    fields: [
-      {
-        key: "name",
-        label: "API endpoint",
-        sortable: true,
-      },
-    ],
     filter: null,
   }),
   methods: {
@@ -86,3 +83,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.data-table {
+  overflow-x: auto;
+}
+</style>

@@ -2,7 +2,11 @@
   <div>
     <b-tabs>
       <b-tab title="Metrics for nodes">
-        <Table v-if="schemaNodesData" :table-data-input="schemaNodesData">
+        <Table
+          v-if="metricsData"
+          :items="metricsData.meta_node"
+          :fields="metaNodeFields"
+        >
           <template #cell(node_name)="data">
             <MetaNode
               :meta-node="data.item.node_name.name"
@@ -13,7 +17,11 @@
         </Table>
       </b-tab>
       <b-tab title="Metrics for relationships">
-        <Table v-if="schemaRelsData" :table-data-input="schemaRelsData">
+        <Table
+          v-if="metricsData"
+          :items="metricsData.meta_rel"
+          :fields="metaRelFields"
+        >
           <template #cell(relationshipType)="data">
             <MetaRel
               :meta-rel="data.item.relationshipType.name"
@@ -43,64 +51,48 @@ export default {
     Table,
   },
   data: () => ({
-    schemaData: null,
+    metricsData: null,
+    metaNodeFields: [
+      {
+        key: "node_name",
+        label: "Meta node",
+        sortable: true,
+      },
+      {
+        key: "count",
+        label: "count",
+        sortable: true,
+        formatter: value => {
+          return value.toLocaleString();
+        },
+      },
+    ],
+    metaRelFields: [
+      {
+        key: "relationshipType",
+        label: "Meta relationship",
+        sortable: true,
+      },
+      {
+        key: "count",
+        label: "count",
+        sortable: true,
+        formatter: value => {
+          return value.toLocaleString();
+        },
+      },
+    ],
   }),
   methods: {
-    getAboutSchemaData() {
+    getMetricsData() {
       const url = `${config.web_backend_url}/about/metrics`;
       axios.get(url).then(response => {
-        this.schemaData = response.data;
+        this.metricsData = response.data;
       });
     },
   },
   mounted: function() {
-    this.getAboutSchemaData();
-  },
-  computed: {
-    schemaNodesData() {
-      return this.schemaData
-        ? {
-            items: this.schemaData.meta_node,
-            fields: [
-              {
-                key: "node_name",
-                label: "Meta node",
-                sortable: true,
-              },
-              {
-                key: "count",
-                label: "count",
-                sortable: true,
-                formatter: value => {
-                  return value.toLocaleString();
-                },
-              },
-            ],
-          }
-        : null;
-    },
-    schemaRelsData() {
-      return this.schemaData
-        ? {
-            items: this.schemaData.meta_rel,
-            fields: [
-              {
-                key: "relationshipType",
-                label: "Meta relationship",
-                sortable: true,
-              },
-              {
-                key: "count",
-                label: "count",
-                sortable: true,
-                formatter: value => {
-                  return value.toLocaleString();
-                },
-              },
-            ],
-          }
-        : null;
-    },
+    this.getMetricsData();
   },
 };
 </script>

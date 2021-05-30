@@ -1,6 +1,7 @@
 from typing import Dict, List, Optional, Union
 
 import requests
+import yaml
 from fastapi import APIRouter
 from pydash import py_
 
@@ -13,7 +14,7 @@ from app.funcs.annotate_entity import annotate_meta_entity, annotate_node_id
 from app.funcs.cache import cache_func_call
 from app.models.meta_graph import EpigraphdbMetaNodeFull, EpigraphdbMetaRelFull
 from app.settings import api_url
-from app.utils import api_request_headers
+from app.utils import api_request_headers, rpkg_file
 from app.utils.meta_graph import meta_node_doc_url, meta_rel_doc_url
 from epigraphdb_common_utils.epigraphdb_schema import (
     meta_nodes_dict,
@@ -76,6 +77,14 @@ def api_endpoints_list(overwrite: bool = False) -> List[Dict[str, str]]:
         overwrite=overwrite,
     )
     return endpoints
+
+
+@router.get("/meta-ent/rpkg-funcs-list", response_model=List[Dict[str, str]])
+def rpkg_funcs_list() -> List[Dict[str, str]]:
+    with rpkg_file.open() as f:
+        rpkg_funcs_raw = yaml.safe_load(f)
+    rpkg_funcs_data = meta_ent_funcs.process_rpkg_funcs(rpkg_funcs_raw)
+    return rpkg_funcs_data
 
 
 @router.get("/meta-ent/node", response_model=models.MetaNodeDataResponse)
