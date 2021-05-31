@@ -70,6 +70,20 @@
       <b-row align-h="around">
         <b-col cols="6">
           <h3>Search API endpoints</h3>
+          <p class="text-muted">
+            Below are API endpoints from the
+            <a href="https://api.epigraphdb.org" target="_blank">
+              EpiGraphDB API service
+            </a>
+            with links to the
+            <a
+              href="https://docs.epigraphdb.org/api/api-endpoints/"
+              target="_blank"
+            >
+              endpoint documentation and examples
+            </a>
+            .
+          </p>
           <Table
             v-if="apiEndpoints"
             :items="apiEndpoints"
@@ -92,7 +106,25 @@
           </Table>
         </b-col>
         <b-col>
-          <h3>R package functions</h3>
+          <h3>Search package features</h3>
+          <h4>
+            <code>epigraphdb</code>
+            R package
+          </h4>
+          <p class="text-muted">
+            Below are functions from the
+            <a
+              href="https://cran.r-project.org/web/packages/epigraphdb"
+              target="_blank"
+            >
+              epigraphdb
+            </a>
+            R package with links to the
+            <a href="https://mrcieu.github.io/epigraphdb-r" target="_blank">
+              package documentation
+            </a>
+            .
+          </p>
           <Table
             v-if="rPkgFuncs"
             :items="rPkgFuncs"
