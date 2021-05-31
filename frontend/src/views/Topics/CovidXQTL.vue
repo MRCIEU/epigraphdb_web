@@ -180,7 +180,7 @@ import {
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/default.css";
 
-import VueMarkdown from "vue-markdown";
+import VueMarkdown from "@adapttive/vue-markdown";
 
 import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 

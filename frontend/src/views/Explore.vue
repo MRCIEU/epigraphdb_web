@@ -130,7 +130,7 @@
 <script>
 import axios from "axios";
 
-import VueMarkdown from "vue-markdown";
+import VueMarkdown from "@adapttive/vue-markdown";
 
 import JsonViewer from "vue-json-viewer";
 import "@/plugins/json-viewer-gruvbox-dark.scss";

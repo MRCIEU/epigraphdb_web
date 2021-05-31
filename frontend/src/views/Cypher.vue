@@ -53,7 +53,7 @@ import axios from "axios";
 import JsonViewer from "vue-json-viewer";
 import "@/plugins/json-viewer-gruvbox-dark.scss";
 
-import VueMarkdown from "vue-markdown";
+import VueMarkdown from "@adapttive/vue-markdown";
 
 import info from "@/assets/docs/cypher.md";
 import Table from "@/components/Utils/TableGeneric";

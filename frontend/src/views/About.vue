@@ -41,7 +41,7 @@ import "@/plugins/json-viewer-gruvbox-dark.scss";
 
 import info from "@/assets/docs/about.md";
 
-import VueMarkdown from "vue-markdown";
+import VueMarkdown from "@adapttive/vue-markdown";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";

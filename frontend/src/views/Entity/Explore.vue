@@ -100,7 +100,7 @@
             </template>
             <template #cell(desc)="data">
               <div style="width: 20rem">
-                <vue-markdown>{{ data.item.desc }}</vue-markdown>
+                <vue-markdown :source="data.item.desc" />
               </div>
             </template>
           </Table>
@@ -141,7 +141,7 @@
             </template>
             <template #cell(desc)="data">
               <div style="width: 20rem">
-                <vue-markdown>{{ data.item.desc }}</vue-markdown>
+                <vue-markdown :source="data.item.desc" />
               </div>
             </template>
           </Table>
@@ -154,7 +154,7 @@
 <script>
 import axios from "axios";
 
-import VueMarkdown from "vue-markdown";
+import VueMarkdown from "@adapttive/vue-markdown";
 
 import HomeSearch from "@/components/HomeSearch.vue";
 import Table from "@/components/Entity/ExploreTable";

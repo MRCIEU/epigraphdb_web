@@ -130,7 +130,7 @@ import {
 
 import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
-import VueMarkdown from "vue-markdown";
+import VueMarkdown from "@adapttive/vue-markdown";
 
 import _ from "underscore";
 
