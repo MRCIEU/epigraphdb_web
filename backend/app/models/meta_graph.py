@@ -33,15 +33,10 @@ class EpigraphdbMetaNodeNonCodeName(str, Enum):
     Disease = "Disease"
     Drug = "Drug"
     Efo = "Efo"
-    Gene = "Gene"
     LiteratureTerm = "LiteratureTerm"
     LiteratureTriple = "LiteratureTriple"
     Pathway = "Pathway"
-    Protein = "Protein"
     Tissue = "Tissue"
-    # variant has no meaningful names
-    # but we index variants for them to be searchable
-    # Variant = "Variant"
 
 
 class EpigraphdbMetaNodeForSearch(str, Enum):
