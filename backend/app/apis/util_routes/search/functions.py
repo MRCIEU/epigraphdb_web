@@ -37,7 +37,7 @@ def get_node_info(
     return res
 
 
-def get_index_name(meta_node: str) -> bool:
+def get_index_name(meta_node: str) -> str:
     return f"search-global-{meta_node}".lower()
 
 
