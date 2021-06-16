@@ -12,6 +12,7 @@ use_cache = env_configs["use_cache"]
 # paired API
 api_url = env_configs["api_url"]
 api_key = env_configs["api_key"]
+neural_url = env_configs["neural_url"]
 
 # mongodb
 mongo_passwd = env_configs["mongo_passwd"]

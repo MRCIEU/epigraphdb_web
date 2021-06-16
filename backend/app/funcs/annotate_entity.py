@@ -14,6 +14,14 @@ def annotate_meta_entity(
         url = meta_rel_explore_url(meta_entity_name)
         meta_dict = epigraphdb_schema.meta_rels_dict  # type: ignore
     else:
+        # HACK: for cases where the meta node name is
+        #       inferred from elasticsearch index
+        special_names = {
+            "Literatureterm": "LiteratureTerm",
+            "Literaturetriple": "LiteratureTtriple",
+        }
+        if meta_entity_name in special_names.keys():
+            meta_entity_name = special_names[meta_entity_name]
         url = meta_node_explore_url(meta_entity_name)
         meta_dict = epigraphdb_schema.meta_nodes_dict  # type: ignore
     doc = meta_dict[meta_entity_name].doc

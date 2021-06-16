@@ -1,10 +1,12 @@
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import create_model_from_typeddict
 from typing_extensions import TypedDict
 
-from app.apis.util_routes.search.models import SearchEntity
+from app.apis.util_routes.search.models import (
+    SearchEntity as SearchEntityNoScore,
+)
 from app.models.entities import (
     AnnotatedMetaEntity,
     AnnotatedNodeId,
@@ -69,9 +71,16 @@ class EntityNeighbour(TypedDict):
     node_type: str
 
 
+class SearchEntityScore(TypedDict):
+    id: AnnotatedNodeId
+    name: str
+    meta_node: AnnotatedMetaEntity
+    score: float
+
+
 class EntitySimilarResults(TypedDict):
     summary: Any
-    results: List[SearchEntity]
+    results: Union[List[SearchEntityNoScore], List[SearchEntityScore]]
 
 
 class EntityNodeType(str, Enum):

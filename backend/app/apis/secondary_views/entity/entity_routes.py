@@ -15,10 +15,9 @@ from app.models.meta_graph import EpigraphdbMetaNodeFull
 from app.settings import api_url
 from app.utils import api_request_headers, format_triple, get_node_role
 
-from . import models
+from . import models, similarity_search
 from .entity_resource_mapping import map_entity_resources
 from .linked_resources import map_linked_external_resource
-from .similarity_search import entity_similarity_search
 
 router = APIRouter()
 
@@ -212,14 +211,33 @@ def entity_neighbours(
         return res
 
 
-@router.get("/entity/similar-entities")
-def entity_similarity(
+@router.get("/entity/similar-entities/names")
+def entity_similarity_names(
     meta_node: str, id: str, name: str, size: int = 50
 ) -> Optional[models.EntitySimilarResults]:
     candidate_meta_nodes = get_meta_nodes_non_code_name()
     if meta_node not in candidate_meta_nodes:
         return None
     else:
-        search_results = entity_similarity_search(meta_node, id, name, size)
-        res = {"summary": None, "results": search_results}  # placeholder
+        search_results = similarity_search.entity_name_search(
+            meta_node, id, name, size
+        )
+        # summary field is currently placeholder
+        res = {"summary": None, "results": search_results}
+        return res
+
+
+@router.get("/entity/similar-entities/neural")
+def entity_similarity_neural(
+    meta_node: str, id: str, name: str, size: int = 50
+) -> Optional[models.EntitySimilarResults]:
+    candidate_meta_nodes = get_meta_nodes_non_code_name()
+    if meta_node not in candidate_meta_nodes:
+        return None
+    else:
+        search_results = similarity_search.entity_neural_search(
+            meta_node, id, name, size
+        )
+        # summary field is currently placeholder
+        res = {"summary": None, "results": search_results}
         return res

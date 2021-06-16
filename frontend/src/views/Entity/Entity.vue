@@ -323,13 +323,13 @@
                 />
                 .
               </p>
-              <div v-if="similaritySearchResults">
+              <div v-if="similarNameSearchResults">
                 <h5>
                   <font-awesome-icon
                     :icon="['fas', 'quote-right']"
                     class="pr-2 text-muted"
                   />
-                  Similar names
+                  Entities with similar names
                 </h5>
                 <p class="text-muted">
                   Entities with similar names to
@@ -344,7 +344,38 @@
                   </router-link>
                   .
                 </p>
-                <SimilarEntityTable :items="similaritySearchResults.results" />
+                <SimilarEntityTable :items="similarNameSearchResults.results" />
+                <h5>
+                  <font-awesome-icon
+                    :icon="['fas', 'quote-right']"
+                    class="pr-2 text-muted"
+                  />
+                  Entities with similar semantic representation
+                </h5>
+                <p class="text-muted">
+                  Entities with similar semantic representaion in
+                  high-dimensional vector space. For details refer to
+                  <a href="#"><code>WIP</code></a>
+                </p>
+                <Table
+                  v-if="similarNeuralSearchResults"
+                  :items="similarNeuralSearchResults"
+                  :input-props="neuralTableProps"
+                >
+                  <template #cell(id)="data">
+                    <a :href="data.item.id.url">{{ data.item.id.id }}</a>
+                  </template>
+                  <template #cell(meta_node)="data">
+                    <MetaNode
+                      :meta-node="data.item.meta_node.name"
+                      :url="data.item.meta_node.url"
+                      no-code-bg
+                    />
+                  </template>
+                  <template #cell(score)="data">
+                    {{ Number(data.item.score.toFixed(2)) }}
+                  </template>
+                </Table>
               </div>
             </b-collapse>
           </div>
@@ -376,6 +407,7 @@ import NeighbourEntityTable from "@/components/Entity/NeighbourEntityTable";
 import SimilarEntityTable from "@/components/Entity/SimilarEntityTable";
 import ResourceCard from "@/components/Entity/ResourceCard";
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
+import Table from "@/components/Entity/ExploreTable";
 
 library.add(
   faSearch,
@@ -399,6 +431,7 @@ export default {
     NeighbourEntityTable,
     SimilarEntityTable,
     ResourceCard,
+    Table,
   },
   data: () => ({
     metaNode: null,
@@ -414,7 +447,34 @@ export default {
       { value: "source", text: "source" },
       { value: "target", text: "target" },
     ],
-    similaritySearchResults: null,
+    similarNameSearchResults: null,
+    similarNeuralSearchResults: null,
+    neuralTableProps: {
+      fields: [
+        {
+          key: "meta_node",
+          label: "Meta node",
+          sortable: true,
+        },
+        {
+          key: "id",
+          label: "Node id",
+          sortable: true,
+        },
+        {
+          key: "name",
+          label: "Node name",
+          sortable: true,
+        },
+        {
+          key: "score",
+          label: "Score",
+          sortable: true,
+        },
+      ],
+      sortBy: "score",
+      sortDesc: true,
+    },
     neighbourSizeSelect: 50,
     neighbourSizeOptions: [50, 100, 300, 500],
     visPlatformRes: true,
@@ -431,7 +491,8 @@ export default {
       if (newVal) {
         this.getNeighbourMetaData();
         this.getNeighbourEntityData();
-        this.similaritySearch();
+        this.similarNameSearch();
+        this.similarNeuralSearch();
       }
     },
   },
@@ -537,8 +598,8 @@ export default {
         this.neighbourEntityData = response.data;
       });
     },
-    similaritySearch() {
-      const url = `${config.web_backend_url}/entity/similar-entities`;
+    similarNameSearch() {
+      const url = `${config.web_backend_url}/entity/similar-entities/names`;
       const params = {
         meta_node: this.metaNode,
         name: this.entityName,
@@ -548,7 +609,24 @@ export default {
       axios
         .get(url, { params: params })
         .then(response => {
-          this.similaritySearchResults = response.data;
+          this.similarNameSearchResults = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    similarNeuralSearch() {
+      const url = `${config.web_backend_url}/entity/similar-entities/neural`;
+      const params = {
+        meta_node: this.metaNode,
+        name: this.entityName,
+        id: this.entityId,
+        size: 50,
+      };
+      axios
+        .get(url, { params: params })
+        .then(response => {
+          this.similarNeuralSearchResults = response.data.results;
         })
         .catch(error => {
           console.log(error);

@@ -1,3 +1,4 @@
+import requests
 from colorama import Fore, Style
 
 from app.utils import ping_endpoint
@@ -49,6 +50,16 @@ def format_status(status: bool) -> str:
     return status_str
 
 
+def ping_neural(neural_url: str) -> bool:
+    url = f"{neural_url}/ping"
+    try:
+        r = requests.get(url)
+        r.raise_for_status()
+        return r.json()
+    except:
+        return False
+
+
 def check_component_connections() -> None:
     api_url = backend_env_configs.env_configs["api_url"]
     api_status = ping_endpoint(f"{api_url}/ping")
@@ -61,6 +72,8 @@ def check_component_connections() -> None:
     es_port = backend_env_configs.env_configs["es_port"]
     es_status = es_client_connected()
     es_status_str = format_status(es_status)
+    neural_url = backend_env_configs.env_configs["neural_url"]
+    neural_status = format_status(ping_neural(neural_url))
     print(
         Style.BRIGHT
         + Fore.GREEN
@@ -68,6 +81,7 @@ def check_component_connections() -> None:
         + Style.RESET_ALL
     )
     print(f"epigraphdb_api: {api_url}\tconnected: {api_status_str}")
+    print(f"epigraphdb_neural: {neural_url}\tconnected: {neural_status}")
     print(f"mongodb: {mongo_host}:{mongo_port}\tconnected: {mongo_status_str}")
     print(f"elasticsearch: {es_host}:{es_port}\tconnected: {es_status_str}")
 
