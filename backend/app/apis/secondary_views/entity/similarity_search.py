@@ -48,6 +48,8 @@ def entity_neural_search(
             "score": _["score"],
         }
         for _ in search_results
+        if _["id"] != id
+        or _["meta_node"].lower() != reference_meta_node.lower()
     ]
     return res
 

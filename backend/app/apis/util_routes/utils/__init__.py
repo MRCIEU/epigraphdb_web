@@ -30,6 +30,15 @@ def get_utils_cache_drop(
         return True
 
 
+@router.get("/utils/cache/drop/es", response_model=bool)
+def get_utils_cache_drop_es() -> bool:
+    """Drop all elasticsearch indices."""
+    es_indices: List[str] = list(es_client.indices.get_alias("*").keys())
+    for index in es_indices:
+        es_client.indices.delete(index=index, ignore=[400, 404])
+    return True
+
+
 @router.get("/utils/cache/list", response_model=List[str])
 def get_utils_cache_list() -> List[str]:
     """Returns the currently available cache collections."""

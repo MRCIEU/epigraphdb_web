@@ -7,6 +7,23 @@ from app.utils.meta_graph import meta_node_explore_url, meta_rel_explore_url
 from epigraphdb_common_utils import epigraphdb_schema
 
 
+def _meta_node_translator(meta_node: str) -> str:
+    """Deal with situations like meta node returned
+    from an elasticsearch index
+    """
+    # HACK: for cases where the meta node name is
+    #       inferred from elasticsearch index
+    special_names = {
+        "Literatureterm": "LiteratureTerm",
+        "Literaturetriple": "LiteratureTriple",
+    }
+    if meta_node in special_names.keys():
+        res = special_names[meta_node]
+    else:
+        res = meta_node
+    return res
+
+
 def annotate_meta_entity(
     meta_entity_name: str, meta_entity_type: str
 ) -> AnnotatedMetaEntity:
@@ -14,14 +31,7 @@ def annotate_meta_entity(
         url = meta_rel_explore_url(meta_entity_name)
         meta_dict = epigraphdb_schema.meta_rels_dict  # type: ignore
     else:
-        # HACK: for cases where the meta node name is
-        #       inferred from elasticsearch index
-        special_names = {
-            "Literatureterm": "LiteratureTerm",
-            "Literaturetriple": "LiteratureTtriple",
-        }
-        if meta_entity_name in special_names.keys():
-            meta_entity_name = special_names[meta_entity_name]
+        meta_entity_name = _meta_node_translator(meta_entity_name)
         url = meta_node_explore_url(meta_entity_name)
         meta_dict = epigraphdb_schema.meta_nodes_dict  # type: ignore
     doc = meta_dict[meta_entity_name].doc
@@ -34,7 +44,9 @@ def annotate_meta_entity(
 
 
 def annotate_node_id(node_id: str, meta_node: str) -> AnnotatedNodeId:
-    url = entity_id_match(meta_node=meta_node, id=node_id)
+    url = entity_id_match(
+        meta_node=_meta_node_translator(meta_node), id=node_id
+    )
     res: AnnotatedNodeId = {"id": node_id, "url": url}
     return res
 
