@@ -77,18 +77,21 @@ const routes = [
   {
     path: "/explore/",
     name: "explore",
+    meta: { fluidContainer: true },
     component: () =>
       import(/* webpackChunkName: "explore" */ "../views/Entity/Explore.vue"),
   },
   {
     path: "/entity",
     name: "entity",
+    meta: { fluidContainer: true },
     component: () =>
       import(/* webpackChunkName: "entity" */ "../views/Entity/Entity.vue"),
   },
   {
     path: "/meta-node/:metaNode",
     name: "meta-node",
+    meta: { fluidContainer: true },
     component: () =>
       import(
         /* webpackChunkName: "meta-node" */ "../views/Entity/MetaNode.vue"
@@ -97,6 +100,7 @@ const routes = [
   {
     path: "/meta-relationship/:metaRel",
     name: "meta-relationship",
+    meta: { fluidContainer: true },
     component: () =>
       import(
         /* webpackChunkName: "meta-relationship" */ "../views/Entity/MetaRel.vue"

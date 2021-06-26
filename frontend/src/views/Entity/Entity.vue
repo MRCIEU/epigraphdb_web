@@ -1,36 +1,18 @@
 <template>
   <div v-if="entityData">
     <b-row class="pb-4">
-      <b-col cols="3"></b-col>
-      <b-col cols="9">
-        <h2 class="text-center">
+      <b-col cols="2"></b-col>
+      <b-col cols="8">
+        <h2 class="text-center" id="top">
           EpiGraphDB node:
           <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
-          <a
-            v-b-tooltip.v-primary.hover
-            title="Use this button to toggle the visibility of all sections."
-            @click="toggleAllVis"
-            href=""
-            @click.prevent
-          >
-            <span
-              v-if="visPlatformRes && visConnectedEnts && visSimilarEnts"
-              class="text-muted ml-2"
-            >
-              <font-awesome-icon :icon="['fas', 'chevron-up']" />
-            </span>
-            <span v-else class="text-info ml-2">
-              <font-awesome-icon :icon="['fas', 'chevron-right']" />
-            </span>
-          </a>
         </h2>
       </b-col>
     </b-row>
-    <div></div>
     <b-row>
-      <b-col cols="3">
+      <b-col cols="2" class="toc">
         <div>
-          <h4>Entity meta data</h4>
+          <h3>Entity meta data</h3>
           <p>
             <span class="text-muted">
               meta entity:
@@ -58,7 +40,7 @@
           </p>
         </div>
         <hr />
-        <h4>Entity properties</h4>
+        <h3>Entity properties</h3>
         <p v-for="item in entityData.full_data" :key="item.key">
           <span v-b-tooltip.v-primary.hover :title="item.annotation.doc">
             <span class="text-muted">{{ item.key }}:</span>
@@ -70,288 +52,189 @@
         <hr />
         <LinkedResource v-if="linkedResource" :input="linkedResource" />
       </b-col>
-      <b-col cols="9">
-        <div id="resources">
+      <b-col cols="8">
+        <b-container>
           <div class="pb-3">
-            <h4 id="epigraphdb-platform">
-              EpiGraphDB Platform resources
-              <a
-                @click="visPlatformRes = !visPlatformRes"
-                href=""
-                @click.prevent
-              >
-                <span v-if="visPlatformRes" class="text-muted ml-2">
-                  <font-awesome-icon :icon="['fas', 'chevron-up']" />
-                </span>
-                <span v-else class="text-info ml-2">
-                  <font-awesome-icon :icon="['fas', 'chevron-right']" />
-                </span>
-              </a>
-            </h4>
-            <b-collapse :visible="visPlatformRes">
+            <h3 :id="toc[0].id">
+              {{ toc[0].label }}
+            </h3>
+            <p class="text-muted">
+              Resources that are associated with
+              <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
+              on the EpiGraphDB platform.
+            </p>
+            <b-spinner v-if="neighbourMetaDataLoading" />
+            <div class="pb-3">
+              <h4 :id="toc[0].items[0].id">
+                {{ toc[0].items[0].label }}
+              </h4>
               <p class="text-muted">
-                Resources that are associated with
+                Topic views that are associated with
                 <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
-                on the EpiGraphDB platform.
+                on the
+                <a href="https://epigraphdb.org" target="_blank">
+                  EpiGraphDB WebUI
+                </a>
+                .
+                <br />
               </p>
-              <b-spinner v-if="neighbourMetaDataLoading" />
-              <div v-if="webResources" class="pb-3">
-                <h5>
-                  <font-awesome-icon
-                    :icon="['fas', 'home']"
-                    class="pr-2 text-muted"
-                  />
-                  WebUI topic views
-                </h5>
-                <p class="text-muted">
-                  Topic views that are associated with
-                  <MetaNode
-                    :meta-node="metaNode"
-                    no-url
-                    :entity-id="entityId"
-                  />
-                  on the
-                  <a href="https://epigraphdb.org" target="_blank">
-                    EpiGraphDB WebUI
-                  </a>
-                  .
-                  <br />
-                </p>
-                <div class="row">
-                  <div
-                    class="col-md-4"
-                    v-for="item in webResources"
-                    :key="item.key"
-                  >
-                    <div class="py-1">
-                      <ResourceCard :item="item" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div v-if="apiResources" class="pb-3">
-                <h5>
-                  <font-awesome-icon
-                    :icon="['fas', 'terminal']"
-                    class="pr-2 text-muted"
-                  />
-                  API endpoints
-                </h5>
-                <p class="text-muted">
-                  API endpoints that are associated with
-                  <MetaNode
-                    :meta-node="metaNode"
-                    no-url
-                    :entity-id="entityId"
-                  />
-                  on the
-                  <a href="https://api.epigraphdb.org" target="_blank">
-                    EpiGraphDB API
-                  </a>
-                  .
-                </p>
-                <div class="row">
-                  <div
-                    class="col-md-4"
-                    v-for="item in apiResources"
-                    :key="item.key"
-                  >
-                    <div class="py-1">
-                      <ResourceCard :item="item" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div v-if="rpkgResources" class="pb-3">
-                <h5>
-                  <font-awesome-icon
-                    :icon="['fab', 'r-project']"
-                    class="pr-2 text-muted"
-                  />
-                  R package functions
-                </h5>
-                <p class="text-muted">
-                  Functions that are associated with
-                  <MetaNode
-                    :meta-node="metaNode"
-                    no-url
-                    :entity-id="entityId"
-                  />
-                  in the
-                  <a href="https://mrcieu.github.io/epigraphdb-r">
-                    <code style="color: #d7528b">epigraphdb</code>
-                    R package
-                  </a>
-                  .
-                </p>
-                <div class="row">
-                  <div
-                    class="col-md-4"
-                    v-for="item in rpkgResources"
-                    :key="item.key"
-                  >
-                    <div class="py-1">
-                      <ResourceCard :item="item" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </b-collapse>
-          </div>
-          <hr />
-          <div class="pb-3">
-            <h4 id="connected-entities">
-              Connected entities
-              <a
-                @click="visConnectedEnts = !visConnectedEnts"
-                href=""
-                @click.prevent
-              >
-                <span v-if="visConnectedEnts" class="text-muted ml-2">
-                  <font-awesome-icon :icon="['fas', 'chevron-up']" />
-                </span>
-                <span v-else class="text-info ml-2">
-                  <font-awesome-icon :icon="['fas', 'chevron-right']" />
-                </span>
-              </a>
-            </h4>
-            <b-collapse :visible="visConnectedEnts">
+              <ResourceCardGroup
+                v-if="webResources"
+                :resources="webResources"
+              />
+            </div>
+            <div class="pb-3">
+              <h4 :id="toc[0].items[1].id">
+                {{ toc[0].items[1].label }}
+              </h4>
               <p class="text-muted">
-                Entities that are connected to
+                API endpoints that are associated with
                 <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
-                in the graph database.
-              </p>
-              <div class="py-3">
-                <h5 id="connected-overview">
-                  <font-awesome-icon
-                    :icon="['fas', 'home']"
-                    class="pr-2 text-muted"
-                  />
-                  Overview
-                </h5>
-                <p class="text-muted">Overview summary by meta entities.</p>
-                <b-spinner v-if="neighbourMetaDataLoading" />
-                <NeighbourMetaTable
-                  v-if="neighbourMetaData"
-                  :items="neighbourMetaData.full_data"
-                />
-              </div>
-              <div class="py-3">
-                <h5 id="connected-details">
-                  <font-awesome-icon
-                    :icon="['fas', 'table']"
-                    class="pr-2 text-muted"
-                  />
-                  Details
-                </h5>
-                <p class="text-muted">Details by specific entities.</p>
-                <b-spinner v-if="neighbourMetaDataLoading" />
-                <b-row align-h="between" v-if="!neighbourMetaDataLoading">
-                  <b-col>
-                    <b-form-group description="Filter by meta node">
-                      <b-form-select
-                        v-model="neighbourMetaNodeSelect"
-                        :options="neighbourMetaNodeOptions"
-                      />
-                    </b-form-group>
-                  </b-col>
-                  <b-col>
-                    <b-form-group description="Filter by meta relationship">
-                      <b-form-select
-                        v-model="neighbourMetaRelSelect"
-                        :options="neighbourMetaRelOptions"
-                      />
-                    </b-form-group>
-                  </b-col>
-                  <b-col>
-                    <b-form-group description="Filter by node type">
-                      <b-form-select
-                        v-model="neighbourNodeTypeSelect"
-                        :options="neighbourNodeTypeOptions"
-                      />
-                    </b-form-group>
-                  </b-col>
-                  <b-col>
-                    <b-form-group description="Limit">
-                      <b-form-select
-                        v-model="neighbourSizeSelect"
-                        :options="neighbourSizeOptions"
-                      />
-                    </b-form-group>
-                  </b-col>
-                  <b-col cols="2">
-                    <b-button
-                      variant="outline-primary"
-                      @click="getNeighbourEntityData"
-                    >
-                      Update
-                    </b-button>
-                  </b-col>
-                </b-row>
-                <NeighbourEntityTable
-                  v-if="neighbourEntityData"
-                  :items="neighbourEntityData"
-                />
-              </div>
-            </b-collapse>
-          </div>
-          <hr />
-          <div class="pb-3">
-            <h4 id="similar-entities">
-              Similar entities
-              <a
-                @click="visSimilarEnts = !visSimilarEnts"
-                href=""
-                @click.prevent
-              >
-                <span v-if="visSimilarEnts" class="text-muted ml-2">
-                  <font-awesome-icon :icon="['fas', 'chevron-up']" />
-                </span>
-                <span v-else class="text-info ml-2">
-                  <font-awesome-icon :icon="['fas', 'chevron-right']" />
-                </span>
-              </a>
-            </h4>
-            <b-collapse :visible="visSimilarEnts">
-              <p class="text-muted">
-                Entities that are similar to
-                <MetaNode
-                  :meta-node="metaNode"
-                  no-url
-                  :entity-id="entityId"
-                  :entity-name="entityName"
-                />
+                on the
+                <a href="https://api.epigraphdb.org" target="_blank">
+                  EpiGraphDB API
+                </a>
                 .
               </p>
-              <div v-if="similarNameSearchResults">
-                <h5>
-                  <font-awesome-icon
-                    :icon="['fas', 'quote-right']"
-                    class="pr-2 text-muted"
-                  />
-                  Entities with similar names
-                </h5>
-                <p class="text-muted">
-                  Entities with similar names to
-                  <span class="text-info">"{{ entityName }}"</span>
-                  . For customised search results go to
-                  <router-link
-                    :to="{ name: 'search', query: { q: this.entityName } }"
-                    target="_blank"
+              <ResourceCardGroup
+                v-if="apiResources"
+                :resources="apiResources"
+              />
+            </div>
+            <div class="pb-3">
+              <h4 :id="toc[0].items[2].id">
+                {{ toc[0].items[2].label }}
+              </h4>
+              <p class="text-muted">
+                Functions that are associated with
+                <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
+                in the
+                <a href="https://mrcieu.github.io/epigraphdb-r">
+                  <code style="color: #d7528b">epigraphdb</code>
+                  R package
+                </a>
+                .
+              </p>
+              <ResourceCardGroup
+                v-if="rpkgResources"
+                :resources="rpkgResources"
+              />
+            </div>
+          </div>
+          <hr />
+          <div class="pb-3">
+            <h3 :id="toc[1].id">
+              {{ toc[1].label }}
+            </h3>
+            <p class="text-muted">
+              Entities that are connected to
+              <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
+              in the graph database.
+            </p>
+            <div class="py-3">
+              <h4 :id="toc[1].items[0].id">
+                {{ toc[1].items[0].label }}
+              </h4>
+              <p class="text-muted">Overview summary by meta entities.</p>
+              <b-spinner v-if="neighbourMetaDataLoading" />
+              <NeighbourMetaTable
+                v-if="neighbourMetaData"
+                :items="neighbourMetaData.full_data"
+              />
+            </div>
+            <div class="py-3">
+              <h4 :id="toc[1].items[1].id">
+                {{ toc[1].items[1].label }}
+              </h4>
+              <p class="text-muted">Details by specific entities.</p>
+              <b-spinner v-if="neighbourMetaDataLoading" />
+              <b-row align-h="between" v-if="!neighbourMetaDataLoading">
+                <b-col>
+                  <b-form-group description="Filter by meta node">
+                    <b-form-select
+                      v-model="neighbourMetaNodeSelect"
+                      :options="neighbourMetaNodeOptions"
+                    />
+                  </b-form-group>
+                </b-col>
+                <b-col>
+                  <b-form-group description="Filter by meta relationship">
+                    <b-form-select
+                      v-model="neighbourMetaRelSelect"
+                      :options="neighbourMetaRelOptions"
+                    />
+                  </b-form-group>
+                </b-col>
+                <b-col>
+                  <b-form-group description="Filter by node type">
+                    <b-form-select
+                      v-model="neighbourNodeTypeSelect"
+                      :options="neighbourNodeTypeOptions"
+                    />
+                  </b-form-group>
+                </b-col>
+                <b-col>
+                  <b-form-group description="Limit">
+                    <b-form-select
+                      v-model="neighbourSizeSelect"
+                      :options="neighbourSizeOptions"
+                    />
+                  </b-form-group>
+                </b-col>
+                <b-col cols="2">
+                  <b-button
+                    variant="outline-primary"
+                    @click="getNeighbourEntityData"
                   >
-                    <font-awesome-icon :icon="['fas', 'search']" />
-                    Search
-                  </router-link>
-                  .
-                </p>
-                <SimilarEntityTable :items="similarNameSearchResults.results" />
-                <h5>
-                  <font-awesome-icon
-                    :icon="['fas', 'quote-right']"
-                    class="pr-2 text-muted"
-                  />
-                  Entities with similar semantic representation
-                </h5>
+                    Update
+                  </b-button>
+                </b-col>
+              </b-row>
+              <NeighbourEntityTable
+                v-if="neighbourEntityData"
+                :items="neighbourEntityData"
+              />
+            </div>
+          </div>
+          <hr />
+          <div class="pb-3">
+            <h3 :id="toc[2].id">
+              {{ toc[2].label }}
+            </h3>
+            <p class="text-muted">
+              Entities that are similar to
+              <MetaNode
+                :meta-node="metaNode"
+                no-url
+                :entity-id="entityId"
+                :entity-name="entityName"
+              />
+              .
+            </p>
+            <div>
+              <h4 :id="toc[2].items[0].id">
+                {{ toc[2].items[0].label }}
+              </h4>
+              <p class="text-muted">
+                Entities with similar names to
+                <span class="text-info">"{{ entityName }}"</span>
+                . For customised search results go to
+                <router-link
+                  :to="{ name: 'search', query: { q: this.entityName } }"
+                  target="_blank"
+                >
+                  Search
+                </router-link>
+                .
+              </p>
+              <SimilarEntityTable
+                v-if="similarNameSearchResults"
+                :items="similarNameSearchResults.results"
+              />
+              <div>
+                <h4 :id="toc[2].items[1].id">
+                  {{ toc[2].items[1].label }}
+                </h4>
                 <p class="text-muted">
                   Entities with similar semantic representaion in
                   high-dimensional vector space. For details refer to
@@ -377,9 +260,27 @@
                   </template>
                 </Table>
               </div>
-            </b-collapse>
+            </div>
           </div>
-        </div>
+        </b-container>
+      </b-col>
+      <b-col class="toc" cols="2">
+        <h3>
+          Outline
+          <a href="#top">
+            <font-awesome-icon :icon="['fas', 'chevron-up']" class="pr-2" />
+          </a>
+        </h3>
+        <b-nav vertical v-for="item in toc" :key="item.id">
+          <b-nav-item :href="'#' + item.id" class="toc-nav">
+            {{ item.label }}
+          </b-nav-item>
+          <b-nav vertical v-for="subItem in item.items" :key="subItem.id">
+            <b-nav-item :href="'#' + subItem.id">
+              - {{ subItem.label }}
+            </b-nav-item>
+          </b-nav>
+        </b-nav>
       </b-col>
     </b-row>
   </div>
@@ -390,35 +291,17 @@ import _ from "lodash";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faHome,
-  faSearch,
-  faTerminal,
-  faChevronUp,
-  faChevronRight,
-  faQuoteRight,
-  faTable,
-} from "@fortawesome/free-solid-svg-icons";
-import { faRProject } from "@fortawesome/free-brands-svg-icons";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 import LinkedResource from "@/components/Entity/LinkedResource";
 import NeighbourMetaTable from "@/components/Entity/NeighbourMetaTable";
 import NeighbourEntityTable from "@/components/Entity/NeighbourEntityTable";
 import SimilarEntityTable from "@/components/Entity/SimilarEntityTable";
-import ResourceCard from "@/components/Entity/ResourceCard";
+import ResourceCardGroup from "@/components/Entity/ResourceCardGroup";
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
 import Table from "@/components/Entity/ExploreTable";
 
-library.add(
-  faSearch,
-  faHome,
-  faTerminal,
-  faRProject,
-  faChevronUp,
-  faChevronRight,
-  faQuoteRight,
-  faTable,
-);
+library.add(faChevronUp);
 const config = require("@/config");
 
 export default {
@@ -430,10 +313,40 @@ export default {
     NeighbourMetaTable,
     NeighbourEntityTable,
     SimilarEntityTable,
-    ResourceCard,
+    ResourceCardGroup,
     Table,
   },
   data: () => ({
+    toc: [
+      {
+        id: "resources-platform",
+        label: "EpiGraphDB platform resources",
+        items: [
+          { id: "resources-web", label: "WebUI topic views" },
+          { id: "resources-api", label: "API endpoints" },
+          { id: "resources-rpkg", label: "R package functions" },
+        ],
+      },
+      {
+        id: "connected-entities",
+        label: "Connected entities",
+        items: [
+          { id: "connected-overview", label: "Overview" },
+          { id: "connected-details", label: "Details" },
+        ],
+      },
+      {
+        id: "similar-entities",
+        label: "Similar entities",
+        items: [
+          { id: "similar-names", label: "Entities with similar names" },
+          {
+            id: "similar-semantics",
+            label: "Entities with similar semantic representation",
+          },
+        ],
+      },
+    ],
     metaNode: null,
     entityId: null,
     neighbourMetaData: null,
@@ -477,9 +390,6 @@ export default {
     },
     neighbourSizeSelect: 50,
     neighbourSizeOptions: [50, 100, 300, 500],
-    visPlatformRes: true,
-    visConnectedEnts: true,
-    visSimilarEnts: true,
     entityData: null,
   }),
   mounted: function() {
@@ -647,27 +557,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* h3::before {
-    display: block;
-    content: " ";
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-    pointer-events: none;
-    }
-    h4::before {
-    display: block;
-    content: " ";
-    margin-top: -100px;
-    height: 100px;
-    visibility: hidden;
-    pointer-events: none;
-    } */
-.resources-nav {
-  margin-left: -20px;
-}
-/* .card-deck .card {
-    max-width: calc(25% - 30px);
-    } */
-</style>
+<style scoped src="@/assets/fluid-wider.css"></style>

@@ -3,9 +3,16 @@
     <div v-if="!$route.meta.hideNavigation">
       <AppHeader />
     </div>
-    <b-container id="view">
-      <router-view />
-    </b-container>
+    <div v-if="!$route.meta.fluidContainer">
+      <b-container id="view">
+        <router-view />
+      </b-container>
+    </div>
+    <div v-else>
+      <b-container id="view" fluid class="fluid-wider">
+        <router-view />
+      </b-container>
+    </div>
     <div class="py-3"></div>
     <div v-if="!$route.meta.hideNavigation">
       <cookie-consent />
@@ -45,5 +52,10 @@ $cookieconstent-compliance-background: $primary !default;
 
 #view {
   margin-top: 100px;
+}
+
+.fluid-wider {
+  width: 85%;
+  max-width: 1632px;
 }
 </style>

@@ -1,0 +1,34 @@
+h2::before {
+  display: block;
+  content: " ";
+  margin-top: -100px;
+  height: 100px;
+  visibility: hidden;
+  pointer-events: none;
+}
+h3::before {
+  display: block;
+  content: " ";
+  margin-top: -100px;
+  height: 100px;
+  visibility: hidden;
+  pointer-events: none;
+}
+h4::before {
+  display: block;
+  content: " ";
+  margin-top: -100px;
+  height: 100px;
+  visibility: hidden;
+  pointer-events: none;
+}
+.toc {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 150px;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+.toc-nav {
+  margin-left: -20px;
+}

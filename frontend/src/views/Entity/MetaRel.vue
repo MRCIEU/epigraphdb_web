@@ -1,9 +1,9 @@
 <template>
   <div v-if="metaRelName">
     <b-row class="pb-4">
-      <b-col cols="3"></b-col>
-      <b-col cols="9">
-        <h2 class="text-center">
+      <b-col cols="2"></b-col>
+      <b-col cols="8">
+        <h2 class="text-center" id="top">
           EpiGraphDB meta rel:
           <MetaRel :meta-rel="metaRelName" no-url />
         </h2>
@@ -16,15 +16,15 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col cols="3">
-        <h4>Statistics</h4>
+      <b-col cols="2" class="toc">
+        <h3>Statistics</h3>
         <p v-for="item in stats" :key="item.stat">
           <span class="text-muted">{{ item.stat }}:</span>
           &nbsp;
           <b>{{ item.value.toLocaleString() }}</b>
         </p>
         <hr />
-        <h4>Schema definition</h4>
+        <h3>Schema definition</h3>
         <div v-if="metaRelData">
           <p>
             <span class="text-muted">
@@ -46,7 +46,7 @@
               :url="targetMetaNode.url"
             />
           </p>
-          <h5>Properties</h5>
+          <h4>Properties</h4>
           <div v-if="metaRelData.props">
             <p v-for="item in metaRelData.props" :key="item.name">
               <span v-b-tooltip.v-primary.hover :title="item.doc">
@@ -67,47 +67,71 @@
           </div>
         </div>
       </b-col>
-      <b-col cols="9">
-        <h4>EpiGraphDB platform resources</h4>
-        <code>WIP</code>
-        <hr />
-        <div>
-          <h4>Entity paths</h4>
-          <b-row align-h="between">
-            <b-col cols="4">
-              <b-form-group description="Source node: search by name">
-                <b-form-input
-                  v-model="sourceQuery"
-                  placeholder="Search by name"
-                  @keyup.enter="refreshEntityData"
-                />
-              </b-form-group>
-            </b-col>
-            <b-col cols="4">
-              <b-form-group description="Target node: search by name">
-                <b-form-input
-                  v-model="targetQuery"
-                  placeholder="Search by name"
-                  @keyup.enter="refreshEntityData"
-                />
-              </b-form-group>
-            </b-col>
-            <b-col cols="2">
-              <b-form-group description="Number of entities">
-                <b-form-select
-                  v-model="entitySearchLimit"
-                  :options="entitySearchLimitOptions"
-                />
-              </b-form-group>
-            </b-col>
-            <b-col cols="2">
-              <b-button variant="outline-primary" @click="refreshEntityData">
-                Update
-              </b-button>
-            </b-col>
-          </b-row>
-          <MetaRelEntityTable v-if="entityData" :items="entityData.items" />
-        </div>
+      <b-col cols="8">
+        <b-container>
+          <div class="pb-3">
+            <h3 :id="toc[0].id">{{ toc[0].label }}</h3>
+            <code>WIP</code>
+            <hr />
+          </div>
+          <div class="pb-3">
+            <h3 :id="toc[1].id">{{ toc[1].label }}</h3>
+            <b-row align-h="between">
+              <b-col cols="4">
+                <b-form-group description="Source node: search by name">
+                  <b-form-input
+                    v-model="sourceQuery"
+                    placeholder="Search by name"
+                    @keyup.enter="refreshEntityData"
+                  />
+                </b-form-group>
+              </b-col>
+              <b-col cols="4">
+                <b-form-group description="Target node: search by name">
+                  <b-form-input
+                    v-model="targetQuery"
+                    placeholder="Search by name"
+                    @keyup.enter="refreshEntityData"
+                  />
+                </b-form-group>
+              </b-col>
+              <b-col cols="2">
+                <b-form-group description="Number of entities">
+                  <b-form-select
+                    v-model="entitySearchLimit"
+                    :options="entitySearchLimitOptions"
+                  />
+                </b-form-group>
+              </b-col>
+              <b-col cols="2">
+                <b-button variant="outline-primary" @click="refreshEntityData">
+                  Update
+                </b-button>
+              </b-col>
+            </b-row>
+            <MetaRelEntityTable v-if="entityData" :items="entityData.items" />
+          </div>
+        </b-container>
+      </b-col>
+      <b-col class="toc" cols="2">
+        <h3>
+          Outline
+          <a href="#top">
+            <font-awesome-icon :icon="['fas', 'chevron-up']" class="pr-2" />
+          </a>
+        </h3>
+        <b-nav vertical v-for="item in toc" :key="item.id">
+          <b-nav-item :href="'#' + item.id" class="toc-nav">
+            {{ item.label }}
+          </b-nav-item>
+          <div v-if="item.items">
+            <b-nav vertical v-for="subItem in item.items" :key="subItem.id">
+              <b-nav-item :href="'#' + subItem.id">
+                - {{ subItem.label }}
+              </b-nav-item>
+            </b-nav>
+          </div>
+        </b-nav>
       </b-col>
     </b-row>
   </div>
@@ -117,8 +141,8 @@
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch);
+import { faSearch, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faChevronUp);
 
 import MetaRel from "@/components/miscs/DecoratedMetaRel";
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
@@ -135,6 +159,16 @@ export default {
     MetaRelEntityTable,
   },
   data: () => ({
+    toc: [
+      {
+        id: "resources-platform",
+        label: "EpiGraphDB platform resources",
+      },
+      {
+        id: "entity-paths",
+        label: "Entity paths",
+      },
+    ],
     metaRelName: null,
     epigraphdbMetaRels: null,
     metaRelData: null,
@@ -206,4 +240,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped src="@/assets/fluid-wider.css"></style>

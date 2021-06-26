@@ -1,10 +1,10 @@
 <template>
   <div v-if="metaNodeName">
     <b-row class="pb-4">
-      <b-col cols="3"></b-col>
-      <b-col cols="9">
+      <b-col cols="2"></b-col>
+      <b-col cols="8">
         <div>
-          <h2 class="text-center">
+          <h2 class="text-center" id="top">
             EpiGraphDB meta node:
             <MetaNode :meta-node="metaNodeName" no-url />
           </h2>
@@ -18,15 +18,15 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col cols="3">
-        <h4>Statistics</h4>
+      <b-col cols="2" class="toc">
+        <h3>Statistics</h3>
         <p v-for="item in stats" :key="item.stat">
           <span class="text-muted">{{ item.stat }}:</span>
           &nbsp;
           <b>{{ item.value.toLocaleString() }}</b>
         </p>
         <hr />
-        <h4>Schema definition</h4>
+        <h3>Schema definition</h3>
         <div v-if="metaNodeData">
           <p>
             <span class="text-muted">
@@ -44,7 +44,7 @@
             &nbsp;
             <b>{{ metaNodeData.name_prop }}</b>
           </p>
-          <h5>Properties</h5>
+          <h4>Properties</h4>
           <p v-for="item in metaNodeData.props" :key="item.name">
             <span v-b-tooltip.v-primary.hover :title="item.doc">
               <span class="text-muted">{{ item.name }}:</span>
@@ -67,43 +67,67 @@
           <LinkedResource :input="linkedResource" />
         </div>
       </b-col>
-      <b-col cols="9">
-        <div><h4>EpiGraphDB platform resources</h4></div>
-        <code>WIP</code>
-        <hr />
-        <div>
-          <h4>Connected meta nodes</h4>
-          <NeighbourMetaTable v-if="neighbourData" :items="neighbourData" />
-        </div>
-        <hr />
-        <div>
-          <h4>Entity nodes</h4>
-          <b-row align-h="between">
-            <b-col cols="4">
-              <b-form-group description="Search by name or leave blank">
-                <b-form-input
-                  v-model="entityNameQuery"
-                  placeholder="Search by name"
-                  @keyup.enter="refreshEntityData"
-                />
-              </b-form-group>
-            </b-col>
-            <b-col cols="2">
-              <b-form-group description="Number of entities">
-                <b-form-select
-                  v-model="entitySearchLimit"
-                  :options="entitySearchLimitOptions"
-                />
-              </b-form-group>
-            </b-col>
-            <b-col cols="2">
-              <b-button variant="outline-primary" @click="refreshEntityData">
-                Update
-              </b-button>
-            </b-col>
-          </b-row>
-          <MetaNodeEntityTable v-if="entityData" :items="entityData.items" />
-        </div>
+      <b-col cols="8">
+        <b-container>
+          <div class="pb-3">
+            <h3 :id="toc[0].id">{{ toc[0].label }}</h3>
+            <code>WIP</code>
+            <hr />
+          </div>
+          <div class="pb-3">
+            <h3 :id="toc[1].id">{{ toc[1].label }}</h3>
+            <NeighbourMetaTable v-if="neighbourData" :items="neighbourData" />
+            <hr />
+          </div>
+          <div class="pb-3">
+            <h3 :id="toc[2].id">{{ toc[2].label }}</h3>
+            <b-row align-h="between">
+              <b-col cols="4">
+                <b-form-group description="Search by name or leave blank">
+                  <b-form-input
+                    v-model="entityNameQuery"
+                    placeholder="Search by name"
+                    @keyup.enter="refreshEntityData"
+                  />
+                </b-form-group>
+              </b-col>
+              <b-col cols="2">
+                <b-form-group description="Number of entities">
+                  <b-form-select
+                    v-model="entitySearchLimit"
+                    :options="entitySearchLimitOptions"
+                  />
+                </b-form-group>
+              </b-col>
+              <b-col cols="2">
+                <b-button variant="outline-primary" @click="refreshEntityData">
+                  Update
+                </b-button>
+              </b-col>
+            </b-row>
+            <MetaNodeEntityTable v-if="entityData" :items="entityData.items" />
+          </div>
+        </b-container>
+      </b-col>
+      <b-col class="toc" cols="2">
+        <h3>
+          Outline
+          <a href="#top">
+            <font-awesome-icon :icon="['fas', 'chevron-up']" class="pr-2" />
+          </a>
+        </h3>
+        <b-nav vertical v-for="item in toc" :key="item.id">
+          <b-nav-item :href="'#' + item.id" class="toc-nav">
+            {{ item.label }}
+          </b-nav-item>
+          <div v-if="item.items">
+            <b-nav vertical v-for="subItem in item.items" :key="subItem.id">
+              <b-nav-item :href="'#' + subItem.id">
+                - {{ subItem.label }}
+              </b-nav-item>
+            </b-nav>
+          </div>
+        </b-nav>
       </b-col>
     </b-row>
   </div>
@@ -113,8 +137,8 @@
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch);
+import { faSearch, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faChevronUp);
 
 import MetaNode from "@/components/miscs/DecoratedMetaNode";
 import NeighbourMetaTable from "@/components/Entity/NeighbourMetaTable";
@@ -133,6 +157,20 @@ export default {
     MetaNodeEntityTable,
   },
   data: () => ({
+    toc: [
+      {
+        id: "resources-platform",
+        label: "EpiGraphDB platform resources",
+      },
+      {
+        id: "connected-meta-nodes",
+        label: "Connected meta nodes",
+      },
+      {
+        id: "entity-nodes",
+        label: "Entity nodes",
+      },
+    ],
     metaNodeName: null,
     epigraphdbMetaNodes: null,
     metaNodeData: null,
@@ -208,4 +246,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped src="@/assets/fluid-wider.css"></style>
