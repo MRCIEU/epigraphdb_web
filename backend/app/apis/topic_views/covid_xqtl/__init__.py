@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Dict, Optional
 
 import requests
 from fastapi import APIRouter
@@ -43,7 +43,7 @@ def get_single_snp_mr(
     pval_threshold: float = 1e-3,
 ):
     log_args(api=f"/covid-19/ctda/single-snp-mr/{entity}", kwargs=locals())
-    params = {"q": q, "pval_threshold": pval_threshold}
+    params: Dict[str, Any] = {"q": q, "pval_threshold": pval_threshold}
     r = requests.get(
         f"{api_url}/covid-19/ctda/single-snp-mr/{entity.value}",
         params=params,
@@ -62,7 +62,7 @@ def get_multi_snp_mr(
     pval_threshold: float = 1e-3,
 ):
     log_args(api=f"/covid-19/ctda/multi-snp-mr/{entity}", kwargs=locals())
-    params = {"q": q, "pval_threshold": pval_threshold}
+    params: Dict[str, Any] = {"q": q, "pval_threshold": pval_threshold}
     r = requests.get(
         f"{api_url}/covid-19/ctda/multi-snp-mr/{entity.value}",
         params=params,

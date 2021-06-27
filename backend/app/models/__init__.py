@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Type, Union
 
 from pydantic import BaseModel
 
@@ -64,7 +64,7 @@ class RequestMethods(str, Enum):
     delete = "DELETE"
 
 
-standard_endpoint_response = Union[
+standard_endpoint_response: Type[Any] = Union[
     None,
     TableDataResponse,
     GraphDataResponse,

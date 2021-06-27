@@ -5,6 +5,7 @@ from app.funcs.query_processors import (
     NetworkPlotSchemaInput,
     TopicQueryProcessor,
 )
+from app.models import cypher_diagram_models
 from app.utils.data_table import NodeCol, RelCol
 from app.utils.url_helpers import data_table_node_link, data_table_rel_link
 
@@ -53,7 +54,9 @@ class GeneticCorQueryProcessor(TopicQueryProcessor):
         )
 
 
-def cypher_diagram(trait: str, cor_coef_threshold: float) -> str:
+def cypher_diagram(
+    trait: str, cor_coef_threshold: float
+) -> cypher_diagram_models.CypherDiagramData:
     """A diagram of cypher queries."""
     diagram_nodes = [
         DiagramNode(id=1, meta_node="Gwas", sub_label=trait),

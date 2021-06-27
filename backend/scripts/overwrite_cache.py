@@ -10,8 +10,11 @@ def main():
     client = TestClient(app)
     logger.info("Drop cache")
     assert client.get("/utils/cache/drop", params={"all": True})
-    logger.info("Index things.")
-    assert client.get("/search/es/index", params={"overwrite": True})
+    assert client.get("/utils/es/drop", params={"all": True})
+
+    logger.info("Regen ES indices")
+    assert client.get("/utils/es/index", params={"overwrite": True})
+
     logger.info("Regen metrics")
     client.get("/about/metrics", params={"overwrite": True})
     logger.info("Regen schema")

@@ -1,3 +1,5 @@
+from typing import Dict, List
+
 import numpy as np
 import pandas as pd
 
@@ -44,7 +46,7 @@ def process_volcano_plot(df: pd.DataFrame):
     other_res = res_df.query("group == 'other_results'")[
         ["outcome", "exposure", "tissue", "x", "y"]
     ].to_dict(orient="records")
-    top_res = []
+    top_res: List[Dict] = []
     if len(res_df.query("group == 'top_results'")) > 0:
         top_res = res_df.query("group == 'top_results'")[
             ["outcome", "exposure", "tissue", "x", "y"]
