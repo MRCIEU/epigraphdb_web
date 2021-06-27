@@ -13,7 +13,8 @@ def main():
     assert client.get("/utils/es/drop", params={"all": True})
 
     logger.info("Regen ES indices")
-    assert client.get("/utils/es/index", params={"overwrite": True})
+    # NOTE: have dropped es indices, no need to overwrite
+    assert client.get("/utils/es/index", params={"overwrite": False})
 
     logger.info("Regen metrics")
     client.get("/about/metrics", params={"overwrite": True})

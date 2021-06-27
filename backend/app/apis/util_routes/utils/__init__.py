@@ -106,7 +106,9 @@ def get_utils_es_index(overwrite: bool = False) -> bool:
     ]
     for func in index_funcs:
         logger.info(f"Indexing {func}")
-        assert func(overwrite=overwrite)
+        # NOTE: should refactor logics of overwrite
+        # since some of the ac indices share the same
+        assert func(overwrite=False)
     return True
 
 
