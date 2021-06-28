@@ -25,6 +25,12 @@ def entity_name_search(
         search_results = query_node_info(
             query=query, meta_node=None, size=size
         )
+    # Remove self from search results
+    search_results = [
+        _
+        for _ in search_results
+        if _["id"] != id or _["meta_node"] != reference_meta_node
+    ]
     res = annotate_search_results(search_results)
     return res
 
