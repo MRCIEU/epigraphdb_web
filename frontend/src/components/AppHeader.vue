@@ -135,25 +135,13 @@
           <b-navbar-brand
             right
             class="px-1"
-            href="https://bristol.ac.uk"
-            target="_blank"
-          >
-            <img
-              src="@/assets/logos/uob.svg"
-              alt="University of Bristol"
-              height="40rem"
-            />
-          </b-navbar-brand>
-          <b-navbar-brand
-            right
-            class="px-1"
             href="https://www.bristol.ac.uk/integrative-epidemiology/"
             target="_blank"
           >
             <img
-              src="@/assets/logos/mrc-ieu-logo.png"
+              src="@/assets/logos/MRC_IEU Bristol_RGB.svg"
               alt="MRC IEU"
-              height="40rem"
+              height="42rem"
             />
           </b-navbar-brand>
         </b-navbar-nav>
