@@ -25,7 +25,7 @@ NODE_META_PROPS = ["_id", "_name", "_source"]
 
 
 @router.get(
-    "/entity/search/node", response_model=models.EntitySearchNodeResponse
+    "/entity/node", response_model=models.EntitySearchNodeResponse
 )
 def entity_search_node(
     meta_node: EpigraphdbMetaNodeFull, id: str
@@ -64,7 +64,6 @@ def entity_search_node(
             ],
             "linked_resource": linked_resource,
         }
-        print(res)
     return res
 
 

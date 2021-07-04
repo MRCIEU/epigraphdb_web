@@ -82,8 +82,7 @@ def test_response(url: str, params: Optional[Dict[str, Any]]):
 @pytest.mark.parametrize("meta_node, ent_id, ent_name", ent_params)
 def test_entity_node(meta_node: str, ent_id: str, ent_name: str):
     logger.info(locals())
-    # TODO: Update url
-    url = "/entity/search/node"
+    url = "/entity/node"
     params = {"meta_node": meta_node, "id": ent_id}
     r = client.get(url=url, params=params, headers=unittest_headers)
     r.raise_for_status()

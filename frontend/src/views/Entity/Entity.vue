@@ -237,8 +237,7 @@
                 </h4>
                 <p class="text-muted">
                   Entities with similar semantic representaion in
-                  high-dimensional vector space. For details refer to
-                  <a href="#"><code>WIP</code></a>
+                  high-dimensional vector space.
                 </p>
                 <Table
                   v-if="similarNeuralSearchResults"
@@ -472,7 +471,7 @@ export default {
       }
     },
     async getMaster() {
-      const url = `${config.web_backend_url}/entity/search/node`;
+      const url = `${config.web_backend_url}/entity/node`;
       const params = {
         meta_node: this.metaNode,
         id: this.entityId,
