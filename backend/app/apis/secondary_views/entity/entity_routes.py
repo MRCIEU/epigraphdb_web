@@ -13,10 +13,9 @@ from app.funcs.annotate_entity import (
 from app.models import EpigraphdbGraphsExtended
 from app.models.meta_graph import EpigraphdbMetaNodeFull
 from app.settings import api_url
-from app.utils import api_request_headers, format_triple, get_node_role
+from app.utils import api_request_headers, get_node_role
 
 from . import models, similarity_search
-from .entity_resource_mapping import map_entity_resources
 from .linked_resources import map_linked_external_resource
 
 router = APIRouter()
@@ -24,9 +23,7 @@ router = APIRouter()
 NODE_META_PROPS = ["_id", "_name", "_source"]
 
 
-@router.get(
-    "/entity/node", response_model=models.EntitySearchNodeResponse
-)
+@router.get("/entity/node", response_model=models.EntitySearchNodeResponse)
 def entity_search_node(
     meta_node: EpigraphdbMetaNodeFull, id: str
 ) -> Optional[models.EntitySearchNode]:
@@ -112,25 +109,9 @@ def entity_meta_neighbours(
             }
             for _ in full_data_raw
         ]
-        triples = set(
-            format_triple(
-                meta_node.value,
-                _["meta_node"]["name"],
-                _["meta_rel"]["name"],
-                _["meta_node_type"],
-            )
-            for _ in full_data
-        )
-        entity_resources = map_entity_resources(
-            meta_node.value,
-            triples,
-            entity_id=id,
-            entity_name=name,
-        )
         res = {
             "meta_node_list": meta_node_list,
             "meta_rel_list": meta_rel_list,
-            "entity_resources": entity_resources,
             "full_data": full_data,
         }
         return res

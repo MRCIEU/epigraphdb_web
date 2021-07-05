@@ -63,7 +63,6 @@
               <MetaNode :meta-node="metaNode" no-url :entity-id="entityId" />
               on the EpiGraphDB platform.
             </p>
-            <b-spinner v-if="neighbourMetaDataLoading" />
             <div class="pb-3">
               <h4 :id="toc[0].items[0].id">
                 {{ toc[0].items[0].label }}
@@ -348,6 +347,7 @@ export default {
     ],
     metaNode: null,
     entityId: null,
+    resourcesData: null,
     neighbourMetaData: null,
     neighbourEntityData: null,
     neighbourMetaNodeSelect: null,
@@ -398,6 +398,7 @@ export default {
   watch: {
     entityData: function(newVal) {
       if (newVal) {
+        this.getResourcesData();
         this.getNeighbourMetaData();
         this.getNeighbourEntityData();
         this.similarNameSearch();
@@ -440,21 +441,18 @@ export default {
         : null;
     },
     webResources: function() {
-      return this.neighbourMetaData &&
-        this.neighbourMetaData.entity_resources.web.length > 0
-        ? this.neighbourMetaData.entity_resources.web
+      return this.resourcesData && this.resourcesData.web.length > 0
+        ? this.resourcesData.web
         : null;
     },
     apiResources: function() {
-      return this.neighbourMetaData &&
-        this.neighbourMetaData.entity_resources.api.length > 0
-        ? this.neighbourMetaData.entity_resources.api
+      return this.resourcesData && this.resourcesData.api.length > 0
+        ? this.resourcesData.api
         : null;
     },
     rpkgResources: function() {
-      return this.neighbourMetaData &&
-        this.neighbourMetaData.entity_resources.rpkg.length > 0
-        ? this.neighbourMetaData.entity_resources.rpkg
+      return this.resourcesData && this.resourcesData.rpkg.length > 0
+        ? this.resourcesData.rpkg
         : null;
     },
   },
@@ -480,7 +478,18 @@ export default {
         this.entityData = response.data;
       });
     },
-    getNeighbourMetaData() {
+    async getResourcesData() {
+      const url = `${config.web_backend_url}/entity/resources`;
+      const params = {
+        meta_node: this.metaNode,
+        id: this.entityId,
+        name: this.entityName,
+      };
+      await axios.get(url, { params: params }).then(response => {
+        this.resourcesData = response.data;
+      });
+    },
+    async getNeighbourMetaData() {
       const url = `${config.web_backend_url}/entity/meta-neighbours`;
       const params = {
         meta_node: this.metaNode,
@@ -488,12 +497,12 @@ export default {
         name: this.entityName,
       };
       this.neighbourMetaDataLoading = true;
-      axios.get(url, { params: params }).then(response => {
+      await axios.get(url, { params: params }).then(response => {
         this.neighbourMetaData = response.data;
         this.neighbourMetaDataLoading = false;
       });
     },
-    getNeighbourEntityData() {
+    async getNeighbourEntityData() {
       const url = `${config.web_backend_url}/entity/neighbours`;
       const params = {
         meta_node: this.metaNode,
@@ -503,11 +512,11 @@ export default {
         filter_meta_node: this.neighbourMetaNodeSelect,
         filter_node_type: this.neighbourNodeTypeSelect,
       };
-      axios.get(url, { params: params }).then(response => {
+      await axios.get(url, { params: params }).then(response => {
         this.neighbourEntityData = response.data;
       });
     },
-    similarNameSearch() {
+    async similarNameSearch() {
       const url = `${config.web_backend_url}/entity/similar-entities/names`;
       const params = {
         meta_node: this.metaNode,
@@ -515,7 +524,7 @@ export default {
         id: this.entityId,
         size: 50,
       };
-      axios
+      await axios
         .get(url, { params: params })
         .then(response => {
           this.similarNameSearchResults = response.data;
@@ -524,7 +533,7 @@ export default {
           console.log(error);
         });
     },
-    similarNeuralSearch() {
+    async similarNeuralSearch() {
       const url = `${config.web_backend_url}/entity/similar-entities/neural`;
       const params = {
         meta_node: this.metaNode,
@@ -532,7 +541,7 @@ export default {
         id: this.entityId,
         size: 50,
       };
-      axios
+      await axios
         .get(url, { params: params })
         .then(response => {
           this.similarNeuralSearchResults = response.data.results;
@@ -540,17 +549,6 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
-    toggleAllVis() {
-      if (this.visPlatformRes && this.visConnectedEnts && this.visSimilarEnts) {
-        this.visPlatformRes = false;
-        this.visConnectedEnts = false;
-        this.visSimilarEnts = false;
-      } else {
-        this.visPlatformRes = true;
-        this.visConnectedEnts = true;
-        this.visSimilarEnts = true;
-      }
     },
   },
 };

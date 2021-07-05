@@ -59,7 +59,6 @@ class EntityResources(TypedDict):
 class EntityMetaNeighbours(TypedDict):
     meta_node_list: List[str]
     meta_rel_list: List[str]
-    entity_resources: EntityResources
     full_data: List[EntityMetaNeighbourItem]
 
 
@@ -141,3 +140,4 @@ MetaNodeEntitySearchResponse = create_model_from_typeddict(
     MetaNodeEntitySearch
 )
 MetaRelEntitySearchResponse = create_model_from_typeddict(MetaRelEntitySearch)
+EntityResourcesResponse = create_model_from_typeddict(EntityResources)

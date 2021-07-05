@@ -5,8 +5,11 @@ from app.utils.logging import MonitoringMiddleware, logger  # noqa:F401
 
 from .apis import mr_simple, top
 from .apis.secondary_views import about, explore, gallery
-from .apis.secondary_views.entity import entity_routes as entity
-from .apis.secondary_views.entity import meta_entity_routes as meta_entity
+from .apis.secondary_views.entity import (
+    entity_routes,
+    meta_entity_routes,
+    resources_routes,
+)
 from .apis.topic_views import (
     confounder,
     covid_xqtl,
@@ -53,8 +56,10 @@ app.include_router(top.router, tags=["top endpoints"])
 app.include_router(about.router, tags=["secondary: about"])
 app.include_router(gallery.router, tags=["secondary: gallery"])
 app.include_router(explore.router, tags=["secondary: explore"])
-app.include_router(entity.router, tags=["secondary: entity"])
-app.include_router(meta_entity.router, tags=["secondary: meta-entity"])
+# entity views
+app.include_router(entity_routes.router, tags=["entity: entity"])
+app.include_router(meta_entity_routes.router, tags=["entity: meta-entity"])
+app.include_router(resources_routes.router, tags=["entity: resources"])
 # topic views
 app.include_router(mr.router, tags=["topic: mr"])
 app.include_router(obs_cor.router, tags=["topic: obs_cor"])

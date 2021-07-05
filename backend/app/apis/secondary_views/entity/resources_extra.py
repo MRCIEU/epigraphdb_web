@@ -8,7 +8,7 @@ from app.apis.topic_views.pqtl import (
     get_pqtl_list_outcome,
 )
 from epigraphdb_common_utils.epigraphdb_schema import resources_extra_dict
-from epigraphdb_common_utils.schema_utils.processing import (
+from epigraphdb_common_utils.schema_utils.resources import (
     api_url_formatter,
     rpkg_url_formatter,
 )
@@ -86,7 +86,7 @@ def covid_xqtl_snp_mapper(entity_id: str, entity_name: str) -> Optional[str]:
 
 
 def pqtl_url_generator(
-    entity: str, meta_node: str, queriable: bool = True
+    entity: Optional[str], meta_node: str, queriable: bool = True
 ) -> str:
     pqtl_url = "/pqtl/"
     # if queriable:
@@ -98,7 +98,7 @@ def pqtl_url_generator(
 
 
 def covid_xqtl_url_generator(
-    entity: str, meta_node: str, queriable: bool = True
+    entity: Optional[str], meta_node: str, queriable: bool = True
 ) -> str:
     covid_xqtl_url = "/covid-19/ctda"
     # if queriable:
@@ -132,57 +132,68 @@ url_generators = {
 
 
 def get_web_resources_extra(
-    meta_node: str, entity_id: str, entity_name: str
+    meta_node: str,
+    entity_id: Optional[str],
+    entity_name: Optional[str],
+    meta_ent_only: bool = False,
 ) -> List[models.EntityResource]:
     if meta_node not in resources_extra_dict["nodes"].keys():
         return []
-    else:
-        assoc_ent_list = resources_extra_dict["nodes"][meta_node]
-        res = [
-            map_web_resource(meta_node, entity_id, entity_name, assoc_ent_info)
-            for assoc_ent_info in assoc_ent_list
-        ]
-        res = [_ for _ in res if _ is not None]
-        return res
+    assoc_ent_list = resources_extra_dict["nodes"][meta_node]
+    res = [
+        map_web_resource(
+            meta_node, entity_id, entity_name, assoc_ent_info, meta_ent_only
+        )
+        for assoc_ent_info in assoc_ent_list
+    ]
+    res = [_ for _ in res if _ is not None]
+    return res
 
 
 def get_api_resources_extra(
-    meta_node: str, entity_id: str, entity_name: str
+    meta_node: str,
+    entity_id: Optional[str],
+    entity_name: Optional[str],
+    meta_ent_only: bool = False,
 ) -> List[models.EntityResource]:
     if meta_node not in resources_extra_dict["nodes"].keys():
         return []
-    else:
-        assoc_ent_list = resources_extra_dict["nodes"][meta_node]
-        res = [
-            map_api_resource(meta_node, entity_id, entity_name, assoc_ent_info)
-            for assoc_ent_info in assoc_ent_list
-        ]
-        res = [_ for _ in res if _ is not None]
-        return res
+    assoc_ent_list = resources_extra_dict["nodes"][meta_node]
+    res = [
+        map_api_resource(
+            meta_node, entity_id, entity_name, assoc_ent_info, meta_ent_only
+        )
+        for assoc_ent_info in assoc_ent_list
+    ]
+    res = [_ for _ in res if _ is not None]
+    return res
 
 
 def get_rpkg_resources_extra(
-    meta_node: str, entity_id: str, entity_name: str
+    meta_node: str,
+    entity_id: Optional[str],
+    entity_name: Optional[str],
+    meta_ent_only: bool = False,
 ) -> List[models.EntityResource]:
     if meta_node not in resources_extra_dict["nodes"].keys():
         return []
-    else:
-        assoc_ent_list = resources_extra_dict["nodes"][meta_node]
-        res = [
-            map_rpkg_resource(
-                meta_node, entity_id, entity_name, assoc_ent_info
-            )
-            for assoc_ent_info in assoc_ent_list
-        ]
-        res = [_ for _ in res if _ is not None]
-        return res
+    assoc_ent_list = resources_extra_dict["nodes"][meta_node]
+    res = [
+        map_rpkg_resource(
+            meta_node, entity_id, entity_name, assoc_ent_info, meta_ent_only
+        )
+        for assoc_ent_info in assoc_ent_list
+    ]
+    res = [_ for _ in res if _ is not None]
+    return res
 
 
 def map_web_resource(
     meta_node: str,
-    entity_id: str,
-    entity_name: str,
+    entity_id: Optional[str],
+    entity_name: Optional[str],
     assoc_ent_info: Dict[str, Any],
+    meta_ent_only: bool = False,
 ) -> Optional[models.EntityResource]:
     assoc_ent_name = assoc_ent_info["assoc_ent"]
     resource_name = resources_extra_dict["assoc_ents"][assoc_ent_name]["web"]
@@ -190,26 +201,25 @@ def map_web_resource(
         return None
     resource = resources_extra_dict["assoc_resources"]["web"][resource_name]
     entity_mapper_fn = entity_mappers[assoc_ent_info["mapper"]]
-    assoc_entity = entity_mapper_fn(entity_id, entity_name)
     queriable = assoc_ent_info["queriable"]
-    if assoc_entity is None:
-        return None
-    else:
-        url_generator_fn = url_generators[resource["url_fn"]]
-        url = url_generator_fn(
-            entity=assoc_entity, meta_node=meta_node, queriable=queriable
-        )
-        res: models.EntityResource = {
-            "key": resource_name,
-            "name": resource["name"],
-            "label": resource["label"],
-            "url": url,
-            "queriable": queriable,
-            # # if queriable, then for resources_extra it is
-            # # sufficient for it to contain results
-            # "redirect_results": queriable,
-        }
-        return res
+    assoc_entity = None
+    if not meta_ent_only:
+        assoc_entity = entity_mapper_fn(entity_id, entity_name)
+        if assoc_entity is None:
+            return None
+    url_generator_fn = url_generators[resource["url_fn"]]
+    # NOTE: entity specific url is placeholder for future plans
+    url = url_generator_fn(
+        entity=assoc_entity, meta_node=meta_node, queriable=queriable
+    )
+    res: models.EntityResource = {
+        "key": resource_name,
+        "name": resource["name"],
+        "label": resource["label"],
+        "url": url,
+        "queriable": queriable,
+    }
+    return res
 
 
 def map_api_resource(
@@ -217,6 +227,7 @@ def map_api_resource(
     entity_id: str,
     entity_name: str,
     assoc_ent_info: Dict[str, Any],
+    meta_ent_only: bool = False,
 ) -> Optional[models.EntityResource]:
     assoc_ent_name = assoc_ent_info["assoc_ent"]
     resource_name = resources_extra_dict["assoc_ents"][assoc_ent_name]["api"]
@@ -224,21 +235,21 @@ def map_api_resource(
         return None
     resource = resources_extra_dict["assoc_resources"]["api"][resource_name]
     entity_mapper_fn = entity_mappers[assoc_ent_info["mapper"]]
-    assoc_entity = entity_mapper_fn(entity_id, entity_name)
     queriable = assoc_ent_info["queriable"]
-    if assoc_entity is None:
-        return None
-    else:
-        url = api_url_formatter(uri=resource["uri"])
-        res: models.EntityResource = {
-            "key": resource_name,
-            "name": resource["name"],
-            "label": resource["label"],
-            "url": url,
-            "queriable": queriable,
-            # "redirect_results": False,
-        }
-        return res
+    assoc_entity = None
+    if not meta_ent_only:
+        assoc_entity = entity_mapper_fn(entity_id, entity_name)
+        if assoc_entity is None:
+            return None
+    url = api_url_formatter(uri=resource["uri"])
+    res: models.EntityResource = {
+        "key": resource_name,
+        "name": resource["name"],
+        "label": resource["label"],
+        "url": url,
+        "queriable": queriable,
+    }
+    return res
 
 
 def map_rpkg_resource(
@@ -246,25 +257,26 @@ def map_rpkg_resource(
     entity_id: str,
     entity_name: str,
     assoc_ent_info: Dict[str, Any],
+    meta_ent_only: bool = False,
 ) -> Optional[models.EntityResource]:
     assoc_ent_name = assoc_ent_info["assoc_ent"]
     resource_name = resources_extra_dict["assoc_ents"][assoc_ent_name]["rpkg"]
     if resource_name is None:
         return None
     resource = resources_extra_dict["assoc_resources"]["rpkg"][resource_name]
-    entity_mapper_fn = entity_mappers[assoc_ent_info["mapper"]]
-    assoc_entity = entity_mapper_fn(entity_id, entity_name)
     queriable = assoc_ent_info["queriable"]
-    if assoc_entity is None:
-        return None
-    else:
-        url = rpkg_url_formatter(uri=resource["uri"])
-        res: models.EntityResource = {
-            "key": resource_name,
-            "name": resource["name"],
-            "label": resource["label"],
-            "url": url,
-            "queriable": queriable,
-            # "redirect_results": False,
-        }
-        return res
+    entity_mapper_fn = entity_mappers[assoc_ent_info["mapper"]]
+    if not meta_ent_only:
+        assoc_entity = entity_mapper_fn(entity_id, entity_name)
+        if assoc_entity is None:
+            return None
+    url = rpkg_url_formatter(uri=resource["uri"])
+    res: models.EntityResource = {
+        "key": resource_name,
+        "name": resource["name"],
+        "label": resource["label"],
+        "url": url,
+        "queriable": queriable,
+        # "redirect_results": False,
+    }
+    return res

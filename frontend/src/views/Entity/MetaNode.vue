@@ -71,7 +71,67 @@
         <b-container>
           <div class="pb-3">
             <h3 :id="toc[0].id">{{ toc[0].label }}</h3>
-            <code>WIP</code>
+            <p class="text-muted">
+              Resources that are associated with
+              <MetaNode :meta-node="metaNodeName" no-url />
+              on the EpiGraphDB platform.
+            </p>
+            <div class="pb-3">
+              <h4 :id="toc[0].items[0].id">
+                {{ toc[0].items[0].label }}
+              </h4>
+              <p class="text-muted">
+                Topic views that are associated with
+                <MetaNode :meta-node="metaNodeName" no-url />
+                on the
+                <a href="https://epigraphdb.org" target="_blank">
+                  EpiGraphDB WebUI
+                </a>
+                .
+                <br />
+              </p>
+              <ResourceCardGroup
+                v-if="webResources"
+                :resources="webResources"
+              />
+            </div>
+            <div class="pb-3">
+              <h4 :id="toc[0].items[1].id">
+                {{ toc[0].items[1].label }}
+              </h4>
+              <p class="text-muted">
+                API endpoints that are associated with
+                <MetaNode :meta-node="metaNodeName" no-url />
+                on the
+                <a href="https://api.epigraphdb.org" target="_blank">
+                  EpiGraphDB API
+                </a>
+                .
+              </p>
+              <ResourceCardGroup
+                v-if="apiResources"
+                :resources="apiResources"
+              />
+            </div>
+            <div class="pb-3">
+              <h4 :id="toc[0].items[2].id">
+                {{ toc[0].items[2].label }}
+              </h4>
+              <p class="text-muted">
+                Functions that are associated with
+                <MetaNode :meta-node="metaNodeName" no-url />
+                in the
+                <a href="https://mrcieu.github.io/epigraphdb-r">
+                  <code style="color: #d7528b">epigraphdb</code>
+                  R package
+                </a>
+                .
+              </p>
+              <ResourceCardGroup
+                v-if="rpkgResources"
+                :resources="rpkgResources"
+              />
+            </div>
             <hr />
           </div>
           <div class="pb-3">
@@ -144,6 +204,7 @@ import MetaNode from "@/components/miscs/DecoratedMetaNode";
 import NeighbourMetaTable from "@/components/Entity/NeighbourMetaTable";
 import LinkedResource from "@/components/Entity/LinkedResource";
 import MetaNodeEntityTable from "@/components/Entity/MetaNodeEntityTable";
+import ResourceCardGroup from "@/components/Entity/ResourceCardGroup";
 
 const config = require("@/config");
 
@@ -155,12 +216,18 @@ export default {
     NeighbourMetaTable,
     LinkedResource,
     MetaNodeEntityTable,
+    ResourceCardGroup,
   },
   data: () => ({
     toc: [
       {
         id: "resources-platform",
         label: "EpiGraphDB platform resources",
+        items: [
+          { id: "resources-web", label: "WebUI topic views" },
+          { id: "resources-api", label: "API endpoints" },
+          { id: "resources-rpkg", label: "R package functions" },
+        ],
       },
       {
         id: "connected-meta-nodes",
@@ -172,6 +239,7 @@ export default {
       },
     ],
     metaNodeName: null,
+    resourcesData: null,
     epigraphdbMetaNodes: null,
     metaNodeData: null,
     entityNameQuery: null,
@@ -188,6 +256,7 @@ export default {
     document.title = this.metaNodeName;
     this.metaNodeData = await this.getMaster();
     this.entityData = await this.getEntityData();
+    this.resourcesData = await this.getResourcesData();
   },
   watch: {},
   computed: {
@@ -208,6 +277,21 @@ export default {
             logo: require(`@/assets/linked-resources/` +
               this.metaNodeData.linked_resource.logo),
           }
+        : null;
+    },
+    webResources: function() {
+      return this.resourcesData && this.resourcesData.web.length > 0
+        ? this.resourcesData.web
+        : null;
+    },
+    apiResources: function() {
+      return this.resourcesData && this.resourcesData.api.length > 0
+        ? this.resourcesData.api
+        : null;
+    },
+    rpkgResources: function() {
+      return this.resourcesData && this.resourcesData.rpkg.length > 0
+        ? this.resourcesData.rpkg
         : null;
     },
   },
@@ -241,6 +325,15 @@ export default {
     },
     async refreshEntityData() {
       this.entityData = await this.getEntityData();
+    },
+    async getResourcesData() {
+      const url = `${config.web_backend_url}/meta-ent/meta-node/resources`;
+      const params = {
+        meta_node: this.metaNodeName,
+      };
+      return await axios.get(url, { params: params }).then(r => {
+        return r.data;
+      });
     },
   },
 };

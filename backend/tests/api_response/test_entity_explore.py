@@ -47,6 +47,15 @@ response_params: List[Tuple[str, Optional[Dict[str, Any]]]] = [
             "size": 5,
         },
     ),
+    # meta ent resources
+    *[
+        ("/meta-ent/meta-node/resources", {"meta_node": _.value})
+        for _ in EpigraphdbMetaNodeFull
+    ],
+    *[
+        ("/meta-ent/meta-rel/resources", {"meta_rel": _.value})
+        for _ in EpigraphdbMetaRelFull
+    ],
 ]
 
 ent_params: List[Tuple[str, str, str]] = [
@@ -149,3 +158,17 @@ def test_entity_similarity_neural(meta_node: str, ent_id: str, ent_name: str):
         assert len(r_data) > 0
     else:
         assert r_data is None
+
+
+@pytest.mark.parametrize("meta_node, ent_id, ent_name", ent_params)
+def test_entity_resources(meta_node: str, ent_id: str, ent_name: str):
+    logger.info(locals())
+    url = "/entity/resources"
+    params = {
+        "meta_node": meta_node,
+        "id": ent_id,
+        "name": ent_name,
+    }
+    r = client.get(url=url, params=params, headers=unittest_headers)
+    r.raise_for_status()
+    assert r.status_code == 200
