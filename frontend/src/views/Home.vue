@@ -10,7 +10,6 @@
               alt="EpiGraphDB"
             />
           </span>
-          <span class="label align-text-bottom">{{ platformVersion }}</span>
         </h1>
         <p class="text-muted">
           A database and data mining platform for health data science
@@ -53,7 +52,7 @@ export default {
     HomeSearch,
   },
   data: () => ({
-    platformVersion: "1.10",
+    platformVersion: null,
   }),
 };
 </script>
