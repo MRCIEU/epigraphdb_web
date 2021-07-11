@@ -143,8 +143,7 @@ def format_monitoring_info(info):
 logger.add(
     settings.log_dir / "api.log",
     enqueue=False,
-    rotation="7 days",
-    retention="7 days",
+    rotation="30 days",
     compression="tar.gz",
 )
 # elasticsearch monitor
@@ -153,8 +152,7 @@ logger.add(
     format=LOGURU_ELASTICSEARCH,
     filter=elasticsearch_predicate,
     enqueue=False,
-    rotation="7 days",
-    retention="7 days",
+    rotation="30 days",
     compression="tar.gz",
     backtrace=False,
     catch=False,
@@ -166,7 +164,6 @@ logger.add(
     format=LOGURU_MONITORING,
     enqueue=False,
     filter=monitoring_predicate,
-    rotation="7 days",
-    retention="7 days",
+    rotation="30 days",
     compression="tar.gz",
 )
