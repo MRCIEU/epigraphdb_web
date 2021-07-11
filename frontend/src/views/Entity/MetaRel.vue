@@ -7,12 +7,6 @@
           EpiGraphDB meta rel:
           <MetaRel :meta-rel="metaRelName" no-url />
         </h2>
-        <p class="text-muted text-center">
-          Search in EpiGraphDB documentation
-          <a :href="docUrl" target="_blank">
-            <font-awesome-icon :icon="['fas', 'search']" />
-          </a>
-        </p>
       </b-col>
     </b-row>
     <b-row>
@@ -22,6 +16,14 @@
           <span class="text-muted">{{ item.stat }}:</span>
           &nbsp;
           <b>{{ item.value.toLocaleString() }}</b>
+        </p>
+        <hr />
+        <h3>Documentation</h3>
+        <p class="text-muted">
+          Search in EpiGraphDB documentation
+          <a :href="docUrl" target="_blank">
+            <font-awesome-icon :icon="['fas', 'search']" />
+          </a>
         </p>
         <hr />
         <h3>Schema definition</h3>
