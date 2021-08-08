@@ -100,7 +100,7 @@ def _neural_search_by_id(id: str, meta_node: str, size: int) -> List[Dict]:
         url, params={"entity_id": id, "meta_node": meta_node, "limit": size}
     )
     r.raise_for_status()
-    res: List[Dict] = r.json()
+    res: List[Dict] = r.json()["results"]
     return res
 
 
