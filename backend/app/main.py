@@ -13,6 +13,7 @@ from .apis.secondary_views.entity import (
 from .apis.topic_views import (
     confounder,
     covid_xqtl,
+    xqtl_trans_ancestry_pwas,
     drugs_risk_factors,
     genetic_cor,
     literature_trait,
@@ -77,6 +78,7 @@ app.include_router(
     ontology_trait_disease.router, tags=["topic: ontology_trait_disease"]
 )
 app.include_router(covid_xqtl.router, tags=["topic: covid_xqtl"])
+app.include_router(xqtl_trans_ancestry_pwas.router, tags=["topic: xqtl trans ancestry pwas"])
 # util routes
 app.include_router(utils.router, tags=["utils"])
 app.include_router(status.router, tags=["utils: status"])
