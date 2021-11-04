@@ -42,7 +42,9 @@ def xqtl_pwas_mr(
     q: Optional[str] = None,
     pval_threshold: float = 1e-3,
 ):
-    log_args(api=f"/xqtl_trans_ancestry_pwas/xqtl_pwas_mr/{entity}", kwargs=locals())
+    log_args(
+        api=f"/xqtl_trans_ancestry_pwas/xqtl_pwas_mr/{entity}", kwargs=locals()
+    )
     params: Dict[str, Any] = {"q": q, "pval_threshold": pval_threshold}
     r = requests.get(
         f"{api_url}/xqtl_trans_ancestry_pwas/xqtl_pwas_mr/{entity.value}",

@@ -233,6 +233,14 @@ const routes = [
         /* webpackChunkName: "covid-xqtl" */ "../views/Topics/CovidXQTL.vue"
       ),
   },
+  {
+    path: "/trans-ancestry-pwas/",
+    name: "trans-ancestry-pwas",
+    component: () =>
+      import(
+        /* webpackChunkName: "trans-ancestry-pwas" */ "../views/Topics/XqtlPwasMr.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({
