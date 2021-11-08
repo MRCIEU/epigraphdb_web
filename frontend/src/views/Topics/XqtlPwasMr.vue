@@ -165,7 +165,6 @@ import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 import Alert from "@/components/Utils/Alert.vue";
 
 import info from "@/assets/docs/trans-ancestry-pwmr.md";
-import apiDoc from "@/assets/docs/trans-ancestry-pwmr-api.md";
 import Table from "@/components/Utils/TableGeneric.vue";
 import VolcanoPlot from "@/components/XqtlPwasMr/VolcanoPlot.vue";
 import ApiQuery from "@/components/XqtlPwasMr/ApiQuery.vue";
@@ -199,9 +198,9 @@ export default {
     ApiQuery,
   },
   data: () => ({
-    pageTitle: `Trans-ancestry PWAS`,
+    pageTitle: `Trans-ancestry PWAS MR`,
     subTitle: `
-      Proteome-wide association study in global biobank meta-analysis
+      Proteome-wide Mendelian randomization in global biobank meta-analysis
       reveals trans-ancestry drug targets for common diseases
     `,
     queryMode: "gwas",
@@ -226,7 +225,6 @@ export default {
     alert: false,
     alertMsg: "",
     infoText: info,
-    apiDocText: apiDoc,
     url: `${config.web_backend_url}/xqtl_trans_ancestry_pwmr`,
   }),
   mounted: async function() {

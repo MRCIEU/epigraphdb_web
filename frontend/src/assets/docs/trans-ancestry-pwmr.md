@@ -8,7 +8,7 @@ Proteome-wide association studies (PWAS) show value in prioritizing drug targets
 
 - pQTL data: [Zhang et al., 2021 BioRxiv](https://www.biorxiv.org/content/10.1101/2021.03.15.435533v1.full)
 
-- Evidence results: [Zhao et al., Proteome-wide association study in global biobank meta-analysis reveals trans-ancestry drug targets for common diseases, BioRxiv](#)
+- Evidence results: [Zhao et al., Proteome-wide Mendelian randomization in global biobank meta-analysis reveals trans-ancestry drug targets for common diseases, BioRxiv](#)
 
 ## Examples
 
