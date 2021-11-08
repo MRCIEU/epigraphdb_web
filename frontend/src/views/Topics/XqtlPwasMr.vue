@@ -64,7 +64,7 @@
               block
               variant="primary"
               :disabled="searchInvalid"
-              @click="getData"
+              @click="submit"
             >
               <b-spinner small v-if="resLoading" variant="light"></b-spinner>
               Search
@@ -129,9 +129,13 @@
             Programmatic query (API)
           </template>
           <div>
-            <vue-markdown>{{ apiDocText }}</vue-markdown>
+            <div v-if="resTableData">
+              <api-query :ent="queryMode" :q="q" :pval-threshold="pval" />
+            </div>
+            <div v-else>
+              <p>Try search for something then come back here.</p>
+            </div>
           </div>
-          <!-- TODO -->
         </b-tab>
       </b-tabs>
     </div>
@@ -160,10 +164,11 @@ import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import Alert from "@/components/Utils/Alert.vue";
 
-import info from "@/assets/docs/trans-ancestry-pwas.md";
-import apiDoc from "@/assets/docs/trans-ancestry-pwas-api.md";
+import info from "@/assets/docs/trans-ancestry-pwmr.md";
+import apiDoc from "@/assets/docs/trans-ancestry-pwmr-api.md";
 import Table from "@/components/Utils/TableGeneric.vue";
 import VolcanoPlot from "@/components/XqtlPwasMr/VolcanoPlot.vue";
+import ApiQuery from "@/components/XqtlPwasMr/ApiQuery.vue";
 
 import { reformatTable } from "@/funcs/reformat-table";
 
@@ -191,6 +196,7 @@ export default {
     Alert,
     Table,
     VolcanoPlot,
+    ApiQuery,
   },
   data: () => ({
     pageTitle: `Trans-ancestry PWAS`,
@@ -207,8 +213,8 @@ export default {
     gwasQuery: null,
     geneSelected: null,
     gwasSelected: null,
-    pvalBase: "1e-3",
-    pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
+    pvalBase: "1e-2",
+    pvalBaseOptions: ["1e-1", "1e-2", "1e-3", "1e-5", "1e-10"],
     // ac
     acGwas: [],
     acGene: [],
@@ -221,7 +227,7 @@ export default {
     alertMsg: "",
     infoText: info,
     apiDocText: apiDoc,
-    url: `${config.web_backend_url}/xqtl_trans_ancestry_pwas`,
+    url: `${config.web_backend_url}/xqtl_trans_ancestry_pwmr`,
   }),
   mounted: async function() {
     this.acGwas = await this.getAcGwas();
@@ -243,7 +249,9 @@ export default {
         };
       }
       if (this.$route.query["pval"]) {
-        this.pvalBase = this.$route.query["pval"];
+        this.pvalBase = String(
+          parseFloat(this.$route.query["pval"]).toExponential(),
+        );
       }
       if (this.gwasSelected || this.geneSelected) {
         this.getData();
@@ -263,20 +271,31 @@ export default {
       });
       return res;
     },
+    submit() {
+      if (this.queryMode == "gene") {
+        this.$router.push({
+          name: "trans-ancestry-pwmr",
+          query: {
+            gene: this.q,
+            pval: this.pval,
+          },
+        });
+      } else {
+        this.$router.push({
+          name: "trans-ancestry-pwmr",
+          query: {
+            gwas: this.q,
+            pval: this.pval,
+          },
+        });
+      }
+      this.getData();
+    },
     getData() {
       this.resLoading = true;
-      let endpoint;
-      let q;
-      if (this.queryMode == "gene") {
-        endpoint = "gene";
-        q = this.geneSelected["_id"];
-      } else if (this.queryMode == "gwas") {
-        endpoint = "gwas";
-        q = this.gwasSelected["_id"];
-      }
-      const url = `${this.url}/xqtl_pwas_mr/${endpoint}`;
+      const url = `${this.url}/xqtl_pwas_mr/${this.queryMode}`;
       const params = {
-        q: q,
+        q: this.q,
         pval_threshold: this.pval,
       };
       axios
@@ -306,6 +325,19 @@ export default {
   computed: {
     pval: function() {
       return parseFloat(this.pvalBase);
+    },
+    q: function() {
+      let q;
+      if (this.queryMode == "gene") {
+        q = this.geneSelected
+          ? this.geneSelected["_id"]
+          : this.$route.query["gene"];
+      } else if (this.queryMode == "gwas") {
+        q = this.gwasSelected
+          ? this.gwasSelected["_id"]
+          : this.$route.query["gwas"];
+      }
+      return q;
     },
     searchInvalid: function() {
       // Disable search button under circumstances

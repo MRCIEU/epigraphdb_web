@@ -14,13 +14,13 @@ from .functions import process_data
 router = APIRouter()
 
 
-@router.get("/xqtl_trans_ancestry_pwas/list/{entity}")
+@router.get("/xqtl_trans_ancestry_pwmr/list/{entity}")
 def list_ents(entity: models.Entity, overwrite: bool = False):
-    log_args(api=f"/xqtl_trans_ancestry_pwas/list/{entity}", kwargs=locals())
+    log_args(api=f"/xqtl_trans_ancestry_pwmr/list/{entity}", kwargs=locals())
 
     def _func(entity: str):
         r = requests.get(
-            f"{api_url}/xqtl_trans_ancestry_pwas/list/{entity}",
+            f"{api_url}/xqtl_trans_ancestry_pwmr/list/{entity}",
             headers=api_request_headers,
         )
         r.raise_for_status()
@@ -36,18 +36,18 @@ def list_ents(entity: models.Entity, overwrite: bool = False):
     return cache_res
 
 
-@router.get("/xqtl_trans_ancestry_pwas/xqtl_pwas_mr/{entity}")
+@router.get("/xqtl_trans_ancestry_pwmr/xqtl_pwas_mr/{entity}")
 def xqtl_pwas_mr(
     entity: models.Entity,
     q: Optional[str] = None,
     pval_threshold: float = 1e-3,
 ):
     log_args(
-        api=f"/xqtl_trans_ancestry_pwas/xqtl_pwas_mr/{entity}", kwargs=locals()
+        api=f"/xqtl_trans_ancestry_pwmr/xqtl_pwas_mr/{entity}", kwargs=locals()
     )
     params: Dict[str, Any] = {"q": q, "pval_threshold": pval_threshold}
     r = requests.get(
-        f"{api_url}/xqtl_trans_ancestry_pwas/xqtl_pwas_mr/{entity.value}",
+        f"{api_url}/xqtl_trans_ancestry_pwmr/xqtl_pwas_mr/{entity.value}",
         params=params,
         headers=api_request_headers,
     )

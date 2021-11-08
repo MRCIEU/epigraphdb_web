@@ -12,6 +12,6 @@ Proteome-wide association studies (PWAS) show value in prioritizing drug targets
 
 ## Examples
 
-- [Search by GWAS: Venous thromboembolism (VTE) (population: European) ](/trans-ancestry-pwas/?gwas=gbmi-a-00008-nfe-b)
-- [Search by GWAS: Heart Failure (HF) (population: African) ](/trans-ancestry-pwas/?gwas=gbmi-a-00005-afr-b&pval=0.01)
-- [Search by Gene: PROC](/trans-ancestry-pwas/?gene=ENSG00000115718&pval=0.01)
+- [Search by GWAS: Venous thromboembolism (VTE) (population: European) ](/trans-ancestry-pwmr/?gwas=gbmi-a-00008-nfe-b)
+- [Search by GWAS: Heart Failure (HF) (population: African) ](/trans-ancestry-pwmr/?gwas=gbmi-a-00005-afr-b&pval=0.01)
+- [Search by Gene: PROC](/trans-ancestry-pwmr/?gene=ENSG00000115718&pval=0.01)
