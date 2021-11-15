@@ -93,7 +93,7 @@
             <font-awesome-icon :icon="['fas', 'info-circle']" />
             Documentation
           </template>
-          <vue-markdown>{{ infoText }}</vue-markdown>
+          <vue-markdown :source="infoText" :breaks="false" />
         </b-tab>
         <!-- ents -->
         <b-tab>
@@ -213,7 +213,7 @@ export default {
     geneSelected: null,
     gwasSelected: null,
     pvalBase: "1e-2",
-    pvalBaseOptions: ["1e-1", "1e-2", "1e-3", "1e-5", "1e-10"],
+    pvalBaseOptions: ["1", "1e-1", "1e-2", "1e-3", "1e-5", "1e-10"],
     // ac
     acGwas: [],
     acGene: [],
