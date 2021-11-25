@@ -214,6 +214,7 @@ export default {
 }
 #navbar {
   background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(2px);
   padding-left: 2rem;
   padding-right: 2rem;
   border-bottom: 1px solid #9cc2e3;

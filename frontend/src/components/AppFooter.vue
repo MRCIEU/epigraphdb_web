@@ -132,6 +132,7 @@ export default {
   width: 100%;
   /* background-color: #337ab7; */
   background-color: rgba(51, 122, 183, 0.9);
+  backdrop-filter: blur(2px);
   color: white;
   text-align: center;
 }
