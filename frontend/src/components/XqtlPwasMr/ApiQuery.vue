@@ -43,7 +43,7 @@ NOTE: you will need to have
     `,
     block3: `
 For further instructions on how to query the API endpoints
-please refer to [EpiGraphDB's documentation](https://docs.epigraphdb.org/api/api-endpoints/#get-xqtl_trans_ancestry_pwmrxqtl_pwas_mrentity).
+please refer to [EpiGraphDB's documentation](https://docs.epigraphdb.org/api/api-endpoints/#get-xqtl_multi_ancestry_pwmrxqtl_pwas_mrentity).
     `,
   }),
   computed: {
@@ -51,7 +51,7 @@ please refer to [EpiGraphDB's documentation](https://docs.epigraphdb.org/api/api
       const code = `
 import requests
 
-url = "https://api.epigraphdb.org/xqtl_trans_ancestry_pwmr/xqtl_pwas_mr/${this.ent}"
+url = "https://api.epigraphdb.org/xqtl_multi_ancestry_pwmr/xqtl_pwas_mr/${this.ent}"
 params = {"q": "${this.q}", "pval_threshold": ${this.pvalThreshold}}
 r = requests.get(url, params=params)
 r.raise_for_status()
@@ -64,7 +64,7 @@ print(result)
       const code = `
 library("epigraphdb")
 result = query_epigraphdb(
-  route = "/xqtl_trans_ancestry_pwmr/xqtl_pwas_mr/${this.ent}",
+  route = "/xqtl_multi_ancestry_pwmr/xqtl_pwas_mr/${this.ent}",
   params = list(
     q = "${this.q}",
     pval_threshold = ${this.pvalThreshold}

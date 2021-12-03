@@ -23,7 +23,7 @@ from .apis.topic_views import (
     pqtl,
     prs,
     xqtl,
-    xqtl_trans_ancestry_pwmr,
+    xqtl_multi_ancestry_pwmr,
 )
 from .apis.util_routes import (
     analysis,
@@ -79,7 +79,7 @@ app.include_router(
 )
 app.include_router(covid_xqtl.router, tags=["topic: covid_xqtl"])
 app.include_router(
-    xqtl_trans_ancestry_pwmr.router, tags=["topic: xqtl trans ancestry pwmr"]
+    xqtl_multi_ancestry_pwmr.router, tags=["topic: xqtl multi ancestry pwmr"]
 )
 # util routes
 app.include_router(utils.router, tags=["utils"])

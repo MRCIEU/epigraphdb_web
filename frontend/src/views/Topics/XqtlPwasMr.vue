@@ -164,7 +164,7 @@ import VueTypeaheadBootstrap from "vue-typeahead-bootstrap";
 
 import Alert from "@/components/Utils/Alert.vue";
 
-import info from "@/assets/docs/trans-ancestry-pwmr.md";
+import info from "@/assets/docs/multi-ancestry-pwmr.md";
 import Table from "@/components/Utils/TableGeneric.vue";
 import VolcanoPlot from "@/components/XqtlPwasMr/VolcanoPlot.vue";
 import ApiQuery from "@/components/XqtlPwasMr/ApiQuery.vue";
@@ -198,7 +198,7 @@ export default {
     ApiQuery,
   },
   data: () => ({
-    pageTitle: `Trans-ancestry PWAS MR`,
+    pageTitle: `Multi-ancestry PWAS MR`,
     subTitle: `
       Proteome-wide Mendelian randomization in global biobank meta-analysis
       reveals trans-ancestry drug targets for common diseases
@@ -225,7 +225,7 @@ export default {
     alert: false,
     alertMsg: "",
     infoText: info,
-    url: `${config.web_backend_url}/xqtl_trans_ancestry_pwmr`,
+    url: `${config.web_backend_url}/xqtl_multi_ancestry_pwmr`,
   }),
   mounted: async function() {
     this.acGwas = await this.getAcGwas();
@@ -272,7 +272,7 @@ export default {
     submit() {
       if (this.queryMode == "gene") {
         this.$router.push({
-          name: "trans-ancestry-pwmr",
+          name: "multi-ancestry-pwmr",
           query: {
             gene: this.q,
             pval: this.pval,
@@ -280,7 +280,7 @@ export default {
         });
       } else {
         this.$router.push({
-          name: "trans-ancestry-pwmr",
+          name: "multi-ancestry-pwmr",
           query: {
             gwas: this.q,
             pval: this.pval,

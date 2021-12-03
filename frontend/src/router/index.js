@@ -234,11 +234,12 @@ const routes = [
       ),
   },
   {
-    path: "/trans-ancestry-pwmr/",
-    name: "trans-ancestry-pwmr",
+    path: "/multi-ancestry-pwmr/",
+    name: "multi-ancestry-pwmr",
+    alias: "/trans-ancestry-pwmr/",
     component: () =>
       import(
-        /* webpackChunkName: "trans-ancestry-pwmr" */ "../views/Topics/XqtlPwasMr.vue"
+        /* webpackChunkName: "multi-ancestry-pwmr" */ "../views/Topics/XqtlPwasMr.vue"
       ),
   },
 ];
