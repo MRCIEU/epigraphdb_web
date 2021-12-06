@@ -19,6 +19,6 @@ Our results highlight the value of PWAS in informing the generalisability of dru
 
 ## Examples
 
-- [Search by GWAS: Venous thromboembolism (VTE) (population: European) ](/trans-ancestry-pwmr/?gwas=gbmi-a-00008-nfe-b)
-- [Search by GWAS: Heart Failure (HF) (population: African) ](/trans-ancestry-pwmr/?gwas=gbmi-a-00005-afr-b&pval=0.1)
-- [Search by Gene: PROC](/trans-ancestry-pwmr/?gene=ENSG00000115718&pval=0.1)
+- [Search by GWAS: Venous thromboembolism (VTE) (population: European) ](/multi-ancestry-pwmr/?gwas=gbmi-a-00008-nfe-b)
+- [Search by GWAS: Heart Failure (HF) (population: African) ](/multi-ancestry-pwmr/?gwas=gbmi-a-00005-afr-b&pval=0.1)
+- [Search by Gene: PROC](/multi-ancestry-pwmr/?gene=ENSG00000115718&pval=0.1)
