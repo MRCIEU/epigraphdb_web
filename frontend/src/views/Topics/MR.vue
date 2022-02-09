@@ -196,7 +196,7 @@ export default {
       { text: "Exposure and outcome trait", value: "both" },
     ],
     pvalBase: "1e-5",
-    pvalBaseOptions: ["1e-1", "1e-3", "1e-5", "1e-8", "1e-10"],
+    pvalBaseOptions: ["1e-1", "1e-2", "1e-3", "1e-5", "1e-8", "1e-10"],
     sizeLimitDefault: 50,
     exposureTrait: null,
     outcomeTrait: null,
@@ -233,6 +233,9 @@ export default {
         this.$route.query["outcome-query"]
       ) {
         this.queryModeCurr = "both";
+      }
+      if (this.$route.query["pval"]) {
+        this.pvalBase = this.$route.query["pval"].toString();
       }
       if (this.exposureTrait || this.outcomeTrait) {
         this.getMaster();
