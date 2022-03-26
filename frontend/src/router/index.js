@@ -19,6 +19,13 @@ const routes = [
         /* webpackChunkName: "table-demo" */ "../views/Misc/TableDemo.vue"
       ),
   },
+  {
+    path: "/demo",
+    name: "demo",
+    meta: { fluidContainer: true },
+    component: () =>
+      import(/* webpackChunkName: "demo" */ "../views/Misc/Demo.vue"),
+  },
   // utils
   {
     path: "/about/",
