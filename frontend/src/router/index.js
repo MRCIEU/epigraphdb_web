@@ -249,6 +249,15 @@ const routes = [
         /* webpackChunkName: "multi-ancestry-pwmr" */ "../views/Topics/XqtlPwasMr.vue"
       ),
   },
+  {
+    path: "/covid-cancer",
+    name: "covid-cancer",
+    meta: { fluidContainer: true },
+    component: () =>
+      import(
+        /* webpackChunkName: "covid-cancer" */ "../views/Studies/CovidCancer/CovidCancer.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({

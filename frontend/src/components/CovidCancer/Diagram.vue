@@ -8,7 +8,7 @@
     >
       Fullscreen
     </b-button>
-    <div class="graph-container">
+    <div v-if="elements" class="graph-container">
       <cytoscape
         ref="cy"
         id="cy"
@@ -34,18 +34,22 @@ import VueCytoscape from "vue-cytoscape";
 Vue.use(VueCytoscape);
 import cola from "cytoscape-cola";
 
-import { graphData } from "@/data/covid-cancer-example";
-import { config } from "@/data/covid-cancer-example-config";
+import { config } from "@/data/covid-cancer/config";
 
 export default Vue.extend({
-  name: "CytoscapeDemo",
+  name: "CytoscapeDiagram",
   components: {
     //
+  },
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
   },
   data() {
     return {
       config: config,
-      graphData: graphData,
       fullscreen: false,
     };
   },
@@ -54,11 +58,11 @@ export default Vue.extend({
       return this.$refs.cy.instance;
     },
     elements() {
-      const nodes = _.chain(this.graphData.nodes).map(e => ({
+      const nodes = _.chain(this.data.nodes).map(e => ({
         group: "nodes",
         data: e.data,
       }));
-      const edges = _.chain(this.graphData.edges).map(e => ({
+      const edges = _.chain(this.data.edges).map(e => ({
         group: "edges",
         data: e.data,
       }));
@@ -89,7 +93,7 @@ export default Vue.extend({
 
 <style>
 #cytoscape-div {
-  min-height: 1080px !important;
+  min-height: 720px !important;
 }
 .graph-container {
   height: 100%;
