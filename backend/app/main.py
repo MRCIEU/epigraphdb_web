@@ -28,6 +28,7 @@ from .apis.topic_views import (
 from .apis.util_routes import (
     analysis,
     api,
+    components,
     metadata,
     models,
     search,
@@ -89,5 +90,6 @@ app.include_router(metadata.router, tags=["utils: metadata"])
 app.include_router(analysis.router, tags=["utils: analysis"])
 app.include_router(search.router, tags=["utils: search"])
 app.include_router(models.router, tags=["utils: models"])
+app.include_router(components.router, tags=["utils: components"])
 # others
 app.include_router(mr_simple.router, tags=["example: mr_simple"])
