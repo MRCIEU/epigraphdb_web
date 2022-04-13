@@ -14,7 +14,7 @@ export default Vue.extend({
   data() {
     return {
       //
-    }
+    };
   },
   computed: {
     //
@@ -22,5 +22,5 @@ export default Vue.extend({
   methods: {
     //
   },
-})
+});
 </script>

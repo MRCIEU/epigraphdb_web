@@ -213,9 +213,7 @@ const routes = [
     name: "nlp",
     meta: { fluidContainer: true },
     component: () =>
-      import(
-        /* webpackChunkName: "nlp" */ "../views/NLP/NLP.vue"
-      ),
+      import(/* webpackChunkName: "nlp" */ "../views/NLP/NLP.vue"),
   },
   // pqtl
   {
