@@ -1,49 +1,31 @@
-from fastapi import APIRouter
+from typing import Any, Dict, Optional
 
-from . import processing, types
+import requests
+from fastapi import APIRouter
+from pydantic import BaseModel
+
+from app import settings
 
 router = APIRouter()
 
 
-@router.post("/nlp/encode/text")
-def encode_text(input_data: types.EncodeTextInput):
-    encode_results = processing.encode_text(
-        text=input_data.text,
-        asis=input_data.asis,
+class NeuralQuery(BaseModel):
+    route: str
+    method: str = "POST"
+    payload: Optional[Dict[str, Any]] = None
+
+
+# A pure redirect to epigraphdb neural
+@router.post("/nlp/epigraphdb_neural")
+def query_epigraphdb_neural(input_data: NeuralQuery):
+    url = "{url}{route}".format(
+        url=settings.neural_url, route=input_data.route
     )
-    res = {
-        "results": encode_results["results"],
-        "metadata": {
-            "model": input_data.model,
-            "length": len(encode_results["results"]),
-            "clean_text": encode_results["clean_text"],
-        },
-    }
-    return res
-
-
-@router.post("/nlp/encode/ent")
-def encode_ent(input_data: types.EncodeEntInput):
-    encode_results = processing.encode_ent(
-        ent_id=input_data.ent_id,
-        meta_ent=input_data.meta_ent,
-    )
-    res = {
-        "results": encode_results,
-        "metadata": {
-            "length": len(encode_results),
-        },
-    }
-    return res
-
-
-# @router.post("/nlp/search/text")
-# def encode_ent(input_data: types.SearchTextInput):
-#     # search most similar ents
-#     pass
-
-
-# @router.post("/nlp/search/ent")
-# def encode_ent(input_data: types.SearchEntInput):
-#     # search most similar ents
-#     pass
+    if input_data.method == "GET":
+        r = requests.get(url=url, params=input_data.payload)
+        r.raise_for_status()
+        return r.json()
+    elif input_data.method == "POST":
+        r = requests.post(url=url, json=input_data.payload)
+        r.raise_for_status()
+        return r.json()
