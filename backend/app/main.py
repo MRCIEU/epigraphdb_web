@@ -4,7 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from app.utils.logging import MonitoringMiddleware, logger  # noqa:F401
 
 from .apis import mr_simple, top
-from .apis.secondary_views import about, explore, gallery
+from .apis.secondary_views import about, explore, gallery, nlp
 from .apis.secondary_views.entity import (
     entity_routes,
     meta_entity_routes,
@@ -58,6 +58,7 @@ app.include_router(top.router, tags=["top endpoints"])
 app.include_router(about.router, tags=["secondary: about"])
 app.include_router(gallery.router, tags=["secondary: gallery"])
 app.include_router(explore.router, tags=["secondary: explore"])
+app.include_router(nlp.router, tags=["secondary: NLP"])
 # entity views
 app.include_router(entity_routes.router, tags=["entity: entity"])
 app.include_router(meta_entity_routes.router, tags=["entity: meta-entity"])
