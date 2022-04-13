@@ -207,6 +207,14 @@ const routes = [
         /* webpackChunkName: "ontology-trait-disease" */ "../views/Topics/OntologyTraitDisease.vue"
       ),
   },
+  // nlp
+  {
+    path: "/nlp/",
+    name: "nlp",
+    meta: { fluidContainer: true },
+    component: () =>
+      import(/* webpackChunkName: "nlp" */ "../views/NLP/NLP.vue"),
+  },
   // pqtl
   {
     path: "/pqtl/",
@@ -226,6 +234,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "pqtl-list" */ "../views/PQTL/List.vue"),
   },
+  // assoc components
   {
     path: "/covid-19/",
     name: "covid",

@@ -121,9 +121,8 @@ export default {
     },
   },
   methods: {
-    onFiltered(filteredItems) {
+    onFiltered() {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
   },
