@@ -17,5 +17,6 @@ module.exports = {
         options.prettify = false;
         return options;
       });
+    config.module.rule("pug").use("vue-loader").loader("pug-plain-loader");
   },
 };
