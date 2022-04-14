@@ -11,14 +11,12 @@ div
         term-similarity
       b-tab(title="Entity embedding" href="#ent-embedding" @click="$router.push({hash: '#ent-embedding'})")
         entity-embedding
-      b-tab(title="Ontology classification" href="#ontology-classification" @click="$router.push({hash: '#ontology-classification'})")
-        ontology-cls
 </template>
 
 <script>
 import Vue from "vue";
 import EntityEmbedding from "@/components/NLP/EntityEmbedding.vue";
-import OntologyCls from "@/components/NLP/OntologyCls.vue";
+// import OntologyCls from "@/components/NLP/OntologyCls.vue";
 import TextEmbedding from "@/components/NLP/TextEmbedding.vue";
 import TermSimilarity from "@/components/NLP/TermSimilarity.vue";
 
@@ -26,7 +24,7 @@ export default Vue.extend({
   name: "NLPView",
   components: {
     EntityEmbedding,
-    OntologyCls,
+    // OntologyCls,
     TextEmbedding,
     TermSimilarity,
   },
