@@ -4,7 +4,7 @@ div
   h3 Query
   b-row(align-v="center")
     b-col(cols="8" offset="2")
-      b-input-group(prepend="Query text")
+      b-input-group(prepend="Query entity")
         b-form-input(v-model="metaEnt" placeholder="e.g. Gwas")
         b-form-input(v-model="entId" placeholder="e.g. ieu-a-2")
         b-input-group-append
@@ -111,7 +111,7 @@ export default Vue.extend({
         metaEnt: this.metaEnt,
         entId: this.entId,
       });
-    }
+    },
   },
 });
 </script>

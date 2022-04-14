@@ -21,7 +21,7 @@ export async function encodeEnt({ metaEnt: metaEnt, entId: entId }) {
   const payload = {
     route: "/query/entity/encode",
     method: "GET",
-    payload: { "entity_id": entId, "meta_node": metaEnt },
+    payload: { entity_id: entId, meta_node: metaEnt },
   };
   const r_data = await axios.post(URL, payload).then(r => {
     return r.data;
@@ -43,11 +43,27 @@ export async function searchSimilarEntByText({ text: text }) {
   return res;
 }
 
-export async function searchSimilarEntByEnt({ metaEnt: metaEnt, entId: entId }) {
+export async function searchSimilarEntByEnt({
+  metaEnt: metaEnt,
+  entId: entId,
+}) {
   const payload = {
     route: "/query/entity",
     method: "GET",
-    payload: { "entity_id": entId, "meta_node": metaEnt },
+    payload: { entity_id: entId, meta_node: metaEnt },
+  };
+  const r_data = await axios.post(URL, payload).then(r => {
+    return r.data;
+  });
+  const res = r_data;
+  return res;
+}
+
+export async function termSimilarity({ textList: textList }) {
+  const payload = {
+    route: "/nlp/similarity/text",
+    method: "POST",
+    payload: { text_list: textList },
   };
   const r_data = await axios.post(URL, payload).then(r => {
     return r.data;

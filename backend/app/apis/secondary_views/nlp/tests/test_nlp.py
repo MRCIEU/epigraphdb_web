@@ -85,3 +85,18 @@ def test_search_by_ent():
     r_res = r.json()
     logger.info(r_res)
     assert len(r_res) > 0
+
+
+def test_term_similarity():
+    payload = {
+        "route": "/nlp/similarity/text",
+        "method": "POST",
+        "payload": {
+            "text_list": ["Body mass index", "Body weight", "Obesity"]
+        },
+    }
+    r = client.post(url=NEURAL_ROUTE, json=payload, headers=unittest_headers)
+    assert r.ok
+    r_res = r.json()
+    logger.info(r_res)
+    assert len(r_res) == 3
