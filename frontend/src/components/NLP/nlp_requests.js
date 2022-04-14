@@ -17,11 +17,37 @@ export async function encodeText({ text: text }) {
   return res;
 }
 
-export async function searchSimilarEntText({ text: text }) {
+export async function encodeEnt({ metaEnt: metaEnt, entId: entId }) {
+  const payload = {
+    route: "/query/entity/encode",
+    method: "GET",
+    payload: { "entity_id": entId, "meta_node": metaEnt },
+  };
+  const r_data = await axios.post(URL, payload).then(r => {
+    return r.data;
+  });
+  const res = r_data;
+  return res;
+}
+
+export async function searchSimilarEntByText({ text: text }) {
   const payload = {
     route: "/query/text",
     method: "GET",
     payload: { text: text, asis: false },
+  };
+  const r_data = await axios.post(URL, payload).then(r => {
+    return r.data;
+  });
+  const res = r_data;
+  return res;
+}
+
+export async function searchSimilarEntByEnt({ metaEnt: metaEnt, entId: entId }) {
+  const payload = {
+    route: "/query/entity",
+    method: "GET",
+    payload: { "entity_id": entId, "meta_node": metaEnt },
   };
   const r_data = await axios.post(URL, payload).then(r => {
     return r.data;

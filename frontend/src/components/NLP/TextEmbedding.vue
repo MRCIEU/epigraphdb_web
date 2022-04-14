@@ -22,19 +22,32 @@ div
       )
     b-col
       p Similar entities from EpiGraphDB
-      json-viewer(
-        v-if="similarEntRes"
-        theme="json-viewer-gruvbox-dark"
-        copyable
-        :expand-depth="1"
-        :value="similarEntRes"
-      )
+      b-tabs(v-if="similarEntRes !== null")
+        b-tab(title="Table")
+          custom-table(:items="tableData.items" :fields="tableData.fields")
+            template(#cell(name)="data")
+              div
+                small
+                  meta-node(:meta-node="data.item.meta_node" no-url no-code-bg)
+                  span &nbsp; {{ data.item.id }}
+                br
+                span {{ data.item.name }}
+        b-tab(title="Detail Data")
+          json-viewer(
+            theme="json-viewer-gruvbox-dark"
+            copyable
+            :expand-depth="1"
+            :value="similarEntRes"
+          )
 </template>
 
 <script>
 import Vue from "vue";
 import JsonViewer from "vue-json-viewer";
 import "@/plugins/json-viewer-gruvbox-dark.scss";
+import CustomTable from "@/components/Utils/TableGeneric1.vue";
+
+import MetaNode from "@/components/miscs/DecoratedMetaNode";
 
 import * as requests from "./nlp_requests";
 
@@ -42,6 +55,8 @@ export default Vue.extend({
   name: "TextEmbedding",
   components: {
     JsonViewer,
+    CustomTable,
+    MetaNode,
   },
   data() {
     return {
@@ -61,13 +76,35 @@ export default Vue.extend({
       };
       return res;
     },
+    tableData() {
+      if (this.similarEntRes == null) return null;
+      const inputData = this.similarEntRes;
+      const fields = [
+        {
+          key: "name",
+          label: "Entity",
+          sortable: true,
+        },
+        {
+          key: "score",
+          label: "semantic similarity score",
+          sortable: true,
+        },
+      ];
+      const items = inputData.results;
+      const res = {
+        items: items,
+        fields: fields,
+      };
+      return res;
+    },
   },
   methods: {
     async updateSearch() {
       this.embeddingRes = await requests.encodeText({
         text: this.inputText,
       });
-      this.similarEntRes = await requests.searchSimilarEntText({
+      this.similarEntRes = await requests.searchSimilarEntByText({
         text: this.inputText,
       });
     },
