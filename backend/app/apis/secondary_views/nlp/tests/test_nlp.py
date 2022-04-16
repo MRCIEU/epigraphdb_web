@@ -100,3 +100,19 @@ def test_term_similarity():
     r_res = r.json()
     logger.info(r_res)
     assert len(r_res) == 3
+
+
+def test_ontology_distance():
+    payload = {
+        "route": "/ontology/distance",
+        "method": "POST",
+        "payload": {
+            "text_1": ["Body mass index", "Body weight", "Obesity"],
+            "text_2": ["Body weight", "Obesity", "Body mass index"],
+        },
+    }
+    r = client.post(url=NEURAL_ROUTE, json=payload, headers=unittest_headers)
+    assert r.ok
+    r_res = r.json()
+    logger.info(r_res)
+    assert len(r_res) == 3

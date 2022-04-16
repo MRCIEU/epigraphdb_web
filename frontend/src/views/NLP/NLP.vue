@@ -3,6 +3,8 @@ div
   div
     h3 NLP
     p The natural language processing components for the EpiGraphDB platform
+    | NOTE: Some of these funtionalities are experimental by nature, and please use them
+    | with extra caution.
   div
     b-tabs(v-model="tabFocus" align="center")
       b-tab(title="Text embedding" href="#text-embedding" @click="$router.push({hash: '#text-embedding'})")
@@ -11,12 +13,14 @@ div
         term-similarity
       b-tab(title="Entity embedding" href="#ent-embedding" @click="$router.push({hash: '#ent-embedding'})")
         entity-embedding
+      b-tab(title="Ontology distance" href="#ontology-distance" @click="$router.push({hash: '#ontology-distance'})")
+        ontology-distance
 </template>
 
 <script>
 import Vue from "vue";
 import EntityEmbedding from "@/components/NLP/EntityEmbedding.vue";
-// import OntologyCls from "@/components/NLP/OntologyCls.vue";
+import OntologyDistance from "@/components/NLP/OntologyDistance.vue";
 import TextEmbedding from "@/components/NLP/TextEmbedding.vue";
 import TermSimilarity from "@/components/NLP/TermSimilarity.vue";
 
@@ -24,7 +28,7 @@ export default Vue.extend({
   name: "NLPView",
   components: {
     EntityEmbedding,
-    // OntologyCls,
+    OntologyDistance,
     TextEmbedding,
     TermSimilarity,
   },
@@ -35,7 +39,7 @@ export default Vue.extend({
         "#text-embedding",
         "#term-similarity",
         "#ent-embedding",
-        "#ontology-classification",
+        "#ontology-distance",
       ],
     };
   },
