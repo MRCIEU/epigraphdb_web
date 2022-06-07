@@ -87,7 +87,7 @@ export default {
         });
     },
     update(item) {
-      this.$emit("select", item.id.id);
+      this.$emit("select", item);
     },
   },
   computed: {
