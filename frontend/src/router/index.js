@@ -207,6 +207,14 @@ const routes = [
         /* webpackChunkName: "ontology-trait-disease" */ "../views/Topics/OntologyTraitDisease.vue"
       ),
   },
+  {
+    path: "/ontology/efo",
+    name: "efo",
+    component: () =>
+      import(
+        /* webpackChunkName: "ontology-trait-disease" */ "../views/Ontology/Efo.vue"
+      ),
+  },
   // nlp
   {
     path: "/nlp/",
