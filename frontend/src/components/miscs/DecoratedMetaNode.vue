@@ -5,8 +5,8 @@
     </code>
     <code v-else class="text-primary">
       <span :class="codeColor">
-        <a  v-if="targetBlank" :href="url" target="_blank">{{ nodeDisplay }}</a>
-        <a  v-else :href="url">{{ nodeDisplay }}</a>
+        <a v-if="targetBlank" :href="url" target="_blank">{{ nodeDisplay }}</a>
+        <a v-else :href="url">{{ nodeDisplay }}</a>
       </span>
     </code>
   </span>
@@ -43,7 +43,7 @@ export default {
     targetBlank: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   computed: {
     codeColor: function() {
