@@ -95,9 +95,9 @@ export default Vue.extend({
   methods: {
     async updateSearch() {
       this.queryRes = await requests.ontologyDistance({
-        text: this.queryText
-      })
-    }
+        text: this.queryText,
+      });
+    },
   },
 });
 </script>
