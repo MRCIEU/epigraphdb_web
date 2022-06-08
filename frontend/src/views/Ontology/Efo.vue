@@ -8,12 +8,8 @@ div
   b-row.pt-3(align-v="center")
     b-col(cols="8" offset="2")
       span Search for an ontology term to start the query.
-      entity-search(:meta-node="'Efo'" @select="queryEfo = $event")
-      div(v-if="queryEfo !== null")
-        span Selected Efo node:
-        | &nbsp;
-        deco-node(:meta-node="'Efo'" :entity-id="queryEfo.id.id" :url="queryEfo.id.url" :entity-name="queryEfo.name" target-blank)
-        b-spinner(v-if="loading" variant="light")
+      entity-search(:meta-node="'Efo'" @select="onSelect($event)")
+      b-spinner(v-if="loading" variant="light")
   div
     b-row.pt-3
       b-col(cols="6")
@@ -101,14 +97,35 @@ export default Vue.extend({
       },
     };
   },
-  mounted() {
-    //
+  mounted: async function() {
+    this.queryEfo = null;
+    if (this.$route.query["id"] !== null) {
+      this.queryEfo = {
+        id: {
+          id: this.$route.query["id"],
+        },
+        name: null,
+      };
+    }
+    if (this.queryEfo !== null) {
+      this.loading = true;
+      await this.search();
+      this.loading = false;
+    }
   },
   methods: {
     async search() {
       this.efoData = await funcs.getEfoData({
         ent_id: this.queryEfo.id.id,
         ent_term: this.queryEfo.name,
+      });
+    },
+    onSelect(item) {
+      this.queryEfo = item;
+      this.$router.push({
+        query: {
+          id: item.id.id,
+        },
       });
     },
     clickUrl(params) {

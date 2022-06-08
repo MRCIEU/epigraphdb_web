@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from fastapi import APIRouter
 from pydantic import BaseModel
@@ -10,7 +10,7 @@ router = APIRouter()
 
 class OntologyDataRequest(BaseModel):
     ent_id: str
-    ent_term: str
+    ent_term: Optional[str]
 
 
 class OntologyDataResponseItem(BaseModel):
