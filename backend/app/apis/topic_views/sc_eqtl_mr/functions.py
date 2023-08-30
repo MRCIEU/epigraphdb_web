@@ -40,10 +40,10 @@ def process_volcano_plot(df: pd.DataFrame):
             x=lambda df: df["z_score"],
             y=lambda df: df["neg_log10_pval"],
             outcome=lambda df: df["outcome_name"],
-            exposure=lambda df: df["gene_name"],
+            gene=lambda df: df["gene_name"],
         )
     )
     res = res_df[
-        ["outcome", "exposure", "cell_type", "activation_time", "x", "y"]
+        ["outcome", "gene", "cell_type", "activation_time", "x", "y"]
     ].to_dict(orient="records")
     return res

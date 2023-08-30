@@ -268,6 +268,14 @@ const routes = [
       ),
   },
   {
+    path: "/sc-eqtl-mr/",
+    name: "sc-eqtl-mr",
+    component: () =>
+      import(
+        /* webpackChunkName: "sc-eqtl-mr" */ "../views/Topics/XqtlScEqtlMr.vue"
+      ),
+  },
+  {
     path: "/covid-cancer",
     name: "covid-cancer",
     meta: { fluidContainer: true },
