@@ -1,9 +1,10 @@
 # -*- mode: dockerfile -*-
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash
-RUN apt-get --allow-releaseinfo-change update \
-  && apt-get install -y nodejs
+# RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash
+# RUN apt-get --allow-releaseinfo-change update \
+#   && apt-get install -y nodejs
+RUN apt-get --allow-releaseinfo-change update
 RUN python -m pip install --upgrade pip
 
 COPY ./poetry.lock ./pyproject.toml ./
