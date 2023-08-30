@@ -22,6 +22,7 @@ from .apis.topic_views import (
     pathway,
     pqtl,
     prs,
+    sc_eqtl_mr,
     xqtl,
     xqtl_multi_ancestry_pwmr,
 )
@@ -83,6 +84,9 @@ app.include_router(
 app.include_router(covid_xqtl.router, tags=["topic: covid_xqtl"])
 app.include_router(
     xqtl_multi_ancestry_pwmr.router, tags=["topic: xqtl multi ancestry pwmr"]
+)
+app.include_router(
+    sc_eqtl_mr.router, tags=["topic: single-cell eQTL MR study"]
 )
 # util routes
 app.include_router(utils.router, tags=["utils"])
