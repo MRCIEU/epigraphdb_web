@@ -89,7 +89,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center">
-      © 2018 - 2022 Copyright:
+      © 2018 - 2023 Copyright:
       <a href="http://www.bristol.ac.uk/intergrative-epidemiology/">
         MRC Integrative Epidemiology Unit, University of Bristol
       </a>
