@@ -270,6 +270,7 @@ const routes = [
   {
     path: "/sc-eqtl-mr/",
     name: "sc-eqtl-mr",
+    meta: { isRuijinCollab: true },
     component: () =>
       import(
         /* webpackChunkName: "sc-eqtl-mr" */ "../views/Topics/XqtlScEqtlMr.vue"

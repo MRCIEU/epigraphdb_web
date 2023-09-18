@@ -1,9 +1,20 @@
 ## Introduction
 
-Immunotherapy offers a promising therapeutic strategy for cancer, where T cells play a central role. However, only a limited number of immuno-chemoprevention targets have been prioritised using population genetic tools. We systematically estimated the putative causal effects of 11,110 dynamic gene expression profiles during CD4+ T cell activation on risk of six cancers using Mendelian randomization (MR) and colocalization. We identified 887 gene-cancer pairs with robust MR and colocalization evidence to support putative causality (https://omicsharbour.org/sc-eqtl-mr/). Of these pairs, 20% were only detectable using dynamic single-cell eQTLs. Five T cell sub-types, such as TEMRA and nTreg, showed enriched MR signals with cancers. Only 37% of the cancer-associated genes were identifiable in resting T cells, with the remaining genes, such as FADS1, were associated with cancers only after T cell activation. The gene-set enrichment analysis prioritised 32 cancer-associated genes as core genes using protein-protein interaction networks, in which these genes were enriched in pathways involving ribosomal RNA processing and telomere maintenance. Further integrating MR and clinical trial evidence, 11 of 32 (34.4%) of the core genes were drug targets under clinical trial investigation for cancer or immune-related diseases, with CD6, LIPA and MAP2K1 being targets for marketed anti-cancer drugs and the remaining 21 genes as promising immuno-chemoprevention targets. Our study emphasizes the value of dynamic T cell eQTL MR in identifying novel causal genes for cancers and prioritising immuno-chemoprevention targets for cancer prevention. 
+Immune cells, especially T cells, have showed key roles on development and progression of complex diseases and offer promising opportunities in immune-mediated drug development. However, only a limited number of immune-mediated drug targets have been prioritised using population genetic tools. Here, we systematically estimated the putative causal effects of 11,110 dynamic gene expression profiles during CD4+ T cell activation on risk of six cancers and two cardiometabolic diseases using Mendelian randomization (MR) and colocalization. All available MR results are searchable via this browser. 
+This browser currently contains the Mendelian randomization results for 11,110 gene expression profiles during CD4+ T cells activation on eight complex disease outcomes, i.e. breast cancer or type 2 diabetes. To start using this browser, simply type a gene or disease name into the "search" field, for example, MAP2K1 or breast cancer. 
+
+## Data sources
+
+- GWAS data: [IEU Open GWAS database](https://gwas.mrcieu.ac.uk/)
+- GWAS data: [Global Biobank Meta-analysis Initiative (GBMI)](https://www.globalbiobankmeta.org/)
+- QTL data: [Soskic et al.](https://www.nature.com/articles/s41588-022-01066-3)
+
+## Publication
+
+- Zheng et al. Mendelian randomization and colocalization of gene expression dynamics during CD4+ T cell activation prioritising immune-mediated drug targets for cancers. BioRxiv, forthcoming 
+- Hu et al. Transcriptome-wide Mendelian randomization during CD4+ T cell activation reveals immune-related drug targets for type 2 diabetes and coronary artery disease. BioRxiv, forthcoming 
 
 ## Examples
-
-
-- [Search by Outcome: Breast cancer](sc-eqtl-mr?outcome=ieu-a-1126&pval=0.01)
-
+- [Search by cancer outcome: breast cancer](sc-eqtl-mr?outcome=ieu-a-1126&pval=0.1)
+- [Search by cardiometabolic disease outcome](sc-eqtl-mr?outcome=OH-a-00002&pval=0.1) 
+- [Search by gene: MAP2K1](sc-eqtl-mr?gene=ENSG00000169032&pval=0.1)

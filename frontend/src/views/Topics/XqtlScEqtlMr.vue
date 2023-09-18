@@ -199,7 +199,7 @@ export default {
     ApiQuery,
   },
   data: () => ({
-    pageTitle: `Single-cell eQTL MR study`,
+    pageTitle: `Single-cell eQTL Mendelian randomization browser`,
     subTitle: ``,
     queryMode: "outcome",
     queryModeOptions: [

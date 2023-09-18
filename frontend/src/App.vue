@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <div v-if="!$route.meta.hideNavigation">
-      <AppHeader />
+      <div v-if="$route.meta.isRuijinCollab">
+        <AppHeaderRuijin />
+      </div>
+      <div v-else>
+        <AppHeader />
+      </div>
     </div>
     <div v-if="!$route.meta.fluidContainer">
       <b-container id="view">
@@ -14,7 +19,7 @@
       </b-container>
     </div>
     <div class="py-3"></div>
-    <div v-if="!$route.meta.hideNavigation">
+    <div v-if="!hideFooter">
       <cookie-consent />
       <AppFooter />
     </div>
@@ -23,6 +28,7 @@
 
 <script>
 import AppHeader from "@/components/AppHeader.vue";
+import AppHeaderRuijin from "@/components/AppHeaderRuijin.vue";
 import AppFooter from "@/components/AppFooter.vue";
 import CookieConsent from "vue-cookieconsent-component";
 
@@ -30,11 +36,21 @@ export default {
   name: "App",
   components: {
     AppHeader,
+    AppHeaderRuijin,
     AppFooter,
     CookieConsent,
   },
   data: () => ({}),
   mounted: function() {},
+  computed: {
+    hideFooter() {
+      if (this.$route.meta.hideNavigation | this.$route.meta.isRuijinCollab) {
+        return true;
+      } else {
+        return null;
+      }
+    },
+  },
 };
 </script>
 
