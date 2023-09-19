@@ -11,7 +11,7 @@
       <b-navbar-brand>
         <img
           src="@/assets/logos/omics-harbour-logos/omics-harbour-logo.png"
-          height="40rem"
+          height="30rem"
           alt="OmicsHarbour"
         />
       </b-navbar-brand>
