@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <b-navbar toggleable="lg" id="navbar" fixed="top">
-      <b-navbar-brand href="https://www.omicsharbour.com">
+      <b-navbar-brand href="https://epigraphdb.org">
         <img
           src="@/assets/logos/epigraphdb-logo.svg"
           height="40rem"
